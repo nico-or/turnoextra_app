@@ -2,6 +2,10 @@ module Bgg
   class BoardGame
     def self.from_xml(xml)
       parsed = Nokogiri::XML(xml)
+
+      # valid request, but item not found
+      return if parsed.at_xpath("//error")
+
       new(
         id: parsed.root[:objectid],
         year: parsed.at_xpath("//yearpublished").text,

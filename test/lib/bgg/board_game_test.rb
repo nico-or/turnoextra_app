@@ -141,4 +141,9 @@ XML
     assert @game.names.instance_of? Array
     assert @game.names.all? { it.instance_of? String }
   end
+
+  test "returns nil for not found games" do
+    xml = "<boardgames termsofuse=\"https://boardgamegeek.com/xmlapi/termsofuse\">\n\t\t<boardgame>\n\t\t<error message=\"Item not found\"/>\n\t</boardgame>\n</boardgames>\n"
+    assert_nil Bgg::BoardGame.from_xml(xml)
+  end
 end
