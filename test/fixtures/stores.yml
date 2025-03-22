@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  url: MyString
+store_1:
+  name: Store 1
+  url: www.store1.com
 
-two:
-  name: MyString
-  url: MyString
+store_2:
+  name: Store 2
+  url: www.store2.com

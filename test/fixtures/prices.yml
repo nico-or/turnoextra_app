@@ -1,11 +1,41 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  price: 1
-  date: 2025-03-22
-  listing: one
+price_1:
+  price: 10000
+  date: "2025-03-01"
+  listing: listing_1
 
-two:
-  price: 1
-  date: 2025-03-22
-  listing: two
+price_2:
+  price: 10000
+  date: "2025-03-02"
+  listing: listing_1
+
+price_3:
+  price: 10000
+  date: "2025-03-01"
+  listing: listing_2
+
+price_4:
+  price: 10000
+  date: "2025-03-02"
+  listing: listing_2
+
+price_5:
+  price: 10000
+  date: "2025-03-01"
+  listing: listing_3
+
+price_6:
+  price: 10000
+  date: "2025-03-02"
+  listing: listing_3
+
+price_7:
+  price: 10000
+  date: "2025-03-01"
+  listing: listing_4
+
+price_8:
+  price: 10000
+  date: "2025-03-02"
+  listing: listing_4
