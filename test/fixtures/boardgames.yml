@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+boardgame_1:
+  title: Boargame 1
+  bgg_id: 1
+
+boardgame_2:
+  title: Boardgame 2
+  bgg_id: 1

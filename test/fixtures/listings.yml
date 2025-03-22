@@ -4,18 +4,22 @@ listing_1:
   url: https://www.store1.com/products/1
   title: listing 1
   store: store_1
+  boardgame: boardgame_1
 
 listing_2:
   url: https://www.store1.com/products/2
   title: listing 2
   store: store_1
+  boardgame: boardgame_2
 
 listing_3:
   url: https://www.store2.com/products/1
   title: listing 1
   store: store_2
+  boardgame: boardgame_1
 
 listing_4:
   url: https://www.store2.com/products/2
   title: listing 2
   store: store_2
+  boardgame: boardgame_2
