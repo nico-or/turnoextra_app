@@ -20,9 +20,7 @@
       <article>
           <hgroup>
             <p><%= boardgame.title %></p>
-            <p>
-            <%= format_price boardgame.listings.map(&:latest_price).map(&:price).min %>
-            </p>
+            <p><%= format_price(boardgame.best_price) %></p>
           </hgroup>
       </article>
     <% end %>
