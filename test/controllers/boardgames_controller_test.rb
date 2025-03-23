@@ -6,6 +6,11 @@ class BoardgamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get index with a query" do
+    get boardgames_url, params: { q: "foo" }
+    assert_response :success
+  end
+
   test "should get show" do
     get boardgame_url(Boardgame.first)
     assert_response :success

@@ -1,7 +1,0 @@
-<%= form_with url: "/search", method: :get do |form| %>
-  <%#= form.label :q, "Search" %>
-  <%= fieldset_tag nil, "role" => "group" do %>
-    <%= form.search_field :q, placeholder: "Board Game title..." %>
-    <%= form.submit "Search" %>
-  <% end %>
-<% end %>
