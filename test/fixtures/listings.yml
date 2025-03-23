@@ -1,25 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-listing_1:
-  url: https://www.store1.com/products/1
-  title: listing 1
-  store: store_1
-  boardgame: boardgame_1
+catan_1:
+  url: https://www.entrejuegos.cl/products/1
+  title: Los colonos de Catan
+  store: entrejuegos
+  boardgame: catan
 
-listing_2:
-  url: https://www.store1.com/products/2
-  title: listing 2
-  store: store_1
-  boardgame: boardgame_2
+pandemic_1:
+  url: https://www.entrejuegos.cl/products/2
+  title: Pandemic
+  store: entrejuegos
+  boardgame: pandemic
 
-listing_3:
-  url: https://www.store2.com/products/1
-  title: listing 1
-  store: store_2
-  boardgame: boardgame_1
+catan_2:
+  url: https://www.devir.cl/products/1
+  title: Catán (español)
+  store: devir
+  boardgame: catan
 
-listing_4:
-  url: https://www.store2.com/products/2
-  title: listing 2
-  store: store_2
-  boardgame: boardgame_2
+pandemic_2:
+  url: https://www.devir.cl/products/2
+  title: Pandemic (español)
+  store: devir
+  boardgame: pandemic
