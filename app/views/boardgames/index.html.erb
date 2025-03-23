@@ -1,24 +1,31 @@
-<h1>Boardgames#index</h1>
+<hgroup>
+  <h1>Turno Extra!</h1>
+  <p>Find the best prices for your next boardgame!</p>
+</hgroup>
 
-<%= form_with url: "/boardgames", method: :get do |form| %>
-  <%#= form.label :q, "Search" %>
-  <%= fieldset_tag nil, "role" => "group" do %>
-    <%= form.text_field :q, placeholder: "Board Game title..." %>
-    <%= form.submit "Search" %>
+<section>
+  <%= form_with url: "/boardgames", method: :get do |form| %>
+    <%= form.label :q, "Search" %>
+    <%= fieldset_tag nil, "role" => "group" do %>
+      <%= form.text_field :q, placeholder: "Board Game title..." %>
+      <%= form.submit "Search" %>
+    <% end %>
   <% end %>
-<% end %>
+</section>
 
-<div>
-<% @boardgames.each do |boardgame| %>
-  <%= link_to boardgame do %>
-    <article>
-        <hgroup>
-          <p><%= boardgame.title %></p>
-          <p>
+<section>
+  <div>
+  <% @boardgames.each do |boardgame| %>
+    <%= link_to boardgame do %>
+      <article>
+          <hgroup>
+            <p><%= boardgame.title %></p>
+            <p>
             <%= format_price boardgame.listings.map(&:latest_price).map(&:price).min %>
-          </p>
-        </hgroup>
-    </article>
+            </p>
+          </hgroup>
+      </article>
+    <% end %>
   <% end %>
-<% end %>
-</div>
+  </div>
+</section>
