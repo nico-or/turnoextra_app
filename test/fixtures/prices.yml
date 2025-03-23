@@ -13,12 +13,12 @@ price_2:
 price_3:
   price: 29990
   date: "2025-03-01"
-  listing: pandemic_2
+  listing: pandemic_1
 
 price_4:
   price: 29990
   date: "2025-03-02"
-  listing: pandemic_2
+  listing: pandemic_1
 
 price_5:
   price: 39990
