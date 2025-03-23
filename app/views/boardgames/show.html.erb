@@ -1,21 +1,20 @@
 <h1> <%= @boardgame.title %> </h1>
 
 <h2>Listings</h2>
-
 <table>
   <thead>
     <tr>
-      <th>store</th>
+      <th>title</th>
       <th>price</th>
-      <th>link</th>
+      <th>store</th>
     </tr>
   </thead>
   <tbody>
     <% @boardgame.listings.each do |listing| %>
       <tr>
-        <td><%= listing.store.name %></td>
-        <td><%= format_price(listing.latest_price) %></td>
         <td><%= link_to listing.title, listing.url %></td>
+        <td><%= format_price(listing.latest_price) %></td>
+        <td><%= listing.store.name %></td>
       </tr>
     <% end %>
   </tbody>
