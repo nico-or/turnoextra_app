@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get "search", to: "search#index"
+  resources :boardgames, only: %i[index]
 end
