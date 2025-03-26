@@ -1,12 +1,9 @@
 class BoardgamesController < ApplicationController
   def index
-    @query = params[:q]
-    if @query.present?
-      @boardgames = Boardgame.where("boardgames.title LIKE ?", "%#{@query}%")
-                             .where.associated(:listings)
-                             .distinct
-    else
-      @boardgames = []
+    @boardgames = Boardgame.where.associated(:listings).distinct
+
+    if params[:q].present?
+      @boardgames = @boardgames.where("boardgames.title LIKE ?", "%#{params[:q]}%")
     end
   end
 
