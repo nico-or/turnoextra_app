@@ -3,11 +3,8 @@ class Listing < ApplicationRecord
   belongs_to :boardgame
   has_many :prices
 
-
   def latest_price
-    prices.where(date: update_date)
-          .order(price: :asc)
-          .first
+    prices.order(date: :desc, price: :asc).first
   end
 
   def update_date

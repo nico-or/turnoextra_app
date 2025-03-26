@@ -3,10 +3,8 @@ class Boardgame < ApplicationRecord
   has_many :prices, through: :listings
 
   # lowest price between listings.
-  def best_price
-    prices.where(date: update_date)
-          .order(price: :desc)
-          .first
+  def latest_price
+    prices.order(date: :desc, price: :asc).first
   end
 
   def update_date

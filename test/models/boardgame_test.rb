@@ -12,12 +12,12 @@ class BoardgameTest < ActiveSupport::TestCase
     boardgame = boardgames(:pandemic)
     price = prices(:price_9)
 
-    assert_equal price, boardgame.best_price
+    assert_equal price, boardgame.latest_price
   end
 
   test "returns nil if the game has no listings" do
     boardgame = boardgames(:wingspan)
 
-    assert_nil boardgame.best_price
+    assert_nil boardgame.latest_price
   end
 end
