@@ -34,3 +34,5 @@ group :development, :test do
 end
 
 gem "httparty", "~> 0.22.0"
+
+gem "bcrypt", "~> 3.1"
