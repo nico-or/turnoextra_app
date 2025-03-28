@@ -8,5 +8,12 @@
     <li>
       <%= link_to "Boardgames", boardgames_url, class: "secondary "%>
     </li>
+    <% if Current.user %>
+      <li>
+        <%= form_with url: logout_path, method: :delete do |f| %>
+          <%= f.submit 'logout', class:'secondary' %>
+        <% end %>
+      </li>
+    <% end %>
   </ul>
 </nav>
