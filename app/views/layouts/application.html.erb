@@ -24,9 +24,10 @@
 
   <body>
     <header>
-      <%= render 'layouts/navbar' %>
+      <%= render 'shared/navbar' %>
     </header>
     <main class="container">
+      <%= render 'shared/flash' %>
       <%= yield %>
     </main>
   </body>
