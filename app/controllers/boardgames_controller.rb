@@ -1,4 +1,5 @@
 class BoardgamesController < ApplicationController
+  skip_before_action :authorize_user, only: %i[index show]
   def index
     @boardgames = Boardgame.where.associated(:listings).distinct
 

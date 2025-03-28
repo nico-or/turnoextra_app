@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_27_224452) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_28_031754) do
   create_table "boardgames", force: :cascade do |t|
     t.string "title"
     t.integer "bgg_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_224452) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
