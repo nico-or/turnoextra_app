@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_user
-    Current.user&.admin?
+    unless Current.user&.admin?
+      redirect_back_or_to root_url, alert: "unauthorized"
+    end
   end
 end
