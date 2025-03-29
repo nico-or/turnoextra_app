@@ -14,4 +14,16 @@ class ListingTest < ActiveSupport::TestCase
 
     assert_equal price, listing.latest_price
   end
+
+  # This allows async (background jobs) and manual
+  # identification/reconcilitiation with the BGG database
+  test "allows creation without boardgame_id" do
+    store = stores(:entrejuegos)
+    assert_difference("Listing.count") do
+      store.listings.create!(
+        title: "test",
+        url: "www.example.com",
+      )
+    end
+  end
 end

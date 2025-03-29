@@ -1,6 +1,6 @@
 class Listing < ApplicationRecord
   belongs_to :store
-  belongs_to :boardgame
+  belongs_to :boardgame, optional: true
   has_many :prices
 
   def latest_price
