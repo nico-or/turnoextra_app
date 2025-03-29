@@ -317,6 +317,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1)
   brakeman
+  csv (~> 3.3)
   debug
   httparty (~> 0.22.0)
   kamal
