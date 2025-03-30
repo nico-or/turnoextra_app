@@ -38,3 +38,5 @@ gem "httparty", "~> 0.22.0"
 gem "bcrypt", "~> 3.1"
 
 gem "csv", "~> 3.3"
+
+gem "dotenv", "~> 3.1"
