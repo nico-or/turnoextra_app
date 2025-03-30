@@ -10,4 +10,8 @@ class Boardgame < ApplicationRecord
   def update_date
     prices.pluck(:date).max
   end
+
+  def bgg_url
+    "https://boardgamegeek.com/boardgame/#{bgg_id}"
+  end
 end
