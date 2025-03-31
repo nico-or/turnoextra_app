@@ -8,7 +8,7 @@ module Bgg
     def search(name)
       response = self.class.get("/search", query: { search: name.downcase })
       return unless response.code == 200
-      boardgames(response)
+      SearchQuery.new(response).games
     end
 
     def find_by_id(id)
