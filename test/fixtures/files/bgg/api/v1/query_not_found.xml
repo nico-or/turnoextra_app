@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <boardgames termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+		<boardgame>
+		<error message="Item not found"/>
+	</boardgame>
 </boardgames>

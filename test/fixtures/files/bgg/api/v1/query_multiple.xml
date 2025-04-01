@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boardgames termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+	<boardgame objectid="266192">
+		<yearpublished>2019</yearpublished>
+		<minplayers>1</minplayers>
+		<maxplayers>5</maxplayers>
+		<playingtime>70</playingtime>
+		<minplaytime>40</minplaytime>
+		<maxplaytime>70</maxplaytime>
+		<age>10</age>
+
+		<name sortindex="1">Fesztáv</name>
+		<name sortindex="1">Flügelschlag</name>
+		<name sortindex="1">Na křídlech</name>
+		<name sortindex="1">Na skrzydłach</name>
+		<name sortindex="1">Spārnotie</name>
+		<name sortindex="1">Sparnuotieji</name>
+		<name sortindex="1">Tiivulised</name>
+		<name primary="true" sortindex="1">Wingspan</name>
+		<name sortindex="1">Wingspan srpsko izdanje</name>
+		<name sortindex="1">Wingspan: Lumea păsărilor</name>
+		<name sortindex="1">Άνοιγμα φτερών</name>
+		<name sortindex="1">Крила</name>
+		<name sortindex="1">Криле</name>
+		<name sortindex="1">Крылья</name>
+		<name sortindex="1">ปีกปักษา</name>
+		<name sortindex="1">ウイングスパン</name>
+		<name sortindex="1">展翅翱翔</name>
+		<name sortindex="1">윙스팬</name>
+
+		<description>Wingspan is&amp;nbsp;a competitive, medium-weight, card-driven, engine-building
+			board game from Stonemaier Games. It's designed by Elizabeth Hargrave and features 180 birds
+			illustrated by Natalia Rojas and Ana Maria Martinez.&lt;br/&gt;&lt;br/&gt;You are bird
+			enthusiasts&amp;mdash;researchers, bird watchers, ornithologists, and
+			collectors&amp;mdash;seeking to discover and attract the best birds to your network of
+			wildlife preserves. Each bird extends a chain of powerful combinations in one of your habitats
+			(actions). These habitats focus on several key aspects of
+			growth:&lt;br/&gt;&lt;br/&gt;&lt;br/&gt; Gain food tokens via custom dice in a birdfeeder dice
+			tower&lt;br/&gt; Lay eggs using egg miniatures in a variety of colors&lt;br/&gt; Draw from
+			hundreds of unique bird cards and play them&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;The winner is the
+			player with the most points after 4 rounds.&lt;br/&gt;&lt;br/&gt;&amp;mdash;description from
+			the publisher&lt;br/&gt;&lt;br/&gt;From the 7th printing on, the base game box includes
+			Wingspan: Swift-Start Promo Pack.&lt;br/&gt;&lt;br/&gt;</description>
+
+		<thumbnail>
+			https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__thumb/img/VNToqgS2-pOGU6MuvIkMPKn_y-s=/fit-in/200x150/filters:strip_icc()/pic4458123.jpg</thumbnail>
+		<image>
+			https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__original/img/cI782Zis9cT66j2MjSHKJGnFPNw=/0x0/filters:format(jpeg)/pic4458123.jpg</image>
+
+
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="1985">
+
+			<results numplayers="1">
+				<result value="Best" numvotes="110" />
+				<result value="Recommended" numvotes="784" />
+				<result value="Not Recommended" numvotes="357" />
+			</results>
+
+			<results numplayers="2">
+				<result value="Best" numvotes="585" />
+				<result value="Recommended" numvotes="1064" />
+				<result value="Not Recommended" numvotes="96" />
+			</results>
+
+			<results numplayers="3">
+				<result value="Best" numvotes="1133" />
+				<result value="Recommended" numvotes="564" />
+				<result value="Not Recommended" numvotes="23" />
+			</results>
+
+			<results numplayers="4">
+				<result value="Best" numvotes="519" />
+				<result value="Recommended" numvotes="867" />
+				<result value="Not Recommended" numvotes="215" />
+			</results>
+
+			<results numplayers="5">
+				<result value="Best" numvotes="52" />
+				<result value="Recommended" numvotes="517" />
+				<result value="Not Recommended" numvotes="797" />
+			</results>
+
+			<results numplayers="5+">
+				<result value="Best" numvotes="2" />
+				<result value="Recommended" numvotes="28" />
+				<result value="Not Recommended" numvotes="955" />
+			</results>
+		</poll>
+		<poll-summary name="suggested_numplayers" title="User Suggested Number of Players">
+			<result name="bestwith" value="Best with 3 players" />
+			<result name="recommmendedwith" value="Recommended with 1–4 players" />
+		</poll-summary>
+
+		<poll name="language_dependence" title="Language Dependence" totalvotes="103">
+
+			<results>
+				<result level="1" value="No necessary in-game text" numvotes="0" />
+				<result level="2" value="Some necessary text - easily memorized or small crib sheet"
+					numvotes="0" />
+				<result level="3" value="Moderate in-game text - needs crib sheet or paste ups"
+					numvotes="26" />
+				<result level="4" value="Extensive use of text - massive conversion needed to be playable"
+					numvotes="73" />
+				<result level="5" value="Unplayable in another language" numvotes="4" />
+			</results>
+		</poll>
+
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="456">
+			<results>
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="0" />
+				<result value="5" numvotes="1" />
+				<result value="6" numvotes="12" />
+				<result value="8" numvotes="159" />
+				<result value="10" numvotes="207" />
+				<result value="12" numvotes="70" />
+				<result value="14" numvotes="7" />
+				<result value="16" numvotes="0" />
+				<result value="18" numvotes="0" />
+				<result value="21 and up" numvotes="0" />
+			</results>
+		</poll>
+
+
+	</boardgame>
+
+	<boardgame objectid="30549">
+		<yearpublished>2008</yearpublished>
+		<minplayers>2</minplayers>
+		<maxplayers>4</maxplayers>
+		<playingtime>45</playingtime>
+		<minplaytime>45</minplaytime>
+		<maxplaytime>45</maxplaytime>
+		<age>8</age>
+
+		<name sortindex="1">EPIZOotic</name>
+		<name sortindex="1">Pandemia</name>
+		<name sortindex="1">Pandemia 10 Aniversario</name>
+		<name sortindex="1">Pandemia: Una Nuova Sfida</name>
+		<name primary="true" sortindex="1">Pandemic</name>
+		<name sortindex="1">Pandemic, 10 Jahre Jubiläumsedition</name>
+		<name sortindex="1">Pandemic, Edición 10º Aniversario</name>
+		<name sortindex="1">Pandemic: 10° Anniversario</name>
+		<name sortindex="1">Pandemic: 10th Anniversary Edition</name>
+		<name sortindex="1">Pandemic: Edition 10ème anniversaire</name>
+		<name sortindex="1">Pandemic: Una nuova sfida</name>
+		<name sortindex="1">Pandémie</name>
+		<name sortindex="1">Pandemie</name>
+		<name sortindex="1">Πανδημία</name>
+		<name sortindex="1">Пандемия</name>
+		<name sortindex="1">Пандемія</name>
+		<name sortindex="1">פנדמיק</name>
+		<name sortindex="1">جائحة</name>
+		<name sortindex="1">เกมโรคระบาด</name>
+		<name sortindex="1">パンデミック</name>
+		<name sortindex="1">パンデミック：10周年記念版</name>
+		<name sortindex="1">パンデミック：新たなる試練</name>
+		<name sortindex="1">瘟疫危機 (瘟疫危机)</name>
+		<name sortindex="1">팬데믹</name>
+
+		<description>In Pandemic, several virulent diseases have broken out simultaneously all over the
+			world! The players are disease-fighting specialists whose mission is to treat disease hotspots
+			while researching cures for each of four plagues before they get out of
+			hand.&lt;br/&gt;&lt;br/&gt;The game board depicts several major population centers on Earth.
+			On each turn, a player can use up to four actions to travel between cities, treat infected
+			populaces, discover a cure, or build a research station. A deck of cards provides the players
+			with these abilities, but sprinkled throughout this deck are Epidemic! cards that accelerate
+			and intensify the diseases' activity. A second, separate deck of cards controls the
+			&amp;quot;normal&amp;quot; spread of the infections.&lt;br/&gt;&lt;br/&gt;Taking a unique role
+			within the team, players must plan their strategy to mesh with their specialists' strengths in
+			order to conquer the diseases. For example, the Operations Expert can build research stations
+			which are needed to find cures for the diseases and which allow for greater mobility between
+			cities; the Scientist needs only four cards of a particular disease to cure it instead of the
+			normal five&amp;mdash;but the diseases are spreading quickly and time is running out. If one
+			or more diseases spreads beyond recovery or if too much time elapses, the players all lose. If
+			they cure the four diseases, they all win!&lt;br/&gt;&lt;br/&gt;The 2013 edition of Pandemic
+			includes two new characters&amp;mdash;the Contingency Planner and the Quarantine
+			Specialist&amp;mdash;not available in earlier editions of the
+			game.&lt;br/&gt;&lt;br/&gt;Pandemic is the first game in the Pandemic
+			series.&lt;br/&gt;&lt;br/&gt;</description>
+
+		<thumbnail>
+			https://cf.geekdo-images.com/S3ybV1LAp-8SnHIXLLjVqA__thumb/img/oqViRj6nVxK3m36NluTxU1PZkrk=/fit-in/200x150/filters:strip_icc()/pic1534148.jpg</thumbnail>
+		<image>
+			https://cf.geekdo-images.com/S3ybV1LAp-8SnHIXLLjVqA__original/img/IsrvRLpUV1TEyZsO5rC-btXaPz0=/0x0/filters:format(jpeg)/pic1534148.jpg</image>
+
+
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="2112">
+
+			<results numplayers="1">
+				<result value="Best" numvotes="169" />
+				<result value="Recommended" numvotes="764" />
+				<result value="Not Recommended" numvotes="666" />
+			</results>
+
+			<results numplayers="2">
+				<result value="Best" numvotes="409" />
+				<result value="Recommended" numvotes="1259" />
+				<result value="Not Recommended" numvotes="172" />
+			</results>
+
+			<results numplayers="3">
+				<result value="Best" numvotes="645" />
+				<result value="Recommended" numvotes="1104" />
+				<result value="Not Recommended" numvotes="50" />
+			</results>
+
+			<results numplayers="4">
+				<result value="Best" numvotes="1297" />
+				<result value="Recommended" numvotes="513" />
+				<result value="Not Recommended" numvotes="65" />
+			</results>
+
+			<results numplayers="4+">
+				<result value="Best" numvotes="23" />
+				<result value="Recommended" numvotes="168" />
+				<result value="Not Recommended" numvotes="973" />
+			</results>
+		</poll>
+		<poll-summary name="suggested_numplayers" title="User Suggested Number of Players">
+			<result name="bestwith" value="Best with 4 players" />
+			<result name="recommmendedwith" value="Recommended with 1–4 players" />
+		</poll-summary>
+
+		<poll name="language_dependence" title="Language Dependence" totalvotes="341">
+
+			<results>
+				<result level="1" value="No necessary in-game text" numvotes="10" />
+				<result level="2" value="Some necessary text - easily memorized or small crib sheet"
+					numvotes="279" />
+				<result level="3" value="Moderate in-game text - needs crib sheet or paste ups"
+					numvotes="48" />
+				<result level="4" value="Extensive use of text - massive conversion needed to be playable"
+					numvotes="3" />
+				<result level="5" value="Unplayable in another language" numvotes="1" />
+			</results>
+		</poll>
+
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="604">
+			<results>
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="1" />
+				<result value="5" numvotes="6" />
+				<result value="6" numvotes="39" />
+				<result value="8" numvotes="187" />
+				<result value="10" numvotes="232" />
+				<result value="12" numvotes="112" />
+				<result value="14" numvotes="23" />
+				<result value="16" numvotes="2" />
+				<result value="18" numvotes="0" />
+				<result value="21 and up" numvotes="2" />
+			</results>
+		</poll>
+
+
+	</boardgame>
+
+</boardgames>
