@@ -3,7 +3,7 @@ module Bgg
     include HTTParty
     base_uri "http://www.boardgamegeek.com/xmlapi"
     format :xml
-    parser NokogiriParser
+    parser proc { |body| Nokogiri::XML(body) }
 
     def search(name)
       response = self.class.get("/search", query: { search: name.downcase })
