@@ -5,8 +5,8 @@ module Bgg
     end
 
     def call
-      api = Bgg::Api.new
-      api.search(@name)
+      identifier = Bgg::Identifier.new
+      identifier.identify!(@name)
     end
   end
 end
