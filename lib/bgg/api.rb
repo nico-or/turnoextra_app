@@ -14,17 +14,7 @@ module Bgg
     def find_by_id(id)
       response = self.class.get("/boardgame/#{id}")
       return unless response.code == 200
-      data = response.xpath("/boardgames/boardgame") || []
-      return if data.empty?
-
-      BoardGame.from_xml(data.first.to_xml)
-    end
-
-    private
-
-    def boardgames(response)
-      data = response.xpath("/boardgames/boardgame") || []
-      data.map { SearchResult.from_xml(it.to_xml) }
+      BoardGameQuery.new(response).games
     end
   end
 end
