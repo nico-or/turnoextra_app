@@ -3,7 +3,7 @@ require "test_helper"
 class Bgg::IdentifierTest < ActiveSupport::TestCase
   def setup
     file = file_fixture("bgg/api/v1/search_catan.xml")
-    url = "http://www.boardgamegeek.com/xmlapi/search?search=colonos%20catan"
+    url = "https://www.boardgamegeek.com/xmlapi/search?search=colonos%20catan"
     stub_request(:get, url).to_return(body: file)
 
     @query = "Colonos Catán"

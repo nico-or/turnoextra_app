@@ -1,7 +1,7 @@
 module Bgg
   class Api
     include HTTParty
-    base_uri "http://www.boardgamegeek.com/xmlapi"
+    base_uri "https://www.boardgamegeek.com/xmlapi"
     format :xml
     parser proc { |body| Nokogiri::XML(body) }
 
