@@ -1,24 +1,23 @@
-# README
+# Boardgame Price Aggregator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A web app that helps board game buyers find the best prices available in local game stores. The goal is to provide a service similar to [SoloTodo](www.solotodo.cl).
 
-Things you may want to cover:
+## Dependencies
 
-* Ruby version
+- **Ruby**: 3.4
+  - Uses new language features like the `it` keyword.
+  - The `Gemfile` includes gems recently removed from the standard library (e.g., `csv`, `m_mutex`).
+- **ChromeDriver**
+  - The Tanakai spiders currently use the simpler :mechanize driver, but may switch to `:selenium_chrome` for JavaScript-heavy websites.
 
-* System dependencies
+## Setup Instructions
 
-* Configuration
+### Setup
 
-* Database creation
+### Environment Variables (`.env`)
 
-* Database initialization
+### Database Setup
 
-* How to run the test suite
+## Acknowledgements
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## License
