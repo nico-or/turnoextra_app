@@ -2,8 +2,8 @@ module Bgg
   class Identifier
     # @param api_client [#search] returns a Array<Bgg::SearchResult>
     #   to be sorted/ranked
-    def initialize(api_client = Api.new)
-      @api = api_client
+    def initialize
+      @api = Bgg::Api.new
       @cache = {}
     end
 
