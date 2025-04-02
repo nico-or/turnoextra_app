@@ -31,4 +31,15 @@ class BggRankUpdateServiceTest < ActiveSupport::TestCase
       BggRankUpdateService.new(@file_1).call
     end
   end
+
+  test "boardgames end up with the last rank imported" do
+    BggRankUpdateService.new(@file_1).call
+    assert_equal 1, Boardgame.find_by(bgg_id: 224517).rank
+
+    BggRankUpdateService.new(@file_2).call
+    assert_equal 2, Boardgame.find_by(bgg_id: 224517).rank
+
+    BggRankUpdateService.new(@file_1).call
+    assert_equal 1, Boardgame.find_by(bgg_id: 224517).rank
+  end
 end

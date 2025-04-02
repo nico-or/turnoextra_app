@@ -13,9 +13,9 @@ class BggRankUpdateService < ApplicationService
 
     csv_enum.each_slice(BATCH_SIZE) do |rows|
       boardgame_params = rows.map do |row|
-        { bgg_id: row[:id].to_i, title: row[:name] }
+        { bgg_id: row[:id].to_i, title: row[:name], rank: row[:rank] }
       end
-      Boardgame.insert_all(boardgame_params)
+      Boardgame.upsert_all(boardgame_params, unique_by: :bgg_id)
     end
   end
 end
