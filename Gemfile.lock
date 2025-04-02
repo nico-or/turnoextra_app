@@ -107,7 +107,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashdiff (1.1.2)
-    httparty (0.22.0)
+    httparty (0.23.1)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -335,7 +335,7 @@ DEPENDENCIES
   debug
   dotenv (~> 3.1)
   fuzzy_match (~> 2.1)
-  httparty (~> 0.22.0)
+  httparty (~> 0.23.1)
   kamal
   propshaft
   puma (>= 5.0)
