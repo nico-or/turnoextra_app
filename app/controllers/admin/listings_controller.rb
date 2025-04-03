@@ -1,7 +1,7 @@
 module Admin
   class ListingsController < AdminController
     def index
-      @pagy, @listings = pagy(Listing.all.order(title: :asc), limit: 10)
+      @pagy, @listings = pagy(Listing.includes(:store).all.order(title: :asc), limit: 10)
     end
 
     def show
