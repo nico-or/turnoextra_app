@@ -24,5 +24,6 @@ Rails.application.routes.draw do
     resources :uploads, only: %i[new create]
 
     resources :stores
+    resources :listings
   end
 end

@@ -1,0 +1,24 @@
+<h1>Listings</h1>
+
+<table>
+  <thead>
+    <th>id</th>
+    <th>title</th>
+    <th>boardgame</th>
+    <th>store</th>
+    <th>link</th>
+  </thead>
+  <tbody>
+    <% @listings.each do |listing| %>
+      <tr id=<%= dom_id listing %>>
+        <td><%= listing.id%></td>
+        <td><%= link_to listing.title, admin_listing_path(listing) %></td>
+        <td><%= listing&.boardgame&.title || 'MISSING' %></td>
+        <td><%= link_to listing.store.name, admin_store_path(listing.store) %></td>
+        <td>
+          <%= link_to "external link", listing.url %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
