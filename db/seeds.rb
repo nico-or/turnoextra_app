@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+User.create do |u|
+  u.admin = true
+  u.email = ENV['ADMIN_EMAIL']
+  u.password_digest = BCrypt::Password.create(ENV['ADMIN_PASSWORD'])
+end
