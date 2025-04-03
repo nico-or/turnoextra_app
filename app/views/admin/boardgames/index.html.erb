@@ -1,0 +1,20 @@
+<h1>Boardgames</h1>
+
+<table>
+  <thead>
+    <th>id</th>
+    <th>title</th>
+    <th>bgg_id</th>
+    <th>link</th>
+  </thead>
+  <tbody>
+    <% @boardgames.each do |boardgame| %>
+      <tr id=<%= dom_id boardgame %>>
+        <td><%= boardgame.id %></td>
+        <td><%= link_to boardgame.title, admin_boardgame_path(boardgame) %></td>
+        <td><%= boardgame.bgg_id %></td>
+        <td><%= link_to "external link", boardgame.bgg_url %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -25,5 +25,6 @@ Rails.application.routes.draw do
 
     resources :stores
     resources :listings
+    resources :boardgames
   end
 end
