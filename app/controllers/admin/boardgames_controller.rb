@@ -1,7 +1,7 @@
 module Admin
   class BoardgamesController < AdminController
     def index
-      @boardgames = Boardgame.all
+      @pagy, @boardgames = pagy(Boardgame.all.order(title: :asc), limit: 10)
     end
 
     def show

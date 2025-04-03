@@ -1,7 +1,7 @@
 module Admin
   class StoresController < AdminController
     def index
-      @stores = Store.all
+      @pagy, @stores = pagy(Store.all.order(name: :asc), limit: 10)
     end
 
     def show
