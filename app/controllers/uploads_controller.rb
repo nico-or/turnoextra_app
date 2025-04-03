@@ -5,7 +5,7 @@ class UploadsController < ApplicationController
 
   def create
     # TODO: make background jobs
-    @files.each { |f| CsvUploaderService.call(f) }
+    @files.each { |f| ListingCsvImportService.call(f) }
 
     flash.notice = "upload successful."
     render :new
