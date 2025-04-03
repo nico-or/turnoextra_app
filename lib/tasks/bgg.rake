@@ -52,4 +52,13 @@ namespace :bgg do
     filepath = "db/seeds/boardgames_ranks.csv"
     BggRankUpdateService.call(filepath)
   end
+
+  desc "Uploads a scrapped Listing CSV"
+  task upload_listings: :environment do
+    filepaths = Pathname.glob("db/seeds/listings/*_spider.csv")
+    filepaths.each do |filepath|
+      Rails.logger.info "Uploading #{filepath} data..."
+      ListingCsvImportService.call(filepath)
+    end
+  end
 end
