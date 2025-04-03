@@ -1,0 +1,20 @@
+<h1>Stores</h1>
+
+<table>
+  <thead>
+    <th>id</th>
+    <th>name</th>
+    <th>link</th>
+  </thead>
+  <tbody>
+    <% @stores.each do |store| %>
+      <tr id=<%= dom_id store %>>
+        <td><%= store.id %></td>
+        <td><%= link_to store.name, admin_store_path(store)%></td>
+        <td>
+          <%= link_to "external link", store.url %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

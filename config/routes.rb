@@ -22,5 +22,7 @@ Rails.application.routes.draw do
 
   namespace :admin, path: "dashboard" do
     resources :uploads, only: %i[new create]
+
+    resources :stores
   end
 end
