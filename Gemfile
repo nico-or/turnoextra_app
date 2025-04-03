@@ -48,3 +48,5 @@ gem "unicode", "~> 0.4.4"
 group :test do
   gem "webmock", "~> 3.25"
 end
+
+gem "pagy", "~> 9.3"
