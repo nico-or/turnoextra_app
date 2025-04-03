@@ -17,5 +17,10 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  resources :uploads, only: %i[new create], path_names: { new: "" }
+
+  get "dashboard", to: "admin#index"
+
+  namespace :admin, path: "dashboard" do
+    resources :uploads, only: %i[new create]
+  end
 end

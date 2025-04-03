@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   def create
     if @user = User.authenticate_by(login_params)
       login(@user)
-      redirect_to root_path, notice: "logged in"
+      redirect_to dashboard_path, notice: "logged in"
     else
       flash.alert = "invalid credetials"
       render :new, status: :unprocessable_entity

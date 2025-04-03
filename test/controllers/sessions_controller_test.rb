@@ -11,7 +11,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     post login_path, params: { email: user.email, password: "password" }
 
     assert_equal session[:user_id], user.id
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
   test "should not login with incorrect credentials" do

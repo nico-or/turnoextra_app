@@ -1,6 +1,6 @@
 <h1>Upload CSV file</h1>
 
-<%= form_with url: '/uploads', multipart: true do |f| %>
+<%= form_with url: admin_uploads_path, multipart: true do |f| %>
   <%= f.label :files %>
   <%= f.file_field :files, multiple: true, format: 'text/csv', required: true%>
   <%= f.submit %>

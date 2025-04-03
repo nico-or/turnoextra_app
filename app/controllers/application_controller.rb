@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def authorize_user
     unless Current.user&.admin?
-      redirect_back_or_to root_url, alert: "unauthorized"
+      redirect_to login_path, alert: "unauthorized."
     end
   end
 end

@@ -10,7 +10,7 @@
     </li>
     <% if Current.user&.admin? %>
       <li>
-        <%= link_to "Uploads", uploads_url, class: "secondary "%>
+        <%= link_to "Uploads", new_admin_upload_path, class: "secondary "%>
       </li>
     <% end %>
     <% if Current.user %>
