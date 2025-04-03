@@ -61,4 +61,34 @@ namespace :bgg do
       ListingCsvImportService.call(filepath)
     end
   end
+
+  desc "Identifies all Listings without a boardgame_id"
+  task identify_listings: :environment do
+    # TODO: turn this into a service object
+    # TODO: create 2 identifiers, one for local Boardgame database, other for API
+    # create here to make use of the internal cache
+    identifier = Bgg::Identifier.new
+
+    listings = Listing.select(:id, :title)
+                      .where(boardgame: nil)
+                      .order(:title)
+                      .limit(100)
+
+    # FIXME: can't use sorted #find_each without a primary_key or unique_index column!
+    # listings.find_each(cursor: :title) do |listing|
+    listings.each do |listing|
+      Rails.logger.info "Identifing: #{listing.inspect}"
+      results = identifier.identify!(listing.title)
+
+      if results.empty?
+        Rails.logger.info "Failed to identify #{listing.inspect}"
+      else
+        boardgame = Boardgame.find_by(bgg_id: results.first.id)
+        Rails.logger.info "Identified #{listing.inspect} as #{boardgame.inspect}"
+        # TODO: fetch and update every listing with the same
+        Listing.update(listing.id, boardgame: boardgame)
+      end
+      sleep Random.rand(1..4) # Don't flood the api with requests
+    end
+  end
 end
