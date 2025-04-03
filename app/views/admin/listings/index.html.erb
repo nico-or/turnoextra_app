@@ -12,10 +12,11 @@
     <% @listings.each do |listing| %>
       <tr id=<%= dom_id listing %>>
         <td><%= listing.id%></td>
-        <td><%= link_to listing.title, admin_listing_path(listing) %></td>
+        <td><%= link_to truncate(listing.title, length: 40, separator: ' '), admin_listing_path(listing) %></td>
         <td>
           <% if listing.boardgame %>
-            <%= link_to listing.boardgame.title, admin_boardgame_path(listing.boardgame) %>
+            <%= link_to truncate(listing.boardgame.title, length: 40, separator: ' '), admin_boardgame_path(listing.boardgame) %>
+            
           <% else %>
             MISSING
           <% end %>
