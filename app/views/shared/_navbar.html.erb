@@ -8,17 +8,8 @@
     <li>
       <%= link_to "Boardgames", boardgames_url, class: "secondary "%>
     </li>
-    <% if Current.user&.admin? %>
-      <li>
-        <%= link_to "Uploads", new_admin_upload_path, class: "secondary "%>
-      </li>
-    <% end %>
     <% if Current.user %>
-      <li>
-        <%= form_with url: logout_path, method: :delete do |f| %>
-          <%= f.submit 'logout', class:'secondary' %>
-        <% end %>
-      </li>
+      <li><%= link_to 'Dashboard', dashboard_path, class: "secondary "%></li>
     <% end %>
   </ul>
 </nav>

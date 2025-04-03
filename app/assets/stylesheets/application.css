@@ -8,3 +8,24 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* admin sidebar */
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#grid {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* justify-content: space-between; */
+  ;
+}
