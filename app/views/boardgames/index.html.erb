@@ -6,15 +6,10 @@
 
 <section>
   <div>
-  <% @boardgames.each do |boardgame| %>
-    <%= link_to boardgame do %>
-      <article>
-          <hgroup>
-            <p><%= boardgame.title %></p>
-            <p><%= format_price(boardgame.latest_price) %></p>
-          </hgroup>
-      </article>
+    <% @boardgames.each do |boardgame| %>
+      <%= link_to boardgame do %>
+        <%= render 'card', boardgame: %>
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 </section>
