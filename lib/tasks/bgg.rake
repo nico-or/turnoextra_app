@@ -70,6 +70,7 @@ namespace :bgg do
     identifier = Bgg::Identifier.new
 
     listings = Listing.select(:id, :title)
+                      .where(failed_identification: false)
                       .where(boardgame: nil)
                       .order(:title)
                       .limit(100)
@@ -82,6 +83,7 @@ namespace :bgg do
 
       if results.empty?
         Rails.logger.info "Failed to identify #{listing.inspect}"
+        listing.update(failed_identification: true)
       else
         boardgame = Boardgame.find_by(bgg_id: results.first.id)
         Rails.logger.info "Identified #{listing.inspect} as #{boardgame.inspect}"
