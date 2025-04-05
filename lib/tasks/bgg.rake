@@ -67,8 +67,6 @@ namespace :bgg do
     # TODO: turn this into a service object
     # TODO: create 2 identifiers, one for local Boardgame database, other for API
     # create here to make use of the internal cache
-    identifier = Bgg::Identifier.new
-
     listings = Listing.select(:id, :title)
                       .where(failed_identification: false)
                       .where(is_boardgame: true)
@@ -80,7 +78,7 @@ namespace :bgg do
     # listings.find_each(cursor: :title) do |listing|
     listings.each do |listing|
       Rails.logger.info "Identifing: #{listing.inspect}"
-      results = identifier.identify!(listing.title)
+      results = RankedSearchService.call(listing.title)
 
       if results.empty?
         Rails.logger.info "Failed to identify #{listing.inspect}"
