@@ -8,6 +8,7 @@
     <th>store</th>
     <th>link</th>
     <th>ident. failure</th>
+    <th>is boardgame</th>
   </thead>
   <tbody>
     <% @listings.each do |listing| %>
@@ -27,6 +28,7 @@
           <%= link_to "external link", listing.url %>
         </td>
         <td><%= listing.failed_identification %></td>
+        <td><%= listing.is_boardgame %></td>
       </tr>
     <% end %>
   </tbody>
