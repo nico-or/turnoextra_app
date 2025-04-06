@@ -12,5 +12,18 @@ class BoardgamesController < ApplicationController
 
   def show
     @boardgame = Boardgame.find(params[:id])
+
+    @chart_data = line_chart
+  end
+
+  private
+
+  def line_chart
+    @boardgame.listings.map do |listing|
+      {
+        name: listing.store.name,
+        data: listing.prices.order(:date).pluck(:date, :amount)
+      }
+    end
   end
 end

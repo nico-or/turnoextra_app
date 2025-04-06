@@ -33,3 +33,9 @@
     <% end %>
   </tbody>
 </table>
+
+<section>
+  <h2>Historic Prices</h2>
+  <!-- TODO: Make background color match the Light/Dark theme -->
+  <%= line_chart @chart_data, legend: true %>
+</section>
