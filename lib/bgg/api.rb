@@ -14,7 +14,7 @@ module Bgg
     def find_by_id(id)
       response = self.class.get("/boardgame/#{id}")
       return unless response.code == 200
-      BoardGameQuery.new(response).games
+      BoardgameResponseParser.new(response).games
     end
   end
 end

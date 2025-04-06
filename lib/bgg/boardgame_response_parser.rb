@@ -1,5 +1,5 @@
 module Bgg
-  class BoardGameQuery
+  class BoardgameResponseParser
     def initialize(response)
       @response = response
     end

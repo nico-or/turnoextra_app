@@ -1,11 +1,11 @@
 require "test_helper"
 
 
-class Bgg::SingleBoardGameQueryTest < ActiveSupport::TestCase
+class Bgg::SingleBoardgameResponseParserTest < ActiveSupport::TestCase
   def setup
     xml = file_fixture("bgg/api/v1/query_single.xml").read
     parsed = Nokogiri::XML(xml)
-    @search = Bgg::BoardGameQuery.new(parsed)
+    @search = Bgg::BoardgameResponseParser.new(parsed)
   end
 
   test "#games returns an array of BoardGames" do
@@ -25,11 +25,11 @@ class Bgg::SingleBoardGameQueryTest < ActiveSupport::TestCase
   end
 end
 
-class Bgg::MultipleBoardGameQueryTest < ActiveSupport::TestCase
+class Bgg::MultipleBoardgameResponseParserTest < ActiveSupport::TestCase
   def setup
     xml = file_fixture("bgg/api/v1/query_multiple.xml").read
     parsed = Nokogiri::XML(xml)
-    @search = Bgg::BoardGameQuery.new(parsed)
+    @search = Bgg::BoardgameResponseParser.new(parsed)
   end
 
   test "#games returns an array of BoardGames" do
@@ -41,11 +41,11 @@ class Bgg::MultipleBoardGameQueryTest < ActiveSupport::TestCase
   end
 end
 
-class Bgg::NotFoundBoardGameQueryTest < ActiveSupport::TestCase
+class Bgg::NotFoundBoardgameResponseParserTest < ActiveSupport::TestCase
   def setup
     xml = file_fixture("bgg/api/v1/query_not_found.xml").read
     parsed = Nokogiri::XML(xml)
-    @search = Bgg::BoardGameQuery.new(parsed)
+    @search = Bgg::BoardgameResponseParser.new(parsed)
   end
 
   test "#games returns an empty array" do
