@@ -52,27 +52,4 @@ namespace :boardgame do
     filepath = "db/seeds/boardgames_ranks.csv"
     BggRankUpdateService.call(filepath)
   end
-
-  desc "Uploads a scrapped Listing CSV"
-  task upload_listings: :environment do
-    filepaths = Pathname.glob("db/seeds/listings/*_spider.csv")
-    filepaths.each do |filepath|
-      Rails.logger.info "Uploading #{filepath} data..."
-      ListingCsvImportService.call(filepath)
-    end
-  end
-
-  desc "Identifies all Listings without a boardgame_id"
-  task identify_listings: :environment do
-    # TODO: create 2 identifiers, one for local Boardgame database, other for API
-    # create here to make use of the internal cache
-    listings = Listing.where(failed_identification: false)
-                      .where(is_boardgame: true)
-                      .where(boardgame: nil)
-
-    listings.find_each do |listing|
-      ListingIdentificationService.call(listing)
-      sleep Random.rand(2..4)
-    end
-  end
 end
