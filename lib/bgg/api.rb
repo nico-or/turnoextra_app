@@ -8,7 +8,7 @@ module Bgg
     def search(query)
       response = self.class.get("/search", query: { search: query })
       return unless response.code == 200
-      SearchQuery.new(response).games
+      SearchResponseParser.new(response).games
     end
 
     def find_by_id(id)

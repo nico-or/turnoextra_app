@@ -1,11 +1,11 @@
 require "test_helper"
 
 
-class Bgg::SearchQueryTest < ActiveSupport::TestCase
+class Bgg::SearchResponseParserTest < ActiveSupport::TestCase
   def setup
     xml = file_fixture("bgg/api/v1/search.xml").read
     parsed = Nokogiri::XML(xml)
-    @search = Bgg::SearchQuery.new(parsed)
+    @search = Bgg::SearchResponseParser.new(parsed)
   end
 
   test "#games returns correct game count" do
@@ -43,11 +43,11 @@ class Bgg::SearchQueryTest < ActiveSupport::TestCase
   end
 end
 
-class Bgg::EmptySearchQueryTest < ActiveSupport::TestCase
+class Bgg::EmptySearchResponseParserTest < ActiveSupport::TestCase
   def setup
     xml = file_fixture("bgg/api/v1/search_empty.xml").read
     parsed = Nokogiri::XML(xml)
-    @search = Bgg::SearchQuery.new(parsed)
+    @search = Bgg::SearchResponseParser.new(parsed)
   end
 
   test "#games returns an empty array" do

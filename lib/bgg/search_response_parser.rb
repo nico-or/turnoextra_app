@@ -1,5 +1,5 @@
 module Bgg
-  class SearchQuery
+  class SearchResponseParser
     def initialize(response)
       @response = response
     end
