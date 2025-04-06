@@ -1,6 +1,5 @@
 module Bgg
   class BoardGame
-    
     attr_reader :id, :year, :name, :names, :description, :thumbnail_url, :image_url
 
     def initialize(id:, year:, name:, names:, description:, thumbnail_url:, image_url:)
