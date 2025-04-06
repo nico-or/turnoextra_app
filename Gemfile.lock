@@ -113,6 +113,10 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    importmap-rails (2.1.0)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.8.0)
     irb (1.15.2)
       pp (>= 0.6.0)
@@ -337,6 +341,7 @@ DEPENDENCIES
   dotenv (~> 3.1)
   fuzzy_match (~> 2.1)
   httparty (~> 0.22.0)
+  importmap-rails (~> 2.1)
   kamal
   pagy (~> 9.3)
   propshaft
