@@ -1,6 +1,6 @@
 require "nokogiri"
 
-namespace :bgg do
+namespace :boardgame do
   desc "remove unwanted tags from BGG xml responses"
   task :remove_xml_tags do
     UNWANTED_TAGS = [
