@@ -1,5 +1,19 @@
 <h1> <%= @boardgame.title %> </h1>
 
+<section>
+  <h2>About</h2>
+    <div class="grid">
+      <figure>
+        <%= placehold_img 200 %>
+      </figure>
+      <ul>
+        <li>BGG Rank: <%= @boardgame.rank %></li>
+        <li><%= link_to "BGG Link", @boardgame.bgg_url %></li>
+      </ul>
+    </div>
+</section>
+
+<section>
 <h2>Listings</h2>
 <table>
   <thead>
