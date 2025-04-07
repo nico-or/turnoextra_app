@@ -2,6 +2,10 @@
 
 <section>
   <%= render 'boardgames/search_form' %>
+  
+  <% if params[:q].present? %>
+    <p>Search results for: <%= params[:q] %> </p>
+  <% end %>
 </section>
 
 <section>
