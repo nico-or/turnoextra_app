@@ -1,46 +1,46 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 price_1:
-  price: 39990
+  amount: 39990
   date: "2025-03-01"
   listing: catan_1
 
 price_2:
-  price: 39990
+  amount: 39990
   date: "2025-03-02"
   listing: catan_1
 
 price_3:
-  price: 29990
+  amount: 29990
   date: "2025-03-01"
   listing: pandemic_1
 
 price_4:
-  price: 29990
+  amount: 29990
   date: "2025-03-02"
   listing: pandemic_1
 
 price_5:
-  price: 39990
+  amount: 39990
   date: "2025-03-01"
   listing: catan_2
 
 price_6:
-  price: 39990
+  amount: 39990
   date: "2025-03-02"
   listing: catan_2
 
 price_7:
-  price: 29990
+  amount: 29990
   date: "2025-03-01"
   listing: pandemic_2
 
 price_8:
-  price: 29990
+  amount: 29990
   date: "2025-03-02"
   listing: pandemic_2
 
 price_9:
-  price: 19990
+  amount: 19990
   date: "2025-03-03"
   listing: pandemic_2

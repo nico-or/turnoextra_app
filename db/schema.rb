@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_04_223112) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_07_160249) do
   create_table "boardgames", force: :cascade do |t|
     t.string "title"
     t.integer "bgg_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rank", default: 0, null: false
-    t.integer "latest_price"
     t.index ["bgg_id"], name: "index_boardgames_on_bgg_id", unique: true
   end
 
@@ -35,7 +34,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_04_223112) do
   end
 
   create_table "prices", force: :cascade do |t|
-    t.integer "price", null: false
+    t.integer "amount", null: false
     t.date "date", null: false
     t.integer "listing_id", null: false
     t.datetime "created_at", null: false

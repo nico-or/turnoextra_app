@@ -45,7 +45,7 @@ class ListingCsvImportService < ApplicationService
     price_amount = row[:price]
     price_date = row[:date]
     listing.prices.find_or_create_by!(date: price_date) do |price|
-      price.price = price_amount
+      price.amount = price_amount
     end
   end
 end

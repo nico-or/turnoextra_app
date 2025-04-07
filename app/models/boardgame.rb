@@ -4,7 +4,7 @@ class Boardgame < ApplicationRecord
 
   # lowest price between listings.
   def latest_price
-    prices.order(date: :desc, price: :asc).first
+    prices.order(date: :desc, amount: :asc).first
   end
 
   def update_date
