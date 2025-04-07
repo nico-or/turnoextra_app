@@ -37,5 +37,20 @@
 <section>
   <h2>Historic Prices</h2>
   <!-- TODO: Make background color match the Light/Dark theme -->
-  <%= line_chart @chart_data, legend: true %>
+  <%= line_chart @chart_data,
+  legend: 'top',
+  curve: false, loading: "Loading...",
+  library: {
+    aggregationTarget:'category',
+    interpolateNulls: 0,
+    vAxis:{
+      format: :currency,
+    },
+    legend:{
+      maxLines: 5,
+    },
+    hAxis:{
+      format: 'd/M/yy',
+    }
+  } %>
 </section>
