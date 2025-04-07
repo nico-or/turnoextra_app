@@ -6,6 +6,8 @@ class BoardgamesController < ApplicationController
     if params[:q].present?
       @boardgames = @boardgames.where("boardgames.title LIKE ?", "%#{params[:q]}%")
     end
+
+    @pagy, @boardgames = pagy(@boardgames, limit: 10)
   end
 
   def show

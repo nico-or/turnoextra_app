@@ -5,6 +5,7 @@
 </section>
 
 <section>
+  <%== pagy_info(@pagy) %>
   <div>
     <% @boardgames.each do |boardgame| %>
       <%= link_to boardgame do %>
@@ -12,4 +13,5 @@
       <% end %>
     <% end %>
   </div>
+  <%== pagy_nav(@pagy) %>
 </section>
