@@ -11,7 +11,9 @@ class BoardgamesController < ApplicationController
   end
 
   def show
-    @boardgame = Boardgame.find(params[:id])
+    # TODO: remove N+1 query from listing#latest_price
+    # TODO: sort listings by latest_price
+    @boardgame = Boardgame.includes(:listings, :prices).find(params[:id])
 
     @chart_data = line_chart
   end
@@ -19,10 +21,21 @@ class BoardgamesController < ApplicationController
   private
 
   def line_chart
-    @boardgame.listings.map do |listing|
+    listings = @boardgame.listings.includes(:store)
+
+    date_range = (Date.today - 1.month)..Date.today
+
+    prices = Price.where(listing: listings, date: date_range)
+                  .group(:listing_id, :date)
+                  .minimum(:amount)
+
+    listings.map do |listing|
       {
         name: listing.store.name,
-        data: listing.prices.order(:date).pluck(:date, :amount)
+        data: date_range.map do |date|
+          price = prices[[ listing.id, date ]]
+          [ date, price ]
+        end
       }
     end
   end
