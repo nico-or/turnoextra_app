@@ -1,7 +1,14 @@
 class BoardgamesController < ApplicationController
   skip_before_action :authorize_user, only: %i[index show]
   def index
-    @boardgames = Boardgame.where.associated(:listings).distinct.order(:title)
+    latest_date = Price.maximum(:date)
+
+    @boardgames = Boardgame.joins(listings: [ :prices ])
+                           .where(prices: { date: latest_date })
+                           .order(:title)
+                           .group("boardgames.id")
+                           .select("boardgames.*, MIN(prices.amount) AS latest_price")
+                           .distinct
 
     if params[:q].present?
       @boardgames = @boardgames.where("boardgames.title LIKE ?", "%#{params[:q]}%")
