@@ -24,10 +24,10 @@
     </tr>
   </thead>
   <tbody>
-    <% @boardgame.listings.each do |listing| %>
+    <% @listings_with_best_price.each do |(listing,price)| %>
       <tr>
         <td><%= link_to listing.title, listing.url %></td>
-        <td><%= format_price(listing.latest_price) %></td>
+        <td><%= format_price(price.amount) %></td>
         <td><%= listing.store.name %></td>
       </tr>
     <% end %>

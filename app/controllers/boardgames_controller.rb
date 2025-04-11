@@ -11,9 +11,20 @@ class BoardgamesController < ApplicationController
   end
 
   def show
-    # TODO: remove N+1 query from listing#latest_price
-    # TODO: sort listings by latest_price
-    @boardgame = Boardgame.includes(:listings, :prices).find(params[:id])
+    @boardgame = Boardgame.includes(listings: [ :prices, :store ]).find(params[:id])
+
+    latest_date = @boardgame.prices.maximum(:date)
+
+    @listings_with_best_price = @boardgame.listings.filter_map do |listing|
+      best_price = listing.prices
+                          .select { |p| p.date == latest_date }
+                          .min(&:amount)
+      next unless best_price
+
+      [ listing, best_price ]
+    end
+
+    @listings_with_best_price.sort_by! { |(_l, p)| [ p.amount ] }
 
     @chart_data = line_chart
   end
