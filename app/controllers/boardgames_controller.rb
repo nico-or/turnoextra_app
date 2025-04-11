@@ -20,7 +20,7 @@ class BoardgamesController < ApplicationController
   def show
     @boardgame = Boardgame.includes(listings: [ :prices, :store ]).find(params[:id])
 
-    latest_date = @boardgame.prices.maximum(:date)
+    latest_date = @boardgame.latest_price_date
 
     @listings_with_best_price = @boardgame.listings.filter_map do |listing|
       best_price = listing.prices
