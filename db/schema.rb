@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_11_033726) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_11_035907) do
   create_table "boardgames", force: :cascade do |t|
     t.string "title"
     t.integer "bgg_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_033726) do
     t.datetime "updated_at", null: false
     t.integer "rank", default: 0, null: false
     t.index ["bgg_id"], name: "index_boardgames_on_bgg_id", unique: true
+    t.index ["title"], name: "index_boardgames_on_title"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -31,6 +32,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_033726) do
     t.boolean "is_boardgame", default: true, null: false
     t.index ["boardgame_id"], name: "index_listings_on_boardgame_id"
     t.index ["store_id"], name: "index_listings_on_store_id"
+    t.index ["title"], name: "index_listings_on_title"
   end
 
   create_table "prices", force: :cascade do |t|
