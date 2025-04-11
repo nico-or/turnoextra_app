@@ -1,11 +1,11 @@
 require "test_helper"
 
 class ListingTest < ActiveSupport::TestCase
-  test "returns latest update date" do
+  test "#latest_price_date returns latest price date" do
     listing = listings(:pandemic_2)
     date = prices(:price_9).date
 
-    assert_equal date, listing.update_date
+    assert_equal date, listing.latest_price_date
   end
 
   # This allows async (background jobs) and manual

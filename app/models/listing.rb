@@ -3,7 +3,7 @@ class Listing < ApplicationRecord
   belongs_to :boardgame, optional: true
   has_many :prices
 
-  def update_date
-    prices.pluck(:date).max
+  def latest_price_date
+    @latest_price_date ||= prices.maximum(:date)
   end
 end
