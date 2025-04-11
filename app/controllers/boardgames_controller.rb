@@ -26,19 +26,23 @@ class BoardgamesController < ApplicationController
 
     @listings_with_best_price.sort_by! { |(_l, p)| [ p.amount ] }
 
-    @chart_data = line_chart
+    @chart_data = chart_data
   end
 
   private
 
-  def line_chart
+  def date_range
+    (Date.today - 1.month)..Date.today
+  end
+
+  def chart_data
     listings = @boardgame.listings.includes(:store)
 
-    date_range = (Date.today - 1.month)..Date.today
-
-    prices = Price.where(listing: listings, date: date_range)
-                  .group(:listing_id, :date)
-                  .minimum(:amount)
+    prices = @boardgame.prices
+                       .select { |price| date_range.include?(price.date) }
+                       .each_with_object({}) do |price, hash|
+                         hash[[ price.listing_id, price.date ]] ||= price.amount
+                       end
 
     listings.map do |listing|
       {
