@@ -1,6 +1,7 @@
 class Boardgame < ApplicationRecord
   has_many :listings
   has_many :prices, through: :listings
+  has_many :stores, through: :listings
 
   validates :title, presence: true
   validates :bgg_id, presence: true, uniqueness: true, numericality: { only_integer: true, greater_than: 0 }
