@@ -11,7 +11,7 @@ class RankedSearchServiceTest < ActiveSupport::TestCase
     uri.query = URI.encode_www_form({ search: @query })
     stub_request(:get, uri).to_return(body: file)
 
-    @service = RankedSearchService.new(listing)
+    @service = RankedSearchService.new(listing, Bgg::Versions::XmlV1)
   end
 
   test "#call returns an array of [Bgg::SearchResult]" do
@@ -25,12 +25,12 @@ class RankedSearchServiceTest < ActiveSupport::TestCase
     game = @service.call.first
 
     assert_equal "Los Colonos de Catán", game.name
-    assert_equal "2008", game.year
-    assert_equal "152959", game.id
+    assert_equal 2008, game.year
+    assert_equal 152959, game.id
   end
 
   test "can also receive string arguments" do
-    service = RankedSearchService.new(@query)
+    service = RankedSearchService.new(@query, Bgg::Versions::XmlV1)
 
     assert_nothing_raised do
       results = service.call

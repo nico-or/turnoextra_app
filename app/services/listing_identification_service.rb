@@ -54,7 +54,7 @@ class ListingIdentificationService < ApplicationService
   end
 
   def find_best_search_result
-    RankedSearchService.call(listing.title).first
+    RankedSearchService.call(listing.title, Bgg::Versions::XmlV1).first
   end
 
   def find_boardgame(search_result)

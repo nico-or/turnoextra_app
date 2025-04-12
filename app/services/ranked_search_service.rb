@@ -1,7 +1,7 @@
 class RankedSearchService < ApplicationService
   attr_reader :listing, :client
 
-  def initialize(listing, client = Bgg::Api.new)
+  def initialize(listing, client)
     @listing = listing
     @client = client
   end
