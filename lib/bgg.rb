@@ -1,5 +1,5 @@
 module Bgg
-  BASE_URI = URI.parse("https://www.boardgamegeek.com")
+  BASE_URI = URI.parse("https://boardgamegeek.com")
 
   class << self
     def uri_for(boardgame)

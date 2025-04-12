@@ -11,6 +11,6 @@ class Boardgame < ApplicationRecord
   end
 
   def bgg_url
-    "https://boardgamegeek.com/boardgame/#{bgg_id}"
+    Bgg.uri_for(self).to_s
   end
 end

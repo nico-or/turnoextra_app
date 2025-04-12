@@ -9,7 +9,7 @@ class Bgg::ApiTest < ActiveSupport::TestCase
     file = file_fixture("bgg/api/v1/search_catan.xml")
     query = "Colonos Catán"
     fragment = URI.encode_uri_component(query)
-    url = "https://www.boardgamegeek.com/xmlapi/search?search=#{fragment}"
+    url = "https://boardgamegeek.com/xmlapi/search?search=#{fragment}"
     stub_request(:get, url).to_return(body: file)
 
     response = @api.search(query)
@@ -28,7 +28,7 @@ class Bgg::ApiTest < ActiveSupport::TestCase
   test "#find_by_id returns an Array<Bgg::BoardGame>" do
     bgg_id = "822"
     file = file_fixture("bgg/api/v1/query_single.xml")
-    url = "https://www.boardgamegeek.com/xmlapi/boardgame/#{bgg_id}"
+    url = "https://boardgamegeek.com/xmlapi/boardgame/#{bgg_id}"
     stub_request(:get, url).to_return(body: file)
 
     response = @api.find_by_id(bgg_id)

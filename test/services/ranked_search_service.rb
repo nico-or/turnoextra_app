@@ -6,7 +6,7 @@ class RankedSearchServiceTest < ActiveSupport::TestCase
     @query = listing.title.unicode_normalize(:nfkd).downcase.gsub(/[^a-z0-9 ]/, "")
 
     file = file_fixture("bgg/api/v1/search_catan.xml")
-    url = "https://www.boardgamegeek.com/xmlapi/search"
+    url = "https://boardgamegeek.com/xmlapi/search"
     uri = URI.parse(url)
     uri.query = URI.encode_www_form({ search: @query })
     stub_request(:get, uri).to_return(body: file)

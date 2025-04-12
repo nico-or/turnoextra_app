@@ -38,4 +38,10 @@ class BoardgameTest < ActiveSupport::TestCase
     price = prices(:price_9)
     assert_equal price.date, boardgame.latest_price_date
   end
+
+  test "#bgg_url returns returns correct BoardGameGeek url for a boardgame" do
+    boardgame = boardgames(:pandemic)
+    boardgame_url = "https://boardgamegeek.com/boardgame/#{boardgame.bgg_id}"
+    assert_equal boardgame_url, boardgame.bgg_url
+  end
 end

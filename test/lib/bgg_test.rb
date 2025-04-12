@@ -3,7 +3,7 @@ require "test_helper"
 class BggTest < ActiveSupport::TestCase
   def setup
     @boardgame =boardgames(:catan)
-    @boardgame_url = URI.parse("https://www.boardgamegeek.com/boardgame/13")
+    @boardgame_url = URI.parse("https://boardgamegeek.com/boardgame/13")
   end
   test "Bgg.uri_for a Boardgame" do
     assert_equal @boardgame_url, Bgg.uri_for(@boardgame)
@@ -19,7 +19,7 @@ class BggTest < ActiveSupport::TestCase
       thumbnail_url: nil,
       image_url: nil
     )
-    boardgame_url = URI.parse("https://www.boardgamegeek.com/boardgame/822")
+    boardgame_url = URI.parse("https://boardgamegeek.com/boardgame/822")
     assert_equal boardgame_url, Bgg.uri_for(boardgame)
   end
 
@@ -29,7 +29,7 @@ class BggTest < ActiveSupport::TestCase
       name: nil,
       year: nil
     )
-    boardgame_url = URI.parse("https://www.boardgamegeek.com/boardgame/67239")
+    boardgame_url = URI.parse("https://boardgamegeek.com/boardgame/67239")
     assert_equal boardgame_url, Bgg.uri_for(search_result)
   end
 
