@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+	<item type="boardgame" id="165628">
+		<thumbnail>
+			https://cf.geekdo-images.com/1Ebkya5qKEm0SWGiAI20DA__thumb/img/sZw3_Zh6UNEcSYwcEUNqckHzn4k=/fit-in/200x150/filters:strip_icc()/pic6164116.jpg</thumbnail>
+		<image>
+			https://cf.geekdo-images.com/1Ebkya5qKEm0SWGiAI20DA__original/img/GZX5k_F8VHt8GVf2g1WZPFjGZ0Q=/0x0/filters:format(jpeg)/pic6164116.jpg</image>
+
+		<name type="primary" sortindex="1" value="HINT" />
+		<name type="alternate" sortindex="1" value="Gefðu HINT" />
+		<name type="alternate" sortindex="1" value="HINT GO" />
+		<name type="alternate" sortindex="1" value="HINT Pocket" />
+
+		<description>In HINT, your teammates have to guess what you are trying to tell them. Along the
+			way you both mime, draw, hum and talk about everything from 'European Capitals' and 'Movie
+			Villains' to 'Fictional Vehicles' and 'Pizza Toppings'. You must be both quick and creative,
+			but beware! There is always one forbidden word that you may not use. An entertaining party
+			game for everyone that gets the hint.&amp;#10;&amp;#10;</description>
+		<yearpublished value="2014" />
+		<minplayers value="4" />
+		<maxplayers value="10" />
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="10">
+
+			<results numplayers="1">
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="0" />
+				<result value="Not Recommended" numvotes="9" />
+			</results>
+
+			<results numplayers="2">
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="0" />
+				<result value="Not Recommended" numvotes="9" />
+			</results>
+
+			<results numplayers="3">
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="1" />
+				<result value="Not Recommended" numvotes="8" />
+			</results>
+
+			<results numplayers="4">
+				<result value="Best" numvotes="2" />
+				<result value="Recommended" numvotes="7" />
+				<result value="Not Recommended" numvotes="1" />
+			</results>
+
+			<results numplayers="5">
+				<result value="Best" numvotes="1" />
+				<result value="Recommended" numvotes="5" />
+				<result value="Not Recommended" numvotes="3" />
+			</results>
+
+			<results numplayers="6">
+				<result value="Best" numvotes="8" />
+				<result value="Recommended" numvotes="2" />
+				<result value="Not Recommended" numvotes="0" />
+			</results>
+
+			<results numplayers="7">
+				<result value="Best" numvotes="1" />
+				<result value="Recommended" numvotes="6" />
+				<result value="Not Recommended" numvotes="3" />
+			</results>
+
+			<results numplayers="8">
+				<result value="Best" numvotes="7" />
+				<result value="Recommended" numvotes="2" />
+				<result value="Not Recommended" numvotes="0" />
+			</results>
+
+			<results numplayers="9">
+				<result value="Best" numvotes="1" />
+				<result value="Recommended" numvotes="3" />
+				<result value="Not Recommended" numvotes="4" />
+			</results>
+
+			<results numplayers="10">
+				<result value="Best" numvotes="2" />
+				<result value="Recommended" numvotes="3" />
+				<result value="Not Recommended" numvotes="3" />
+			</results>
+
+			<results numplayers="10+">
+				<result value="Best" numvotes="1" />
+				<result value="Recommended" numvotes="1" />
+				<result value="Not Recommended" numvotes="6" />
+			</results>
+		</poll>
+		<poll-summary name="suggested_numplayers" title="User Suggested Number of Players">
+			<result name="bestwith" value="Best with 6, 8 players" />
+			<result name="recommmendedwith" value="Recommended with 4–8, 10 players" />
+		</poll-summary>
+		<playingtime value="60" />
+		<minplaytime value="45" />
+		<maxplaytime value="60" />
+		<minage value="15" />
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="3">
+			<results>
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="0" />
+				<result value="5" numvotes="0" />
+				<result value="6" numvotes="0" />
+				<result value="8" numvotes="0" />
+				<result value="10" numvotes="0" />
+				<result value="12" numvotes="2" />
+				<result value="14" numvotes="1" />
+				<result value="16" numvotes="0" />
+				<result value="18" numvotes="0" />
+				<result value="21 and up" numvotes="0" />
+			</results>
+		</poll>
+		<poll name="language_dependence" title="Language Dependence" totalvotes="2">
+			<results>
+				<result level="31" value="No necessary in-game text" numvotes="0" />
+				<result level="32" value="Some necessary text - easily memorized or small crib sheet"
+					numvotes="0" />
+				<result level="33" value="Moderate in-game text - needs crib sheet or paste ups"
+					numvotes="0" />
+				<result level="34" value="Extensive use of text - massive conversion needed to be playable"
+					numvotes="1" />
+				<result level="35" value="Unplayable in another language" numvotes="1" />
+			</results>
+		</poll>
+
+		<link type="boardgamecategory" id="1030" value="Party Game" />
+		<link type="boardgamemechanic" id="2073" value="Acting" />
+		<link type="boardgamemechanic" id="2039" value="Line Drawing" />
+		<link type="boardgamemechanic" id="2038" value="Singing" />
+		<link type="boardgamemechanic" id="2019" value="Team-Based Game" />
+		<link type="boardgamefamily" id="75031" value="Components: Sand Timers" />
+		<link type="boardgameintegration" id="287473" value="HINT Junior" />
+		<link type="boardgameintegration" id="348697" value="HINT Promo" />
+		<link type="boardgameimplementation" id="372426" value="Hint: Demo version" />
+		<link type="boardgameimplementation" id="239435" value="Red HINT" />
+		<link type="boardgamedesigner" id="9532" value="Jesper Bülow" />
+		<link type="boardgamedesigner" id="116640" value="Jonas Resting-Jeppesen" />
+		<link type="boardgameartist" id="116640" value="Jonas Resting-Jeppesen" />
+		<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+		<link type="boardgamepublisher" id="44407" value="Nordic Games ehf" />
+		<link type="boardgamepublisher" id="7466" value="Rebel Sp. z o.o." />
+
+		<versions>
+			<item type="boardgameversion" id="251972">
+				<thumbnail>
+					https://cf.geekdo-images.com/ROT3OMntrh1wNTN3c6B3nQ__thumb/img/nEb-W0OfdARQgCbxquchbfhjxFI=/fit-in/200x150/filters:strip_icc()/pic5858505.png</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/ROT3OMntrh1wNTN3c6B3nQ__original/img/pRVpcJeRO5lcYwLV60-W-vSFPVQ=/0x0/filters:format(png)/pic5858505.png</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Danish edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<yearpublished value="2014" />
+				<productcode value="" />
+				<width value="0" />
+				<length value="0" />
+				<depth value="0" />
+				<weight value="0" />
+				<link type="language" id="2182" value="Danish" />
+			</item>
+			<item type="boardgameversion" id="652103">
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Dutch edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<yearpublished value="2021" />
+				<productcode value="" />
+				<width value="11.7" />
+				<length value="11.7" />
+				<depth value="2.8" />
+				<weight value="0" />
+				<link type="language" id="2183" value="Dutch" />
+			</item>
+			<item type="boardgameversion" id="727425">
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Dutch pocket edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<yearpublished value="2023" />
+				<productcode value="" />
+				<width value="0" />
+				<length value="0" />
+				<depth value="0" />
+				<weight value="0" />
+				<link type="language" id="2183" value="Dutch" />
+			</item>
+			<item type="boardgameversion" id="488366">
+				<thumbnail>
+					https://cf.geekdo-images.com/1Ebkya5qKEm0SWGiAI20DA__thumb/img/sZw3_Zh6UNEcSYwcEUNqckHzn4k=/fit-in/200x150/filters:strip_icc()/pic6164116.jpg</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/1Ebkya5qKEm0SWGiAI20DA__original/img/GZX5k_F8VHt8GVf2g1WZPFjGZ0Q=/0x0/filters:format(jpeg)/pic6164116.jpg</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="English edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<link type="boardgameartist" id="116640" value="Jonas Resting-Jeppesen" />
+				<yearpublished value="2020" />
+				<productcode value="UK-HINT1" />
+				<width value="10.4331" />
+				<length value="10.4331" />
+				<depth value="2.75591" />
+				<weight value="2.67421" />
+				<link type="language" id="2184" value="English" />
+			</item>
+			<item type="boardgameversion" id="633539">
+				<thumbnail>
+					https://cf.geekdo-images.com/9SF6rQv9TWx15YpC-fqMgA__thumb/img/aZVizi1pBn8PDc-GUb1vvOV-EHM=/fit-in/200x150/filters:strip_icc()/pic7092296.jpg</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/9SF6rQv9TWx15YpC-fqMgA__original/img/f1cZPHzPouP1OW_GB-ohrQA378I=/0x0/filters:format(jpeg)/pic7092296.jpg</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="English travel edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<yearpublished value="2022" />
+				<productcode value="" />
+				<width value="0" />
+				<length value="0" />
+				<depth value="0" />
+				<weight value="0" />
+				<link type="language" id="2184" value="English" />
+			</item>
+			<item type="boardgameversion" id="534542">
+				<thumbnail>
+					https://cf.geekdo-images.com/HRkpCUUQNFK0GsbxVk5LuQ__thumb/img/4A7HeMUWtnQcAxvDAeJ_Yr6D-xs=/fit-in/200x150/filters:strip_icc()/pic5705007.jpg</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/HRkpCUUQNFK0GsbxVk5LuQ__original/img/Go5CF2qXvSjyyzAyJSXz-S6evEc=/0x0/filters:format(jpeg)/pic5705007.jpg</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="German edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<yearpublished value="2020" />
+				<productcode value="" />
+				<width value="11.7" />
+				<length value="11.7" />
+				<depth value="2.8" />
+				<weight value="0" />
+				<link type="language" id="2188" value="German" />
+			</item>
+			<item type="boardgameversion" id="669243">
+				<thumbnail>
+					https://cf.geekdo-images.com/11agx5cGkESl1p54FdX2RQ__thumb/img/1WgkocXA9cDvPEvmFy5yDrGBYV8=/fit-in/200x150/filters:strip_icc()/pic7591323.jpg</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/11agx5cGkESl1p54FdX2RQ__original/img/i4neK1jJafp7QBH2Evwy5cXQWFU=/0x0/filters:format(jpeg)/pic7591323.jpg</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Icelandic edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<link type="boardgamepublisher" id="44407" value="Nordic Games ehf" />
+				<link type="boardgameartist" id="116640" value="Jonas Resting-Jeppesen" />
+				<yearpublished value="2020" />
+				<productcode value="IS-HINT1" />
+				<width value="10.4331" />
+				<length value="10.4331" />
+				<depth value="2.75591" />
+				<weight value="2.67421" />
+				<link type="language" id="2347" value="Icelandic" />
+			</item>
+			<item type="boardgameversion" id="567502">
+				<thumbnail>
+					https://cf.geekdo-images.com/ryNpRmWV5m5HqF1mk9JN2g__thumb/img/qRcU4Ym1RD7ij4HL8HkBRkzmaYs=/fit-in/200x150/filters:strip_icc()/pic6229143.jpg</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/ryNpRmWV5m5HqF1mk9JN2g__original/img/-jcnV-l_p9V8fuQG-FcXa63Ud7w=/0x0/filters:format(jpeg)/pic6229143.jpg</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Italian travel edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<link type="boardgameartist" id="116640" value="Jonas Resting-Jeppesen" />
+				<yearpublished value="2021" />
+				<productcode value="" />
+				<width value="0" />
+				<length value="0" />
+				<depth value="0" />
+				<weight value="0" />
+				<link type="language" id="2193" value="Italian" />
+			</item>
+			<item type="boardgameversion" id="544971">
+				<thumbnail>
+					https://cf.geekdo-images.com/SIeKkwm8OJIVBAclGeKvjg__thumb/img/E7N2iZzP1wTjX_0pNRcFwnJOLBY=/fit-in/200x150/filters:strip_icc()/pic5894933.jpg</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/SIeKkwm8OJIVBAclGeKvjg__original/img/TF6BdRNLwRyAwZwkuAEGkjekf2E=/0x0/filters:format(jpeg)/pic5894933.jpg</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Norwegian edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<yearpublished value="2015" />
+				<productcode value="" />
+				<width value="11.7" />
+				<length value="11.7" />
+				<depth value="2.8" />
+				<weight value="9.03895" />
+				<link type="language" id="2198" value="Norwegian" />
+			</item>
+			<item type="boardgameversion" id="564344">
+				<thumbnail>
+					https://cf.geekdo-images.com/1-EkblQRma2Cvtm_dMm7DQ__thumb/img/fgv9jtKDSDU77fWlBXHw27jIY94=/fit-in/200x150/filters:strip_icc()/pic6179125.jpg</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/1-EkblQRma2Cvtm_dMm7DQ__original/img/AA7XXRXa5fDtNZ0hPoh1XdGDDm8=/0x0/filters:format(jpeg)/pic6179125.jpg</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Polish travel edition" />
+				<link type="boardgamepublisher" id="7466" value="Rebel Sp. z o.o." />
+				<link type="boardgameartist" id="116640" value="Jonas Resting-Jeppesen" />
+				<yearpublished value="2021" />
+				<productcode value="" />
+				<width value="0" />
+				<length value="0" />
+				<depth value="0" />
+				<weight value="0" />
+				<link type="language" id="2199" value="Polish" />
+			</item>
+			<item type="boardgameversion" id="301825">
+				<thumbnail>
+					https://cf.geekdo-images.com/f_t5O0l4MH2lKe6o4besJA__thumb/img/S9IChTZGqSeryyLHrpM3Ow0ExjU=/fit-in/200x150/filters:strip_icc()/pic7620967.png</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/f_t5O0l4MH2lKe6o4besJA__original/img/aKtnxGqIXnoSjLyum0qk6Xd9NkQ=/0x0/filters:format(png)/pic7620967.png</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Swedish edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<yearpublished value="2015" />
+				<productcode value="AF4XE9" />
+				<width value="6.45669" />
+				<length value="6.45669" />
+				<depth value="2.91339" />
+				<weight value="0" />
+				<link type="language" id="2204" value="Swedish" />
+			</item>
+			<item type="boardgameversion" id="670693">
+				<thumbnail>
+					https://cf.geekdo-images.com/PBoS2iC3lc4ZfzThNxfZTA__thumb/img/zj3k3WVR2x3nbJVTxfJVYcLtHvs=/fit-in/200x150/filters:strip_icc()/pic7620961.png</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/PBoS2iC3lc4ZfzThNxfZTA__original/img/RrzLhKktNCPolPQ6KLFQ3rAcJN8=/0x0/filters:format(png)/pic7620961.png</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Swedish edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<yearpublished value="0" />
+				<productcode value="" />
+				<width value="0" />
+				<length value="0" />
+				<depth value="0" />
+				<weight value="0" />
+				<link type="language" id="2204" value="Swedish" />
+			</item>
+			<item type="boardgameversion" id="672480">
+				<thumbnail>
+					https://cf.geekdo-images.com/GUlGQrQg5NDIV4E1gvM9VA__thumb/img/oAe0l73fXPHyqAYgblnRujqBNA8=/fit-in/200x150/filters:strip_icc()/pic7627078.png</thumbnail>
+				<image>
+					https://cf.geekdo-images.com/GUlGQrQg5NDIV4E1gvM9VA__original/img/FBC5ygJ7e-IGMZDOkeeygN3f2xc=/0x0/filters:format(png)/pic7627078.png</image>
+				<link type="boardgameversion" id="165628" value="HINT" inbound="true" />
+				<name type="primary" sortindex="1" value="Swedish twelfth edition" />
+				<link type="boardgamepublisher" id="8134" value="Bezzerwizzer ApS (Bezzerwizzer Studio)" />
+				<yearpublished value="2022" />
+				<productcode value="" />
+				<width value="0" />
+				<length value="0" />
+				<depth value="0" />
+				<weight value="0" />
+				<link type="language" id="2204" value="Swedish" />
+			</item>
+		</versions>
+
+		<statistics page="1">
+			<ratings>
+				<usersrated value="491" />
+				<average value="6.66768" />
+				<bayesaverage value="5.68284" />
+				<ranks>
+					<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="6281"
+						bayesaverage="5.68284" />
+				</ranks>
+				<stddev value="1.41746" />
+				<median value="0" />
+				<owned value="1226" />
+				<trading value="12" />
+				<wanting value="6" />
+				<wishing value="70" />
+				<numcomments value="78" />
+				<numweights value="15" />
+				<averageweight value="1.2667" />
+			</ratings>
+		</statistics>
+	</item>
+</items>
