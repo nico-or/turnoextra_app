@@ -13,7 +13,7 @@ module Bgg::Versions::XmlV2
     test "returns an array of BoardGames" do
       assert_equal 1, @boardgames.count
       assert @boardgames.is_a? Array
-      assert @boardgames.all? { |game| game.is_a? Bgg::BoardGame }
+      assert @boardgames.all? { |game| game.is_a? Bgg::Boardgame }
     end
 
     test "buils the correct BoardGame" do

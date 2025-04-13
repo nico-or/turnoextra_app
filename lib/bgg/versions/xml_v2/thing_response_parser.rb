@@ -11,7 +11,7 @@ module Bgg::Versions::XmlV2::ThingResponseParser
     end
 
     def build_thing(node)
-      Bgg::BoardGame.new(
+      Bgg::Boardgame.new(
         id: node[:id].to_i,
         year: node.at_xpath("yearpublished")&.attr(:value)&.to_i,
         name: node.at_xpath("name[@type='primary']")&.attr(:value),

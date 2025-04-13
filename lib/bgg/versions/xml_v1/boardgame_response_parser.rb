@@ -13,7 +13,7 @@ module Bgg::Versions::XmlV1::BoardgameResponseParser
     end
 
     def parse_node(node)
-      Bgg::BoardGame.new(
+      Bgg::Boardgame.new(
         id: node[:objectid].to_i,
         year: node.at_xpath("yearpublished")&.text.to_i,
         name: node.at_xpath("name[@primary]")&.text,

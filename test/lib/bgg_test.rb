@@ -10,7 +10,7 @@ class BggTest < ActiveSupport::TestCase
   end
 
   test "Bgg.uri_for a Bgg::BoardGame" do
-    boardgame = Bgg::BoardGame.new(
+    boardgame = Bgg::Boardgame.new(
       id: 822,
       name: nil,
       names: [],

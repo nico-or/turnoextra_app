@@ -1,5 +1,5 @@
 module Bgg
-  BoardGame = Data.define(
+  Boardgame = Data.define(
     :id,
     :year,
     :name,
