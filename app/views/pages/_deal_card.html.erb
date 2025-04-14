@@ -1,0 +1,15 @@
+<article>
+    <hgroup>
+      <h2><%= deal.boardgame_title %></h2>
+      <p><%= deal.store_name %></p>
+    </hgroup>
+    <p>Average Price: <%= format_price(deal.lpw) %></p>
+    <p>Current Price: <%= format_price(deal.lpt) %></p>
+    <p>
+      Discount: <%= format_price(deal.net_discount) %> 
+      (<%= deal.perc_discount %> %)
+    </p>
+  <footer>
+    <%= link_to "View", boardgame_path(deal), class: "secondary" %>
+  </footer>
+</article>

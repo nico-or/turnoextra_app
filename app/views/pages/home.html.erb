@@ -6,3 +6,16 @@
 <section>
   <%= render 'boardgames/search_form' %>
 </section>
+
+<section>
+  <h2>Recent Deals</h2>
+  <div>
+    <% @week_deals.each_slice(3) do |batch| %>
+      <div class="grid">
+        <% batch.each do |deal| %>
+          <%= render 'deal_card', deal: deal%>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>
