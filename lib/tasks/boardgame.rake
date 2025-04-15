@@ -3,9 +3,9 @@ namespace :boardgame do
   # source: https://boardgamegeek.com/data_dumps/bg_ranks
   # about: https://boardgamegeek.com/wiki/page/BGG_XML_API2#toc1
   desc "Updates Boardgames with daily BGG ranks csv dump"
-  task update_ranks: :environment do
-    # TODO: add task for downloading the csv before
-    filepath = "db/seeds/boardgames_ranks.csv"
+  task update_ranks: [ :environment, "bgg:download_ranks" ] do
+    Rails.logger.info "Updating boardgame ranks from CSV file"
+    filepath = Bgg::RankDownloader::OUTPUT_PATH
     BggRankUpdateService.call(filepath)
   end
 

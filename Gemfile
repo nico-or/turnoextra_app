@@ -54,3 +54,7 @@ gem "pagy", "~> 9.3"
 gem "importmap-rails", "~> 2.1"
 
 gem "chartkick", "~> 5.1"
+
+gem "rubyzip", "~> 2.4", require: "zip"
+
+gem "mechanize", "~> 2.14"
