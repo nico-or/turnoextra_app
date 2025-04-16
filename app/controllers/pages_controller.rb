@@ -37,11 +37,9 @@ class PagesController < ApplicationController
         "boardgames.image_url AS image_url",
         "boardgames.thumbnail_url AS thumbnail_url",
         "stores.name AS store_name",
-        "pt.amount AS lpt",
-        "pw.amount AS lpw",
-        "CAST((pw.amount - pt.amount) AS INT) AS net_discount",
-        "ROUND((1.0 * pw.amount / pt.amount - 1) * 100) AS perc_discount"
+        "pt.amount AS price",
+        "ROUND((1.0 * pw.amount / pt.amount - 1) * 100) AS discount_percentage"
       )
-      .order("perc_discount DESC")
+      .order("discount_percentage DESC")
   end
 end

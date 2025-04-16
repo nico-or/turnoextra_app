@@ -13,7 +13,7 @@
     <% @week_deals.each_slice(3) do |batch| %>
       <div class="grid">
         <% batch.each do |boardgame| %>
-          <%= render 'deal_card', boardgame: boardgame%>
+          <%= render 'boardgames/card', boardgame: %>
         <% end %>
       </div>
     <% end %>
