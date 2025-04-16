@@ -6,6 +6,9 @@ class Boardgame < ApplicationRecord
   validates :title, presence: true
   validates :bgg_id, presence: true, uniqueness: true, numericality: { only_integer: true, greater_than: 0 }
 
+  scope :has_listings, -> { joins(:listings).distinct }
+  scope :without_images, -> { where("image_url IS NULL OR thumbnail_url IS NULL") }
+
   def latest_price_date
     @latest_price_date ||= prices.maximum(:date)
   end
