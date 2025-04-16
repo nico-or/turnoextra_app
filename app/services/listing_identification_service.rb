@@ -50,7 +50,7 @@ class ListingIdentificationService < ApplicationService
   end
 
   def listings_with_with_similar_title(string)
-    Listing.where("LOWER(title) = LOWER(?)", string)
+    Listing.with_title_like(string)
   end
 
   def find_best_search_result

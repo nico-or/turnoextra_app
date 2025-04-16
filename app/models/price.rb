@@ -3,4 +3,8 @@ class Price < ApplicationRecord
 
   validates :date, presence: true
   validates :amount, presence: true, numericality: { only_integer: true, greater_than: 0 }
+
+  scope :with_date, ->(date) { where(date: date) }
+  scope :today, -> { with_date(Date.today) }
+  scope :yesterday, -> { with_date(Date.yesterday) }
 end

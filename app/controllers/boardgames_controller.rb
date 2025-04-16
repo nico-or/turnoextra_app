@@ -13,7 +13,7 @@ class BoardgamesController < ApplicationController
     .distinct
 
     if params[:q].present?
-      @boardgames = @boardgames.where("boardgames.title LIKE ?", "%#{params[:q]}%")
+      @boardgames = @boardgames.with_title_like(params[:q])
     end
 
     @pagy, @boardgames = pagy(@boardgames, limit: 12)
@@ -22,7 +22,7 @@ class BoardgamesController < ApplicationController
   def show
     @boardgame = Boardgame.find(params[:id])
 
-    prices_today = Price.where(date: Date.today)
+    prices_today = Price.today
     @listings = Listing
       .with(prices_today: prices_today)
       .joins(:store)

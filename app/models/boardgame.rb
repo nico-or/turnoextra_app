@@ -8,6 +8,7 @@ class Boardgame < ApplicationRecord
 
   scope :has_listings, -> { joins(:listings).distinct }
   scope :without_images, -> { where("image_url IS NULL OR thumbnail_url IS NULL") }
+  scope :with_title_like, ->(title) { where("LOWER(boardgames.title) LIKE LOWER(?)", "%#{title}%") }
 
   def latest_price_date
     @latest_price_date ||= prices.maximum(:date)

@@ -13,9 +13,7 @@ namespace :listing do
   task identify: :environment do
     # TODO: create 2 identifiers, one for local Boardgame database, other for API
     # create here to make use of the internal cache
-    listings = Listing.where(failed_identification: false)
-                      .where(is_boardgame: true)
-                      .where(boardgame: nil)
+    listings = Listing.boardgames_only.unidentified
 
     listings.find_each do |listing|
       ListingIdentificationService.call(listing)
