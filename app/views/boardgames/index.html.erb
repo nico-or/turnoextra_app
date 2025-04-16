@@ -11,12 +11,8 @@
 <section>
   <%== pagy_info(@pagy) %>
   <div>
-    <% @boardgames.each_slice(3) do |batch| %>
-      <div class="grid">
-        <% batch.each do |boardgame| %>
-            <%= render 'card', boardgame: %>
-        <% end %>
-      </div>
+    <% @boardgames.each do |boardgame| %>
+      <%= render 'card', boardgame: %>
     <% end %>
   </div>
   <%== pagy_nav(@pagy) %>
