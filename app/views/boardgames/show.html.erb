@@ -14,25 +14,26 @@
 </section>
 
 <section>
-<h2>Listings</h2>
-<table>
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>price</th>
-      <th>store</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @listings.each do |listing| %>
+  <h2>Listings</h2>
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to listing.title, listing.url %></td>
-        <td><%= format_price(listing.best_price) %></td>
-        <td><%= listing.store_name %></td>
+        <th>title</th>
+        <th>price</th>
+        <th>store</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @listings.each do |listing| %>
+        <tr>
+          <td><%= link_to listing.title, listing.url %></td>
+          <td><%= format_price(listing.best_price) %></td>
+          <td><%= listing.store_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
 
 <section>
   <h2>Historic Prices</h2>
