@@ -18,20 +18,22 @@ class BoardgamesController < ApplicationController
   end
 
   def show
-    @boardgame = Boardgame.includes(listings: [ :prices, :store ]).find(params[:id])
+    @boardgame = Boardgame.find(params[:id])
 
-    latest_date = @boardgame.latest_price_date
-
-    @listings_with_best_price = @boardgame.listings.filter_map do |listing|
-      best_price = listing.prices
-                          .select { |p| p.date == latest_date }
-                          .min(&:amount)
-      next unless best_price
-
-      [ listing, best_price ]
-    end
-
-    @listings_with_best_price.sort_by! { |(_l, p)| [ p.amount ] }
+    prices_today = Price.where(date: Date.today)
+    @listings = Listing
+      .with(prices_today: prices_today)
+      .joins(:store)
+      .joins("INNER JOIN prices_today ON prices_today.listing_id = listings.id")
+      .where(boardgame: @boardgame)
+      .group("listings.id")
+      .order("best_price ASC")
+      .select(
+        "listings.url",
+        "listings.title",
+        "stores.name AS store_name",
+        "MIN(prices_today.amount) AS best_price"
+      )
 
     @chart_data = chart_data
   end
@@ -39,24 +41,24 @@ class BoardgamesController < ApplicationController
   private
 
   def date_range
-    (Date.today - 1.month)..Date.today
+    (Date.today - 2.weeks)..Date.today
   end
 
   def chart_data
-    listings = @boardgame.listings.includes(:store)
+    price_data = @boardgame.prices
+      .joins(listing: [ :store ])
+      .where(date: date_range)
+      .select(
+      "stores.name AS store_name",
+      "prices.amount AS amount",
+      "prices.date AS date"
+      )
 
-    prices = @boardgame.prices
-                       .select { |price| date_range.include?(price.date) }
-                       .each_with_object({}) do |price, hash|
-                         hash[[ price.listing_id, price.date ]] ||= price.amount
-                       end
-
-    listings.map do |listing|
+    price_data.group_by(&:store_name).map do |store_name, records|
       {
-        name: listing.store.name,
+        name: store_name,
         data: date_range.map do |date|
-          price = prices[[ listing.id, date ]]
-          [ date, price ]
+          [ date, records.find { it.date == date }&.amount ]
         end
       }
     end

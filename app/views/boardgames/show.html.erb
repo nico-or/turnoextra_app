@@ -24,11 +24,11 @@
     </tr>
   </thead>
   <tbody>
-    <% @listings_with_best_price.each do |(listing,price)| %>
+    <% @listings.each do |listing| %>
       <tr>
         <td><%= link_to listing.title, listing.url %></td>
-        <td><%= format_price(price.amount) %></td>
-        <td><%= listing.store.name %></td>
+        <td><%= format_price(listing.best_price) %></td>
+        <td><%= listing.store_name %></td>
       </tr>
     <% end %>
   </tbody>
