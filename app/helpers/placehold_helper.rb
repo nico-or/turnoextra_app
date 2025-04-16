@@ -1,5 +1,5 @@
 module PlaceholdHelper
-  def placehold_img(width, **kwargs)
-    image_tag("https://placehold.co/#{width}", **kwargs)
+  def placehold_url(width)
+    "https://placehold.co/#{width}"
   end
 end

@@ -1,6 +1,14 @@
 <article>
-  <hgroup>
-    <p><%= boardgame.title %></p>
-    <p><%= format_price(boardgame.latest_price) %></p>
-  </hgroup>
+  <%= link_to boardgame do %>
+    <hgroup>
+      <p><strong><%= boardgame.title %></strong></p>
+      <p><%= format_price(boardgame.price) %></p>
+    </hgroup>
+    <div class="body">
+      <%= image_tag boardgame.thumbnail_url || plalcehold_url(150),
+        class: "thumbnail", 
+        alt: boardgame.title
+      %>
+    </div>
+  <% end %>
 </article>

@@ -29,3 +29,7 @@ body {
   /* justify-content: space-between; */
   ;
 }
+
+article a {
+  text-decoration: none;
+}

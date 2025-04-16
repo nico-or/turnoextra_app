@@ -3,9 +3,12 @@
 <section>
   <h2>About</h2>
     <div class="grid">
-      <figure>
-        <%= placehold_img 200 %>
-      </figure>
+      <div>
+        <%= image_tag @boardgame.image_url || placehold_url(300),
+            size: 300,
+            alt: @boardgame.title
+          %>
+      </div>
       <ul>
         <li>BGG Rank: <%= @boardgame.rank %></li>
         <li><%= link_to "BGG Link", @boardgame.bgg_url %></li>

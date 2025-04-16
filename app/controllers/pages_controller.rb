@@ -33,7 +33,9 @@ class PagesController < ApplicationController
       .where("pt.amount < pw.amount")
       .select(
         "boardgames.id",
-        "boardgames.title AS boardgame_title",
+        "boardgames.title AS title",
+        "boardgames.image_url AS image_url",
+        "boardgames.thumbnail_url AS thumbnail_url",
         "stores.name AS store_name",
         "pt.amount AS lpt",
         "pw.amount AS lpw",

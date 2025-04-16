@@ -3,18 +3,20 @@ class BoardgamesController < ApplicationController
   def index
     latest_date = Price.maximum(:date)
 
-    @boardgames = Boardgame.joins(listings: [ :prices ])
-                           .where(prices: { date: latest_date })
-                           .order(:title)
-                           .group("boardgames.id")
-                           .select("boardgames.*, MIN(prices.amount) AS latest_price")
-                           .distinct
+    @boardgames = Boardgame
+    .joins(listings: [ :prices ])
+    .where(prices: { date: latest_date })
+    .order(:title)
+    .group("boardgames.id")
+    .select("boardgames.*",
+    "MIN(prices.amount) AS price")
+    .distinct
 
     if params[:q].present?
       @boardgames = @boardgames.where("boardgames.title LIKE ?", "%#{params[:q]}%")
     end
 
-    @pagy, @boardgames = pagy(@boardgames, limit: 10)
+    @pagy, @boardgames = pagy(@boardgames, limit: 12)
   end
 
   def show

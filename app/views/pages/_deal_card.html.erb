@@ -1,15 +1,14 @@
 <article>
+  <%= link_to boardgame do %>
     <hgroup>
-      <h2><%= deal.boardgame_title %></h2>
-      <p><%= deal.store_name %></p>
+      <p><strong><%= boardgame.title %></strong></p>
+      <p><%= format_price(boardgame.lpt) %> (-<%= boardgame.perc_discount %>%)</p>
     </hgroup>
-    <p>Average Price: <%= format_price(deal.lpw) %></p>
-    <p>Current Price: <%= format_price(deal.lpt) %></p>
-    <p>
-      Discount: <%= format_price(deal.net_discount) %> 
-      (<%= deal.perc_discount %> %)
-    </p>
-  <footer>
-    <%= link_to "View", boardgame_path(deal), class: "secondary" %>
-  </footer>
+    <div class="body">
+      <%= image_tag boardgame.thumbnail_url || plalcehold_url(150),
+        class: "thumbnail",
+        alt: boardgame.title
+      %>
+    </div>
+  <% end %>
 </article>
