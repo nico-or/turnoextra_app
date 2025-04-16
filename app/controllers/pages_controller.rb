@@ -2,22 +2,25 @@ class PagesController < ApplicationController
   skip_before_action :authorize_user
 
   def home
-    @week_deals = deals_for_range(Date.today, 14).limit(12)
+    # OPTIMIZE: Consider Rails.cache.fetch("homepage_week_deals", expires_in: 1.hour) in production
+    @week_deals = deals_for_range(Date.today, 14).limit(12).to_a
   end
 
   private
 
   # TODO: add tests for this method
   def deals_for_range(date, window_size)
+    range = (date-window_size)..(date-1)
+
     prices_today = Price
       .where(date: date)
       .group(:listing_id)
-      .select("MIN(amount) as amount, listing_id")
+      .select("listing_id, MIN(amount) as amount")
 
     prices_week = Price
-      .where(date: (date-window_size)..(date-1))
+      .where(date: range)
       .group(:listing_id)
-      .select("CAST(AVG(amount) AS INT) as amount, listing_id")
+      .select("listing_id, CAST(AVG(amount) AS INT) as amount")
 
     Boardgame
       .with(
