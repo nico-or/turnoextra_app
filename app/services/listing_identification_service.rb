@@ -9,7 +9,7 @@ class ListingIdentificationService < ApplicationService
     return if skip_if(listing.failed_identification?, "previous failed identification") ||
               skip_if(listing.boardgame.present?, "already identified")
 
-    listing_siblings = listings_with_with_similar_title(listing.title)
+    listing_siblings = listings_with_same_title(listing.title)
 
     best_search_result = find_best_search_result
     unless best_search_result
@@ -25,7 +25,7 @@ class ListingIdentificationService < ApplicationService
       return
     end
 
-    boardgame_siblings = listings_with_with_similar_title(boardgame.title)
+    boardgame_siblings = listings_with_same_title(boardgame.title)
     records_to_update = listing_siblings.or(boardgame_siblings)
     count = records_to_update.update_all(boardgame_id: boardgame.id, failed_identification: false)
 
@@ -49,8 +49,8 @@ class ListingIdentificationService < ApplicationService
     Rails.logger.info { "[Identification] Failed #{count}x[#{listing.title}] records. (#{reason})" }
   end
 
-  def listings_with_with_similar_title(string)
-    Listing.with_title_like(string)
+  def listings_with_same_title(string)
+    Listing.where("LOWER(title) = LOWER(?)", string)
   end
 
   def find_best_search_result
