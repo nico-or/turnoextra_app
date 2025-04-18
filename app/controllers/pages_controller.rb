@@ -2,8 +2,9 @@ class PagesController < ApplicationController
   skip_before_action :authorize_user
 
   def home
+    @reference_date = Price.latest_update_date
     # OPTIMIZE: Consider Rails.cache.fetch("homepage_week_deals", expires_in: 1.hour) in production
-    @week_deals = deals_for_range(Date.today, 14).limit(12).to_a
+    @week_deals = deals_for_range(@reference_date, 14).limit(12).to_a
   end
 
   private

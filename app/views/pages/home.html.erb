@@ -8,7 +8,10 @@
 </section>
 
 <section>
+  <hgroup>
   <h2>Recent Deals</h2>
+  <p>Update date: <%= @reference_date.to_fs(:long) %></p>
+  </hgroup>
   <div>
     <% @week_deals.each do |boardgame| %>
       <%= render 'boardgames/card', boardgame: %>

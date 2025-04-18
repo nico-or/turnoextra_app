@@ -7,4 +7,8 @@ class Price < ApplicationRecord
   scope :with_date, ->(date) { where(date: date) }
   scope :today, -> { with_date(Date.today) }
   scope :yesterday, -> { with_date(Date.yesterday) }
+
+  def self.latest_update_date
+    maximum(:date)
+  end
 end
