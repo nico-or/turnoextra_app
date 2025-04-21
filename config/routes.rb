@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   root "pages#home"
   resources :boardgames, only: %i[index show]
   resources :deals, only: %i[index]
+  resources :stores, only: %i[index]
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
