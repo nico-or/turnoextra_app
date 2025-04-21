@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
   resources :boardgames, only: %i[index show]
+  resources :deals, only: %i[index]
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"

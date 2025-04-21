@@ -1,0 +1,12 @@
+<hgroup>
+  <h1>Deals</h1>
+  <p>Update date: <%= @reference_date.to_fs(:long) %></p>
+</hgroup>
+
+<section>
+  <%== pagy_info(@pagy) %>
+  <div>
+    <%= render partial: 'boardgames/card', collection: @boardgames, as: :boardgame %>
+  </div>
+  <%== pagy_nav(@pagy) %>
+</section>
