@@ -3,44 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @reference_date = Price.latest_update_date
-    # OPTIMIZE: Consider Rails.cache.fetch("homepage_week_deals", expires_in: 1.hour) in production
-    @week_deals = deals_for_range(@reference_date, 14).limit(12).to_a
-  end
-
-  private
-
-  # TODO: add tests for this method
-  def deals_for_range(date, window_size)
-    range = (date-window_size)..(date-1)
-
-    prices_today = Price
-      .where(date: date)
-      .group(:listing_id)
-      .select("listing_id, MIN(amount) as amount")
-
-    prices_week = Price
-      .where(date: range)
-      .group(:listing_id)
-      .select("listing_id, CAST(AVG(amount) AS INT) as amount")
-
-    Boardgame
-      .with(
-        prices_today: prices_today,
-        prices_week: prices_week
-      )
-      .joins(listings: :store)
-      .joins("INNER JOIN prices_today pt ON pt.listing_id = listings.id")
-      .joins("INNER JOIN prices_week pw ON pw.listing_id = listings.id")
-      .where("pt.amount < pw.amount")
-      .select(
-        "boardgames.id",
-        "boardgames.title AS title",
-        "boardgames.image_url AS image_url",
-        "boardgames.thumbnail_url AS thumbnail_url",
-        "stores.name AS store_name",
-        "pt.amount AS price",
-        "ROUND((1.0 * pw.amount / pt.amount - 1) * 100) AS discount_percentage"
-      )
-      .order("discount_percentage DESC")
+    @deals = BoardgameDealsService.new(reference_date: @reference_date).call.limit(8)
   end
 end
