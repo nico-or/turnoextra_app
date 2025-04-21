@@ -13,8 +13,7 @@
   <p>Update date: <%= @reference_date.to_fs(:long) %></p>
   </hgroup>
   <div>
-    <% @week_deals.each do |boardgame| %>
-      <%= render 'boardgames/card', boardgame: %>
-    <% end %>
+    <%= render partial: 'boardgames/card', collection: @deals, as: :boardgame %>
   </div>
+  <%= link_to "View All Deals", deals_path %>
 </section>
