@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_16_161251) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_21_223454) do
   create_table "boardgames", force: :cascade do |t|
     t.string "title"
     t.integer "bgg_id"
@@ -21,6 +21,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_16_161251) do
     t.string "thumbnail_url"
     t.index ["bgg_id"], name: "index_boardgames_on_bgg_id", unique: true
     t.index ["title"], name: "index_boardgames_on_title"
+  end
+
+  create_table "form_store_suggestions", force: :cascade do |t|
+    t.string "store_url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "listings", force: :cascade do |t|
@@ -47,6 +53,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_16_161251) do
     t.index ["date"], name: "index_prices_on_date"
     t.index ["listing_id", "date"], name: "index_prices_on_listing_id_and_date", unique: true
     t.index ["listing_id"], name: "index_prices_on_listing_id"
+  end
+
+  create_table "store_suggestions", force: :cascade do |t|
+    t.string "url", null: false
+    t.integer "count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "stores", force: :cascade do |t|

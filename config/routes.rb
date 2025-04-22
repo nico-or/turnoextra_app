@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :boardgames, only: %i[index show]
   resources :deals, only: %i[index]
   resources :stores, only: %i[index]
+  resources :store_suggestions, only: %i[index new create]
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"

@@ -1,0 +1,23 @@
+<%= content_for :title, "Store Suggestions" %>
+
+<h1>Store Suggestions</h1>
+
+<section>
+  <h2>Store Suggestions by Popularity</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>URL</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @store_suggestions_tally.each do |store_suggestion| %>
+        <tr>
+          <td><%= store_suggestion.url %></td>
+          <td><%= store_suggestion.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
