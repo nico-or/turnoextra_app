@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_21_223454) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_22_165630) do
   create_table "boardgames", force: :cascade do |t|
     t.string "title"
     t.integer "bgg_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_21_223454) do
     t.integer "rank", default: 0, null: false
     t.string "image_url"
     t.string "thumbnail_url"
+    t.integer "reference_price", default: 0, null: false
     t.index ["bgg_id"], name: "index_boardgames_on_bgg_id", unique: true
     t.index ["title"], name: "index_boardgames_on_title"
   end

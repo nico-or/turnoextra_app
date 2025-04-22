@@ -14,6 +14,7 @@
       <ul>
         <li>BGG Rank: <%= @boardgame.rank %></li>
         <li><%= link_to "BGG Link", @boardgame.bgg_url %></li>
+        <li>Reference Price: <%= format_price(@boardgame.reference_price) %></li></li>
       </ul>
     </div>
 </section>
