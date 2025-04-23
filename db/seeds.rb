@@ -8,8 +8,29 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Rake::Task['info'].invoke
+
+Rails.logger.info 'Seeding database...'
+
+Rails.logger.info 'Creating admin user...'
 User.create do |u|
   u.admin = true
   u.email = ENV['ADMIN_EMAIL']
   u.password_digest = BCrypt::Password.create(ENV['ADMIN_PASSWORD'])
 end
+
+Rails.logger.info 'Creating boardgames...'
+Rake::Task['boardgame:update_ranks'].invoke
+# TODO: Update Boardgame data from BGG (needs identification (?) to avoid fetching ALL boardgames)
+
+Rails.logger.info 'Importing listings...'
+Rake::Task['listing:import'].invoke
+
+# TODO: Perform listing identification (needs to be faster or local)
+# Rake::Task['listing:identify'].invoke
+
+
+# TODO: Update Boardgames reference_price (needs identification)
+# Rake::Task['boardgame:update_reference_prices'].invoke
+
+Rails.logger.info 'Seeding complete.'
