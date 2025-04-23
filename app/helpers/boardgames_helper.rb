@@ -3,10 +3,9 @@ module BoardgamesHelper
     return if boardgame.reference_price == 0
     return unless boardgame.price < boardgame.reference_price
 
-    abs_difference =  boardgame.price - boardgame.reference_price
-    rel_difference = 1.0 * abs_difference / boardgame.reference_price
-    discount = (100 * rel_difference).to_i
+    rel_price = boardgame.price.to_f / boardgame.reference_price
+    discount = (100 * (1 - rel_price)).round
 
-    content_tag(:span, "(#{discount}%)")
+    content_tag(:span, "(-#{discount}%)")
   end
 end
