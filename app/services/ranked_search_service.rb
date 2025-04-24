@@ -13,10 +13,6 @@ class RankedSearchService < ApplicationService
 
   private
 
-  def normalize_string(string)
-    string.unicode_normalize(:nfkd).downcase.gsub(/[^a-z0-9 ]/, "")
-  end
-
   def query
     case listing
     when Listing then listing.title
@@ -26,7 +22,7 @@ class RankedSearchService < ApplicationService
   end
 
   def normalized_query
-    normalize_string(query)
+    StringNormalizationService.normalize_title(query)
   end
 
   def rank_results(query, results)

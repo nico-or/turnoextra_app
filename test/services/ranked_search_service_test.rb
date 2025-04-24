@@ -3,7 +3,7 @@ require "test_helper"
 class RankedSearchServiceTest < ActiveSupport::TestCase
   def setup
     listing = listings(:catan_1)
-    @query = listing.title.unicode_normalize(:nfkd).downcase.gsub(/[^a-z0-9 ]/, "")
+    @query = StringNormalizationService.normalize_title(listing.title)
 
     file = file_fixture("bgg/api/v1/search_catan.xml")
     url = "https://boardgamegeek.com/xmlapi/search"
