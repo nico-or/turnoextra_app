@@ -1,4 +1,4 @@
-class BggRankUpdateService < ApplicationService
+class Bgg::RankUpdateService < ApplicationService
   BATCH_SIZE = 1_000
 
   attr_reader :file
@@ -13,8 +13,13 @@ class BggRankUpdateService < ApplicationService
 
     csv_enum.each_slice(BATCH_SIZE) do |rows|
       boardgame_params = rows.map do |row|
-        { bgg_id: row[:id].to_i, title: row[:name], rank: row[:rank] }
+        {
+          bgg_id: row[:id].to_i,
+          title: row[:name],
+          rank: row[:rank]
+        }
       end
+
       Boardgame.upsert_all(boardgame_params, unique_by: :bgg_id)
     end
   end

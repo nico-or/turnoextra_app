@@ -1,4 +1,4 @@
-class Bgg::RankDownloader
+class Bgg::RankDownloadService
   LOGIN_URL = "https://boardgamegeek.com/login/api/v1"
   RANKS_URL = "https://boardgamegeek.com/data_dumps/bg_ranks"
   OUTPUT_PATH = Rails.root.join("db", "seeds", "boardgames_ranks.csv")
