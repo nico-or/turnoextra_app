@@ -16,7 +16,8 @@ class Bgg::RankUpdateService < ApplicationService
         {
           bgg_id: row[:id].to_i,
           title: row[:name],
-          rank: row[:rank]
+          rank: row[:rank],
+          year: row[:yearpublished].to_i
         }
       end
 

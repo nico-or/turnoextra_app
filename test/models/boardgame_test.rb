@@ -1,6 +1,11 @@
 require "test_helper"
 
 class BoardgameTest < ActiveSupport::TestCase
+  def setup
+    @default_params = { title: "New Game", bgg_id: 123, year: 2023 }
+    @boardgame = Boardgame.new(@default_params)
+  end
+
   test "should not allow empty titles" do
     boardgame = Boardgame.new(title: "", bgg_id: "12345")
     assert_not boardgame.valid?
@@ -43,5 +48,40 @@ class BoardgameTest < ActiveSupport::TestCase
     boardgame = boardgames(:pandemic)
     boardgame_url = "https://boardgamegeek.com/boardgame/#{boardgame.bgg_id}"
     assert_equal boardgame_url, boardgame.bgg_url
+  end
+
+  test "should not allow string as year" do
+    @boardgame.year = "abc"
+    assert_not @boardgame.valid?
+  end
+
+  test "should not allows floats as year" do
+    @boardgame.year = 1.2
+    assert_not @boardgame.valid?
+  end
+
+  test "should not allow empty year" do
+    @boardgame.year = ""
+    assert_not @boardgame.valid?
+  end
+
+  test "should not allow nil year" do
+    @boardgame.year = nil
+    assert_not @boardgame.valid?
+  end
+
+  test "should allow negative years" do
+    @boardgame.year = -100
+    assert @boardgame.valid?
+  end
+
+  test "should allow integer years" do
+    @boardgame.year = 2023
+    assert @boardgame.valid?
+  end
+
+  test "should allow zero years" do
+    @boardgame.year = 0
+    assert @boardgame.valid?
   end
 end

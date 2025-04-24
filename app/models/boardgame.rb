@@ -4,6 +4,7 @@ class Boardgame < ApplicationRecord
   has_many :stores, through: :listings
 
   validates :title, presence: true
+  validates :year, presence: true, numericality: { only_integer: true }
   validates :bgg_id, presence: true, uniqueness: true, numericality: { only_integer: true, greater_than: 0 }
 
   scope :has_listings, -> { joins(:listings).distinct }
