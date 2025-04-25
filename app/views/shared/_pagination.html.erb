@@ -1,0 +1,8 @@
+
+<%# source: https://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates %>
+<nav class="pagy nav grid" aria-label="Pages">
+  <%= pagy_nav_link('< Previous', pagy.prev, 'Previous', ->(p) { boardgames_path(page: p) }) %>
+  <%= pagy_nav_link('Next >', pagy.next, 'Next', ->(p) { boardgames_path(page: p) }) %>
+</nav>
+
+

@@ -58,3 +58,10 @@ footer {
 footer nav {
   justify-content: space-around;
 }
+
+nav.pagy.nav.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}

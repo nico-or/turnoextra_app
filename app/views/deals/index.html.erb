@@ -10,5 +10,5 @@
   <div>
     <%= render partial: 'boardgames/card', collection: @boardgames, as: :boardgame %>
   </div>
-  <%== pagy_nav(@pagy) %>
+  <%= render 'shared/pagination', pagy: @pagy %>
 </section>
