@@ -10,6 +10,11 @@ class Bgg::RankDownloadService
   end
 
   def call
+    unless needs_download?
+      log("No need to download ranks.")
+      return
+    end
+
     log("Logging in to BGG...")
     login
 
@@ -26,6 +31,18 @@ class Bgg::RankDownloadService
   end
 
   private
+
+  def needs_download?
+    !output_exists? || output_outdated?
+  end
+
+  def output_exists?
+    File.exist?(OUTPUT_PATH)
+  end
+
+  def output_outdated?
+    OUTPUT_PATH.mtime.to_date < Date.today
+  end
 
   def login
     credentials = { username: @username, password: @password }
