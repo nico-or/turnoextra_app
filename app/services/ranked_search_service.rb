@@ -8,6 +8,8 @@ class RankedSearchService < ApplicationService
 
   def call
     search_results = client.search(normalized_query)
+    search_results = client.search(truncated_query) if search_results.empty?
+
     rank_results(query, search_results).map(&:first)
   end
 
@@ -23,6 +25,10 @@ class RankedSearchService < ApplicationService
 
   def normalized_query
     StringNormalizationService.normalize_title(query)
+  end
+
+  def truncated_query(word_count = 3)
+    normalized_query.truncate_words(word_count, omission: "")
   end
 
   def rank_results(query, results)
