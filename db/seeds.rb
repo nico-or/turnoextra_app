@@ -13,9 +13,9 @@ Rake::Task['info'].invoke
 Rails.logger.info 'Seeding database...'
 
 Rails.logger.info 'Creating admin user...'
-User.create do |u|
+
+User.find_or_create_by(email: ENV['ADMIN_EMAIL']) do |u|
   u.admin = true
-  u.email = ENV['ADMIN_EMAIL']
   u.password_digest = BCrypt::Password.create(ENV['ADMIN_PASSWORD'])
 end
 
