@@ -21,8 +21,9 @@ class BoardgamesController < ApplicationController
 
   def show
     @boardgame = Boardgame.find(params[:id])
+    @reference_date = Price.latest_update_date
 
-    prices_today = Price.today
+    prices_today = Price.where(date: @reference_date)
     @listings = Listing
       .with(prices_today: prices_today)
       .joins(:store)
@@ -43,7 +44,7 @@ class BoardgamesController < ApplicationController
   private
 
   def date_range
-    (Date.today - 2.weeks)..Date.today
+    (@reference_date - 2.weeks)..@reference_date
   end
 
   def chart_data
