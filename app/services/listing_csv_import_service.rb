@@ -10,37 +10,57 @@ class ListingCsvImportService < ApplicationService
   def call
     table = CSV.table(file, converters: nil)
 
-    rows_per_store = table.reject { |row| row[:stock] == "false" }
-                          .group_by { |row| URI.parse(row[:url]).origin }
+    rows = table.reject { |row| row[:stock] == "false" }
 
-    rows_per_store.each do |store_url, rows|
-      store = create_store(store_url)
 
-      rows.each do |row|
-        listing = create_listing(store, row)
-        _price = create_price(listing, row)
-      end
+    stores_by_url = find_or_create_stores(rows)
+    listings_by_url = find_or_create_listings(rows, stores_by_url)
+
+    prices_params = rows.map do |row|
+      listing = listings_by_url[row[:url]]
+      {
+        listing_id: listing.id,
+        amount: row[:price].to_i,
+        date: row[:date]
+      }
     end
+
+    Price.insert_all(prices_params)
   end
 
   private
 
-  def create_store(store_url)
-    Store.find_or_create_by(url: store_url) do |store|
-      store.name = URI.parse(store_url).hostname
+  def find_or_create_stores(rows)
+    row_urls = rows.map { |row| URI.parse(row[:url]).origin }.uniq
+
+    existing_urls = Store.where(url: row_urls).pluck(:url)
+    missing_urls = row_urls - existing_urls
+
+    stores_params = missing_urls.map do |url|
+      { url: url, name: URI.parse(url).hostname }
     end
+    Store.insert_all(stores_params) if missing_urls.any?
+
+    Store.where(url: row_urls).index_by(&:url)
   end
 
-  def create_listing(store, row)
-    Listing.find_or_create_by(url: row[:url]) do |l|
-      l.store = store
-      l.title = row[:title]
-    end
-  end
+  def find_or_create_listings(rows, stores_by_url)
+    row_urls = rows.map { |row| row[:url] }.uniq
 
-  def create_price(listing, row)
-    listing.prices.find_or_create_by!(date: row[:date]) do |price|
-      price.amount = row[:price]
+    existing_urls = Listing.where(url: row_urls).pluck(:url)
+    missing_urls = row_urls - existing_urls
+
+    listings_params = missing_urls.map do |url|
+      row = rows.find { |r| r[:url] == url }
+      store = stores_by_url[URI.parse(url).origin]
+      {
+        url: url,
+        title: row[:title],
+        store_id: store.id
+      }
     end
+
+    Listing.insert_all(listings_params) if missing_urls.any?
+    Listing.where(url: row_urls).index_by(&:url)
   end
 end
