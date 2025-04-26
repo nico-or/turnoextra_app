@@ -10,14 +10,19 @@ namespace :listing do
   end
 
   desc "Identifies all Listings without a boardgame_id"
-  task identify: :environment do
+  task identify: [ :environment, :info ] do
     # TODO: create 2 identifiers, one for local Boardgame database, other for API
     # create here to make use of the internal cache
     listings = Listing.boardgames_only.unidentified
 
-    listings.find_each do |listing|
+    Rails.logger.info "Identifying #{listings.count} listings"
+
+    listings.find_each.with_index do |listing, index|
       ListingIdentificationService.call(listing)
-      sleep Random.rand(2..4)
+      sleep 2
     end
+  ensure
+    Rake::Task["boardgame:add_images"].invoke
+    Rake::Task["boardgame:update_reference_price"].invoke
   end
 end
