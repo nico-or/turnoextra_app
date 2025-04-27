@@ -17,5 +17,5 @@
       <%= render 'card', boardgame: %>
     <% end %>
   </div>
-  <%= render 'shared/pagination', pagy: @pagy %>
+  <%= render 'shared/pagination', pagy: @pagy, path_helper: ->(p) { boardgames_path(page: p) } %>
 </section>

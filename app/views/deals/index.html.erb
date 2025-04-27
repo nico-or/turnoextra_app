@@ -10,5 +10,5 @@
   <div>
     <%= render partial: 'boardgames/card', collection: @boardgames, as: :boardgame %>
   </div>
-  <%= render 'shared/pagination', pagy: @pagy %>
+  <%= render 'shared/pagination', pagy: @pagy, path_helper: ->(p) { deals_path(page: p) } %>
 </section>
