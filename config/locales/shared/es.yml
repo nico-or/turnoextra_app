@@ -6,6 +6,7 @@ es:
       stores: "Tiendas"
     footer:
       home: "Inicio"
+      about: "Acerca de"
       copyright_html: "%{brand_name} &copy; %{year} Todos los derechos reservados."
     update_date:
       date: "Actualizado el %{date}"

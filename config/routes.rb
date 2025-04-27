@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#home"
+  get "about", to: "pages#about"
+
   resources :boardgames, only: %i[index show]
   resources :deals, only: %i[index]
   resources :stores, only: %i[index]

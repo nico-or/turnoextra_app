@@ -14,3 +14,5 @@ es:
             - "¿Cuál tienda te gustaría que añadiéramos a Turno Extra?"
             - "Queremos conocer tus tiendas favoritas para mantenerte actualizado con las mejores ofertas."
           button: "Sugerir una nueva tienda"
+    about:
+      title: "Acerca de Turno Extra!"
