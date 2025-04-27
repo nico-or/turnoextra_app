@@ -1,8 +1,8 @@
-<% content_for :title, "Deals" %>
+<% content_for :title, t('.title') %>
 
 <hgroup>
-  <h1>Deals</h1>
-  <p>Update date: <%= @reference_date.to_fs(:long) %></p>
+  <h1><%= t('.title') %></h1>
+  <%= render "shared/update_date", date: @reference_date %>
 </hgroup>
 
 <section>

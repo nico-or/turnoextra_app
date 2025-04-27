@@ -1,8 +1,8 @@
 
 <%# source: https://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates %>
-<nav class="pagy nav grid" aria-label="Pages">
-  <%= pagy_nav_link('< Previous', pagy.prev, 'Previous', path_helper) %>
-  <%= pagy_nav_link('Next >', pagy.next, 'Next', path_helper) %>
+<nav class="pagy nav grid" aria-label=<%= t(".aria_label.nav") %>>
+  <%= pagy_nav_link(t(".prev_html"), pagy.prev, t(".aria_label.prev"), path_helper) %>
+  <%= pagy_nav_link(t(".next_html"), pagy.next, t(".aria_label.next"), path_helper) %>
 </nav>
 
 

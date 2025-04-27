@@ -1,28 +1,13 @@
-<%= content_for :title, "New Store Suggestion" %>
+<%= content_for :title, t(".title") %>
 
-<h1>Suggest a Store</h1>
+<h1><%= t(".title") %></h1>
 
-<p>We prioritize stores based on the number of suggestions they receive. The more a store is suggested, the sooner it'll be added.</p>
+<p><%= t(".instructions") %></p>
 
-<p><i>
-  Note: Store suggestions are kept private, since we can't verify the content of the websites suggested ahead of time.
-</i></p>
-
-<% if @store_suggestion.errors.any? %>
-  <div id="error_explanation">
-    <p><strong>
-      <%= pluralize(@store_suggestion.errors.count, "error") %> prohibited this store suggestion from being saved:
-    </strong></p>
-    <ul>
-      <% @store_suggestion.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<p><i><%= t(".disclaimer") %></i></p>
 
 <%= form_for @store_suggestion do |form| %>
-  <%= form.label :url, 'URL' %>
+  <%= form.label :url %>
   <%= form.url_field :url, required: true, placeholder: "https://example.com", pattern: "^https?://.*$"  %>
-  <%= form.submit "Submit" %>
+  <%= form.submit %>
 <% end %>

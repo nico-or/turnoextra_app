@@ -1,7 +1,7 @@
 <%= form_with url: "/boardgames", method: :get do |form| %>
-  <%= form.label :q, "Search" %>
+  <%= form.label :q, t(".label") %>
   <%= fieldset_tag nil, "role" => "group" do %>
-    <%= form.text_field :q, placeholder: "Board Game title..." %>
-    <%= form.submit "Search" %>
+    <%= form.text_field :q, placeholder: t(".placeholder") %>
+    <%= form.submit t(".submit") %>
   <% end %>
 <% end %>

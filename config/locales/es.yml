@@ -1,0 +1,9 @@
+es:
+  app:
+    name: "Turno Extra"
+  number:
+    currency:
+      format:
+        format: "%u %n"
+        precision: 0
+        unit: "$"

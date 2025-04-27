@@ -1,0 +1,13 @@
+es:
+  activerecord:
+    models:
+      boardgame:
+        one: "Juego de mesa"
+        other: "Juegos de mesa"
+    attributes:
+      boardgame:
+        title: "Nombre"
+        bgg_id: "BGG ID"
+        bgg_url: "Link BGG"
+        rank: "Ranking BGG"
+        reference_price: "Precio de referencia"

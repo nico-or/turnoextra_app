@@ -3,7 +3,7 @@
 <h1> <%= @boardgame.title %> </h1>
 
 <section>
-  <h2>About</h2>
+  <h2><%= t('.about')  %> </h2>
     <div class="grid">
       <div>
         <%= image_tag @boardgame.image_url || placehold_url(300),
@@ -12,21 +12,21 @@
           %>
       </div>
       <ul>
-        <li>BGG Rank: <%= @boardgame.rank %></li>
-        <li><%= link_to "BGG Link", @boardgame.bgg_url %></li>
-        <li>Reference Price: <%= format_price(@boardgame.reference_price) %></li></li>
+        <li><%= t('activerecord.attributes.boardgame.rank') %>: <%= @boardgame.rank.zero? ? "Sin ranking" : @boardgame.rank  %></li>
+        <li><%= link_to t('activerecord.attributes.boardgame.bgg_url'), @boardgame.bgg_url %></li>
+        <li><%= t('activerecord.attributes.boardgame.reference_price') %>: <%= format_price(@boardgame.reference_price) %></li></li>
       </ul>
     </div>
 </section>
 
 <section>
-  <h2>Listings</h2>
+  <h2><%= t("activerecord.models.listing.other") %> </h2>
   <table>
     <thead>
       <tr>
-        <th>title</th>
-        <th>price</th>
-        <th>store</th>
+        <th><%= t("activerecord.attributes.listing.title") %></th>
+        <th><%= t("activerecord.attributes.listing.price") %></th>
+        <th><%= t("activerecord.attributes.listing.store") %></th>
       </tr>
     </thead>
     <tbody>
@@ -42,11 +42,11 @@
 </section>
 
 <section>
-  <h2>Historic Prices</h2>
+  <h2><%= t(".historic_prices") %></h2>
   <!-- TODO: Make background color match the Light/Dark theme -->
   <%= line_chart @chart_data,
   legend: 'top',
-  curve: false, loading: "Loading...",
+  curve: false, loading: t(".chart.loading"),
   library: {
     aggregationTarget:'category',
     interpolateNulls: 0,

@@ -1,0 +1,10 @@
+es:
+  activerecord:
+    models:
+      price:
+        one: "Precio"
+        other: "Precios"
+    attributes:
+      price:
+        amount: "Monto"
+        date: "Fecha"

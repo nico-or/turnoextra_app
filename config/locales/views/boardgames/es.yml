@@ -1,0 +1,16 @@
+es:
+  boardgames:
+    search_form:
+      label: "Buscar"
+      submit: "Buscar"
+      placeholder: "Título del juego de mesa..."
+      results_for: "Resultados para '%{query}'"
+    index:
+      title: "Juegos de mesa"
+    show:
+      about: "Datos del juego"
+      historic_prices: "Precios Históricos"
+      chart:
+        x_axis: "Fecha"
+        y_axis: "Precio"
+        loading: "Cargando..."

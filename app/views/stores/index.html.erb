@@ -1,20 +1,22 @@
+<%= content_for :title, t(".title") %>
+
 <hgroup>
-  <h1>Stores</h1>
+  <h1><%= t(".title") %></h1>
 </hgroup>
 
 <section>
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Location</th>
+        <th><%= t("activerecord.attributes.store.name") %></th>
+        <th><%= t("activerecord.attributes.store.url") %></th>
       </tr>
     </thead>
     <tbody>
       <% @stores.each do |store| %>
         <tr>
           <td><%= store.name %></td>
-          <td><%= link_to 'Visit Store', store.url %></td>
+          <td><%= link_to t(".external_link"), store.url %></td>
         </tr>
       <% end %>
     </tbody>
@@ -22,5 +24,5 @@
 </section>
 
 <section>
-  <%= link_to "Suggest a New Store", new_store_suggestion_path %>
+  <%= link_to t("pages.home.cards.suggest_store.button"), new_store_suggestion_path %>
 </section>

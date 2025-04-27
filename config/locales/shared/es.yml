@@ -1,0 +1,19 @@
+es:
+  shared:
+    navbar:
+      deals: "Ofertas"
+      board_games: "Juegos de mesa"
+      stores: "Tiendas"
+    footer:
+      home: "Inicio"
+      copyright_html: "%{brand_name} &copy; %{year} Todos los derechos reservados."
+    update_date:
+      date: "Actualizado el %{date}"
+      unknown: "Sin fecha de actualización"
+    pagination:
+      aria_label:
+        next: "Siguiente"
+        prev: "Anterior"
+        nav: "Páginas"
+      prev_html: "&laquo; Anterior"
+      next_html: "Siguiente &raquo;"

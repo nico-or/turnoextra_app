@@ -1,12 +1,12 @@
-<% content_for :title, "Boardgames" %>
+<% content_for :title, t(".title") %>
 
-<h1>Boardgames</h1>
+<h1><%= t(".title") %></h1>
 
 <section>
   <%= render 'boardgames/search_form' %>
   
   <% if params[:q].present? %>
-    <p>Search results for: <%= params[:q] %> </p>
+    <p><%= t("boardgames.search_form.results_for", query: params[:q]) %></p>
   <% end %>
 </section>
 

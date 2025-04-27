@@ -1,6 +1,6 @@
 <hgroup>
-  <h1>Turno Extra!</h1>
-  <p>Find the best prices for your next boardgame!</p>
+  <h1><%= t('.title') %></h1>
+  <p><%= t('.description') %></p>
 </hgroup>
 
 <section>
@@ -9,27 +9,18 @@
 
 <section>
   <hgroup>
-  <h2>Recent Deals</h2>
-  <p>Update date: <%= @reference_date.to_fs(:long) %></p>
+  <h2><%= t('.best_deals') %></h2>
+  <%= render "shared/update_date", date: @reference_date  %>
   </hgroup>
   <div>
     <%= render partial: 'boardgames/card', collection: @deals, as: :boardgame %>
   </div>
-  <%= link_to "View All Deals", deals_path %>
+  <%= link_to t('.view_all_deals'), deals_path %>
 </section>
 
 <section>
-  <h2>Help turno extra grow!</h2>
+  <h2><%= t('.help_us_grow') %></h2>
   <div>
-    <article>
-      <header>
-        <h3>Suggest a Store</h3>
-      </header>
-      <p>Which store should we add next?</p>
-      <p> We want to know your favorite stores so we can keep them updated with the best deals.</p>
-      <footer>
-        <%= link_to "Suggest a Store", new_store_suggestion_path, role: :button %>
-      </footer>
-    </article>
+    <%= render partial: 'card', collection: t(".cards").values %>
   </div>
 </section>

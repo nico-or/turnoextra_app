@@ -1,0 +1,5 @@
+<% if date.present? %>
+  <p><%= t(".date", date: l(date, format: :default)) %></p>
+<% else %>
+  <p><%= t(".unknown") %></p>
+<% end %>

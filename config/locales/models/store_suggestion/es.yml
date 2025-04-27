@@ -1,0 +1,13 @@
+es:
+  activerecord:
+    models:
+      store_suggestion:
+        one: "Sugerencia de tienda"
+        other: "Sugerencias de tiendas"
+    attributes:
+      store_suggestion:
+        url: "Enlace"
+  helpers:
+    submit:
+      store_suggestion:
+        create: "Enviar sugerencia"

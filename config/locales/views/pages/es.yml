@@ -1,0 +1,16 @@
+es:
+  pages:
+    home:
+      title: "Turno Extra!"
+      description: "Encuentra los mejores precios para tu próximo juego de mesa"
+      best_deals: "Mejores Ofertas"
+      view_all_deals: "Ver todas las ofertas"
+      suggest_store: "Sugerir una tienda"
+      help_us_grow: "Ayúdanos a mejorar Turno Extra"
+      cards:
+        suggest_store:
+          title: "Sugiere una tienda"
+          paragraphs:
+            - "¿Cuál tienda te gustaría que añadiéramos a Turno Extra?"
+            - "Queremos conocer tus tiendas favoritas para mantenerte actualizado con las mejores ofertas."
+          button: "Sugerir una nueva tienda"

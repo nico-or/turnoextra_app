@@ -1,0 +1,10 @@
+es:
+  activerecord:
+    models:
+      store:
+        one: "Tienda"
+        other: "Tiendas"
+    attributes:
+      store:
+        name: "Nombre"
+        url: "Enlace"

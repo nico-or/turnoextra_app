@@ -1,0 +1,11 @@
+es:
+  activerecord:
+    models:
+      listing:
+        one: "Publicación"
+        other: "Publicaciones"
+    attributes:
+      listing:
+        title: "Título"
+        price: "Precio"
+        store: "Tienda"
