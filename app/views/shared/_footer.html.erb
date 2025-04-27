@@ -4,6 +4,7 @@
       <ul>
         <li><%= link_to t('.home'), root_path, class: "secondary" %></li>
         <li><%= link_to t('.about'), about_path, class: "secondary" %></li>
+        <li><%= link_to t('.faq'), faq_path, class: "secondary" %></li>
       </ul>
     </nav>
     <p><%= t('.copyright_html', brand_name: t('app.name'), year: Time.now.year) %></p>

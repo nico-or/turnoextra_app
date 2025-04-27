@@ -10,4 +10,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get about_path
     assert_response :success
   end
+
+  test "should get faq" do
+    get faq_path
+    assert_response :success
+  end
 end

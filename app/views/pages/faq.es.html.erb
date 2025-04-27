@@ -1,0 +1,72 @@
+<%= content_for :title, t(".title") %>
+
+<h1><%= t(".title") %></h1>
+
+<article>
+  <h2>¿Cómo funciona Turno Extra?</h2>
+  <p>Una vez al día recorremos las tiendas en línea para recopilar sus publicaciones y precios. Luego agrupamos esta información por juego de mesa para mostrar los precios actuales de cada uno.</p>
+</article>
+
+<article>
+  <h2>¿Qué es una publicación?</h2>
+  <p>Una publicación es una venta individual de un juego de mesa en el sitio web de una tienda. Incluye detalles como el nombre de la tienda, una URL y precios históricos. Un juego de mesa, en cambio, es solo el producto en sí.</p>
+</article>
+
+<article>
+  <h2>¿Cómo deciden qué publicaciones están en oferta?</h2>
+  <p>Una oferta es cualquier publicación cuyo precio actual está por debajo de su precio de referencia.</p>
+</article>
+
+<article>
+  <h2>¿Cómo se elige un precio de referencia?</h2>
+  <p>El precio de referencia es la mediana de los precios de las últimas dos semanas. Esto ayuda a filtrar valores atípicos y mostrar un precio representativo.</p>
+  <p>¿Cómo calculamos la mediana?</p>
+  <ol>
+    <li>Recopilamos todos los precios recientes.</li>
+    <li>Los ordenamos de menor a mayor.</li>
+    <li>El precio central es la mediana. Si hay dos valores centrales, se promedia.</li>
+  </ol>
+</article>
+
+<article>
+  <h2>¿De dónde obtienen los datos de los juegos de mesa?</h2>
+  <p>Usamos la API de <%= link_to 'BoardGameGeek', "https://www.boardgamegeek.com/" %> para obtener información como nombre, imagen y versiones de cada juego de mesa.</p>
+</article>
+
+<article>
+  <h2>¿Por qué algunos juegos de mesa muestran un nombre diferente al de las tiendas?</h2>
+  <p>Mostramos el nombre principal que nos proporciona la API de BoardGameGeek. Estamos trabajando en incorporar nombres localizados en español.</p>
+</article>
+
+<article>
+  <h2>¿Por qué algunos juegos de mesa tienen varias versiones listadas?</h2>
+  <p>BoardGameGeek agrupa muchas versiones bajo un mismo juego. Por ejemplo, para <%= link_to 'Spot It!', "https://boardgamegeek.com/boardgame/63268/spot-it/versions?pageid=1&language=2203" %>, se incluyen versiones como Dobble, Dobble XXL, Dobble Waterproof, entre otras.</p>
+  <p>Estamos evaluando cómo diferenciar mejor estas versiones para ofrecer resultados más precisos.</p>
+</article>
+
+<article>
+  <h2>¿Por qué algunos juegos de mesa no aparecen en el sitio?</h2>
+  <p>Solo mostramos juegos que tuvieron al menos una publicación reciente. Si ves un juego en una tienda pero no en Turno Extra, puede ser que nuestro proceso automático no haya podido identificarlo correctamente.</p>
+</article>
+
+<article>
+  <h2>¿Cómo deciden qué juego de mesa representa una publicación?</h2>
+  <p>Intentamos identificar el juego usando el título de la publicación y la base de datos de BoardGameGeek.</p>
+  <p>El proceso puede fallar por varias razones:</p>
+  <ul>
+    <li>El juego no existe en BoardGameGeek.</li>
+    <li>El título de la publicación no coincide con ninguno registrado en BGG.</li>
+    <li>El título contiene detalles adicionales (idioma, edición, año) que dificultan su reconocimiento.</li>
+  </ul>
+  <p>Cuando no podemos identificar una publicación, no la mostramos hasta verificarla manualmente.</p>
+</article>
+
+<article>
+  <h2>¿Por qué no aparece <i>&lt;nombre de tienda&gt;</i> en Turno Extra?</h2>
+  <p>Integrar nuevas tiendas requiere tiempo y esfuerzo. Lanzamos Turno Extra con una selección inicial de tiendas e iremos agregando más progresivamente.</p>
+  <p>¡Puedes sugerir nuevas tiendas usando el <%= link_to 'formulario de sugerencias', new_store_suggestion_path %>!</p>
+</article>
+
+<hr>
+
+<%= link_to t('.home_link'), root_path, class: "secondary" %>

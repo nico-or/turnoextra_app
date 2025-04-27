@@ -16,3 +16,6 @@ es:
           button: "Sugerir una nueva tienda"
     about:
       title: "Acerca de Turno Extra!"
+    faq:
+      title: "Preguntas Frecuentes"
+      home_link: "Volver al inicio"

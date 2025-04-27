@@ -1,0 +1,86 @@
+<%= content_for :title, 'FAQ' %>
+
+<hgroup>
+  <h1>FAQ</h1>
+</hgroup>
+
+<details>
+  <summary>How does Turno Extra! work?</summary>
+  <p>Once per day, we crawl online stores to collect their current listings and prices. Then we aggregate this information by board game to show the current prices across all stores.</p>
+</details>
+
+<details>
+  <summary>What is a <i>"listing"</i>?</summary>
+  <p>A listing is an individual sale of a board game on a store's website.</p>
+  <p>It is different from a board game because it includes information such as the store's name, an url and many prices (one for each date).</p>
+  <p>A board game, on the other hand, is just the product itself.</p>
+</details>
+
+<details>
+  <summary>What's a <i>"deal"</i>?</summary>
+  <p>A deal is any board game whose current price is lower than its reference price.</p>
+</details>
+
+<details>
+  <summary>How do you choose a reference price?</summary>
+  <p>We use the <i>median price</i> for the last two weeks. This helps to filter out outliers and ensure that the price we display is representative of what you can expect to pay for a board game.</p>
+
+  <p>The median price is calculated as follows:</p>
+  <ol>
+    <li>We collect all prices for a given board game over the last two weeks.</li>
+    <li>We sort these prices in ascending order.</li>
+    <li>The median price is the middle value. If there is an even number of values, we take the average of the two middle values.</li>
+  </ol>
+</details>
+
+<details>
+  <summary>Where do you get the board game data?</summary>
+  <p>We use the <%= link_to 'BoardGameGeek', "https://www.boardgamegeek.com/" %> API to retrieve board game data. This includes details such as the names and images of each board game.</p>
+</details>
+
+<details>
+  <summary>Why do some board games show a different name than the one I'm familiar with?</summary>
+  <p>By default, we use the primary name provided by the BoardGameGeek API. We're currently evaluating how to provide local (e.g., Spanish) names in the future.</p>
+</details>
+
+<details>
+  <summary>Why do some board games show many different names under the same name?</summary>
+  <p>For some board games, the BoardGameGeek database lists many versions under the same name. For example, BGG lists</p>
+  <ul>
+    <li>Dobble</li>
+    <li>Dobble XXL</li>
+    <li>Dobble Waterproof</li>
+    <li>Dobble 31 Minutos</li>
+    <li>Dobble Harry Potter</li>
+    <li>etc&hellip;</li>
+  </ul>
+  <p>under the same name: <%= link_to "Spot It!", "https://boardgamegeek.com/boardgame/63268/spot-it/versions?pageid=1&language=2203" %></p>
+  <p>We're evaluating how to differentiate between board game versions to allow to show better search results. For now, we're following BGG's database and showing all versions under the same name.</p>
+</details>
+
+<details>
+  <summary>Why do some board games not appear on the site?</summary>
+  <p>We only show board games that had at least 1 listings the last time we collected data.</p>
+  <p>If you'ree seeing a board game in a store page that isn't appearing on our site, it's likely because it failed the automatic identification process.</p>
+</details>
+
+<details>
+  <summary>How do you choose which board game a listing represents?</summary>
+  <p>After collecting store listings, we try to match it's title against our database and the BoardGameGeek API to identify which board game is actually being sold.</p>
+  <p>However, this process can fail for various reasons. The most common are:</p>
+  <ul>
+    <li>The board game is not listed in the BGG database.</li>
+    <li>The board game is listed in BGG, but its Spanish title is not.</li>
+    <li>The listing title contains additional information that prevents it from being recognized by the BGG API.</li>
+  </ul>
+  <p>If the identification process fails, the listing will not be displayed on our website until it's manually verified.</p>
+</details>
+
+<details>
+  <summary>Why doesn't <i>&lt;store name&gt;</i> appear in your data?</summary>
+  <p>We launched with a limited number of stores and are currently working on expanding this list.</p>
+  <p>You can see the <%= link_to 'list of stores', stores_path %> we're currently collecting data from.</p>
+  <p>You can also help us by suggesting additional stores to include using the <%= link_to 'store suggestion form', new_store_suggestion_path %>!</p>
+</details>
+
+<%= link_to "Back to Home", root_path %>
