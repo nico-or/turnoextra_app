@@ -58,3 +58,5 @@ gem "chartkick", "~> 5.1"
 gem "rubyzip", "~> 2.4", require: "zip"
 
 gem "mechanize", "~> 2.14"
+
+gem "rails-i18n", "~> 8.0"
