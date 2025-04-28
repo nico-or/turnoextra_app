@@ -1,0 +1,23 @@
+<%= content_for :title, t('.title') %>
+
+<h1><%= t('.title') %></h1>
+
+<%= form_for @contact_message, url: boardgame_errors_path do |f| %>
+  <%= hidden_field_tag :boardgame_id, @boardgame&.id %>
+
+  <%= label_tag t('activerecord.attributes.boardgame.title') %>
+  <%= text_field_tag :title, @boardgame.title, disabled: true %>
+
+  <%= f.label :subject %>
+  <%= f.select :subject,
+    ContactMessage.subjects.map { |k,v| [ t("activerecord.attributes.contact_message.subject_enum.#{k}"), k] },
+    {},
+    { disabled: true } %>
+
+  <%= f.label :body %>
+  <%= f.text_area :body,
+    required: true,
+    rows: 10,
+    placeholder: t(".instructions") %>
+  <%= f.submit %>
+<% end %>

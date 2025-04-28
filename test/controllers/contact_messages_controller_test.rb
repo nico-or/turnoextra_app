@@ -46,4 +46,29 @@ class ContactMessagesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to contact_path
     assert_match (/limit/), flash[:alert]
   end
+
+  test "should get new_boardgame_error" do
+    boardgame = Boardgame.first
+    get new_boardgame_error_path(boardgame)
+    assert_response :success
+  end
+
+  test "should create boardgame error" do
+    boardgame = Boardgame.first
+    params = {
+      boardgame_id: boardgame.id,
+      contact_message: {
+        body: "This is a test error message."
+      }
+    }
+
+    assert_difference("ContactMessage.count", 1) do
+      post boardgame_errors_path, params: params, headers: @default_headers
+      assert_redirected_to boardgame_path(boardgame)
+    end
+
+    contact_message = ContactMessage.last
+    assert_match (/test error/), contact_message.body
+    assert contact_message.error_report?
+  end
 end

@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   get "/contact", to: "contact_messages#new"
   post "/contact", to: "contact_messages#create"
 
+  get "/contact/boardgame/:boardgame_id", to: "contact_messages#new_boardgame_error", as: :new_boardgame_error
+  post "/contact/boardgame", to: "contact_messages#create_boardgame_error", as: :boardgame_errors
+
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

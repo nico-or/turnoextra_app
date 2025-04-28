@@ -61,3 +61,8 @@
     }
   } %>
 </section>
+
+<section>
+  <h2><%= t(".actions") %></h2>
+  <%= button_to t(".report_error"), new_boardgame_error_path(@boardgame), method: :get, class: "outline secondary" %>
+</section>

@@ -10,6 +10,8 @@ es:
     show:
       about: "Datos del juego"
       historic_prices: "Precios Históricos"
+      actions: "Acciones"
+      report_error: "Reportar Error"
       chart:
         x_axis: "Fecha"
         y_axis: "Precio"

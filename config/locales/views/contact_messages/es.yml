@@ -8,6 +8,12 @@ es:
         contact: "Tu mensaje ha sido enviado con éxito. Intentaremos responder en breve. Gracias!"
         annonymous: "Tu mensaje ha sido enviado con éxito. Gracias!"
       failure: "Algo salió mal. Por favor, intenta de nuevo."
+    new_boardgame_error:
+      title: "Reportar un error en un juego de tablero"
+      instructions: "Describe el problema que encontraste."
+    create_boardgame_error:
+      success: "Error reportado con éxito. Gracias!"
+      failure: "Algo salió mal. Por favor, intenta de nuevo."
   helpers:
     submit:
       contact_message:
