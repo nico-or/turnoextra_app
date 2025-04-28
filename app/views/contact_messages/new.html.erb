@@ -1,0 +1,28 @@
+<%= content_for :title, t('.title') %>
+
+<h1><%= t('.title') %></h1>
+
+<%= form_for @contact_message, url: contact_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name,
+    placeholder: true %>
+  <small><%= t('.annonymous_tip')%></small>
+
+  <%= f.label :email %>
+  <%= f.email_field :email,
+    placeholder: true %>
+  <small><%= t('.annonymous_tip')%></small>
+
+  <%= f.label :subject %>
+  <%= f.select :subject,
+    ContactMessage.subjects.map { |k,v| [ t("activerecord.attributes.contact_message.subject_enum.#{k}"), k] },
+    prompt: true,
+    required: true  %>
+
+  <%= f.label :body %>
+  <%= f.text_area :body,
+    required: true,
+    rows: 10,
+    placeholder: true %>
+  <%= f.submit %>
+<% end %>

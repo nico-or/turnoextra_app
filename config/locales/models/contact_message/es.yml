@@ -1,0 +1,21 @@
+es:
+  activerecord:
+    models:
+      contact_message:
+        one: "Mensaje de contacto"
+        other: "Mensajes de contacto"
+    attributes:
+      contact_message:
+        name: "Nombre"
+        email: "Correo electrónico"
+        subject: "Asunto"
+        body: "Mensaje"
+        status: "Estado"
+        status_enum:
+          unread: "No leído"
+          read: "Leído"
+          responded: "Respondido"
+        subject_enum:
+          general: "General"
+          suggestion: "Sugerencia"
+          error_report: "Informe de error"

@@ -1,0 +1,33 @@
+<h1>Contact Messages</h1>
+
+<section>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>User Agent</th>
+        <th>Subject</th>
+        <th>Body</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contact_messages.each do |message| %>
+        <% presenter = ContactMessagePresenter.new(message, self) %>
+        <tr>
+          <td><%= presenter.name %></td>
+          <td><%= presenter.email %></td>
+          <td><%= truncate(presenter.user_agent) %></td>
+          <td><%= presenter.subject %></td>
+          <td><%= truncate(presenter.body) %></td>
+          <td><%= presenter.status %></td>
+          <td>
+            <%= link_to "View", admin_contact_message_path(message), role: :button %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

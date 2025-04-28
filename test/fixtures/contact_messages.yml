@@ -1,0 +1,13 @@
+one:
+  name: "John Doe"
+  email: "john.doe@example.com"
+  subject: general
+  body: "This is a test message."
+  status: unread
+  user_agent: "Mozilla/5.0"
+
+two:
+  subject: suggestion
+  body: "I have a suggestion."
+  status: read
+  user_agent: "Mozilla/5.0"

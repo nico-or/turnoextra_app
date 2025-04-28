@@ -1,0 +1,20 @@
+es:
+  contact_messages:
+    new:
+      title: "Envíanos un mensaje"
+      annonymous_tip: "Solo es necesario si deseas recibir una respuesta."
+    create:
+      success:
+        contact: "Tu mensaje ha sido enviado con éxito. Intentaremos responder en breve. Gracias!"
+        annonymous: "Tu mensaje ha sido enviado con éxito. Gracias!"
+      failure: "Algo salió mal. Por favor, intenta de nuevo."
+  helpers:
+    submit:
+      contact_message:
+        create: "Enviar mensaje"
+    placeholder:
+      contact_message:
+        name: "Tu nombre"
+        email: "Tu correo electrónico"
+        subject: "Seleccione el asunto"
+        body: "Escribe tu mensaje aquí..."

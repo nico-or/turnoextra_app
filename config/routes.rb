@@ -19,10 +19,12 @@ Rails.application.routes.draw do
   resources :stores, only: %i[index]
   resources :store_suggestions, only: %i[index new create]
 
+  get "/contact", to: "contact_messages#new"
+  post "/contact", to: "contact_messages#create"
+
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
 
   get "dashboard", to: "admin#index"
 
@@ -32,5 +34,11 @@ Rails.application.routes.draw do
     resources :stores
     resources :listings
     resources :boardgames
+
+    resources :contact_messages, only: [ :index, :show ] do
+      member do
+        post "toggle_read"
+      end
+    end
   end
 end

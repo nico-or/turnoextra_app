@@ -8,6 +8,7 @@ es:
       home: "Inicio"
       about: "Acerca de"
       faq: "Preguntas frecuentes"
+      contact: "Contacto"
       copyright_html: "%{brand_name} &copy; %{year} Todos los derechos reservados."
     update_date:
       date: "Actualizado el %{date}"

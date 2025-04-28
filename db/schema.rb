@@ -25,6 +25,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_232141) do
     t.index ["title"], name: "index_boardgames_on_title"
   end
 
+  create_table "contact_messages", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "body"
+    t.string "user_agent", null: false
+    t.integer "subject", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "form_store_suggestions", force: :cascade do |t|
     t.string "store_url", null: false
     t.datetime "created_at", null: false
