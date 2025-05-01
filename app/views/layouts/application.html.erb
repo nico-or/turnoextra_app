@@ -3,9 +3,9 @@
   <head>
     <title>
       <% if content_for?(:title) %>
-        <%= content_for(:title) %> | Turno Extra!
+        <%= content_for(:title) %> | <%= t('app.name') %>
       <% else %>
-        Turno Extra!
+        <%= t('app.name') %>
       <% end %>
     </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
