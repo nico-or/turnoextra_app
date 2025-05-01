@@ -1,9 +1,11 @@
 module PagyHelper
-  def pagy_nav_link(label, page, aria_label, path_helper)
+  def pagy_nav_link(label:, page:, aria_label:, path_helper:, rel:)
+    options = { role: "button", "aria-label": aria_label, rel: rel }
+
     if page
-      link_to label, path_helper.call(page), aria_label: aria_label, aria_disabled: false, role: "button"
+      link_to label, path_helper.call(page), **options.merge("aria-disabled": false)
     else
-      link_to label, "javascript:void(0)", aria_label: aria_label, aria_disabled: true, role: "button", disabled: true
+      link_to label, "javascript:void(0)", **options.merge("aria-disabled": true, disabled: true)
     end
   end
 end
