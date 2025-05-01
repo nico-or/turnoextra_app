@@ -60,3 +60,5 @@ gem "rubyzip", "~> 2.4", require: "zip"
 gem "mechanize", "~> 2.14"
 
 gem "rails-i18n", "~> 8.0"
+
+gem "meta-tags", "~> 2.22"
