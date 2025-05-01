@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      <% if content_for?(:title) %>
-        <%= content_for(:title) %> | <%= t('app.name') %>
-      <% else %>
-        <%= t('app.name') %>
-      <% end %>
-    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%= display_meta_tags(default_meta_tags) %>
 
     <%= yield :head %>
 

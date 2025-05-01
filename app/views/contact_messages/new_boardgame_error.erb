@@ -1,6 +1,6 @@
-<%= content_for :title, t('.title') %>
+<% set_meta_tags noindex: true%>
 
-<h1><%= t('.title') %></h1>
+<h1><%= title "Reportar un error", t('.title') %></h1>
 
 <%= form_for @contact_message, url: boardgame_errors_path do |f| %>
   <%= hidden_field_tag :boardgame_id, @boardgame&.id %>
