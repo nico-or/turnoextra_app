@@ -1,6 +1,8 @@
 es:
   app:
-    name: "Turno Extra"
+    name: "Turno Extra!"
+    name_alt: "Turno Extra"
+    description: "Encuentra el mejor precio para tu próximo juego de mesa."
   number:
     currency:
       format:
