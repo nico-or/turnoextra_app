@@ -1,8 +1,6 @@
 es:
   pages:
     home:
-      title: "Turno Extra!"
-      description: "Encuentra los mejores precios para tu próximo juego de mesa"
       best_deals: "Mejores Ofertas"
       view_all_deals: "Ver todas las ofertas"
       suggest_store: "Sugerir una tienda"
