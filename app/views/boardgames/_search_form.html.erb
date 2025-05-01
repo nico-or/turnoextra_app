@@ -2,6 +2,6 @@
   <%= form.label :q, t(".label") %>
   <%= fieldset_tag nil, "role" => "group" do %>
     <%= form.text_field :q, placeholder: t(".placeholder") %>
-    <%= form.submit t(".submit") %>
+    <%= form.submit t(".submit"), name: nil %>
   <% end %>
 <% end %>
