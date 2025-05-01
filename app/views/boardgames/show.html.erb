@@ -1,6 +1,6 @@
-<% content_for :title, @boardgame.title %>
+<% set_meta_tags canonical: boardgame_url(@boardgame) %>
 
-<h1> <%= @boardgame.title %> </h1>
+<h1> <%= title @boardgame.title %> </h1>
 
 <section>
   <h2><%= t('.about')  %> </h2>

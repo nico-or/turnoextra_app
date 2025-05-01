@@ -1,6 +1,6 @@
-<%= content_for :title, t('.title') %>
+<% set_meta_tags noindex: true%>
 
-<h1><%= t('.title') %></h1>
+<h1><%= title 'Contacto', t('.title') %></h1>
 
 <%= form_for @contact_message, url: contact_path do |f| %>
   <%= f.label :name %>
