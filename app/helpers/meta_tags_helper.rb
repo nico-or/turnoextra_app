@@ -7,7 +7,7 @@ module MetaTagsHelper
       canonical: request.original_url,
       og: {
         title: :title,
-        description: :description,
+        description: I18n.translate("app.opengraph.description"),
         type: "website",
         url: request.original_url,
         site_name: t("app.name"),
