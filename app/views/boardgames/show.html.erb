@@ -1,4 +1,5 @@
 <% set_meta_tags canonical: boardgame_url(@boardgame) %>
+<%= render 'opengraph', boardgame: @boardgame, discount: @discount %>
 
 <h1> <%= title @boardgame.title %> </h1>
 

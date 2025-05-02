@@ -39,6 +39,14 @@ class BoardgamesController < ApplicationController
         "MIN(prices_today.amount) AS best_price"
       )
 
+      reference_price = @boardgame.reference_price.to_f
+      if reference_price.zero?
+        @discount = 0
+      else
+        best_price = @listings.map { _1.best_price }.min
+        @discount = ((1 - best_price / reference_price) * 100).to_i
+      end
+
     @chart_data = chart_data
   end
 
