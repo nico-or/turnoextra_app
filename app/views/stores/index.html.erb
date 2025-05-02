@@ -16,7 +16,7 @@
       <% @stores.each do |store| %>
         <tr>
           <td><%= store.name %></td>
-          <td><%= link_to t(".external_link"), store.url %></td>
+          <td><%= link_to t(".external_link"), safe_url(store.url) %></td>
         </tr>
       <% end %>
     </tbody>
