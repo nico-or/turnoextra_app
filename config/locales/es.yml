@@ -2,7 +2,10 @@ es:
   app:
     name: "Turno Extra!"
     name_alt: "Turno Extra"
-    description: "Encuentra el mejor precio para tu próximo juego de mesa."
+    slogan: "Tu próximo juego de mesa al mejor precio."
+    description: "En Turno Extra! encontrarás el mejor precio para tu próximo juego de mesa en Chile. Compara fácilmente precios de distintas tiendas y aprovecha las mejores ofertas."
+    opengraph:
+      description: "¿Pensando en comprar un nuevo juego de mesa? En Turno Extra! comparamos precios en tiendas chilenas para ayudarte a encontrar el mejor precio."
   number:
     currency:
       format:
