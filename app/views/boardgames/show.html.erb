@@ -32,7 +32,15 @@
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
-          <td><%= link_to listing.title, listing.url %></td>
+          <td><%= link_to listing.title,
+            tracking_url(listing.url),
+            target: "_blank",
+            rel: "noopener",
+            **umami_event_attributes("outbound_boardgames_show_click", {
+              store_id: listing.store_id,
+              listing_id: listing.id,
+              boardgame_id: @boardgame.id
+            }) %></td>
           <td><%= format_price(listing.best_price) %></td>
           <td><%= listing.store_name %></td>
         </tr>
