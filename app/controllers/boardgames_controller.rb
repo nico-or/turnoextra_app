@@ -34,6 +34,7 @@ class BoardgamesController < ApplicationController
       .select(
         "listings.url",
         "listings.title",
+        "stores.id AS store_id",
         "stores.name AS store_name",
         "MIN(prices_today.amount) AS best_price"
       )
