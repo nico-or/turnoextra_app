@@ -16,3 +16,6 @@ es:
         x_axis: "Fecha"
         y_axis: "Precio"
         loading: "Cargando..."
+      opengraph:
+        description: "¿Buscas %{title}? Encuentra los mejores precios y ofertas en Chile visitando Turno Extra!"
+        description_discount: ¡Ahorra hasta un %{discount}% en %{title}! Consulta precios y encuentra las mejores ofertas en Turno Extra!"
