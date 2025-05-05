@@ -5,6 +5,7 @@ module MetaTagsHelper
       description: I18n.translate("app.description"),
       separator: "|".html_safe,
       canonical: request.original_url,
+      charset: "utf-8",
       og: {
         title: :title,
         description: I18n.translate("app.opengraph.description"),
