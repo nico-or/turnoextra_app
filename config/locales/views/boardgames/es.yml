@@ -12,10 +12,12 @@ es:
       historic_prices: "Precios Históricos"
       actions: "Acciones"
       report_error: "Reportar Error"
-      chart:
-        x_axis: "Fecha"
-        y_axis: "Precio"
-        loading: "Cargando..."
       opengraph:
         description: "¿Buscas %{title}? Encuentra los mejores precios y ofertas en Chile visitando Turno Extra!"
         description_discount: ¡Ahorra hasta un %{discount}% en %{title}! Compara precios y encuentra las mejores ofertas en Turno Extra!"
+    price_chart:
+      haxis:
+        title: "Fecha"
+      vaxis:
+        title: "Precio"
+      loading: "Cargando..."

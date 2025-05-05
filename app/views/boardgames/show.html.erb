@@ -1,76 +1,31 @@
 <% set_meta_tags canonical: boardgame_url(@boardgame) %>
 <%= render 'opengraph', boardgame: @boardgame, discount: @discount %>
-
 <h1> <%= title @boardgame.title %> </h1>
-
 <section>
   <h2><%= t('.about')  %> </h2>
-    <div class="grid">
-      <div>
-        <%= image_tag @boardgame.image_url || placehold_url(300),
+  <div class="grid">
+    <div>
+      <%= image_tag @boardgame.image_url || placehold_url(300),
             size: 300,
             alt: @boardgame.title
           %>
-      </div>
-      <ul>
-        <li><%= t('activerecord.attributes.boardgame.rank') %>: <%= @boardgame.rank.zero? ? "Sin ranking" : @boardgame.rank  %></li>
-        <li><%= link_to t('activerecord.attributes.boardgame.bgg_url'), safe_url(@boardgame.bgg_url) %></li>
-        <li><%= t('activerecord.attributes.boardgame.reference_price') %>: <%= format_price(@boardgame.reference_price) %></li></li>
-      </ul>
     </div>
+    <ul>
+      <li><%= t('activerecord.attributes.boardgame.rank') %>: <%= @boardgame.rank.zero? ? "Sin ranking" : @boardgame.rank  %></li>
+      <li><%= link_to t('activerecord.attributes.boardgame.bgg_url'), safe_url(@boardgame.bgg_url) %></li>
+      <li><%= t('activerecord.attributes.boardgame.reference_price') %>: <%= format_price(@boardgame.reference_price) %></li>
+    </li>
+  </ul>
+</div>
 </section>
-
 <section>
   <h2><%= t("activerecord.models.listing.other") %> </h2>
-  <table>
-    <thead>
-      <tr>
-        <th><%= t("activerecord.attributes.listing.title") %></th>
-        <th><%= t("activerecord.attributes.listing.price") %></th>
-        <th><%= t("activerecord.attributes.listing.store") %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @listings.each do |listing| %>
-        <tr>
-          <td><%= link_to listing.title,
-            tracking_url(listing.url),
-            target: "_blank",
-            rel: "noopener",
-            **umami_event_attributes("outbound_boardgames_show_click", {
-              store_id: listing.store_id,
-              listing_id: listing.id,
-              boardgame_id: @boardgame.id
-            }) %></td>
-          <td><%= format_price(listing.best_price) %></td>
-          <td><%= listing.store_name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render "listing_table", listings: @listings  %>
 </section>
-
 <section>
   <h2><%= t(".historic_prices") %></h2>
-  <!-- TODO: Make background color match the Light/Dark theme -->
-  <%= line_chart @chart_data,
-  legend: 'top',
-  curve: false, loading: t(".chart.loading"),
-  library: {
-    aggregationTarget:'category',
-    interpolateNulls: 0,
-    vAxis:{
-      format: :currency,
-    },
-    legend:{
-      maxLines: 5,
-    },
-    hAxis:{
-      format: 'd/M/yy',
-    }
-  } %>
+  <%= render 'price_chart', chart_data: @chart_data %>
 </section>
-
 <section>
   <h2><%= t(".actions") %></h2>
   <%= button_to t(".report_error"), new_boardgame_error_path(@boardgame), method: :get, class: "outline secondary" %>
