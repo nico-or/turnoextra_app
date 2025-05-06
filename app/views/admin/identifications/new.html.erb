@@ -16,12 +16,14 @@
     <thead>
       <th>ID</th>
       <th>Title</th>
+      <th>External link</th>
     </thead>
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
           <td><%= link_to listing.id, admin_listing_path(listing) %></td>
           <td><%= link_to listing.title, admin_listing_path(listing) %></td>
+          <td><%= link_to 'store link', listing.url %></td>
         </tr>
       <% end %>
     </tbody>
@@ -47,6 +49,7 @@
     <table>
       <thead>
         <th>BGG ID</th>
+        <th>External link</th>
         <th>Year</th>
         <th>Title</th>
         <th>Actions</th>
@@ -55,6 +58,7 @@
         <% @boardgames.each do |result, boardgame| %>
           <tr>
             <td><%= link_to boardgame.id, admin_boardgame_path(boardgame) %></td>
+            <td><%= link_to 'bgg link', boardgame.bgg_url %></td>
             <td><%= result.year %></td>
             <td><%= result.name %></td>
             <td>
