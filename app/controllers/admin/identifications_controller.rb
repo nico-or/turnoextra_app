@@ -19,13 +19,14 @@ module Admin
       end
 
       if params[:bgg_query].present?
-        results = Bgg::Versions::XmlV1.search(params[:bgg_query])
-        boardgames = Boardgame.where(bgg_id: results.map(&:id))
-        @boardgames = results.map do |result|
-          [ result, boardgames.find { |bg| bg.bgg_id == result.id.to_i } ]
+        results = RankedSearchService.call(params[:bgg_query], Bgg::Versions::XmlV1)
+        @boardgames = results.filter_map do |result|
+          boardgame = Boardgame.find_by(bgg_id: result.id)
+          next unless boardgame
+          [ result, boardgame ]
         end
       else
-        @results = []
+        @boardgames = []
       end
     end
 
