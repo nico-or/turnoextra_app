@@ -1,3 +1,12 @@
 <h1><%=@listing.title%></h1>
 
-<p><%= debug @listing%></p>
+<h2>Details</h2>
+<%= debug @listing%>
+
+<h2>Actions</h2>
+
+<h3>Unidentifty</h3>
+<%= button_to 'Unidentifty',
+  unidentify_admin_listing_path(@listing),
+  method: :patch,
+  class: "secondary outline" %>
