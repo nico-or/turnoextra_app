@@ -57,8 +57,12 @@
       <tbody>
         <% @boardgames.each do |result, boardgame| %>
           <tr>
-            <td><%= link_to boardgame.id, admin_boardgame_path(boardgame) %></td>
-            <td><%= link_to 'bgg link', boardgame.bgg_url %></td>
+            <% if boardgame %>
+              <td><%= link_to boardgame.id, admin_boardgame_path(boardgame) %></td>
+            <% else %>
+              <td>NULL</td>
+            <% end %>
+            <td><%= link_to 'bgg link', bgg_url(result.id) %></td>
             <td><%= result.year %></td>
             <td><%= result.name %></td>
             <td>
@@ -67,7 +71,7 @@
                   <%= hidden_field_tag 'listing_ids[]', listing.id %>
                 <% end %>
                 <%= hidden_field_tag 'bgg_id', result.id %>
-                <%= f.submit 'Identify', class:"secondary" %>
+                <%= f.submit 'Identify', class:"secondary", disabled: boardgame.nil? %>
               <% end %>
             </td>
           </tr>
