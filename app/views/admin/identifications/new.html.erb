@@ -26,7 +26,7 @@
   <h2>BGG Search</h2>
   <%= form_with url: new_admin_identification_path, method: :get do |f| %>
     <%= hidden_field_tag 'title', params[:title] %>
-    <%= f.search_field :query, value: params[:query] %>
+    <%= f.search_field :bgg_query, value: params[:bgg_query] %>
   <% end %>
   <% if @results.present? %>
     <table>

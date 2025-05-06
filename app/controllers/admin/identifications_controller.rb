@@ -15,7 +15,11 @@ module Admin
                          .where(is_boardgame: true)
                          .where("lower(title) = ?", params[:title])
 
-      @results = params[:query].present? ? Bgg::Versions::XmlV1.search(params[:query]) : []
+      if params[:bgg_query].present?
+        @results = Bgg::Versions::XmlV1.search(params[:bgg_query])
+      else
+        @results = []
+      end
     end
 
     def create
