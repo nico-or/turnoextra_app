@@ -29,6 +29,14 @@
 </section>
 
 <section>
+  <%= button_to "Not a Boardgame",
+  toggle_is_boardgame_admin_identifications_path,
+  class:"outline",
+  params: { listing_ids: @listings.map(&:id) }
+  %>
+</section>
+
+<section>
   <h2>BGG Search</h2>
   <%= form_with url: new_admin_identification_path, method: :get do |f| %>
     <%= hidden_field_tag 'title', params[:title] %>
