@@ -3,7 +3,13 @@
 <section>
   <hgroup>
     <h2>Listings</h2>
-    <p>With title: <i><%= params[:title]%></i></p>
+    <% if params[:query].present? %>
+      <p>Search results for: "<%= params[:query]%>"</p>
+    <% elsif params[:title].present? %>
+      <p>Search results for title: "<%= params[:title]%>"</p>
+    <% else %>
+      <p>No search query provided.</p>
+    <% end %>
   </hgroup>
 
   <table>
