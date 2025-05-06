@@ -23,7 +23,11 @@ module Admin
       end
 
       if params[:bgg_query].present?
-        @results = Bgg::Versions::XmlV1.search(params[:bgg_query])
+        results = Bgg::Versions::XmlV1.search(params[:bgg_query])
+        boardgames = Boardgame.where(bgg_id: results.map(&:id))
+        @boardgames = results.map do |result|
+          [ result, boardgames.find { |bg| bg.bgg_id == result.id.to_i } ]
+        end
       else
         @results = []
       end
