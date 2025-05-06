@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :stores
 
     resources :listings do
+      patch :identify, on: :member
       patch :unidentify, on: :member
     end
 
