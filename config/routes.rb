@@ -44,6 +44,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :identifications, only: [ :index, :show ]
+    resources :identifications, only: [ :index, :show, :create ]
   end
 end
