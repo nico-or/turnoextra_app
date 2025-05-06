@@ -30,3 +30,9 @@
   <h2><%= t(".actions") %></h2>
   <%= button_to t(".report_error"), new_boardgame_error_path(@boardgame), method: :get, class: "outline secondary" %>
 </section>
+<% if Current.user&.admin? %>
+  <section>
+    <h2>Admin</h2>
+    <%= link_to 'View on Dashboard', admin_boardgame_path(@boardgame), role: :button, class: "outline secondary", style:"width:100%;" %>
+  </section>
+<% end %>
