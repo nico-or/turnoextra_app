@@ -35,7 +35,11 @@ Rails.application.routes.draw do
     resources :uploads, only: %i[new create]
 
     resources :stores
-    resources :listings
+
+    resources :listings do
+      patch :unidentify, on: :member
+    end
+
     resources :boardgames
 
     resources :contact_messages, only: [ :index, :show ] do
