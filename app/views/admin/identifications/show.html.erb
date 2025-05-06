@@ -1,0 +1,23 @@
+<h1>Identification#show</h1>
+
+<section>
+  <hgroup>
+    <h2>Listings</h2>
+    <p>With title: <i><%= params[:id]%></i></p>
+  </hgroup>
+
+  <table>
+    <thead>
+      <th>title</th>
+      <th>count</th>
+    </thead>
+    <tbody>
+      <% @listings.each do |listing| %>
+        <tr>
+          <td><%= listing.id %></td>
+          <td><%= link_to listing.title, admin_listing_path(listing) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

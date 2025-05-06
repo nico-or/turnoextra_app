@@ -8,5 +8,12 @@ module Admin
                          .select("LOWER(title) AS lower_title, COUNT(*) AS listings_count")
                          .order("listings_count DESC")
     end
+
+    def show
+      @listings = Listing.where(failed_identification: true)
+                         .where(boardgame: nil)
+                         .where(is_boardgame: true)
+                         .where("lower(title) = ?", params[:id])
+    end
   end
 end
