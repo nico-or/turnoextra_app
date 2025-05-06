@@ -15,7 +15,7 @@ module Admin
       end
 
       if params[:title].present?
-        @listings = @listings.where("LOWER(title) = ?", params[:title])
+        @listings = @listings.where("LOWER(title) = LOWER(?)", params[:title])
       end
 
       if params[:bgg_query].present?
