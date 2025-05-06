@@ -43,5 +43,7 @@ Rails.application.routes.draw do
         post "toggle_read"
       end
     end
+
+    resources :identifications, only: [ :index ]
   end
 end
