@@ -32,6 +32,7 @@ class BoardgamesController < ApplicationController
       .group("listings.id")
       .order("best_price ASC")
       .select(
+        "listings.id",
         "listings.url",
         "listings.title",
         "stores.id AS store_id",
