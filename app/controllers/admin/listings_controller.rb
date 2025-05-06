@@ -6,6 +6,12 @@ module Admin
 
     def show
       @listing = Listing.find(params[:id])
+
+      if params[:bgg_query].present?
+        results = Bgg::Versions::XmlV2.search(params[:bgg_query])
+        boardgames = Boardgame.where(bgg_id: results.map(&:id))
+      end
+      @boardgames = boardgames || []
     end
 
     def identify
