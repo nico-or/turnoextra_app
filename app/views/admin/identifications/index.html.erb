@@ -1,0 +1,18 @@
+<h1>Identification#index</h1>
+
+<section>
+  <table>
+    <thead>
+      <th>title</th>
+      <th>count</th>
+    </thead>
+    <tbody>
+      <% @listings.each do |listing| %>
+        <tr>
+          <td><%= listing.lower_title %></td>
+          <td><%= listing.listings_count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
