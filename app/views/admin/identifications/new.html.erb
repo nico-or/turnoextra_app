@@ -1,5 +1,4 @@
 <h1>Identification#new</h1>
-
 <section>
   <hgroup>
     <h2>Listings</h2>
@@ -11,33 +10,23 @@
       <p>No search query provided.</p>
     <% end %>
   </hgroup>
-
   <table>
     <thead>
       <th>ID</th>
       <th>Title</th>
-      <th>External link</th>
+      <th>Store Link</th>
     </thead>
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
           <td><%= link_to listing.id, admin_listing_path(listing) %></td>
           <td><%= link_to listing.title, admin_listing_path(listing) %></td>
-          <td><%= link_to 'store link', listing.url %></td>
+          <td><%= link_to 'view', safe_url(listing.url), target: "_blank" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </section>
-
-<section>
-  <%= button_to "Not a Boardgame",
-  toggle_is_boardgame_admin_identifications_path,
-  class:"outline",
-  params: { listing_ids: @listings.map(&:id) }
-  %>
-</section>
-
 <section>
   <h2>BGG Search</h2>
   <%= form_with url: new_admin_identification_path, method: :get do |f| %>
@@ -45,40 +34,44 @@
     <%= hidden_field_tag 'query', params[:query] %>
     <%= f.search_field :bgg_query, value: params[:bgg_query] %>
   <% end %>
-  <% if @boardgames.present? %>
-    <table>
-      <thead>
-        <th>BGG ID</th>
-        <th>External link</th>
-        <th>Year</th>
-        <th>Title</th>
-        <th>Actions</th>
-      </thead>
-      <tbody>
-        <% @boardgames.each do |result, boardgame| %>
-          <tr>
-            <% if boardgame %>
-              <td><%= link_to boardgame.id, admin_boardgame_path(boardgame) %></td>
-            <% else %>
-              <td>NULL</td>
-            <% end %>
-            <td><%= link_to 'bgg link', bgg_url(result.id) %></td>
-            <td><%= result.year %></td>
-            <td><%= result.name %></td>
-            <td>
-              <%= form_with url: admin_identifications_path  do |f| %>
-                <% @listings.each do |listing| %>
-                  <%= hidden_field_tag 'listing_ids[]', listing.id %>
-                <% end %>
-                <%= hidden_field_tag 'bgg_id', result.id %>
-                <%= f.submit 'Identify', class:"secondary", disabled: boardgame.nil? %>
+  <table>
+    <thead>
+      <th>BGG ID</th>
+      <th>BGG Link</th>
+      <th>Year</th>
+      <th>Title</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <% @boardgames.each do |result, boardgame| %>
+        <tr>
+          <% if boardgame %>
+            <td><%= link_to boardgame.id, admin_boardgame_path(boardgame), target: "_blank"  %></td>
+          <% else %>
+            <td>NULL</td>
+          <% end %>
+          <td><%= link_to 'view', bgg_url(result.id), target: "_blank" %></td>
+          <td><%= result.year %></td>
+          <td><%= result.name %></td>
+          <td>
+            <%= form_with url: admin_identifications_path  do |f| %>
+              <% @listings.each do |listing| %>
+                <%= hidden_field_tag 'listing_ids[]', listing.id %>
               <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p>No results found.</p>
-  <% end %>
+              <%= hidden_field_tag 'bgg_id', result.id %>
+              <%= f.submit 'Identify', class:"secondary", disabled: boardgame.nil? %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+<section>
+  <h2>Actions</h2>
+  <%= button_to "Not a Boardgame",
+  toggle_is_boardgame_admin_identifications_path,
+  class:"secondary outline",
+  params: { listing_ids: @listings.map(&:id) }
+  %>
 </section>

@@ -1,16 +1,10 @@
 <h1><%=@listing.title%></h1>
-
 <h2>Details</h2>
 <%= debug @listing%>
-
 <h2>Actions</h2>
-
 <h3>Search BGG</h3>
 <%= form_with url: admin_listing_path(@listing), method: :get do |f| %>
-  <%= fieldset_tag :search, role: :group do %>
-    <%= f.text_field :bgg_query %>
-    <%= f.submit "Search BGG" %>
-  <% end %>
+  <%= f.search_field :bgg_query %>
 <% end %>
 <table>
   <thead>
@@ -20,7 +14,7 @@
       <td>Rank</td>
       <td>Year</td>
       <td>Title</td>
-      <td>Identify</td>
+      <td>Actions</td>
     </tr>
   </thead>
   <tbody>
@@ -29,20 +23,19 @@
         <td><%= boardgame.id %></td>
         <td><%= link_to boardgame.bgg_id, safe_url(boardgame.bgg_url), target: '_blank'%> </td>
         <td><%= boardgame.rank %>
-        <td><%= boardgame.year %></td>
-        <td><%= boardgame.title %></td>
-        <td><%= button_to 'Identify',
+          <td><%= boardgame.year %></td>
+          <td><%= boardgame.title %></td>
+          <td><%= button_to 'Identify',
           identify_admin_listing_path(@listing),
           params: { bgg_id: boardgame.bgg_id },
           method: :patch,
           class: 'secondary outline' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h3>Unidentifty</h3>
-<%= button_to 'Unidentifty',
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h3>Unidentifty</h3>
+  <%= button_to 'Unidentifty',
   unidentify_admin_listing_path(@listing),
   method: :patch,
   class: "secondary outline" %>
