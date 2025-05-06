@@ -44,6 +44,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :identifications, only: [ :index, :new, :create ]
+    resources :identifications, only: [ :index, :new, :create ] do
+        post "toggle_is_boardgame", on: :collection
+    end
   end
 end
