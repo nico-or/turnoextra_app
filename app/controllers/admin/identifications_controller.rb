@@ -9,11 +9,11 @@ module Admin
                          .order("listings_count DESC")
     end
 
-    def show
+    def new
       @listings = Listing.where(failed_identification: true)
                          .where(boardgame: nil)
                          .where(is_boardgame: true)
-                         .where("lower(title) = ?", params[:id])
+                         .where("lower(title) = ?", params[:title])
 
       @results = params[:query].present? ? Bgg::Versions::XmlV1.search(params[:query]) : []
     end

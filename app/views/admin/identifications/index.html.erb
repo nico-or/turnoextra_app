@@ -9,7 +9,7 @@
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
-          <td><%= listing.lower_title %></td>
+          <td><%= link_to listing.lower_title, new_admin_identification_path(title: listing.lower_title) %></td>
           <td><%= listing.listings_count %></td>
         </tr>
       <% end %>
