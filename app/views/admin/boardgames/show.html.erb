@@ -1,5 +1,24 @@
 <h1><%=@boardgame.title%></h1>
-
-<p>
-  <%= debug @boardgame%>
-</p>
+<h2>Details</h2>
+<%= debug @boardgame %>
+<h2>Listings</h2>
+<table>
+  <thead>
+    <th>id</th>
+    <th>title</th>
+    <th>store</th>
+    <th>store link</th>
+    <th>remove</th>
+  </thead>
+  <tbody>
+    <% @boardgame.listings.each do |listing| %>
+      <tr id=<%= dom_id listing %>>
+        <td><%= listing.id%></td>
+        <td><%= link_to truncate(listing.title, length: 40), admin_listing_path(listing) %></td>
+        <td><%= link_to truncate(listing.store.name, length: 40), admin_store_path(listing.store) %></td>
+        <td><%= link_to "view", safe_url(listing.url), target: "_blank" %></td>
+        <td><%= button_to "Unidentify", unidentify_admin_listing_path(listing), method: :patch, class: 'secondary outline'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
