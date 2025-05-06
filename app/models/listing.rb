@@ -8,6 +8,7 @@ class Listing < ApplicationRecord
 
   scope :boardgames_only, -> { where(is_boardgame: true) }
   scope :unidentified, -> { where(boardgame_id: nil, failed_identification: false) }
+  scope :failed_identification, -> { where(failed_identification: true) }
   scope :with_title_like, ->(title) { where("LOWER(listings.title) LIKE LOWER(?)", "%#{title}%") }
 
   def latest_price_date

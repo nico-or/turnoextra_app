@@ -1,21 +1,17 @@
 module Admin
   class IdentificationsController < AdminController
     def index
-      @listings = Listing.where(failed_identification: true)
-                         .where(boardgame: nil)
-                         .where(is_boardgame: true)
+      @listings = Listing.boardgames_only.failed_identification
                          .group("LOWER(title)")
                          .select("LOWER(title) AS lower_title, COUNT(*) AS listings_count")
                          .order("listings_count DESC")
     end
 
     def new
-      @listings = Listing.where(failed_identification: true)
-                         .where(boardgame: nil)
-                         .where(is_boardgame: true)
+      @listings = Listing.boardgames_only.failed_identification
 
       if params[:query].present?
-        @listings = @listings.where("LOWER(title) LIKE ?", "%#{params[:query].downcase}%")
+        @listings = @listings.with_title_like(params[:query])
       end
 
       if params[:title].present?
