@@ -13,7 +13,14 @@ module Admin
       @listings = Listing.where(failed_identification: true)
                          .where(boardgame: nil)
                          .where(is_boardgame: true)
-                         .where("lower(title) = ?", params[:title])
+
+      if params[:query].present?
+        @listings = @listings.where("LOWER(title) LIKE ?", "%#{params[:query].downcase}%")
+      end
+
+      if params[:title].present?
+        @listings = @listings.where("LOWER(title) = ?", params[:title])
+      end
 
       if params[:bgg_query].present?
         @results = Bgg::Versions::XmlV1.search(params[:bgg_query])

@@ -1,6 +1,12 @@
 <h1>Identification#index</h1>
 
 <section>
+
+  <%= form_with url: new_admin_identification_path, method: :get do |f| %>
+    <%= f.label "Search by title:" %>
+    <%= f.search_field :query %>
+  <% end %>
+
   <table>
     <thead>
       <th>title</th>
