@@ -1,5 +1,4 @@
 <h1>Listings</h1>
-
 <table>
   <thead>
     <th>id</th>
@@ -18,14 +17,13 @@
         <td>
           <% if listing.boardgame %>
             <%= link_to truncate(listing.boardgame.title, length: 40, separator: ' '), admin_boardgame_path(listing.boardgame) %>
-            
           <% else %>
             MISSING
           <% end %>
         </td>
         <td><%= link_to listing.store.name, admin_store_path(listing.store) %></td>
         <td>
-          <%= link_to "external link", listing.url %>
+          <%= link_to "external link", safe_url(listing.url), target: "_blank" %>
         </td>
         <td><%= listing.failed_identification %></td>
         <td><%= listing.is_boardgame %></td>
@@ -33,5 +31,4 @@
     <% end %>
   </tbody>
 </table>
-
 <%== pagy_nav(@pagy) %>
