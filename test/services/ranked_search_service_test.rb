@@ -11,7 +11,7 @@ class RankedSearchServiceTest < ActiveSupport::TestCase
     uri.query = URI.encode_www_form({ search: @query })
     stub_request(:get, uri).to_return(body: file)
 
-    @service = RankedSearchService.new(listing, Bgg::Versions::XmlV1)
+    @service = RankedSearchService.new(listing, Bgg::Client.new)
   end
 
   test "#call returns an array of [Bgg::SearchResult]" do
@@ -30,7 +30,7 @@ class RankedSearchServiceTest < ActiveSupport::TestCase
   end
 
   test "can also receive string arguments" do
-    service = RankedSearchService.new(@query, Bgg::Versions::XmlV1)
+    service = RankedSearchService.new(@query, Bgg::Client.new)
 
     assert_nothing_raised do
       results = service.call
