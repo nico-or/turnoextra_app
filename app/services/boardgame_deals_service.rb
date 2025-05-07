@@ -15,7 +15,7 @@ class BoardgameDealsService < ApplicationService
         "boardgames.thumbnail_url AS thumbnail_url",
         "boardgames.reference_price AS reference_price",
         "MIN(prices.amount) AS price")
-      .order(Arel.sql("( 1.0 * MIN(prices.amount) ) / reference_price"))
+      .order(discount_string)
   end
 
   private
