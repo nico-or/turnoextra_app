@@ -21,7 +21,17 @@ class ContactMessagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should set user_agent for contact message using the request headers" do
+  test "should create contact message with contact information" do
+    assert_difference("ContactMessage.count", 1) do
+      post contact_path, params: @default_params, headers: @default_headers
+    end
+    assert_equal @default_headers["User-Agent"], ContactMessage.last.user_agent
+    assert_redirected_to contact_path
+  end
+
+  test "should create contact message without contact information" do
+    @contact_message_params.delete(:name)
+    @contact_message_params.delete(:email)
     assert_difference("ContactMessage.count", 1) do
       post contact_path, params: @default_params, headers: @default_headers
     end
