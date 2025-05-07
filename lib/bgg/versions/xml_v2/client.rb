@@ -1,5 +1,5 @@
 module Bgg::Versions::XmlV2
-  class << self
+  class Client
     def search(query)
       response = Api.search(query.downcase)
       return unless response
