@@ -5,12 +5,13 @@ class RankedSearchServiceTest < ActiveSupport::TestCase
     listing = listings(:catan_1)
     @query = StringNormalizationService.normalize_title(listing.title)
 
-    file = file_fixture("bgg/api/v1/search_catan.xml")
-    url = "https://boardgamegeek.com/xmlapi/search"
-    uri = URI.parse(url)
-    uri.query = URI.encode_www_form({ search: @query })
-    stub_request(:get, uri).to_return(body: file)
+    file = file_fixture("bgg/api/v2/search_catan.xml")
+    url = "https://boardgamegeek.com/xmlapi2/search"
 
+    uri = URI.parse(url)
+    uri.query = Bgg::Versions::XmlV2::Api.default_params.merge({ query: @query }).to_param
+
+    stub_request(:get, uri).to_return(body: file)
     @service = RankedSearchService.new(listing, Bgg::Client.new)
   end
 
@@ -34,7 +35,7 @@ class RankedSearchServiceTest < ActiveSupport::TestCase
 
     assert_nothing_raised do
       results = service.call
-      assert_equal 10, results.length
+      assert_equal 14, results.length
     end
   end
 end
