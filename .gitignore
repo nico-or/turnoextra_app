@@ -40,3 +40,6 @@ db/seeds/**/*.csv
 
 # Ignore temp files
 *~
+
+# Ignore simplecov coverage reports
+coverage/
