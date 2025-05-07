@@ -15,10 +15,10 @@ module Admin
     end
 
     def identify
+      @listing = Listing.find(params[:id])
       boardgame = Boardgame.find_by(bgg_id: params[:bgg_id])
       if boardgame.present?
-        @listing = Listing.find(params[:id])
-        @listing.update(boardgame_id: boardgame.id, failed_identification: false)
+        @listing.update(boardgame_id: boardgame.id, failed_identification: false, is_boardgame: true)
         redirect_to admin_listing_path(@listing), notice: "Listing has been linked to #{boardgame.title}."
       else
         redirect_to admin_listing_path(@listing), alert: "Boardgame not found on Database."
