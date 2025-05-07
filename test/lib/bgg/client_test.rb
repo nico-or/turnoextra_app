@@ -5,11 +5,12 @@ class Bgg::ClientTest < ActiveSupport::TestCase
   def setup
     Rails.cache.clear
     @client = Bgg::Client.new
+    @default_params = Bgg::Versions::XmlV2::Api.default_params
   end
 
-  test "defaults to Bgg::Versions::XmlV1::Client" do
+  test "defaults to Bgg::Versions::XmlV2::Client" do
     client = Bgg::Client.new
-    assert_instance_of Bgg::Versions::XmlV1::Client, client.instance_variable_get(:@client)
+    assert_instance_of Bgg::Versions::XmlV2::Client, client.instance_variable_get(:@client)
   end
 
   test "with :xml_v1 version argument uses Bgg::Versions::XmlV1::Client" do
@@ -28,7 +29,8 @@ class Bgg::ClientTest < ActiveSupport::TestCase
 
   test "should cache search results" do
     query = "test"
-    stub_request(:get, "https://boardgamegeek.com/xmlapi/search?search=test").to_return(status: 200).to_raise(RuntimeError)
+    params = @default_params.merge({ query: query }).to_param
+    stub_request(:get, "https://boardgamegeek.com/xmlapi2/search?#{params}").to_return(status: 200).to_raise(RuntimeError)
 
     assert_nothing_raised do
       2.times { @client.search(query) }
@@ -41,7 +43,8 @@ class Bgg::ClientTest < ActiveSupport::TestCase
 
   test "should cache boardgame results" do
     id = [ 1, 2, 3 ]
-    stub_request(:get, "https://boardgamegeek.com/xmlapi/boardgame/1,2,3").to_return(status: 200).to_raise(RuntimeError)
+    params = @default_params.merge({ id: id.join(",") }).to_param
+    stub_request(:get, "https://boardgamegeek.com/xmlapi2/thing?#{params}").to_return(status: 200).to_raise(RuntimeError)
 
     assert_nothing_raised do
       2.times { @client.boardgame(id) }

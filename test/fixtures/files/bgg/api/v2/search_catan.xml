@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items total="14" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+	<item type="boardgame" id="67239">
+		<name type="alternate" value="Catan Historias: Los Colonos de América" />
+		<yearpublished value="2010" />
+	</item>
+	<item type="boardgame" id="103091">
+		<name type="alternate" value="Catan Historias: Los Colonos de Europa" />
+		<yearpublished value="2011" />
+	</item>
+	<item type="boardgame" id="27760">
+		<name type="alternate" value="Los Colonos de Catan: Mercaderes y Bárbaros" />
+		<yearpublished value="2007" />
+	</item>
+	<item type="boardgame" id="13">
+		<name type="alternate" value="Los Colonos de Catán" />
+		<yearpublished value="1995" />
+	</item>
+	<item type="boardgame" id="152959">
+		<name type="alternate" value="Los Colonos de Catán" />
+		<yearpublished value="2008" />
+	</item>
+	<item type="boardgame" id="926">
+		<name type="alternate" value="Los Colonos de Catán: Ciudades y Caballeros" />
+		<yearpublished value="1998" />
+	</item>
+	<item type="boardgame" id="278">
+		<name type="alternate" value="Los colonos de Catán: El juego de cartas" />
+		<yearpublished value="1996" />
+	</item>
+	<item type="boardgame" id="27710">
+		<name type="alternate" value="Los Colonos de Catán: El juego de dados" />
+		<yearpublished value="2007" />
+	</item>
+	<item type="boardgame" id="2807">
+		<name type="alternate" value="Los Colonos de Catán: Expansión 5-6 Jugadores" />
+		<yearpublished value="1996" />
+	</item>
+	<item type="boardgame" id="34691">
+		<name type="alternate"
+			value="Los Colonos de Catán: Mercaderes y Bárbaros – Expansión 5-6 Jugadores" />
+		<yearpublished value="2008" />
+	</item>
+	<item type="boardgameexpansion" id="27760">
+		<name type="alternate" value="Los Colonos de Catan: Mercaderes y Bárbaros" />
+		<yearpublished value="2007" />
+	</item>
+	<item type="boardgameexpansion" id="926">
+		<name type="alternate" value="Los Colonos de Catán: Ciudades y Caballeros" />
+		<yearpublished value="1998" />
+	</item>
+	<item type="boardgameexpansion" id="2807">
+		<name type="alternate" value="Los Colonos de Catán: Expansión 5-6 Jugadores" />
+		<yearpublished value="1996" />
+	</item>
+	<item type="boardgameexpansion" id="34691">
+		<name type="alternate"
+			value="Los Colonos de Catán: Mercaderes y Bárbaros – Expansión 5-6 Jugadores" />
+		<yearpublished value="2008" />
+	</item>
+</items>
