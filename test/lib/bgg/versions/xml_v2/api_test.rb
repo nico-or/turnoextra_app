@@ -4,7 +4,7 @@ module Bgg::Versions::XmlV2
   class ApiTest < ActiveSupport::TestCase
     test "#search makes a GET request to the search endpoint" do
       query = "example"
-      url = "https://boardgamegeek.com/xmlapi2/search?query=#{query}&type=boardgame,boardgameexpansion"
+      url = "https://boardgamegeek.com/xmlapi2/search?query=#{query}&type=boardgame,boardgameexpansion,rpgitem"
       stub_request(:get, url)
       Api.search(query)
       assert_requested :get, url
@@ -12,7 +12,7 @@ module Bgg::Versions::XmlV2
 
     test "#thing makes a GET request to the thing endpoint with a single id" do
       bgg_id = 822
-      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id}&type=boardgame,boardgameexpansion"
+      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id}&type=boardgame,boardgameexpansion,rpgitem"
       stub_request(:get, url)
       Api.thing(bgg_id)
       assert_requested :get, url
@@ -20,7 +20,7 @@ module Bgg::Versions::XmlV2
 
     test "#thing makes a GET request to the boardgame endpoint with multiple ids" do
       bgg_id = [ 10, 20, 30 ]
-      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id.join(',')}&type=boardgame,boardgameexpansion"
+      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id.join(',')}&type=boardgame,boardgameexpansion,rpgitem"
       stub_request(:get, url)
       Api.thing(*bgg_id)
       assert_requested :get, url
@@ -28,7 +28,7 @@ module Bgg::Versions::XmlV2
 
     test "#thing accepts multiple ids as an array and makes a GET request to the boardgame endpoint with those ids" do
       bgg_id = [ 10, 20, 30 ]
-      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id.join(',')}&type=boardgame,boardgameexpansion"
+      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id.join(',')}&type=boardgame,boardgameexpansion,rpgitem"
       stub_request(:get, url)
       Api.thing(bgg_id)
       assert_requested :get, url
@@ -43,7 +43,7 @@ module Bgg::Versions::XmlV2
 
     test "#thing accepts stats parameter" do
       bgg_id = 42
-      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id}&type=boardgame,boardgameexpansion&stats=1"
+      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id}&type=boardgame,boardgameexpansion,rpgitem&stats=1"
       stub_request(:get, url)
       Api.thing(bgg_id, stats: true)
       assert_requested :get, url
@@ -51,7 +51,7 @@ module Bgg::Versions::XmlV2
 
     test "#thing accepts versions parameter" do
       bgg_id = 42
-      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id}&type=boardgame,boardgameexpansion&versions=1"
+      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id}&type=boardgame,boardgameexpansion,rpgitem&versions=1"
       stub_request(:get, url)
       Api.thing(bgg_id, versions: true)
       assert_requested :get, url
@@ -59,7 +59,7 @@ module Bgg::Versions::XmlV2
 
     test "#thing accepts both stats and versions parameters" do
       bgg_id = 42
-      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id}&type=boardgame,boardgameexpansion&stats=1&versions=1"
+      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id}&type=boardgame,boardgameexpansion,rpgitem&stats=1&versions=1"
       stub_request(:get, url)
       Api.thing(bgg_id, stats: true, versions: true)
       assert_requested :get, url
