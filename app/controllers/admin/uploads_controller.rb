@@ -1,15 +1,13 @@
 module Admin
   class UploadsController < AdminController
     before_action :set_files, only: [ :create ]
-    def new
-    end
 
     def create
       # TODO: make background jobs
       @files.each { |f| ListingCsvImportService.call(f) }
 
-      flash.notice = "upload successful."
-      render :new
+      flash[:notice] = "Upload successful."
+      render :new, status: :created
     end
 
     private
@@ -20,9 +18,17 @@ module Admin
 
     def set_files
       @files = upload_params
-      unless @files.present? && !@files.empty?
-        redirect_to new_upload_path, status: :unprocessable_entity
+      @files.select! { |f| valid_format?(f) }
+
+      if @files.empty?
+        flash[:error] = "No valid files were uploaded."
+        render :new, status: :unprocessable_entity
       end
+    end
+
+    def valid_format?(file)
+      valid_extensions = %w[.csv]
+      valid_extensions.include?(File.extname(file).downcase)
     end
   end
 end
