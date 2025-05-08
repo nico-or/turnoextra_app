@@ -8,7 +8,7 @@ module Admin
       @listing = Listing.find(params[:id])
 
       if params[:bgg_query].present?
-        results = RankedSearchService.call(params[:bgg_query], Bgg::Client.new)
+        results = RankedSearchService.call(params[:bgg_query])
         boardgames = Boardgame.where(bgg_id: results.map(&:id))
       end
       @boardgames = boardgames || []

@@ -1,41 +1,54 @@
 require "test_helper"
 
 class RankedSearchServiceTest < ActiveSupport::TestCase
-  def setup
-    listing = listings(:catan_1)
-    @query = StringNormalizationService.normalize_title(listing.title)
+  test "#call with a boardgame that is in the database" do
+    boardgame = Boardgame.first
+    @service = RankedSearchService.new(boardgame.title)
+    results = @service.call
+
+    assert results.is_a? Array
+    assert results.all? { |result| result.is_a? Bgg::SearchResult }
+
+    result = results.first
+    assert_equal boardgame.title, result.name
+    assert_equal boardgame.year, result.year
+    assert_equal boardgame.bgg_id, result.id
+  end
+
+  test "#call with a listing that is in the database" do
+    # binding.irb
+    listing = Listing.joins(:boardgame).first
+    assert_not_nil listing
+    boardgame = listing.boardgame
+    assert_not_nil boardgame
+
+    @service = RankedSearchService.new(listing.title)
+    results = @service.call
+
+    assert results.is_a? Array
+    assert results.all? { |result| result.is_a? Bgg::SearchResult }
+
+    result = results.first
+    assert_equal listing.title, result.name
+    assert_equal boardgame.year, result.year
+    assert_equal boardgame.bgg_id, result.id
+  end
+
+  test "#call with a boardgame that is not in the database" do
+    query = "colonos catan"
+    @service = RankedSearchService.new(query)
 
     file = file_fixture("bgg/api/v2/search_catan.xml")
-    url = "https://boardgamegeek.com/xmlapi2/search"
+    url = %r{https://boardgamegeek.com/xmlapi2/search}
+    stub_request(:get, url).to_return(body: file)
 
-    uri = URI.parse(url)
-    uri.query = Bgg::Versions::XmlV2::Api.default_params.merge({ query: @query }).to_param
+    results = @service.call
+    assert results.is_a? Array
+    assert results.all? { |result| result.is_a? Bgg::SearchResult }
 
-    stub_request(:get, uri).to_return(body: file)
-    @service = RankedSearchService.new(listing, Bgg::Client.new)
-  end
-
-  test "#call returns an array of [Bgg::SearchResult]" do
-    games = @service.call
-
-    assert games.is_a? Array
-    assert games.all? { |game| game.is_a? Bgg::SearchResult }
-  end
-
-  test "#call sorts the results correctly (Dice, then Levenshtein, then year)" do
-    game = @service.call.first
-
-    assert_equal "Los Colonos de Catán", game.name
-    assert_equal 2008, game.year
-    assert_equal 152959, game.id
-  end
-
-  test "can also receive string arguments" do
-    service = RankedSearchService.new(@query, Bgg::Client.new)
-
-    assert_nothing_raised do
-      results = service.call
-      assert_equal 14, results.length
-    end
+    result = results.first
+    assert_equal "Los Colonos de Catán", result.name
+    assert_equal 2008, result.year
+    assert_equal 152959, result.id
   end
 end
