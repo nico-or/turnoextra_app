@@ -12,6 +12,7 @@ namespace :boardgame do
   desc "Add images urls to boardgames"
   task add_images: :environment do
     BATCH_SIZE = 20 # API limit
+    client = Bgg::Client.new
 
     boardgames = Boardgame.has_listings.without_images
 
@@ -21,7 +22,7 @@ namespace :boardgame do
       ids = batch.pluck(:bgg_id)
       Rails.logger.info "Fetching data for #{ids.join(", ")}"
 
-      boardgame_responses = Bgg::Versions::XmlV1.boardgame(*ids)
+      boardgame_responses = client.boardgame(*ids)
       sleep(10) # respect API rate limit
 
       boardgame_responses.each do |boardgame_response|
