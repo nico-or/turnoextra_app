@@ -14,7 +14,6 @@ module Bgg
       when Bgg::Boardgame then object.id
       when Bgg::SearchResult then object.id
       when Integer then object
-      when String then object.to_i
       else raise ArgumentError.new("Expected a Boardgame, Bgg::Boardgame, Integer or String, got #{object.class} instead.")
       end
     end
