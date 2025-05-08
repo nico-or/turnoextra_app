@@ -2,12 +2,6 @@ require "test_helper"
 require "webmock/minitest"
 
 class Bgg::ClientTest < ActiveSupport::TestCase
-  def setup
-    Rails.cache.clear
-    @client = Bgg::Client.new
-    @default_params = Bgg::Versions::XmlV2::Api.default_params
-  end
-
   test "defaults to Bgg::Versions::XmlV2::Client" do
     client = Bgg::Client.new
     assert_instance_of Bgg::Versions::XmlV2::Client, client.instance_variable_get(:@client)
@@ -26,11 +20,21 @@ class Bgg::ClientTest < ActiveSupport::TestCase
   test "raises ArgumentError with unsupported version argument" do
     assert_raises(ArgumentError) { Bgg::Client.new(:json) }
   end
+end
 
-  test "should cache search results" do
+class Bgg::ClientXmlV1Test < ActiveSupport::TestCase
+  def setup
+    Rails.cache.clear
+    @client = Bgg::Client.new(:xml_v1)
+    @default_params = Bgg::Versions::XmlV1::Api.default_params
+
+    @search_url = %r{https://boardgamegeek.com/xmlapi/search}
+    @boardgame_url = %r{https://boardgamegeek.com/xmlapi/boardgame}
+  end
+
+  test "#search should cache results" do
     query = "test"
-    params = @default_params.merge({ query: query }).to_param
-    stub_request(:get, "https://boardgamegeek.com/xmlapi2/search?#{params}").to_return(status: 200).to_raise(RuntimeError)
+    stub_request(:get, @search_url).to_return(status: 200).to_raise(RuntimeError)
 
     assert_nothing_raised do
       2.times { @client.search(query) }
@@ -41,10 +45,72 @@ class Bgg::ClientTest < ActiveSupport::TestCase
     end
   end
 
-  test "should cache boardgame results" do
+  test "#boardgame should cache results" do
+    id = [ 1, 2, 3 ]
+    stub_request(:get, @boardgame_url).to_return(status: 200).to_raise(RuntimeError)
+
+    assert_nothing_raised do
+      2.times { @client.boardgame(*id) }
+    end
+
+    travel Bgg::Client::TTL + 1.second do
+      assert_raises(RuntimeError) { @client.boardgame(*id) }
+    end
+  end
+
+  test "#search returns an empty array if API responds with error code" do
+    stub_request(:get, @search_url).to_return(status: 400)
+    result = @client.search("test query")
+    assert_kind_of Array, result
+    assert result.empty?
+
+    stub_request(:get, @search_url).to_return(status: 500)
+    result = @client.search("test query")
+    assert_kind_of Array, result
+    assert result.empty?
+  end
+
+  test "#boardgame returns an empty array if API responds with error code" do
+    stub_request(:get, @boardgame_url).to_return(status: 400)
+    result = @client.boardgame(123)
+    assert_kind_of Array, result
+    assert result.empty?
+
+    stub_request(:get, @boardgame_url).to_return(status: 500)
+    result = @client.boardgame(123)
+    assert_kind_of Array, result
+    assert result.empty?
+  end
+end
+
+class Bgg::ClientXmlV2Test < ActiveSupport::TestCase
+  def setup
+    Rails.cache.clear
+    @client = Bgg::Client.new(:xml_v2)
+    @default_params = Bgg::Versions::XmlV2::Api.default_params
+
+    @search_url = %r{https://boardgamegeek.com/xmlapi2/search}
+    @boardgame_url = %r{https://boardgamegeek.com/xmlapi2/thing}
+  end
+
+  test "#search should cache results" do
+    query = "test"
+    params = @default_params.merge({ query: query }).to_param
+    stub_request(:get, @search_url).to_return(status: 200).to_raise(RuntimeError)
+
+    assert_nothing_raised do
+      2.times { @client.search(query) }
+    end
+
+    travel Bgg::Client::TTL + 1.second do
+      assert_raises(RuntimeError) { @client.search(query) }
+    end
+  end
+
+  test "#boardgame should cache results" do
     id = [ 1, 2, 3 ]
     params = @default_params.merge({ id: id.join(",") }).to_param
-    stub_request(:get, "https://boardgamegeek.com/xmlapi2/thing?#{params}").to_return(status: 200).to_raise(RuntimeError)
+    stub_request(:get, @boardgame_url).to_return(status: 200).to_raise(RuntimeError)
 
     assert_nothing_raised do
       2.times { @client.boardgame(id) }
@@ -53,5 +119,29 @@ class Bgg::ClientTest < ActiveSupport::TestCase
     travel Bgg::Client::TTL + 1.second do
       assert_raises(RuntimeError) { @client.boardgame(id) }
     end
+  end
+
+  test "#search returns an empty array if API responds with error code" do
+    stub_request(:get, @search_url).to_return(status: 400)
+    result = @client.search("test query")
+    assert_kind_of Array, result
+    assert result.empty?
+
+    stub_request(:get, @search_url).to_return(status: 500)
+    result = @client.search("test query")
+    assert_kind_of Array, result
+    assert result.empty?
+  end
+
+  test "#boardgame returns an empty array if API responds with error code" do
+    stub_request(:get, @boardgame_url).to_return(status: 400)
+    result = @client.boardgame(123)
+    assert_kind_of Array, result
+    assert result.empty?
+
+    stub_request(:get, @boardgame_url).to_return(status: 500)
+    result = @client.boardgame(123)
+    assert_kind_of Array, result
+    assert result.empty?
   end
 end
