@@ -1,12 +1,11 @@
 require "test_helper"
 
 class BggTest < ActiveSupport::TestCase
-  def setup
-    @boardgame =boardgames(:catan)
-    @boardgame_url = URI.parse("https://boardgamegeek.com/boardgame/13")
-  end
   test "Bgg.uri_for a Boardgame" do
-    assert_equal @boardgame_url, Bgg.uri_for(@boardgame)
+    boardgame = Boardgame.first
+    boardgame_id = boardgame.bgg_id
+    boardgame_url = URI.parse("https://boardgamegeek.com/boardgame/#{boardgame_id}")
+    assert_equal boardgame_url, Bgg.uri_for(boardgame)
   end
 
   test "Bgg.uri_for a Bgg::BoardGame" do
@@ -34,10 +33,15 @@ class BggTest < ActiveSupport::TestCase
   end
 
   test "Bgg.uri_for an Integer" do
-    assert_equal @boardgame_url, Bgg.uri_for(13)
+    bgg_id = 13
+    boardgame_url = URI.parse("https://boardgamegeek.com/boardgame/#{bgg_id}")
+    assert_equal boardgame_url, Bgg.uri_for(bgg_id)
   end
 
-  test "Bgg.uri_for a String" do
-    assert_equal @boardgame_url, Bgg.uri_for("13")
+  test "Bgg.uri_for an invalid type" do
+    assert_raises(ArgumentError) { Bgg.uri_for("13") }
+    assert_raises(ArgumentError) { Bgg.uri_for("not_an_integer") }
+    assert_raises(ArgumentError) { Bgg.uri_for(nil) }
+    assert_raises(ArgumentError) { Bgg.uri_for(:symbol) }
   end
 end
