@@ -12,7 +12,7 @@
     </div>
     <ul>
       <li><%= t('activerecord.attributes.boardgame.rank') %>: <%= @boardgame.rank.zero? ? "Sin ranking" : @boardgame.rank  %></li>
-      <li><%= link_to t('activerecord.attributes.boardgame.bgg_url'), safe_url(@boardgame.bgg_url) %></li>
+      <li><%= link_to t('activerecord.attributes.boardgame.bgg_url'), safe_url(@boardgame.bgg_url), target: "_blank", rel: "noopener" %></li>
       <li><%= t('activerecord.attributes.boardgame.reference_price') %>: <%= format_price(@boardgame.reference_price) %></li>
     </li>
   </ul>
