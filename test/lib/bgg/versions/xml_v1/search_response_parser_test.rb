@@ -3,56 +3,55 @@ require "test_helper"
 
 module Bgg::Versions::XmlV1
   class SearchResponseParserTest < ActiveSupport::TestCase
-    def setup
-      xml = file_fixture("bgg/api/v1/search.xml").read
+    test "#parse! a regular XML response with a single boardgame" do
+      xml = file_fixture("bgg/api/v1/search_single.xml").read
       response = Nokogiri::XML(xml)
-      @search_results = SearchResponseParser.parse!(response)
-    end
+      search_results = SearchResponseParser.parse!(response)
+      assert search_results.is_a? Array
+      assert_equal 1, search_results.size
 
-    test "#games returns correct game count" do
-      assert_equal 3, @search_results.count
-    end
-
-    test "#games resturns an array of BoardGames" do
-    games = @search_results
-    assert games.is_a? Array
-    assert games.all? { |game| game.is_a? Bgg::SearchResult }
-    end
-
-    test "builds the first object correctly" do
-      game = @search_results.first
-
+      game = search_results.first
       assert_equal "Battleground: Crossbows & Catapults", game.name
       assert_equal 2007, game.year
       assert_equal 30328, game.id
     end
 
-    test "builds the last object correctly" do
-      game = @search_results.last
+    test "#parse! a regular XML response with multiple boardgames" do
+      xml = file_fixture("bgg/api/v1/search_multiple.xml").read
+      response = Nokogiri::XML(xml)
+      search_results = SearchResponseParser.parse!(response)
+      assert_equal 2, search_results.count
 
-      assert_equal "Crossbows and Catapults: Trojan Horse and Battle Shield", game.name
-      assert_equal 1984, game.year
-      assert_equal 9647, game.id
+      game1 = search_results[0]
+      assert_equal "Battleground: Crossbows & Catapults", game1.name
+      assert_equal 2007, game1.year
+      assert_equal 30328, game1.id
+
+      game2 = search_results[1]
+      assert_equal "Crossbows and Catapults: Sea Battle Set", game2.name
+      assert_nil game2.year
+      assert_equal 19157, game2.id
     end
 
-    test "builds a game without year correctly" do
-      game = @search_results[1]
+    test "#parse! a XML response with a single boardgame wihtout name or year" do
+      xml = file_fixture("bgg/api/v1/search_single_missing_fields.xml").read
+      response = Nokogiri::XML(xml)
+      search_results = SearchResponseParser.parse!(response)
+      assert search_results.is_a? Array
+      assert_equal 1, search_results.size
 
-      assert_equal "Crossbows and Catapults: Sea Battle Set", game.name
+      game = search_results.first
+      assert_nil game.name
       assert_nil game.year
-      assert_equal 19157, game.id
+      assert_equal 30328, game.id
     end
-  end
 
-  class EmptySearchResponseParserTest < ActiveSupport::TestCase
-    def setup
+    test "#parse! handles an empty response" do
       xml = file_fixture("bgg/api/v1/search_empty.xml").read
       response = Nokogiri::XML(xml)
-      @search_results = SearchResponseParser.parse!(response)
-    end
-    test "#games returns an empty array" do
-    assert @search_results.is_a? Array
-     assert @search_results.empty?
+      search_results = SearchResponseParser.parse!(response)
+      assert search_results.is_a? Array
+      assert search_results.empty?
     end
   end
 end
