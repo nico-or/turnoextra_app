@@ -3,48 +3,42 @@ require "test_helper"
 
 module Bgg::Versions::XmlV2
   class SearchResponseParserTest < ActiveSupport::TestCase
-    def setup
-      xml = file_fixture("bgg/api/v2/search.xml").read
+    test "#parse! a regular XML response with a single boardgame" do
+      xml = file_fixture("bgg/api/v2/search_single.xml").read
       response = Nokogiri::XML(xml)
-      @search_results = SearchResponseParser.parse!(response)
-    end
+      search_results = SearchResponseParser.parse!(response)
+      assert search_results.is_a? Array
+      assert_equal 1, search_results.size
 
-    test "returns an array of SearchResults" do
-      assert @search_results.is_a? Array
-      assert @search_results.all? { |game| game.is_a? Bgg::SearchResult }
-    end
-
-    test "returns the correct amount of games" do
-      assert_equal 4, @search_results.count
-    end
-
-    test "builds the first object correctly" do
-      game = @search_results.first
-
+      game = search_results.first
       assert_equal "Wingspan", game.name
       assert_equal 2019, game.year
       assert_equal 266192, game.id
     end
 
-    test "builds a game without year correctly" do
-      game = @search_results[1]
+    test "#parse! a regular XML response with multiple boardgames" do
+      xml = file_fixture("bgg/api/v2/search_multiple.xml").read
+      response = Nokogiri::XML(xml)
+      search_results = SearchResponseParser.parse!(response)
+      assert_equal 2, search_results.count
 
-      assert_equal "Wingspan Asia", game.name
-      assert_nil game.year
-      assert_equal 366161, game.id
+      game1 = search_results[0]
+      assert_equal "Wingspan", game1.name
+      assert_equal 2019, game1.year
+      assert_equal 266192, game1.id
+
+      game2 = search_results[1]
+      assert_equal "Wingspan Asia", game2.name
+      assert_nil game2.year
+      assert_equal 366161, game2.id
     end
-  end
 
-  class EmptySearchResponseParserTest < ActiveSupport::TestCase
-    def setup
+    test "#parse! handles an empty response" do
       xml = file_fixture("bgg/api/v2/search_empty.xml").read
       response = Nokogiri::XML(xml)
-      @search_results = SearchResponseParser.parse!(response)
-    end
-
-    test "when the response has no results, it returns an empty array" do
-      assert @search_results.is_a? Array
-      assert @search_results.empty?
+      search_results = SearchResponseParser.parse!(response)
+      assert search_results.is_a? Array
+      assert search_results.empty?
     end
   end
 end
