@@ -7,11 +7,4 @@
 	<item type="boardgame" id="366161">
 		<name type="primary" value="Wingspan Asia" />
 	</item>
-	<item type="boardgameexpansion" id="339017">
-		<name type="primary" value="Frogmouth Fan Pack (fan expansion for Wingspan)" />
-		<yearpublished value="2020" />
-	</item>
-	<item type="boardgameexpansion" id="290448">
-		<name type="primary" value="Wingspan: European Expansion" />
-	</item>
 </items>
