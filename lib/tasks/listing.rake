@@ -23,6 +23,6 @@ namespace :listing do
     end
   ensure
     Rake::Task["boardgame:add_images"].invoke
-    Rake::Task["boardgame:update_reference_price"].invoke
+    Rake::Task["boardgame:update_prices"].invoke
   end
 end

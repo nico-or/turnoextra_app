@@ -22,12 +22,10 @@ class BoardgamesController < ApplicationController
     @boardgame = Boardgame.find(params[:id])
     @reference_date = Price.latest_update_date
 
-    prices_today = Price.where(date: @reference_date)
-    @listings = Listing
-      .with(prices_today: prices_today)
-      .joins(:store)
-      .joins("INNER JOIN prices_today ON prices_today.listing_id = listings.id")
+    @listings = Listing.joins(:prices, :store)
       .where(boardgame: @boardgame)
+      .where(prices: { date: @reference_date })
+      .where(boardgame_id: @boardgame.id)
       .group("listings.id")
       .order("best_price ASC")
       .select(
@@ -36,16 +34,7 @@ class BoardgamesController < ApplicationController
         "listings.title",
         "stores.id AS store_id",
         "stores.name AS store_name",
-        "MIN(prices_today.amount) AS best_price"
-      )
-
-      reference_price = @boardgame.reference_price.to_f
-      if reference_price.zero?
-        @discount = 0
-      else
-        best_price = @listings.map { _1.best_price }.min
-        @discount = ((1 - best_price / reference_price) * 100).to_i
-      end
+        "MIN(prices.amount) AS best_price")
 
       @chart_data = chart_data
   end
