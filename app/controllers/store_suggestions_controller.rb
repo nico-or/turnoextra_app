@@ -1,5 +1,4 @@
 class StoreSuggestionsController < ApplicationController
-  skip_before_action :authorize_user, only: %i[new create]
   rate_limit to: 5, within: 1.minute, with: -> { redirect_to new_store_suggestion_path, alert: "Rate limit exceeded. Please try again later." }, only: [ :create ]
 
   def index

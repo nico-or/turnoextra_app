@@ -8,7 +8,7 @@ class StoreSuggestionsControllerTest < ActionDispatch::IntegrationTest
 
     test "should not get index" do
       get store_suggestions_path
-      assert_redirected_to login_path
+      assert_response :not_found
     end
 
     test "should get new" do
@@ -52,9 +52,9 @@ class StoreSuggestionsControllerTest < ActionDispatch::IntegrationTest
       login_admin
     end
 
-    test "should get index" do
+    test "should not get index" do
       get store_suggestions_path
-      assert_response :success
+      assert_response :not_found
     end
   end
 end
