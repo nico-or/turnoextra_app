@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :boardgames, only: %i[index show]
   resources :deals, only: %i[index]
   resources :stores, only: %i[index]
-  resources :store_suggestions, only: %i[index new create]
+  resources :store_suggestions, only: %i[new create]
 
   get "/contact", to: "contact_messages#new"
   post "/contact", to: "contact_messages#create"
@@ -42,6 +42,8 @@ Rails.application.routes.draw do
     end
 
     resources :boardgames
+
+    resources :store_suggestions, only: %i[index]
 
     resources :contact_messages, only: [ :index, :show ] do
       member do

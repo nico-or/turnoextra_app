@@ -1,5 +1,4 @@
 class ContactMessagesController < ApplicationController
-  skip_before_action :authorize_user, only: [ :new, :create, :new_boardgame_error, :create_boardgame_error ]
   rate_limit to: 5, within: 1.minute, with: -> { redirect_to contact_path, alert: "Rate limit exceeded. Please try again later." }, only: [ :create ]
 
   def new

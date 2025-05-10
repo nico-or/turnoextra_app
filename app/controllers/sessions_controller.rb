@@ -1,9 +1,4 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorize_user, only: %i[new create]
-
-  def new
-  end
-
   def create
     if @user = User.authenticate_by(login_params)
       login(@user)
