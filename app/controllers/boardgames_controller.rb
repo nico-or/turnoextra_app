@@ -48,7 +48,7 @@ class BoardgamesController < ApplicationController
         @discount = ((1 - best_price / reference_price) * 100).to_i
       end
 
-    @chart_data = chart_data
+      @chart_data = chart_data
   end
 
   private
@@ -62,14 +62,15 @@ class BoardgamesController < ApplicationController
       .joins(listing: [ :store ])
       .where(date: date_range)
       .select(
+      "listings.id AS listing_id",
       "stores.name AS store_name",
       "prices.amount AS amount",
       "prices.date AS date"
       )
 
-    price_data.group_by(&:store_name).map do |store_name, records|
+    price_data.group_by(&:listing_id).map do |listing_id, records|
       {
-        name: store_name,
+        name: records.first.store_name,
         data: date_range.map do |date|
           [ date, records.find { it.date == date }&.amount ]
         end
