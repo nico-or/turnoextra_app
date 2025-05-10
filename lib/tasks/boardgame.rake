@@ -42,28 +42,14 @@ namespace :boardgame do
   end
 
   desc "Update reference price for boardgames"
-  task update_reference_price: :environment do
-    reference_period = (Price.latest_update_date - 2.weeks..Price.latest_update_date)
-
-    boardgames = Boardgame.has_listings
+  task update_prices: :environment do
+    reference_date = Price.latest_update_date
+    boardgames = Boardgame.has_listings.includes(:prices)
     Rails.logger.info "Updating reference price for #{boardgames.count} boardgames"
 
-    boardgames.find_each do |boardgame|
+    boardgames.each do |boardgame|
       Rails.logger.info "Updating reference price for #{boardgame.title}"
-      prices = boardgame.prices.where(date: reference_period).order(:amount).pluck(:amount)
-      next if prices.empty?
-
-      # Find the median price
-      case prices.length % 2
-      when 1
-        boardgame.reference_price = prices[prices.length / 2]
-      when 0
-        left_price = prices[prices.length / 2 - 1]
-        right_price = prices[prices.length / 2]
-        boardgame.reference_price = (left_price + right_price) / 2.0
-      end
-
-      boardgame.save
+      BoardgamePriceUpdateService.new(boardgame, reference_date).call
     end
 
     Rails.logger.info "Finished updating reference price for boardgames"
