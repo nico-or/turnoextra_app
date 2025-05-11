@@ -90,6 +90,8 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    cssbundling-rails (1.4.3)
+      railties (>= 6.0.0)
     csv (3.3.4)
     date (3.4.1)
     debug (1.10.0)
@@ -379,6 +381,7 @@ DEPENDENCIES
   bcrypt (~> 3.1)
   brakeman
   chartkick (~> 5.1)
+  cssbundling-rails (~> 1.4)
   csv (~> 3.3)
   debug
   dotenv (~> 3.1)
