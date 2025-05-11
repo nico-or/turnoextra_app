@@ -1,13 +1,32 @@
-<footer>
-  <div>
-    <nav>
-      <ul>
-        <li><%= link_to t('.home'), root_path %></li>
-        <li><%= link_to t('.about'), about_path %></li>
-        <li><%= link_to t('.faq'), faq_path %></li>
-        <li><%= link_to t('.contact'), contact_path %></li>
-      </ul>
-    </nav>
-    <p><%= t('.copyright_html', brand_name: t('app.name'), year: Time.now.year) %></p>
+<footer class="pt-3 mt-4 border-top">
+  <div class="container">
+    <div class="row gap-4 gap-sm-0">
+      <div class="col-12 col-sm-6">
+        <div class="fw-bold fs-2 mb-2"><%= t('app.name') %></div>
+        <div class="text-body-secondary"><%= t('app.description') %></div>
+      </div>
+      <div class="col d-flex">
+        <div class="col d-flex flex-column">
+          <span class="fw-bold fs-5 mb-2"><%= t('.site') %></span>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><%= link_to t('shared.navbar.deals'), deals_path, class: "nav-link text-body-secondary" %></li>
+            <li><%= link_to t('shared.navbar.board_games'), boardgames_path, class: "nav-link text-body-secondary" %></li>
+            <li><%= link_to t('shared.navbar.stores'), stores_path, class: "nav-link text-body-secondary" %></li>
+          </ul>
+        </div>
+        <div class="col d-flex flex-column">
+          <span class="fw-bold fs-5 mb-2"><%= t('.information') %></span>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><%= link_to t('.home'), root_path, class: "nav-link text-body-secondary" %></li>
+            <li><%= link_to t('.about'), about_path, class: "nav-link text-body-secondary" %></li>
+            <li><%= link_to t('.faq'), faq_path, class: "nav-link text-body-secondary" %></li>
+            <li><%= link_to t('.contact'), contact_path, class: "nav-link text-body-secondary" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-body-secondary my-3">
+      <%= t('shared.footer.copyright_html',  year: Time.now.year) %>
+    </div>
   </div>
 </footer>
