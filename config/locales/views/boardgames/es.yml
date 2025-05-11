@@ -21,3 +21,4 @@ es:
       vaxis:
         title: "Precio"
       loading: "Cargando..."
+      empty: "No hay datos disponibles para mostrar."
