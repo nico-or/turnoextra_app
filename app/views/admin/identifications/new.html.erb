@@ -59,7 +59,7 @@
                 <%= hidden_field_tag 'listing_ids[]', listing.id %>
               <% end %>
               <%= hidden_field_tag 'bgg_id', result.id %>
-              <%= f.submit 'Identify', class:"secondary", disabled: boardgame.nil? %>
+              <%= f.submit 'Identify', disabled: boardgame.nil? %>
             <% end %>
           </td>
         </tr>
@@ -71,7 +71,6 @@
   <h2>Actions</h2>
   <%= button_to "Not a Boardgame",
   toggle_is_boardgame_admin_identifications_path,
-  class:"secondary outline",
   params: { listing_ids: @listings.map(&:id) }
   %>
 </section>

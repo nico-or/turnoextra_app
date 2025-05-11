@@ -2,10 +2,10 @@
   <header>
     <h3><%= card[:title] %></h3>
   </header>
-    <% card[:paragraphs].each do |paragraph| %>
-      <p><%= paragraph %></p>
-    <% end %> 
+  <% card[:paragraphs].each do |paragraph| %>
+    <p><%= paragraph %></p>
+  <% end %>
   <footer>
-    <%= link_to card[:button] , new_store_suggestion_path, role: :button %>
+    <%= link_to card[:button] , new_store_suggestion_path %>
   </footer>
 </article>

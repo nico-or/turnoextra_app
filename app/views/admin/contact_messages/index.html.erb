@@ -1,5 +1,4 @@
 <h1>Contact Messages</h1>
-
 <section>
   <table>
     <thead>
@@ -24,7 +23,7 @@
           <td><%= truncate(presenter.body) %></td>
           <td><%= presenter.status %></td>
           <td>
-            <%= link_to "View", admin_contact_message_path(message), role: :button %>
+            <%= link_to "View", admin_contact_message_path(message) %>
           </td>
         </tr>
       <% end %>

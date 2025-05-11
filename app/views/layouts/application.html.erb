@@ -16,7 +16,6 @@
     <%= render 'shared/umami_header' if Rails.env.production? %>
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app %>
-    <%= stylesheet_link_tag "pico.min" %>
     <%= javascript_importmap_tags %>
     <%= yield :head %>
   </head>
@@ -24,7 +23,7 @@
     <header>
       <%= render 'shared/navbar' %>
     </header>
-    <main class="container">
+    <main>
       <%= render 'shared/flash' %>
       <%= yield %>
     </main>

@@ -3,7 +3,7 @@
 <h1> <%= title @boardgame.title %> </h1>
 <section>
   <h2><%= t('.about')  %> </h2>
-  <div class="grid">
+  <div>
     <div>
       <%= image_tag @boardgame.image_url || placehold_url(300),
             size: 300,
@@ -28,11 +28,11 @@
 </section>
 <section>
   <h2><%= t(".actions") %></h2>
-  <%= link_to t(".report_error"), new_boardgame_error_path(@boardgame), role: :button, class: "outline secondary", style:"width:100%;" %>
+  <%= link_to t(".report_error"), new_boardgame_error_path(@boardgame) %>
 </section>
 <% if Current.user&.admin? %>
   <section>
     <h2>Admin</h2>
-    <%= link_to 'View on Dashboard', admin_boardgame_path(@boardgame), role: :button, class: "outline secondary", style:"width:100%;" %>
+    <%= link_to 'View on Dashboard', admin_boardgame_path(@boardgame) %>
   </section>
 <% end %>
