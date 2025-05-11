@@ -26,16 +26,14 @@
           <td><%= boardgame.year %></td>
           <td><%= boardgame.title %></td>
           <td><%= button_to 'Identify',
-          identify_admin_listing_path(@listing),
-          params: { bgg_id: boardgame.bgg_id },
-          method: :patch,
-          class: 'secondary outline' %></td>
+            identify_admin_listing_path(@listing),
+            params: { bgg_id: boardgame.bgg_id },
+            method: :patch %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <h3>Unidentifty</h3>
   <%= button_to 'Unidentifty',
-  unidentify_admin_listing_path(@listing),
-  method: :patch,
-  class: "secondary outline" %>
+    unidentify_admin_listing_path(@listing),
+    method: :patch %>

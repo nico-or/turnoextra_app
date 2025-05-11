@@ -1,4 +1,4 @@
-<nav class="container">
+<nav>
   <ul>
     <li>
       <%= link_to root_path do %>
@@ -8,16 +8,16 @@
   </ul>
   <ul>
     <li>
-      <%= link_to t(".deals"), deals_path, class: "secondary "%>
+      <%= link_to t(".deals"), deals_path %>
     </li>
     <li>
-      <%= link_to t(".board_games"), boardgames_path, class: "secondary "%>
+      <%= link_to t(".board_games"), boardgames_path %>
     </li>
     <li>
-      <%= link_to t(".stores"), stores_path, class: "secondary "%>
+      <%= link_to t(".stores"), stores_path %>
     </li>
     <% if Current.user %>
-      <li><%= link_to 'Dashboard', dashboard_path, class: "secondary "%></li>
+      <li><%= link_to 'Dashboard', dashboard_path %></li>
     <% end %>
   </ul>
 </nav>
