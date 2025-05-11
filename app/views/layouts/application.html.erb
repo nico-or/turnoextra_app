@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
+<html lang="<%= I18n.locale %>" data-bs-theme="dark">
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,11 +19,11 @@
     <%= javascript_importmap_tags %>
     <%= yield :head %>
   </head>
-  <body>
+  <body class="d-flex flex-column vh-100">
     <header>
       <%= render 'shared/navbar' %>
     </header>
-    <main>
+    <main class="container flex-grow-1">
       <%= render 'shared/flash' %>
       <%= yield %>
     </main>
