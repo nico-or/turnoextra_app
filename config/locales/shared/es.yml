@@ -9,7 +9,10 @@ es:
       about: "Acerca de"
       faq: "Preguntas frecuentes"
       contact: "Contacto"
-      copyright_html: "%{brand_name} &copy; %{year} Todos los derechos reservados."
+      copyright_html: "&copy; %{year} Turno Extra! "
+      information: "Información"
+      site: "Sitio"
+
     update_date:
       date: "Actualizado el %{date}"
       unknown: "Sin fecha de actualización"
