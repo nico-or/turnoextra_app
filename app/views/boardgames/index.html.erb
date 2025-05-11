@@ -1,21 +1,13 @@
 <% set_meta_tags canonical: boardgames_url(page: params[:page]) %>
-
 <h1><%= title t(".title") %></h1>
-
 <section>
   <%= render 'boardgames/search_form' %>
-  
   <% if params[:q].present? %>
     <p><%= t("boardgames.search_form.results_for", query: params[:q]) %></p>
   <% end %>
 </section>
-
 <section>
   <%== pagy_info(@pagy) %>
-  <div>
-    <% @boardgames.each do |boardgame| %>
-      <%= render 'card', boardgame: %>
-    <% end %>
-  </div>
+  <%= render partial: 'boardgames/grid', locals: { boardgames: @boardgames } %>
   <%= render 'shared/pagination', pagy: @pagy, path_helper: ->(p) { boardgames_path(params.permit(:q,:page).merge(page: p)) } %>
 </section>

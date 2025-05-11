@@ -1,14 +1,10 @@
 <% set_meta_tags canonical: deals_url(page: params[:page]) %>
-
 <hgroup>
   <h1><%= title t('.title') %></h1>
   <%= render "shared/update_date", date: @reference_date %>
 </hgroup>
-
 <section>
   <%== pagy_info(@pagy) %>
-  <div>
-    <%= render partial: 'boardgames/card', collection: @boardgames, as: :boardgame %>
-  </div>
+  <%= render partial: 'boardgames/grid', locals: { boardgames: @boardgames } %>
   <%= render 'shared/pagination', pagy: @pagy, path_helper: ->(p) { deals_path(page: p) } %>
 </section>

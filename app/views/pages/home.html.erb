@@ -2,22 +2,17 @@
   <h1><%= t('app.name') %></h1>
   <p><%= t('app.slogan') %></p>
 </hgroup>
-
 <section>
   <%= render 'boardgames/search_form' %>
 </section>
-
 <section>
   <hgroup>
-  <h2><%= t('.best_deals') %></h2>
-  <%= render "shared/update_date", date: @reference_date  %>
+    <h2><%= t('.best_deals') %></h2>
+    <%= render "shared/update_date", date: @reference_date  %>
   </hgroup>
-  <div>
-    <%= render partial: 'boardgames/card', collection: @deals, as: :boardgame %>
-  </div>
+  <%= render partial: 'boardgames/grid', locals: { boardgames: @deals } %>
   <%= link_to t('.view_all_deals'), deals_path %>
 </section>
-
 <section>
   <h2><%= t('.help_us_grow') %></h2>
   <div>

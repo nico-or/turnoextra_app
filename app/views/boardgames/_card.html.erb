@@ -1,17 +1,35 @@
-<article>
-  <%= link_to boardgame do %>
-    <hgroup>
-      <p><strong><%= boardgame.title %></strong></p>
-      <p>
-        <%= format_price(boardgame.best_price) %> <%= discount_tag(boardgame) %>
-      </p>
-    </hgroup>
-    <div>
+<div class="col p-2">
+  <article class="card h-100">
+    <div class="ratio ratio-1x1 bg-light d-flex align-items-center justify-content-center">
       <%= image_tag boardgame.thumbnail_url || placehold_url(150),
         alt: boardgame.title,
-        width: 150,
-        height: 150
-      %>
+        class: "img-fluid object-fit-contain p-2"%>
     </div>
-  <% end %>
-</article>
+    <div class="card-body d-flex flex-column">
+      <h2 class="card-title h4 flex-grow-1">
+        <%= link_to boardgame, class: "stretched-link text-decoration-none text-reset" do %>
+          <strong>
+            <%= boardgame.title %>
+          </strong>
+        <% end %>
+      </h2>
+      <% if (boardgame.best_price || Float::INFINITY) < (boardgame.reference_price || 0) %>
+        <div>
+          <span class="text-muted text-decoration-line-through"><%= format_price(boardgame.reference_price) %></span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <span class="text-danger fw-bold fs-4"><%= format_price(boardgame.best_price) %></span>
+          <% if boardgame.discount.present? && boardgame.discount.to_i > 0 %>
+            <span class="badge bg-success">
+              <i class="bi bi-tag-fill me-1"></i> <%= boardgame.discount %>%
+            </span>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="d-flex align-items-center gap-2">
+          <span class="text-danger fw-bold fs-4"><%= format_price(boardgame.best_price) %></span>
+        </div>
+      <% end %>
+    </div>
+  </article>
+</div>
