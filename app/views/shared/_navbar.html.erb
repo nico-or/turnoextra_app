@@ -1,23 +1,26 @@
-<nav>
-  <ul>
-    <li>
-      <%= link_to root_path do %>
-        <strong><%= t('app.name') %></strong>
-      <% end %>
-    </li>
-  </ul>
-  <ul>
-    <li>
-      <%= link_to t(".deals"), deals_path %>
-    </li>
-    <li>
-      <%= link_to t(".board_games"), boardgames_path %>
-    </li>
-    <li>
-      <%= link_to t(".stores"), stores_path %>
-    </li>
-    <% if Current.user %>
-      <li><%= link_to 'Dashboard', dashboard_path %></li>
+<nav class="navbar navbar-expand-lg bg-body-tertiary mb-4">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <strong><%= t('app.name') %></strong>
     <% end %>
-  </ul>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to t(".deals"), deals_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(".board_games"), boardgames_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(".stores"), stores_path, class: "nav-link" %>
+        </li>
+        <% if Current.user %>
+          <li><%= link_to 'Dashboard', dashboard_path, class: "nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </nav>
