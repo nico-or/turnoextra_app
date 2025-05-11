@@ -1,22 +1,13 @@
-<!-- TODO: Make background color match the Light/Dark theme -->
-<!-- TODO: Draw only one tick per date -->
+<% content_for :head do %>
+  <%= javascript_import_module_tag "chartmodules" %>
+<% end %>
 <%= line_chart chart_data,
   legend: 'top',
   curve: false,
+  prefix: "$",
+  thousands: '.',
+  decimal: ',',
   loading: t(".loading"),
-  library: {
-    interpolateNulls: 0,
-    legend:{
-      maxLines: 5,
-    },
-    vAxis:{
-      format: :currency,
-      #title: t('.vaxis.title')
-    },
-    hAxis:{
-      format: 'dd-MM-yy',
-      slantedText: true,
-      #title: t('.haxis.title')
-    }
-  }
+  empty: t(".empty"),
+  library:{}
 %>

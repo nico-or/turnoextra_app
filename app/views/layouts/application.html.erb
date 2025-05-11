@@ -6,28 +6,20 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= display_meta_tags(default_meta_tags) %>
-
-    <%= yield :head %>
-
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-
     <%# Analytics %>
     <%= render 'shared/umami_header' if Rails.env.production? %>
-
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app %>
     <%= stylesheet_link_tag "pico.min" %>
     <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%= yield :head %>
   </head>
-
   <body>
     <header>
       <%= render 'shared/navbar' %>
