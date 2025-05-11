@@ -63,3 +63,5 @@ gem "mechanize", "~> 2.14"
 gem "rails-i18n", "~> 8.0"
 
 gem "meta-tags", "~> 2.22"
+
+gem "cssbundling-rails", "~> 1.4"

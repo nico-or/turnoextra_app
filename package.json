@@ -1,0 +1,41 @@
+{
+  "name": "cotizador_juegos",
+  "version": "1.0.0",
+  "description": "A web app that helps board game buyers find the best prices available in local game stores. The goal is to provide a service similar to [SoloTodo](www.solotodo.cl).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
+    "build:css": "yarn build:css:compile && yarn build:css:prefix",
+    "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nico-or/boardgame_price_aggregator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nico-or/boardgame_price_aggregator/issues"
+  },
+  "homepage": "https://github.com/nico-or/boardgame_price_aggregator#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "autoprefixer": "^10.4.21",
+    "bootstrap": "^5.3.6",
+    "bootstrap-icons": "^1.13.1",
+    "nodemon": "^3.1.10",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.1",
+    "sass": "^1.88.0"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}
