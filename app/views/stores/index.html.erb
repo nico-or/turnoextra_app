@@ -1,32 +1,12 @@
-<% noindex %> 
-
+<% noindex %>
 <h1><%= title t(".title") %></h1>
-
 <section>
-  <table>
-    <thead>
-      <tr>
-        <th><%= t("activerecord.attributes.store.name") %></th>
-        <th><%= t("activerecord.attributes.store.url") %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @stores.each do |store| %>
-        <tr>
-          <td><%= store.name %></td>
-          <td><%= link_to t(".external_link"),
-            tracking_url(store.url),
-            target: "_blank",
-            rel: "noopener",
-            **umami_event_attributes("outbound_stores_index_click", {
-              store_id: store.id
-            }) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <%= render partial: 'card', collection: @stores, as: :store %>
+  </div>
 </section>
-
-<section>
-  <%= link_to t("pages.home.cards.suggest_store.button"), new_store_suggestion_path %>
+<section class="text-center">
+  <%= link_to t("pages.home.cards.suggest_store.button"),
+    new_store_suggestion_path,
+    class: "btn btn-success" %>
 </section>

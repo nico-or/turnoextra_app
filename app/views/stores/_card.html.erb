@@ -1,0 +1,28 @@
+<div class="col">
+  <div class="card h-100">
+    <header class="card-header">
+      <h3><%= store.name %></h3>
+    </header>
+    <div class="card-body">
+      <!-- TODO: add a additional info
+      <dl>
+        <dt>Dirección</dt>
+        <dd>store adres..</dd>
+        <dt>Juegos</dt>
+        <dd>ilsting count of in-stock games...</dd>
+      </dl>
+        -->
+      <div class="text-center">
+        <%= link_to tracking_url(store.url),
+              class: "btn btn-outline-primary",
+              target: "_blank",
+              rel: "noopener",
+              **umami_event_attributes("outbound_stores_index_click", {
+                store_id: store.id
+              }) do %>
+          <%= t(".external_link") %> <i class="bi bi-box-arrow-up-right"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
