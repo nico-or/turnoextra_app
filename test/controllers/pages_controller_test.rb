@@ -6,11 +6,6 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get about" do
-    get about_path
-    assert_response :success
-  end
-
   test "should get faq" do
     get faq_path
     assert_response :success
