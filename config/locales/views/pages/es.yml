@@ -1,6 +1,7 @@
 es:
   pages:
     home:
+      search_boardgames: "Buscar Juegos de Mesa"
       best_deals: "Mejores Ofertas"
       view_all_deals: "Ver todas las ofertas"
       suggest_store: "Sugerir una tienda"
