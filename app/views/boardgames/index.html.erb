@@ -7,7 +7,7 @@
   <% end %>
 </section>
 <section>
-  <%== pagy_info(@pagy) %>
+  <%= render 'pagy/info', pagy: @pagy %>
   <%= render partial: 'boardgames/grid', locals: { boardgames: @boardgames } %>
-  <%= render 'shared/pagination', pagy: @pagy, path_helper: ->(p) { boardgames_path(params.permit(:q,:page).merge(page: p)) } %>
+  <%= render 'pagy/nav', pagy: @pagy, path_helper: ->(p) { boardgames_path(params.permit(:q,:page).merge(page: p)) } %>
 </section>
