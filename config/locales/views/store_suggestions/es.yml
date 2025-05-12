@@ -4,3 +4,6 @@ es:
       title: "Sugerir una nueva tienda"
       instructions: "La prioridad de las tiendas se basa en el número de sugerencias que reciben. Cuanto más veces una tienda sea sugerida, más pronto será añadida."
       disclaimer: "Nota: Las sugerencias de tiendas se mantienen privadas, ya que no podemos verificar el contenido de los sitios web sugeridos antes de tiempo."
+    create:
+      success: "Tu sugerencia de tienda se ha enviado con éxito. Gracias!"
+      failure: "Algo salió mal. Por favor, intenta de nuevo."

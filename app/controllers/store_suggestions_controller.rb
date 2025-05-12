@@ -16,8 +16,9 @@ class StoreSuggestionsController < ApplicationController
     @store_suggestion = StoreSuggestion.new(store_suggestion_params)
 
     if @store_suggestion.save
-      redirect_to new_store_suggestion_path, notice: "Store suggestion was successfully created."
+      redirect_to new_store_suggestion_path, notice: t(".success")
     else
+      flash[:alert] = t(".failure")
       render :new
     end
   end
