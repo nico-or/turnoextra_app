@@ -1,13 +1,13 @@
 <% noindex %>
-
 <h1><%= title "Log In" %></h1>
-
-<%= form_with url: login_path do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email, required: true %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password, required: true %>
-
-  <%= f.submit %>
+<%= form_with url: login_path, class: "mb-3" do |f| %>
+  <div class="mb-3">
+    <%= f.label :email, class: "form-label" %>
+    <%= f.email_field :email, required: true, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password, class: "form-label" %>
+    <%= f.password_field :password, required: true, class: "form-control" %>
+  </div>
+  <%= f.submit "Log In", class: "btn btn-success" %>
 <% end %>
