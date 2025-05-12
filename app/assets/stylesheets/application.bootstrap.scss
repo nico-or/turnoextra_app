@@ -1,2 +1,11 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+section {
+    @extend .my-5;
+}
+
+section>h2 {
+    @extend .my-4;
+}
+
