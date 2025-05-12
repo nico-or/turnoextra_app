@@ -2,5 +2,6 @@ es:
   stores:
     index:
       title: "Tiendas"
-      external_link: "Visitar tienda"
       new_store_suggestion_label: "Sugerir una nueva tienda"
+    card:
+      external_link: "Visitar tienda"
