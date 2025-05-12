@@ -1,38 +1,36 @@
-<table>
-  <thead>
-    <tr>
-      <th><%= t("activerecord.attributes.listing.title") %></th>
-      <th><%= t("activerecord.attributes.listing.price") %></th>
-      <th><%= t("activerecord.attributes.listing.store") %></th>
-      <% if Current.user&.admin? %>
-        <th><%= "Actions" %></th>
-      <% end %>
-    </th>
-  </tr>
-</thead>
-<tbody>
+<% lowest_price = @listings.map(&:best_price).min %>
+<div class="d-flex flex-column gap-2">
   <% listings.each do |listing| %>
-    <tr>
-      <td><%= link_to listing.title,
-            tracking_url(listing.url),
-            target: "_blank",
-            rel: "noopener",
-            **umami_event_attributes("outbound_boardgames_show_click", {
-              store_id: listing.store_id,
-              listing_id: listing.id,
-              boardgame_id: @boardgame.id
-            }) %></td>
-      <td><%= format_price(listing.best_price) %></td>
-      <td><%= listing.store_name %></td>
-      <% if Current.user&.admin? %>
-        <td>
-          <%= link_to 'View on Dashboard',
-            admin_listing_path(listing),
-            method: :get,
-            role: :button %>
-        </td>
-      <% end %>
-    </tr>
+    <% is_best_price = listing.best_price == lowest_price %>
+    <article class="card <%= 'border-success bg-success-subtle' if is_best_price %>">
+      <header class="card-header d-flex flex-row justify-content-between align-items-center">
+        <h3 class="h4 card-title fw-bold m-0">
+          <%= link_to listing.title,
+              tracking_url(listing.url),
+              target: "_blank",
+              rel: "noopener",
+              class: "stretched-link text-decoration-none text-reset",
+              **umami_event_attributes("outbound_boardgames_show_click", {
+                store_id: listing.store_id,
+                listing_id: listing.id,
+                boardgame_id: @boardgame.id
+              }) %>
+        </h3>
+        <% if is_best_price %>
+          <span class="badge bg-success"><%= t("shared.best_price") %></span>
+        <% end %>
+      </header>
+      <div class="card-body">
+        <div class="d-flex flex-column gap-2 justify-content-between flex-sm-row align-items-start align-items-sm-center">
+          <div class="fs-5 fw-bold">
+            <%= format_price(listing.best_price) %>
+          </div>
+          <div>
+            <strong><%= t("activerecord.attributes.listing.store") %>: </strong>
+            <%= listing.store_name %>
+          </div>
+        </div>
+      </div>
+    </article>
   <% end %>
-</tbody>
-</table>
+</div>
