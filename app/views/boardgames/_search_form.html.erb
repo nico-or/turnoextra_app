@@ -1,7 +1,7 @@
-<%= form_with url: "/boardgames", method: :get do |form| %>
-  <%= form.label :q, t(".label") %>
-  <%= fieldset_tag nil, "role" => "group" do %>
-    <%= form.text_field :q, placeholder: t(".placeholder") %>
-    <%= form.submit t(".submit"), name: nil %>
-  <% end %>
+<%= form_with url: "/boardgames", method: :get, html: { class:"my-5" } do |form| %>
+  <%= form.label :q, t(".label"), class: "visually-hidden" %>
+  <div class="input-group">
+    <%= form.text_field :q, placeholder: t(".placeholder"), class: "form-control form-control-lg" %>
+    <%= form.submit t(".submit"), name: nil, class: "btn btn-primary px-4" %>
+  </div>
 <% end %>
