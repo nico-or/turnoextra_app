@@ -1,5 +1,6 @@
 es:
   shared:
+    best_price: "Mejor Precio"
     navbar:
       deals: "Ofertas"
       board_games: "Juegos de mesa"

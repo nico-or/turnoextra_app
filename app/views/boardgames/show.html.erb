@@ -1,38 +1,50 @@
 <% set_meta_tags canonical: boardgame_url(@boardgame) %>
 <%= render 'opengraph', boardgame: @boardgame %>
-<h1> <%= title @boardgame.title %> </h1>
+<h1><%= title @boardgame.title %></h1>
 <section>
-  <h2><%= t('.about')  %> </h2>
-  <div>
-    <div>
-      <%= image_tag @boardgame.image_url || placehold_url(300),
-            size: 300,
-            alt: @boardgame.title
-          %>
+  <div class="row">
+    <!-- Image column -->
+    <div class="col-md-4 mb-4 mb-md-0">
+      <div class="ratio ratio-1x1 bg-light rounded">
+        <%= image_tag @boardgame.image_url || placehold_url(300),
+              alt: @boardgame.title,
+              class: "object-fit-contain" %>
+      </div>
     </div>
-    <ul>
-      <li><%= t('activerecord.attributes.boardgame.rank') %>: <%= @boardgame.rank.zero? ? "Sin ranking" : @boardgame.rank  %></li>
-      <li><%= link_to t('activerecord.attributes.boardgame.bgg_url'), safe_url(@boardgame.bgg_url), target: "_blank", rel: "noopener" %></li>
-      <li><%= t('activerecord.attributes.boardgame.reference_price') %>: <%= format_price(@boardgame.reference_price) %></li>
-    </li>
-  </ul>
-</div>
+    <!-- Info column -->
+    <div class="col-md-8">
+      <h2><%= t('.about') %></h2>
+      <dl class="row">
+        <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.rank') %></dt>
+        <dd class="col-md-8"><%= @boardgame.rank.zero? ? t('.unranked') : @boardgame.rank %></dd>
+        <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.year') %></dt>
+        <dd class="col-md-8"><%= @boardgame.year %></dd>
+        <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.reference_price') %></dt>
+        <dd class="col-md-8"><%= format_price(@boardgame.reference_price) %></dd>
+      </dl>
+      <%= link_to safe_url( Bgg.uri_for(@boardgame)), rel: 'noopener', class: "btn btn-outline-secondary w-100" do %>
+        <%= t('.bgg_link') %> <i class="bi bi-box-arrow-up-right"></i>
+      <% end %>
+    </div>
+  </div>
 </section>
 <section>
-  <h2><%= t("activerecord.models.listing.other") %> </h2>
-  <%= render "listing_table", listings: @listings  %>
+  <h2><%= t("activerecord.models.listing.other") %></h2>
+  <%= render "listing_table", listings: @listings %>
 </section>
 <section>
   <h2><%= t(".historic_prices") %></h2>
-  <%= render 'price_chart', chart_data: @chart_data %>
+  <div class="border rounded p-2">
+    <%= render 'price_chart', chart_data: @chart_data %>
+  </div>
 </section>
 <section>
   <h2><%= t(".actions") %></h2>
-  <%= link_to t(".report_error"), new_boardgame_error_path(@boardgame) %>
+  <%= link_to t(".report_error"), new_boardgame_error_path(@boardgame), class: "btn btn-outline-danger" %>
 </section>
 <% if Current.user&.admin? %>
   <section>
     <h2>Admin</h2>
-    <%= link_to 'View on Dashboard', admin_boardgame_path(@boardgame) %>
+    <%= link_to 'View on Dashboard', admin_boardgame_path(@boardgame), class: "btn btn-outline-secondary" %>
   </section>
 <% end %>

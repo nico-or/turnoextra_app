@@ -10,6 +10,8 @@ es:
     show:
       about: "Datos del juego"
       historic_prices: "Precios Históricos"
+      bgg_link: "Ver en BGG"
+      unranked: "Sin ranking"
       actions: "Acciones"
       report_error: "Reportar Error"
       opengraph:
