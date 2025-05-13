@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items total="11" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+	<item type="boardgame" id="424774">
+		<name type="primary" value="Dorfromantik: Sakura" />
+		<yearpublished value="2024" />
+	</item>
+	<item type="boardgame" id="370591">
+		<name type="primary" value="Dorfromantik: The Board Game" />
+		<yearpublished value="2022" />
+	</item>
+	<item type="boardgame" id="395364">
+		<name type="primary" value="Dorfromantik: The Duel" />
+		<yearpublished value="2023" />
+	</item>
+</items>
