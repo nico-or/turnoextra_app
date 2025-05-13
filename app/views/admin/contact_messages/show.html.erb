@@ -1,7 +1,6 @@
 <h1>Contact Message Details</h1>
-
 <% presenter = ContactMessagePresenter.new(@contact_message, self) %>
-
+<p><strong>ID:</strong> <%= @contact_message.id %></p>
 <p><strong>Status:</strong> <%= presenter.status %></p>
 <p><strong>Name:</strong> <%= presenter.name %></p>
 <p><strong>Email:</strong> <%= presenter.email %></p>
@@ -9,9 +8,10 @@
 <p><strong>Body:</strong>
   <div style="white-space: pre-wrap;"><%= presenter.body %></div>
 </p>
-
 <% if @contact_message.read? %>
-  <%= button_to "Mark as Unread", toggle_read_admin_contact_message_path(@contact_message), method: :post, disabled: @contact_message.unread? %>
+  <%= button_to "Mark as Unread",toggle_read_admin_contact_message_path(@contact_message),
+    method: :post, class: "btn btn-success", disabled: @contact_message.unread? %>
 <% else %>
-  <%= button_to "Mark as Read", toggle_read_admin_contact_message_path(@contact_message), method: :post, disabled: @contact_message.read? %>
+  <%= button_to "Mark as Read",toggle_read_admin_contact_message_path(@contact_message),
+    method: :post, class: "btn btn-success", disabled: @contact_message.read? %>
 <% end %>
