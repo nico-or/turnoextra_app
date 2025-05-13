@@ -1,39 +1,43 @@
 <h1><%=@listing.title%></h1>
-<h2>Details</h2>
-<%= debug @listing%>
-<h2>Actions</h2>
-<h3>Search BGG</h3>
-<%= form_with url: admin_listing_path(@listing), method: :get do |f| %>
-  <%= f.search_field :bgg_query %>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <td>ID</td>
-      <td>BGG ID</td>
-      <td>Rank</td>
-      <td>Year</td>
-      <td>Title</td>
-      <td>Actions</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @boardgames.each do |boardgame| %>
+<section>
+  <h2>Details</h2>
+  <%= debug @listing%>
+</section>
+<section>
+  <h2>Actions</h2>
+  <h3>Search BGG</h3>
+  <%= form_with url: admin_listing_path(@listing), method: :get do |f| %>
+    <%= f.search_field :bgg_query, class:"form-control form-control-lg", placeholder:"Search BGG API by title..." %>
+  <% end %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= boardgame.id %></td>
-        <td><%= link_to boardgame.bgg_id, safe_url(boardgame.bgg_url), target: '_blank'%> </td>
-        <td><%= boardgame.rank %>
-          <td><%= boardgame.year %></td>
-          <td><%= boardgame.title %></td>
-          <td><%= button_to 'Identify',
-            identify_admin_listing_path(@listing),
-            params: { bgg_id: boardgame.bgg_id },
-            method: :patch %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <h3>Unidentifty</h3>
-  <%= button_to 'Unidentifty',
-    unidentify_admin_listing_path(@listing),
-    method: :patch %>
+        <th scope="col">ID</th>
+        <th scope="col">BGG ID</th>
+        <th scope="col">Rank</th>
+        <th scope="col">Year</th>
+        <th scope="col">Title</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @boardgames.each do |boardgame| %>
+        <tr>
+          <td><%= link_to boardgame.id, admin_boardgame_path(boardgame) %></td>
+          <td>
+            <%= link_to safe_url(boardgame.bgg_url), target: '_blank', rel: "noreferrer noopener" do %>
+              <%= boardgame.bgg_id %> <i class="bi bi-box-arrow-up-right"></i>
+            <% end %>
+          </td>
+          <td><%= boardgame.rank %>
+            <td><%= boardgame.year %></td>
+            <td><%= boardgame.title %></td>
+            <td><%= button_to 'Identify', identify_admin_listing_path(@listing),
+            params: { bgg_id: boardgame.bgg_id }, method: :patch, class: "btn btn-primary"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <h3>Unidentifty</h3>
+    <%= button_to 'Unidentifty', unidentify_admin_listing_path(@listing), method: :patch, class: "btn btn-danger" %>
+  </section>

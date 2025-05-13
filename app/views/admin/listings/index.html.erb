@@ -1,29 +1,31 @@
 <h1>Listings</h1>
-<table>
+<table class="table">
   <thead>
-    <th>id</th>
-    <th>title</th>
-    <th>boardgame</th>
-    <th>store</th>
-    <th>link</th>
-    <th>ident. failure</th>
-    <th>is boardgame</th>
+    <th scope="col">ID</th>
+    <th scope="col">Title</th>
+    <th scope="col">Boardgame</th>
+    <th scope="col">Store</th>
+    <th scope="col">External Link</th>
+    <th scope="col">Failed Identification</th>
+    <th scope="col">Is Boardgame</th>
   </thead>
   <tbody>
     <% @listings.each do |listing| %>
       <tr id=<%= dom_id listing %>>
-        <td><%= listing.id%></td>
-        <td><%= link_to truncate(listing.title, length: 40, separator: ' '), admin_listing_path(listing) %></td>
+        <th scope="row"><%= listing.id%></th>
+        <td><%= link_to truncate(listing.title, length: 40), admin_listing_path(listing) %></td>
         <td>
           <% if listing.boardgame %>
-            <%= link_to truncate(listing.boardgame.title, length: 40, separator: ' '), admin_boardgame_path(listing.boardgame) %>
+            <%= link_to truncate(listing.boardgame.title, length: 40), admin_boardgame_path(listing.boardgame) %>
           <% else %>
             MISSING
           <% end %>
         </td>
         <td><%= link_to listing.store.name, admin_store_path(listing.store) %></td>
         <td>
-          <%= link_to "external link", safe_url(listing.url), target: "_blank" %>
+          <%= link_to  safe_url(listing.url), target: "_blank"  do %>
+            Store Link <i class="bi bi-box-arrow-up-right"></i>
+          <% end %>
         </td>
         <td><%= listing.failed_identification %></td>
         <td><%= listing.is_boardgame %></td>
@@ -31,4 +33,4 @@
     <% end %>
   </tbody>
 </table>
-<%== pagy_nav(@pagy) %>
+<%= render 'pagy/nav', pagy: @pagy %>
