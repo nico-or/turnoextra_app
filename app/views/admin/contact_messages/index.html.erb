@@ -1,21 +1,23 @@
 <h1>Contact Messages</h1>
 <section>
-  <table>
+  <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>User Agent</th>
-        <th>Subject</th>
-        <th>Body</th>
-        <th>Status</th>
-        <th>Actions</th>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">User Agent</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Body</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @contact_messages.each do |message| %>
         <% presenter = ContactMessagePresenter.new(message, self) %>
-        <tr>
+        <tr id=<%= dom_id message %>>
+          <th scope="row"><%= message.id %></th>
           <td><%= presenter.name %></td>
           <td><%= presenter.email %></td>
           <td><%= truncate(presenter.user_agent) %></td>
