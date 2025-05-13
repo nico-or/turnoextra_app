@@ -1,27 +1,29 @@
 <h1>Identification#new</h1>
 <section>
-  <hgroup>
-    <h2>Listings</h2>
-    <% if params[:query].present? %>
-      <p>Search results for: "<%= params[:query]%>"</p>
-    <% elsif params[:title].present? %>
-      <p>Search results for title: "<%= params[:title]%>"</p>
-    <% else %>
-      <p>No search query provided.</p>
-    <% end %>
-  </hgroup>
-  <table>
+  <h2>Listings</h2>
+  <% if params[:query].present? %>
+    <p>Search results for: "<%= params[:query]%>"</p>
+  <% elsif params[:title].present? %>
+    <p>Search results for title: "<%= params[:title]%>"</p>
+  <% else %>
+    <p>No search query provided.</p>
+  <% end %>
+  <table class="table">
     <thead>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Store Link</th>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">External Link</th>
     </thead>
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
-          <td><%= link_to listing.id, admin_listing_path(listing) %></td>
+          <th scope="row"><%=  listing.id %></th>
           <td><%= link_to listing.title, admin_listing_path(listing) %></td>
-          <td><%= link_to 'view', safe_url(listing.url), target: "_blank" %></td>
+          <td>
+            <%= link_to safe_url(listing.url), target: "_blank", rel: "noreferrer noopener" do %>
+              View on Store <i class="bi bi-box-arrow-up-right"></i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
@@ -29,28 +31,30 @@
 </section>
 <section>
   <h2>BGG Search</h2>
-  <%= form_with url: new_admin_identification_path, method: :get do |f| %>
+  <%= form_with url: new_admin_identification_path, method: :get, html:{class:"mb-4"} do |f| %>
     <%= hidden_field_tag 'title', params[:title] %>
     <%= hidden_field_tag 'query', params[:query] %>
-    <%= f.search_field :bgg_query, value: params[:bgg_query] %>
+    <%= f.search_field :bgg_query, value: params[:bgg_query], class: "form-control form-control-lg", placeholder:"Search BGG API by Title..." %>
   <% end %>
-  <table>
+  <table class="table">
     <thead>
-      <th>BGG ID</th>
-      <th>BGG Link</th>
-      <th>Year</th>
-      <th>Title</th>
-      <th>Actions</th>
+      <th scope="col">TE! ID</th>
+      <th scope="col">BGG ID</th>
+      <th scope="col">Year</th>
+      <th scope="col">Title</th>
+      <th scope="col">Actions</th>
     </thead>
     <tbody>
       <% @boardgames.each do |result, boardgame| %>
         <tr>
-          <% if boardgame %>
-            <td><%= link_to boardgame.id, admin_boardgame_path(boardgame), target: "_blank"  %></td>
-          <% else %>
-            <td>NULL</td>
-          <% end %>
-          <td><%= link_to 'view', bgg_url(result.id), target: "_blank" %></td>
+          <th scope="row">
+            <% if boardgame %>
+              <%= link_to boardgame.id, admin_boardgame_path(boardgame), target: "_blank"  %>
+            <% else %>
+              NULL
+            <% end %>
+          </th>
+          <td><%= link_to result.id, bgg_url(result.id), target: "_blank", rel: "noopener noreferrer" %></td>
           <td><%= result.year %></td>
           <td><%= result.name %></td>
           <td>
@@ -59,7 +63,7 @@
                 <%= hidden_field_tag 'listing_ids[]', listing.id %>
               <% end %>
               <%= hidden_field_tag 'bgg_id', result.id %>
-              <%= f.submit 'Identify', disabled: boardgame.nil? %>
+              <%= f.submit 'Identify', disabled: boardgame.nil?, class: "btn btn-primary" %>
             <% end %>
           </td>
         </tr>
@@ -69,8 +73,6 @@
 </section>
 <section>
   <h2>Actions</h2>
-  <%= button_to "Not a Boardgame",
-  toggle_is_boardgame_admin_identifications_path,
-  params: { listing_ids: @listings.map(&:id) }
-  %>
+  <%= button_to "Not a Boardgame", toggle_is_boardgame_admin_identifications_path,
+  params: { listing_ids: @listings.map(&:id) }, class: "btn btn-danger" %>
 </section>
