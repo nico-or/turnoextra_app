@@ -1,0 +1,27 @@
+<aside class="col-2 d-flex flex-column justify-content-start py-3 px-2 gap-4 bg-body-secondary">
+  <div>
+    <strong>Resources</strong>
+    <ul class="nav flex-column gap-2">
+      <li class="nav-item"><%= link_to 'Boardgames', admin_boardgames_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to 'Listings', admin_listings_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to 'Stores', admin_stores_path, class: "nav-link" %></li>
+    </ul>
+  </div>
+  <div>
+    <strong>Messages</strong>
+    <ul class="nav flex-column gap-2">
+      <li class="nav-item"><%= link_to 'Store Suggestions', admin_store_suggestions_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to 'Contact Messages', admin_contact_messages_path, class: "nav-link" %></li>
+    </ul>
+  </div>
+  <div>
+    <strong>Actions</strong>
+    <ul class="nav flex-column gap-2">
+      <li class="nav-item"><%= link_to 'Uploads', new_admin_upload_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to 'Identifications', admin_identifications_path, class: "nav-link" %></li>
+    </ul>
+  </div>
+  <div class="flex-grow-1"></div>
+  <hr>
+  <div><%= button_to 'Logout', logout_path, method: :delete, class:"btn btn-danger w-100" %></div>
+</aside>

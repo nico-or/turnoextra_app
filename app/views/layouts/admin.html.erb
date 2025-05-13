@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>" data-bs-theme="dark">
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,13 +17,18 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app %>
   </head>
-  <body>
-    <div id='grid'>
-      <%= render "shared/sidebar" %>
-      <main>
-        <%= render 'shared/flash' %>
-        <%= yield %>
-      </main>
+  <body class="d-flex flex-column min-vh-100">
+    <header>
+      <%= render 'navbar' %>
+    </header>
+    <div class="container-fluid d-flex flex-column flex-grow-1">
+      <div class="row flex-grow-1">
+        <%= render "sidebar" %>
+        <main class="col container-fluid">
+          <%= render 'shared/flash' %>
+          <%= yield %>
+        </main>
+      </div>
     </div>
   </body>
 </html>
