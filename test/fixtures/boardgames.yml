@@ -4,13 +4,16 @@ catan:
   title: Catan
   bgg_id: 13
   year: 1995
+  rank: 583
 
 pandemic:
   title: Pandemic
   bgg_id: 30549
   year: 2008
+  rank: 161
 
 wingspan:
   title: Wingspan
   bgg_id: 266192
   year: 2019
+  rank: 33
