@@ -84,4 +84,22 @@ class BoardgameTest < ActiveSupport::TestCase
     @boardgame.year = 0
     assert @boardgame.valid?
   end
+
+  test "should not allow nil ranks" do
+    @boardgame.rank = nil
+    assert_not @boardgame.valid?
+  end
+
+  test "should not allow negative ranks" do
+    @boardgame.rank = -1
+    assert_not @boardgame.valid?
+  end
+
+  test "should not non-numeric ranks" do
+    @boardgame.rank = 'test'
+    assert_not @boardgame.valid?
+
+    @boardgame.rank = :test
+    assert_not @boardgame.valid?
+  end
 end

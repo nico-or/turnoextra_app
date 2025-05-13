@@ -6,6 +6,7 @@ class Boardgame < ApplicationRecord
   validates :title, presence: true
   validates :year, presence: true, numericality: { only_integer: true }
   validates :bgg_id, presence: true, uniqueness: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :rank, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validates :reference_price, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :best_price, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
