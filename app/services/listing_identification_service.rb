@@ -66,7 +66,7 @@ class ListingIdentificationService < ApplicationService
   end
 
   def find_boardgame(search_result)
-    Boardgame.find_by(bgg_id: search_result.id)
+    Boardgame.find_by(bgg_id: search_result.bgg_id)
   end
 
   def listings_with_same_title(string)

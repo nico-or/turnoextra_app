@@ -10,9 +10,9 @@ class BggTest < ActiveSupport::TestCase
 
   test "Bgg.uri_for a Bgg::BoardGame" do
     boardgame = Bgg::Boardgame.new(
-      id: 822,
-      name: nil,
-      names: [],
+      bgg_id: 822,
+      title: nil,
+      titles: [],
       year: nil,
       description: nil,
       thumbnail_url: nil,
@@ -24,8 +24,8 @@ class BggTest < ActiveSupport::TestCase
 
   test "Bgg.uri_for a Bgg::SearchResult" do
     search_result = Bgg::SearchResult.new(
-      id: 67239,
-      name: nil,
+      bgg_id: 67239,
+      title: nil,
       year: nil
     )
     boardgame_url = URI.parse("https://boardgamegeek.com/boardgame/67239")

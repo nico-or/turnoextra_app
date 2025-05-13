@@ -1,3 +1,3 @@
 module Bgg
-  SearchResult = Data.define(:name, :year, :id)
+  SearchResult = Data.define(:bgg_id, :title, :year)
 end

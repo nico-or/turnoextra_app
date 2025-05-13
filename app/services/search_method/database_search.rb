@@ -9,7 +9,7 @@ module SearchMethod
     def call
       Rails.cache.fetch("database_search/#{truncated_query}", expires_in: 1.hours) do
         (local_boardgames + local_listings).map do |bg|
-          Bgg::SearchResult.new(id: bg.bgg_id, year: bg.year, name: bg.title)
+          Bgg::SearchResult.new(bgg_id: bg.bgg_id, year: bg.year, title: bg.title)
         end
       end
     end

@@ -12,10 +12,10 @@ module Bgg::Versions::XmlV2::ThingResponseParser
 
     def build_thing(node)
       Bgg::Boardgame.new(
-        id: node[:id].to_i,
+        bgg_id: node[:id].to_i,
         year: node.at_xpath("yearpublished")&.attr(:value)&.to_i,
-        name: node.at_xpath("name[@type='primary']")&.attr(:value),
-        names: node.xpath("name").map { it[:value] },
+        title: node.at_xpath("name[@type='primary']")&.attr(:value),
+        titles: node.xpath("name").map { it[:value] },
         description: node.at_xpath("description")&.text&.strip,
         thumbnail_url: node.at_xpath("thumbnail")&.text&.strip,
         image_url: node.at_xpath("image")&.text&.strip

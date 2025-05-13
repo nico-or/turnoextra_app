@@ -11,9 +11,9 @@ module SearchMethod
       assert results.all? { |result| result.is_a? Bgg::SearchResult }
 
       result = results.first
-      assert_equal boardgame.title, result.name
+      assert_equal boardgame.title, result.title
       assert_equal boardgame.year, result.year
-      assert_equal boardgame.bgg_id, result.id
+      assert_equal boardgame.bgg_id, result.bgg_id
     end
 
     test "#call with a listing that is in the database" do
@@ -29,9 +29,9 @@ module SearchMethod
       assert results.all? { |result| result.is_a? Bgg::SearchResult }
 
       result = results.first
-      assert_equal listing.title, result.name
+      assert_equal listing.title, result.title
       assert_equal boardgame.year, result.year
-      assert_equal boardgame.bgg_id, result.id
+      assert_equal boardgame.bgg_id, result.bgg_id
     end
 
     test "#call with a boardgame that is not in the database" do

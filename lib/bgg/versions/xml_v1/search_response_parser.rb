@@ -12,8 +12,8 @@ module Bgg::Versions::XmlV1::SearchResponseParser
 
     def parse_node(node)
       Bgg::SearchResult.new(
-        id: node[:objectid].to_i,
-        name: node.at_xpath("name")&.text,
+        bgg_id: node[:objectid].to_i,
+        title: node.at_xpath("name")&.text,
         year: node.at_xpath("yearpublished")&.text&.to_i
       )
     end

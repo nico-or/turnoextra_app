@@ -11,9 +11,9 @@ module Bgg::Versions::XmlV2
       assert_equal 1, search_results.size
 
       game = search_results.first
-      assert_equal "Wingspan", game.name
+      assert_equal "Wingspan", game.title
       assert_equal 2019, game.year
-      assert_equal 266192, game.id
+      assert_equal 266192, game.bgg_id
     end
 
     test "#parse! a regular XML response with multiple boardgames" do
@@ -23,14 +23,14 @@ module Bgg::Versions::XmlV2
       assert_equal 2, search_results.count
 
       game1 = search_results[0]
-      assert_equal "Wingspan", game1.name
+      assert_equal "Wingspan", game1.title
       assert_equal 2019, game1.year
-      assert_equal 266192, game1.id
+      assert_equal 266192, game1.bgg_id
 
       game2 = search_results[1]
-      assert_equal "Wingspan Asia", game2.name
+      assert_equal "Wingspan Asia", game2.title
       assert_nil game2.year
-      assert_equal 366161, game2.id
+      assert_equal 366161, game2.bgg_id
     end
 
     test "#parse! handles an empty response" do

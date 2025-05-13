@@ -12,11 +12,11 @@ module Bgg::Versions::XmlV2
       assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
 
       game = boardgames.first
-      assert_equal "HINT", game.name
+      assert_equal "HINT", game.title
       assert_equal 2014, game.year
-      assert_equal 165628, game.id
-      assert game.names.is_a? Array
-      assert_equal 4, game.names.count
+      assert_equal 165628, game.bgg_id
+      assert game.titles.is_a? Array
+      assert_equal 4, game.titles.count
       assert_match %r{__thumb/img/}, game.thumbnail_url
       assert_match %r{__original/img/}, game.image_url
       assert_match %r{In HINT, your teammates}, game.description
@@ -31,16 +31,16 @@ module Bgg::Versions::XmlV2
       assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
 
       game1 = boardgames[0]
-      assert_equal "HINT", game1.name
+      assert_equal "HINT", game1.title
       assert_equal 2014, game1.year
-      assert_equal 165628, game1.id
-      assert_equal 4, game1.names.count
+      assert_equal 165628, game1.bgg_id
+      assert_equal 4, game1.titles.count
 
       game2 = boardgames[1]
-      assert_equal "Dogsitter", game2.name
+      assert_equal "Dogsitter", game2.title
       assert_equal 2014, game2.year
-      assert_equal 165629, game2.id
-      assert_equal 1, game2.names.count
+      assert_equal 165629, game2.bgg_id
+      assert_equal 1, game2.titles.count
     end
 
     test "#parse! a XML response with no boardgames" do
@@ -60,7 +60,7 @@ module Bgg::Versions::XmlV2
 
       game = boardgames.first
 
-      assert_nil game.name
+      assert_nil game.title
       assert_nil game.year
       assert_nil game.description
       assert_nil game.thumbnail_url

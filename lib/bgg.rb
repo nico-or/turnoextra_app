@@ -11,8 +11,8 @@ module Bgg
     def id_for(object)
       case object
       when ::Boardgame then object.bgg_id
-      when Bgg::Boardgame then object.id
-      when Bgg::SearchResult then object.id
+      when Bgg::Boardgame then object.bgg_id
+      when Bgg::SearchResult then object.bgg_id
       when Integer then object
       else raise ArgumentError.new("Expected a Boardgame, Bgg::Boardgame, Integer or String, got #{object.class} instead.")
       end
