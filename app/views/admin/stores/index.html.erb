@@ -1,20 +1,24 @@
 <h1>Stores</h1>
-<table>
-  <thead>
-    <th>id</th>
-    <th>name</th>
-    <th>link</th>
-  </thead>
-  <tbody>
-    <% @stores.each do |store| %>
-      <tr id=<%= dom_id store %>>
-        <td><%= store.id %></td>
-        <td><%= link_to store.name, admin_store_path(store)%></td>
-        <td>
-          <%= link_to "external link", safe_url(store.url), target: "_blank" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%== pagy_nav(@pagy) %>
+<section>
+  <table class="table">
+    <thead>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Link</th>
+    </thead>
+    <tbody>
+      <% @stores.each do |store| %>
+        <tr id=<%= dom_id store %>>
+          <td><%= store.id %></td>
+          <td><%= link_to store.name, admin_store_path(store)%></td>
+          <td>
+            <%= link_to safe_url(store.url), target: "_blank", rel: "noopener noreferrer" do %>
+              External Link <i class="bi bi-box-arrow-up-right"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= render 'pagy/nav', pagy: @pagy %>
+</section>
