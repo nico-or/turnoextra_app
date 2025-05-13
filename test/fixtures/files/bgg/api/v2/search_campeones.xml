@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items total="18" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+	<item type="boardgame" id="159869">
+		<name type="primary" value="Campeones" />
+		<yearpublished value="2013" />
+	</item>
+	<item type="boardgame" id="391565">
+		<name type="alternate" value="¡Campeones!" />
+		<yearpublished value="2023" />
+	</item>
+</items>

@@ -18,10 +18,10 @@ class RankedSearchService < ApplicationService
 
   def perform_ranked_search
     results = rank_query_with(SearchMethod::DatabaseSearch.new(query), primary_threshold)
-    return extract_results(results) unless results.empty?
+    return results unless results.empty?
 
     results = rank_query_with(SearchMethod::BggApiSearch.new(query), fallback_threshold)
-    extract_results(results)
+    results
   end
 
   def rank_query_with(search_method, threshold)
@@ -30,23 +30,8 @@ class RankedSearchService < ApplicationService
     rank_results(search_results, threshold: threshold)
   end
 
-  def extract_results(ranked_results)
-    ranked_results.map(&:first)
-  end
-
   def rank_results(results, threshold:)
-    FuzzyMatch.new(results, read: :title)
-              .find_all_with_score(query, threshold: threshold)
-              .sort_by { |result| ranking_criteria(*result) }
-  end
-
-  def ranking_criteria(result, dices_score, levenshtein_score)
-    # TODO: use BGG Rank if available (must decide on how to handle unranked (rank=0) games)
-    [
-      -dices_score,
-      -levenshtein_score,
-      -result.year.to_i
-    ]
+    SearchResultsRankerService.new(query, results, threshold: threshold).call
   end
 
   def normalized_query

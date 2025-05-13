@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items total="13" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+	<item type="boardgame" id="342550">
+		<name type="primary" value="Amazonas" />
+		<yearpublished value="2022" />
+	</item>
+	<item type="boardgame" id="125446">
+		<name type="primary" value="Amazonas" />
+	</item>
+	<item type="boardgame" id="15157">
+		<name type="primary" value="Amazonas" />
+		<yearpublished value="2005" />
+	</item>
+	<item type="boardgame" id="10848">
+		<name type="primary" value="Amazonas" />
+		<yearpublished value="1992" />
+	</item>
+</items>

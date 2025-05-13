@@ -48,7 +48,7 @@ class RankedSearchServiceTest < ActiveSupport::TestCase
 
     result = results.first
     assert_equal "Los Colonos de Catán", result.title
-    assert_equal 2008, result.year
-    assert_equal 152959, result.bgg_id
+    assert_equal 1995, result.year
+    assert_equal 13, result.bgg_id
   end
 end
