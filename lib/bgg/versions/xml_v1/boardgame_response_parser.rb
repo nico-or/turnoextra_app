@@ -14,10 +14,10 @@ module Bgg::Versions::XmlV1::BoardgameResponseParser
 
     def parse_node(node)
       Bgg::Boardgame.new(
-        id: node[:objectid].to_i,
+        bgg_id: node[:objectid].to_i,
         year: node.at_xpath("yearpublished")&.text&.to_i,
-        name: node.at_xpath("name[@primary]")&.text,
-        names: node.xpath("name").map(&:text),
+        title: node.at_xpath("name[@primary]")&.text,
+        titles: node.xpath("name").map(&:text),
         description: node.at_xpath("description")&.text,
         thumbnail_url: node.at_xpath("thumbnail")&.text,
         image_url: node.at_xpath("image")&.text

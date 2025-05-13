@@ -54,15 +54,15 @@
               NULL
             <% end %>
           </th>
-          <td><%= link_to result.id, bgg_url(result.id), target: "_blank", rel: "noopener noreferrer" %></td>
+          <td><%= link_to result.bgg_id, bgg_url(result.bgg_id), target: "_blank", rel: "noopener noreferrer" %></td>
           <td><%= result.year %></td>
-          <td><%= result.name %></td>
+          <td><%= result.title %></td>
           <td>
             <%= form_with url: admin_identifications_path  do |f| %>
               <% @listings.each do |listing| %>
                 <%= hidden_field_tag 'listing_ids[]', listing.id %>
               <% end %>
-              <%= hidden_field_tag 'bgg_id', result.id %>
+              <%= hidden_field_tag 'bgg_id', result.bgg_id %>
               <%= f.submit 'Identify', disabled: boardgame.nil?, class: "btn btn-primary" %>
             <% end %>
           </td>

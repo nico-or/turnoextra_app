@@ -9,7 +9,7 @@ module Admin
 
       if params[:bgg_query].present?
         results = RankedSearchService.call(params[:bgg_query])
-        boardgames = Boardgame.where(bgg_id: results.map(&:id))
+        boardgames = Boardgame.where(bgg_id: results.map(&:bgg_id))
       end
       @boardgames = boardgames || []
     end

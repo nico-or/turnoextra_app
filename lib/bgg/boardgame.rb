@@ -1,9 +1,9 @@
 module Bgg
   Boardgame = Data.define(
-    :id,
+    :bgg_id,
     :year,
-    :name,
-    :names,
+    :title,
+    :titles,
     :description,
     :thumbnail_url,
     :image_url

@@ -22,14 +22,14 @@ namespace :boardgame do
       ids = batch.pluck(:bgg_id)
       Rails.logger.info "Fetching data for #{ids.join(", ")}"
 
-      boardgame_responses = client.boardgame(*ids)
-      sleep(10) # respect API rate limit
+      search_results = client.boardgame(*ids)
+      sleep(10)
 
-      boardgame_responses.each do |boardgame_response|
-        boardgame = batch.find { |boardgame| boardgame.bgg_id == boardgame_response.id }
+      search_results.each do |search_result|
+        boardgame = batch.find { |boardgame| boardgame.bgg_id == search_result.bgg_id }
         boardgame.update(
-          image_url: boardgame_response.image_url,
-          thumbnail_url: boardgame_response.thumbnail_url
+          image_url: search_result.image_url,
+          thumbnail_url: search_result.thumbnail_url
         )
 
         if  boardgame.save

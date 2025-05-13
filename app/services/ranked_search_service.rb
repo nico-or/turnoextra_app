@@ -35,7 +35,7 @@ class RankedSearchService < ApplicationService
   end
 
   def rank_results(results, threshold:)
-    FuzzyMatch.new(results, read: :name)
+    FuzzyMatch.new(results, read: :title)
               .find_all_with_score(query, threshold: threshold)
               .sort_by { |result| ranking_criteria(*result) }
   end
