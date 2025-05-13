@@ -1,24 +1,32 @@
 <h1><%=@boardgame.title%></h1>
-<h2>Details</h2>
-<%= debug @boardgame %>
-<h2>Listings</h2>
-<table>
-  <thead>
-    <th>ID</th>
-    <th>Title</th>
-    <th>Store</th>
-    <th>Store link</th>
-    <th>Actions</th>
-  </thead>
-  <tbody>
-    <% @boardgame.listings.each do |listing| %>
-      <tr id=<%= dom_id listing %>>
-        <td><%= listing.id%></td>
-        <td><%= link_to truncate(listing.title, length: 40), admin_listing_path(listing) %></td>
-        <td><%= link_to truncate(listing.store.name, length: 40), admin_store_path(listing.store) %></td>
-        <td><%= link_to "view", safe_url(listing.url), target: "_blank" %></td>
-        <td><%= button_to "Unidentify", unidentify_admin_listing_path(listing), method: :patch %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<section>
+  <h2>Details</h2>
+  <%= debug @boardgame%>
+</section>
+<section>
+  <h2>Listings</h2>
+  <table class="table">
+    <thead>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Store</th>
+      <th scope="col">External Link</th>
+      <th scope="col">Actions</th>
+    </thead>
+    <tbody>
+      <% @boardgame.listings.each do |listing| %>
+        <tr id=<%= dom_id listing %>>
+          <th scope="row"><%= listing.id%></th>
+          <td><%= link_to truncate(listing.title, length: 40), admin_listing_path(listing) %></td>
+          <td><%= link_to truncate(listing.store.name, length: 40), admin_store_path(listing.store) %></td>
+          <td>
+            <%= link_to safe_url(listing.url), target: "_blank" do %>
+              View on Store <i class="bi bi-box-arrow-up-right"></i>
+            <% end %>
+          </td>
+          <td><%= button_to "Unidentify", unidentify_admin_listing_path(listing), method: :patch, class:"btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

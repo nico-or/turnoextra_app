@@ -1,22 +1,32 @@
 <h1>Boardgames</h1>
-
-<table>
+<table class="table">
   <thead>
-    <th>id</th>
-    <th>title</th>
-    <th>bgg_id</th>
-    <th>link</th>
+    <th scope="col">id</th>
+    <th scope="col">title</th>
+    <th scope="col">year</th>
+    <th scope="col">BGG Rank</th>
+    <th scope="col">BGG ID</th>
+    <th scope="col">External Link</th>
   </thead>
   <tbody>
     <% @boardgames.each do |boardgame| %>
       <tr id=<%= dom_id boardgame %>>
-        <td><%= boardgame.id %></td>
-        <td><%= link_to boardgame.title, admin_boardgame_path(boardgame) %></td>
+        <th scope="row"><%= boardgame.id %></th>
+        <td>
+          <%= link_to admin_boardgame_path(boardgame) do %>
+            <%= boardgame.title %>
+          <% end %>
+        </td>
+        <td><%= boardgame.year %></td>
+        <td><%= boardgame.rank.zero? ?  nil : boardgame.rank %></td>
         <td><%= boardgame.bgg_id %></td>
-        <td><%= link_to "external link", boardgame.bgg_url %></td>
+        <td>
+          <%= link_to boardgame.bgg_url, rel: "noopener noreferrer", target: "_blank" do %>
+            BGG <i class="bi bi-box-arrow-up-right"></i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%== pagy_nav(@pagy) %>
+<%= render 'pagy/nav', pagy: @pagy %>
