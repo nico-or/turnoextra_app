@@ -1,13 +1,13 @@
 <h1>Identification#index</h1>
 <section>
-  <%= form_with url: new_admin_identification_path, method: :get do |f| %>
-    <%= f.label "Search by title:" %>
-    <%= f.search_field :query %>
+  <%= form_with url: new_admin_identification_path, method: :get, html: { class: "mb-4" }  do |f| %>
+    <%= f.label "Search by title:", class: "form-label" %>
+    <%= f.search_field :query, class: "form-control form-control-lg" %>
   <% end %>
-  <table>
+  <table class="table">
     <thead>
-      <th>Title</th>
-      <th>Count</th>
+      <th scope="col">Title</th>
+      <th scope="col">Count</th>
     </thead>
     <tbody>
       <% @listings.each do |listing| %>
