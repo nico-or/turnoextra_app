@@ -28,4 +28,18 @@ namespace :listing do
     Rake::Task["boardgame:add_images"].invoke
     Rake::Task["boardgame:update_prices"].invoke
   end
+
+  desc "Updates normalized title field in Listings records"
+  task update_normalized_titles: :environment do
+    Rails.logger.info "Updating normalized_title for #{Listing.count} Listing records"
+    count = 0
+
+    Listing.find_each do |listing|
+      normalized_title = StringNormalizationService.normalize_title(listing.title)
+      listing.update_columns(normalized_title: normalized_title)
+
+      count += 1
+      Rails.logger.info "Processed #{count} Listings" if (count % 1_000).zero?
+    end
+  end
 end
