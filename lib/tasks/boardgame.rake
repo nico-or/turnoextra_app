@@ -54,4 +54,18 @@ namespace :boardgame do
 
     Rails.logger.info "Finished updating reference price for boardgames"
   end
+
+  desc "Updates normalized title field in Boardgames records"
+  task update_normalized_titles: :environment do
+    Rails.logger.info "Updating normalized_title for #{Boardgame.count} Boardgame records"
+    count = 0
+
+    Boardgame.find_each do |boardgame|
+      normalized_title = StringNormalizationService.normalize_string(boardgame.title)
+      boardgame.update_columns(normalized_title: normalized_title)
+
+      count += 1
+      Rails.logger.info "Processed #{count} Boardgames" if (count % 1_000).zero?
+    end
+  end
 end

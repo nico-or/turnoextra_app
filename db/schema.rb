@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_17_195617) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_17_212351) do
   create_table "boardgames", force: :cascade do |t|
     t.string "title"
     t.integer "bgg_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_17_195617) do
     t.integer "reference_price"
     t.integer "best_price"
     t.integer "discount"
+    t.string "normalized_title"
     t.index ["bgg_id"], name: "index_boardgames_on_bgg_id", unique: true
     t.index ["title"], name: "index_boardgames_on_title"
   end
@@ -54,6 +55,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_17_195617) do
     t.boolean "is_boardgame", default: true, null: false
     t.boolean "failed_local_identification", default: false
     t.boolean "failed_bgg_api_identification", default: false
+    t.string "normalized_title"
     t.index ["boardgame_id"], name: "index_listings_on_boardgame_id"
     t.index ["store_id"], name: "index_listings_on_store_id"
     t.index ["title"], name: "index_listings_on_title"
