@@ -18,7 +18,8 @@ module Admin
       @listing = Listing.find(params[:id])
       boardgame = Boardgame.find_by(bgg_id: params[:bgg_id])
       if boardgame.present?
-        @listing.update(boardgame_id: boardgame.id, failed_identification: false, is_boardgame: true)
+        @listing.update(boardgame_id: boardgame.id, is_boardgame: true)
+        @listing.set_failed_identification_flags(false)
         redirect_to admin_listing_path(@listing), notice: "Listing has been linked to #{boardgame.title}."
       else
         redirect_to admin_listing_path(@listing), alert: "Boardgame not found on Database."
@@ -27,7 +28,8 @@ module Admin
 
     def unidentify
       @listing = Listing.find(params[:id])
-      @listing.update(boardgame_id: nil, failed_identification: true)
+      @listing.update(boardgame_id: nil)
+      @listing.set_failed_identification_flags(true)
       redirect_to admin_listing_path(@listing), notice: "Listing has been unlinked."
     end
   end

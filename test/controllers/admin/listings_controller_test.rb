@@ -43,7 +43,6 @@ class Admin::ListingsControllerIdentifyTest < ActionDispatch::IntegrationTest
       l.url = "http://example.com/new-game"
       l.store = Store.first
       l.boardgame_id = nil
-      l.failed_identification = true
       l.is_boardgame = false
     end
   end
@@ -57,7 +56,7 @@ class Admin::ListingsControllerIdentifyTest < ActionDispatch::IntegrationTest
     @listing.reload
     assert_equal boardgame, @listing.boardgame
     assert @listing.is_boardgame
-    assert_not @listing.failed_identification
+    assert_not @listing.failed_identification?
   end
 
   test "should not patch identify with invalid id" do
@@ -69,7 +68,6 @@ class Admin::ListingsControllerIdentifyTest < ActionDispatch::IntegrationTest
     @listing.reload
     assert_nil @listing.boardgame
     assert_not @listing.is_boardgame
-    assert @listing.failed_identification
   end
 end
 
@@ -93,7 +91,7 @@ class Admin::ListingsControllerUnidentifyTest < ActionDispatch::IntegrationTest
     @listing.reload
 
     assert_nil @listing.boardgame
-    assert @listing.failed_identification
+    assert @listing.failed_identification?
     assert @listing.is_boardgame
   end
 end
