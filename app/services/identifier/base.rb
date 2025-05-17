@@ -6,7 +6,7 @@ module Identifier
 
     def call
       @listings.find_each do |listing|
-        query = listing.title
+        query = listing.normalized_title
         boardgame = find_boardgame(query)
 
         if boardgame.nil?
@@ -16,7 +16,6 @@ module Identifier
         end
 
         count = records_to_update(listing, boardgame).update_all({ boardgame_id: boardgame.id }.merge(failure_flags))
-
         log_success(count, listing, boardgame)
       end
     end
@@ -30,21 +29,21 @@ module Identifier
     end
 
     def listings_with_same_title(string)
-      Listing.unidentified.where("LOWER(title) = LOWER(?)", string)
+      Listing.unidentified.where("LOWER(normalized_title) = LOWER(?)", string)
     end
 
     def records_to_update(listing, boardgame)
-      listing_siblings = Listing.unidentified.where("LOWER(title) = LOWER(?)", listing.title)
-      boardgame_siblings = Listing.unidentified.where("LOWER(title) = LOWER(?)", boardgame.title)
+      listing_siblings = Listing.unidentified.where("LOWER(normalized_title) = LOWER(?)", listing.normalized_title)
+      boardgame_siblings = Listing.unidentified.where("LOWER(normalized_title) = LOWER(?)", boardgame.normalized_title)
       listing_siblings.or(boardgame_siblings)
     end
 
     def log_failure(count, listing)
-      Rails.logger.debug(@progname) { "Failed to identify #{count}x[#{listing.title}]" }
+      Rails.logger.debug(@progname) { "Failed to identify #{count}x[#{listing.normalized_title}]" }
     end
 
     def log_success(count, listing, boardgame)
-      Rails.logger.info(@progname) { "Identified #{count}x[#{listing.title}] records as [#{boardgame.title}]." }
+      Rails.logger.info(@progname) { "Identified #{count}x[#{listing.normalized_title}] records as [#{boardgame.normalized_title}]." }
     end
 
     def progname
