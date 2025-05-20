@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    image: nordenes/turnoextra:latest
+    container_name: turnoextra
+    env_file:
+      - .env.production
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./storage:/rails/storage
+    restart: always
