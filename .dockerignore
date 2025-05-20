@@ -29,6 +29,8 @@
 !/storage/.keep
 /tmp/storage/*
 !/tmp/storage/.keep
+
+# Ignore PostgreSQL data directory.
 /pgdata/*
 !/pgdata/.keep
 

@@ -25,8 +25,7 @@ class BoardgamesController < ApplicationController
     @listings = Listing.joins(:prices, :store)
       .where(boardgame: @boardgame)
       .where(prices: { date: @reference_date })
-      .where(boardgame_id: @boardgame.id)
-      .group("listings.id")
+      .group("listings.id", "stores.id")
       .order("best_price ASC")
       .select(
         "listings.id",
