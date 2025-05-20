@@ -4,8 +4,10 @@ services:
   app:
     image: nordenes/turnoextra:latest
     container_name: turnoextra
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
     env_file:
-      - .env.production
+      - .env.${RAILS_ENV}
     ports:
       - "3000:3000"
     volumes:
