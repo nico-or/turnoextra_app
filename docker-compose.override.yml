@@ -12,3 +12,8 @@ services:
     restart: "no"
     env_file:
       - .env.development
+
+  app_db:
+    restart: "no"
+    env_file:
+      - .env.development

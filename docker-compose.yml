@@ -10,9 +10,9 @@ services:
       - .env.${RAILS_ENV}
     ports:
       - "3000:3000"
-    volumes:
-      - ./storage:/rails/storage
     restart: always
+    depends_on:
+      - app_db
 
   nginx:
     image: nginx:alpine
@@ -26,4 +26,17 @@ services:
       - /var/www/certbot:/var/www/certbot
     depends_on:
       - app
+
+  app_db:
+    image: postgres:15
+    container_name: turnoextra_db
+    env_file:
+      - .env.${RAILS_ENV}
+    ports:
+      - "5432:5432"
+    volumes:
+      - turnoextra_data:/var/lib/postgresql/data
     restart: always
+
+volumes:
+  turnoextra_data:
