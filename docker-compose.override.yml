@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    command: bin/rails s -b 0.0.0.0
+    restart: "no"
+    env_file:
+      - .env.development
+
+  nginx:
+    restart: "no"
+    env_file:
+      - .env.development
