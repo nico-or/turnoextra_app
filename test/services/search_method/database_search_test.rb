@@ -7,7 +7,7 @@ module SearchMethod
     end
 
     test "#call with a ranked boardgame that is in the database" do
-      boardgame = Boardgame.create!(title: 'test game', rank: 1, bgg_id: 1, year: 2010)
+      boardgame = Boardgame.create!(title: "test game", rank: 1, bgg_id: 1, year: 2010)
 
       @service = DatabaseSearch.new(boardgame.title)
       results = @service.call
@@ -22,7 +22,7 @@ module SearchMethod
     end
 
     test "#call with an unranked boardgame that is in the database" do
-      boardgame = Boardgame.create!(title: 'test game', rank: 0, bgg_id: 1, year: 2010)
+      boardgame = Boardgame.create!(title: "test game", rank: 0, bgg_id: 1, year: 2010)
 
       @service = DatabaseSearch.new(boardgame.title)
       results = @service.call
