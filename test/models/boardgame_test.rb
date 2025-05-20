@@ -96,7 +96,7 @@ class BoardgameTest < ActiveSupport::TestCase
   end
 
   test "should not non-numeric ranks" do
-    @boardgame.rank = 'test'
+    @boardgame.rank = "test"
     assert_not @boardgame.valid?
 
     @boardgame.rank = :test
