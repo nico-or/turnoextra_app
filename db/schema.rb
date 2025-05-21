@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_17_212351) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_21_003602) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "boardgames", force: :cascade do |t|
     t.string "title"
     t.integer "bgg_id"
@@ -20,9 +23,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_17_212351) do
     t.string "image_url"
     t.string "thumbnail_url"
     t.integer "year", default: 0, null: false
-    t.integer "reference_price"
-    t.integer "best_price"
-    t.integer "discount"
     t.string "normalized_title"
     t.index ["bgg_id"], name: "index_boardgames_on_bgg_id", unique: true
     t.index ["title"], name: "index_boardgames_on_title"
@@ -37,6 +37,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_17_212351) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "daily_boardgame_deals", force: :cascade do |t|
+    t.bigint "boardgame_id", null: false
+    t.integer "best_price", default: 0, null: false
+    t.integer "reference_price", default: 0, null: false
+    t.integer "discount", default: 0, null: false
+    t.date "date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boardgame_id", "date"], name: "index_daily_boardgame_deals_on_boardgame_id_and_date", unique: true
+    t.index ["boardgame_id"], name: "index_daily_boardgame_deals_on_boardgame_id"
+    t.index ["date"], name: "index_daily_boardgame_deals_on_date"
   end
 
   create_table "form_store_suggestions", force: :cascade do |t|
@@ -96,6 +109,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_17_212351) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "daily_boardgame_deals", "boardgames"
   add_foreign_key "listings", "stores"
   add_foreign_key "prices", "listings"
 end

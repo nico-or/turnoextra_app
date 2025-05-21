@@ -26,7 +26,6 @@ namespace :listing do
 
     ensure
     Rake::Task["boardgame:add_images"].invoke
-    Rake::Task["boardgame:update_prices"].invoke
   end
 
   desc "Updates normalized title field in Listings records"

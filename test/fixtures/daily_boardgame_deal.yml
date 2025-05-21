@@ -1,0 +1,6 @@
+catan_today:
+  boardgame: catan
+  best_price: 39990
+  reference_price: 39990
+  discount: 0
+  date: <%= Date.today %>

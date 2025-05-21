@@ -12,7 +12,8 @@ class BoardgamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    get boardgame_url(Boardgame.first)
+    boardgame = boardgames(:catan)
+    get boardgame_url(boardgame)
     assert_response :success
   end
 end

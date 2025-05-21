@@ -1,8 +1,20 @@
 class DealsController < ApplicationController
   def index
-    # OPTIMIZE: Consider Rails.cache.fetch("homepage_week_deals", expires_in: 1.hour) in production
-    @reference_date = Price.latest_update_date
-    @boardgames = BoardgameDealsService.call
-    @pagy, @boardgames = pagy(@boardgames)
+    reference_date = Price.latest_update_date
+
+    boardgames = Boardgame.joins(:daily_boardgame_deals)
+      .select(
+        "boardgames.id",
+        "boardgames.title",
+        "boardgames.thumbnail_url",
+        "daily_boardgame_deals.discount",
+        "daily_boardgame_deals.best_price",
+        "daily_boardgame_deals.reference_price")
+      .where(daily_boardgame_deals: { date: reference_date })
+      .where("daily_boardgame_deals.discount > 0")
+      .order("title ASC")
+      .distinct
+
+    @pagy, @boardgames = pagy(boardgames)
   end
 end
