@@ -14,6 +14,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_21_003602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "boardgame_names", force: :cascade do |t|
+    t.bigint "boardgame_id", null: false
+    t.string "value", null: false
+    t.boolean "preferred", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boardgame_id", "value"], name: "index_boardgame_names_on_boardgame_id_and_value", unique: true
+    t.index ["boardgame_id"], name: "index_boardgame_names_on_boardgame_id"
+  end
+
   create_table "boardgames", force: :cascade do |t|
     t.string "title"
     t.integer "bgg_id"
@@ -109,6 +119,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_21_003602) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "boardgame_names", "boardgames"
   add_foreign_key "daily_boardgame_deals", "boardgames"
   add_foreign_key "listings", "stores"
   add_foreign_key "prices", "listings"

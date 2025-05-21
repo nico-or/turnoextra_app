@@ -103,3 +103,28 @@ class BoardgameTest < ActiveSupport::TestCase
     assert_not @boardgame.valid?
   end
 end
+
+class BoardgamePreferredNameTest < ActiveSupport::TestCase
+  def setup
+    @boardgame = Boardgame.create! do |bg|
+      bg.title = "Test Boardgame"
+      bg.bgg_id = 123
+    end
+  end
+
+  test "Should return the preferred name if it exists" do
+    @boardgame.boardgame_names.create!(value: "Alternate Name", preferred: false)
+    @boardgame.boardgame_names.create!(value: "Preferred Name", preferred: true)
+    assert_equal "Preferred Name", @boardgame.preferred_name
+  end
+
+  test "Should return the first name if no preferred name exists" do
+    @boardgame.boardgame_names.create!(value: "First Name", preferred: false)
+    @boardgame.boardgame_names.create!(value: "Second Name", preferred: false)
+    assert_equal "First Name", @boardgame.preferred_name
+  end
+
+  test "Should return nil if no names exist" do
+    assert_nil @boardgame.preferred_name
+  end
+end
