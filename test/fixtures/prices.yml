@@ -2,12 +2,12 @@
 
 price_1:
   amount: 39990
-  date: "2025-03-01"
+  date: <%= Date.today %>
   listing: catan_1
 
 price_2:
   amount: 39990
-  date: "2025-03-02"
+  date: <%= Date.today - 1%>
   listing: catan_1
 
 price_3:
@@ -22,12 +22,12 @@ price_4:
 
 price_5:
   amount: 39990
-  date: "2025-03-01"
+  date: <%= Date.today %>
   listing: catan_2
 
 price_6:
   amount: 39990
-  date: "2025-03-02"
+  date: <%= Date.today - 1%>
   listing: catan_2
 
 price_7:

@@ -1,14 +1,14 @@
 class BoardgamesController < ApplicationController
   def index
-    latest_date = Price.maximum(:date)
-
-    @boardgames = Boardgame
-    .joins(listings: [ :prices ])
-    .where(prices: { date: latest_date })
+    @boardgames = Boardgame.joins(:daily_boardgame_deals)
+    .select(
+      "boardgames.id",
+      "boardgames.title",
+      "boardgames.thumbnail_url",
+      "daily_boardgame_deals.discount",
+      "daily_boardgame_deals.best_price",
+      "daily_boardgame_deals.reference_price")
     .order(:title)
-    .group("boardgames.id")
-    .select("boardgames.*",
-    "MIN(prices.amount) AS price")
     .distinct
 
     if params[:q].present?
@@ -21,6 +21,7 @@ class BoardgamesController < ApplicationController
   def show
     @boardgame = Boardgame.find(params[:id])
     @reference_date = Price.latest_update_date
+    @deal = @boardgame.daily_boardgame_deals.find_by(date: @reference_date)
 
     @listings = Listing.joins(:prices, :store)
       .where(boardgame: @boardgame)

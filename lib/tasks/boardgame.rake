@@ -43,18 +43,9 @@ namespace :boardgame do
 
   desc "Update reference price for boardgames"
   task update_prices: :environment do
-    Boardgame.update_all(reference_price: 0, best_price: 0, discount: 0)
-
-    reference_date = Price.latest_update_date
-    boardgames = Boardgame.has_listings.includes(:prices)
-    Rails.logger.info "Updating reference price for #{boardgames.count} boardgames"
-
-    boardgames.each do |boardgame|
-      Rails.logger.info "Updating reference price for #{boardgame.title}"
-      BoardgamePriceUpdateService.new(boardgame, reference_date).call
-    end
-
-    Rails.logger.info "Finished updating reference price for boardgames"
+    Rails.logger.info "Updating daily_boardgame_deals table"
+    DailyDealsUpdateService.new.call
+    Rails.logger.info "Finished updating daily_boardgame_deals table"
   end
 
   desc "Updates normalized title field in Boardgames records"
