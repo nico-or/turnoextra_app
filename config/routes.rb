@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   get "dashboard", to: "admin#index"
 
   namespace :admin, path: "dashboard" do
+    mount MissionControl::Jobs::Engine, at: "/jobs"
+
     resources :uploads, only: %i[new create]
 
     resources :stores
