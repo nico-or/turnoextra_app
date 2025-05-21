@@ -3,3 +3,7 @@ production:
     class: UpdateDailyBoardgameDealsJob
     queue: background
     schedule: every hour
+  update_boardgame_ranks:
+    class: UpdateBoardgameRanksJob
+    queue: background
+    schedule: every day at 1 AM
