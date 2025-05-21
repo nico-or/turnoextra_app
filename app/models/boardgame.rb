@@ -3,6 +3,7 @@ class Boardgame < ApplicationRecord
   has_many :prices, through: :listings
   has_many :stores, through: :listings
   has_many :daily_boardgame_deals
+  has_many :boardgame_names
 
   validates :title, presence: true
   validates :year, presence: true, numericality: { only_integer: true }
@@ -19,5 +20,10 @@ class Boardgame < ApplicationRecord
 
   def bgg_url
     Bgg.uri_for(self).to_s
+  end
+
+  def preferred_name
+    selected_name = boardgame_names.find_by(preferred: true) || boardgame_names.first
+    selected_name&.value
   end
 end
