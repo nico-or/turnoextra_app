@@ -10,34 +10,28 @@ namespace :boardgame do
   end
 
   desc "Add images urls to boardgames"
-  task add_images: :environment do
-    BATCH_SIZE = 20 # API limit
+  task update_metadata: :environment do
+    api_batch_limit = 20
     client = Bgg::Client.new
 
-    boardgames = Boardgame.has_listings.without_images
+    # TODO: prevent updating recently updated boardgames
+    # TODO: prevent updating boardgames with no listings (?)
+    # TODO: prevent updating out of stock boardgames (?)
+    boardgames = Boardgame.has_listings
 
-    Rails.logger.info "Found #{boardgames.count} boardgames with listings but without images"
+    Rails.logger.info "Fetching BGG data for #{boardgames.count} boardgames"
 
-    boardgames.find_in_batches(batch_size: BATCH_SIZE) do |batch|
-      ids = batch.pluck(:bgg_id)
-      Rails.logger.info "Fetching data for #{ids.join(", ")}"
+    boardgames.find_in_batches(batch_size: api_batch_limit) do |batch|
+      bgg_ids = batch.pluck(:bgg_id)
 
-      search_results = client.boardgame(*ids)
-      sleep(10)
+      Rails.logger.info "Fetching BGG data for #{bgg_ids.join(', ')}"
 
-      search_results.each do |search_result|
-        boardgame = batch.find { |boardgame| boardgame.bgg_id == search_result.bgg_id }
-        boardgame.update(
-          image_url: search_result.image_url,
-          thumbnail_url: search_result.thumbnail_url
-        )
+      updater_service = Bgg::BoardgameMetadataUpdater.new(bgg_ids, client: client)
+      updated_boardgame_records = updater_service.call
 
-        if  boardgame.save
-          Rails.logger.info "Updated #{boardgame.title}"
-        else
-          Rails.logger.error "Failed to update #{boardgame.title}: #{boardgame.errors.full_messages.join(", ")}"
-        end
-      end
+      Rails.logger.info "Updated #{updated_boardgame_records.size} boardgames" if updated_boardgame_records.any?
+    ensure
+      sleep 5 # Prevent hitting BGG API rate limit
     end
   end
 
