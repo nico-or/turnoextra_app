@@ -1,8 +1,10 @@
 module Bgg
   class Client
     TTL = 6.hours
+    DEFAULT_VERSION = :xml_v2
+    MAX_ID_COUNT_PER_REQUEST = 20 # This should be a version/*/api specific constant, but for now it's global.
 
-    def initialize(version = :xml_v2)
+    def initialize(version = DEFAULT_VERSION)
       @client = case version
       when :xml_v1 then Bgg::Versions::XmlV1::Client.new
       when :xml_v2 then Bgg::Versions::XmlV2::Client.new
