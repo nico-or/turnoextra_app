@@ -13,6 +13,17 @@ class Boardgame < ApplicationRecord
   scope :has_listings, -> { joins(:listings).distinct }
   scope :without_images, -> { where("image_url IS NULL OR thumbnail_url IS NULL") }
   scope :with_title_like, ->(title) { where("LOWER(boardgames.title) LIKE LOWER(?)", "%#{title}%") }
+  scope :with_similar_title, ->(title, threshold = 0.8) do
+    joins(:boardgame_names)
+    .select(
+      "boardgames.*",
+      "boardgame_names.*",
+      sanitize_sql_array([ "similarity(boardgame_names.value, ?) AS similarity", title ])
+    )
+    .where("similarity(boardgame_names.value, ?) > ?", title, threshold)
+    .order("similarity desc")
+    .distinct
+  end
 
   def latest_price_date
     @latest_price_date ||= prices.maximum(:date)
