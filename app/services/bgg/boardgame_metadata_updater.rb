@@ -23,8 +23,9 @@ module Bgg
     private
 
     def validate_bgg_ids!
+      max_id_count = Bgg::Client::MAX_ID_COUNT_PER_REQUEST
       raise ArgumentError, "bgg_ids must be an array of integers" unless bgg_ids.is_a?(Array) && bgg_ids.all? { |id| id.is_a?(Integer) }
-      raise ArgumentError, "bgg_ids must not exceed 20" if bgg_ids.count > 20 # TODO: Move this value to a constant in the Bgg module
+      raise ArgumentError, "bgg_ids must not exceed #{max_id_count}" if bgg_ids.count > max_id_count # TODO: Move this value to a constant in the Bgg module
     end
 
     def boardgame_results

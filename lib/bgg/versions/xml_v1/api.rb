@@ -23,7 +23,8 @@ module Bgg::Versions::XmlV1::Api
     private
 
     def build_boardgame_query(id)
-      raise ArgumentError, "Too many IDs provided, maximum is 20. ID: #{id.inspect}." if id.size > 20
+      max_id_count = Bgg::Client::MAX_ID_COUNT_PER_REQUEST
+      raise ArgumentError, "Too many IDs provided, maximum is #{max_id_count}. ID: #{id.inspect}." if id.size > max_id_count
       id.join(",")
     end
   end

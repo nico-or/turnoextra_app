@@ -11,7 +11,7 @@ namespace :boardgame do
 
   desc "Add images urls to boardgames"
   task update_metadata: :environment do
-    api_batch_limit = 20
+    api_batch_limit = Bgg::Client::MAX_ID_COUNT_PER_REQUEST
     client = Bgg::Client.new
 
     # TODO: prevent updating recently updated boardgames
