@@ -1,38 +1,40 @@
-class Bgg::RankDownloadService
+class Bgg::RankCsvDownloader
   LOGIN_URL = "https://boardgamegeek.com/login/api/v1"
   RANKS_URL = "https://boardgamegeek.com/data_dumps/bg_ranks"
   OUTPUT_PATH = Rails.root.join("db", "seeds", "boardgames_ranks.csv")
 
-  def initialize
+  def initialize(logger: Rails.logger)
+    @logger = logger
     @username = ENV.fetch("BGG_USERNAME")
     @password = ENV.fetch("BGG_PASSWORD")
     @agent = Mechanize.new
   end
 
   def call
-    unless needs_download?
+    if needs_download?
+      log("Logging in to BGG...")
+      login
+
+      log("Resetting deleted cookies...")
+      reset_cookies
+
+      log("Fetching ranks page...")
+      @agent.get(RANKS_URL)
+
+      log("Downloading and saving CSV...")
+      download_and_save_csv
+
+      log("Done!")
+    else
       log("No need to download ranks.")
-      return
     end
-
-    log("Logging in to BGG...")
-    login
-
-    log("Resetting deleted cookies...")
-    reset_cookies
-
-    log("Fetching ranks page...")
-    @agent.get(RANKS_URL)
-
-    log("Downloading and saving CSV...")
-    download_and_save_csv
-
-    log("Done!")
+    OUTPUT_PATH
   end
 
   private
 
   def needs_download?
+    log("Checking if download is needed...")
     !output_exists? || output_outdated?
   end
 
@@ -80,6 +82,6 @@ class Bgg::RankDownloadService
   end
 
   def log(message)
-    Rails.logger.info(message)
+    @logger.info { "[#{self.class}] #{message}" }
   end
 end
