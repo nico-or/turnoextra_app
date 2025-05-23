@@ -23,9 +23,6 @@ namespace :listing do
 
     Rails.logger.info "Identifying #{listings.count} listings using BGG API"
     Identifier::BggApiIdentifier.new(listings).call
-
-    ensure
-    Rake::Task["boardgame:add_images"].invoke
   end
 
   desc "Updates normalized title field in Listings records"
