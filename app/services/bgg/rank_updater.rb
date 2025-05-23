@@ -22,9 +22,18 @@ class Bgg::RankUpdater < ApplicationService
           year: row[:yearpublished].to_i
         }
       end
+      # Instance of ActiveRecord::Result
+      updated_results = Boardgame.upsert_all(boardgame_params, unique_by: :bgg_id, returning: [ :id, :title ])
 
-      Boardgame.upsert_all(boardgame_params, unique_by: :bgg_id)
+      boardgame_names_params = updated_results.map do |boardgame_hash|
+        {
+          boardgame_id: boardgame_hash["id"],
+          value: boardgame_hash["title"]
+        }
+      end
+      BoardgameName.insert_all(boardgame_names_params, unique_by: [ :boardgame_id, :value ])
     end
+
     log("Finished processing all batches.")
   end
 
