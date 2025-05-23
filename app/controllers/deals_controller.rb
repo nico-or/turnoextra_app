@@ -12,7 +12,7 @@ class DealsController < ApplicationController
         "daily_boardgame_deals.reference_price")
       .where(daily_boardgame_deals: { date: reference_date })
       .where("daily_boardgame_deals.discount > 0")
-      .order("title ASC")
+      .order("discount DESC",  "title ASC")
       .distinct
 
     @pagy, @boardgames = pagy(boardgames)
