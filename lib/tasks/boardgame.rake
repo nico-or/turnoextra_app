@@ -5,7 +5,7 @@ namespace :boardgame do
   desc "Updates Boardgames with daily BGG ranks csv dump"
   task update_ranks: [ :environment, "bgg:download_ranks" ] do
     Rails.logger.info "Updating boardgame ranks from CSV file"
-    filepath = Bgg::RankDownloadService::OUTPUT_PATH
+    filepath = Bgg::RankCsvDownloader::OUTPUT_PATH
     Bgg::RankUpdateService.call(filepath)
   end
 
