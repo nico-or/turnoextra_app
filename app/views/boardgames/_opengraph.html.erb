@@ -1,5 +1,5 @@
 <% set_meta_tags(og: {
-    image: boardgame.image_url,
+    image: boardgame.image_url || asset_url("logo.svg"),
     url: boardgame_url(boardgame),
     title: boardgame.title,
     description: t("boardgames.show.opengraph.description", title: truncate(boardgame.title, length: 40)),

@@ -12,7 +12,8 @@ module MetaTagsHelper
         type: "website",
         url: request.original_url,
         site_name: t("app.name"),
-        locale: I18n.locale.to_s
+        locale: I18n.locale.to_s,
+        image: asset_url("logo.svg")
       }
     }
   end
