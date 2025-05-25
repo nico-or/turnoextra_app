@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  app:
+    image: nordenes/turnoextra:latest
+    container_name: turnoextra
+    env_file:
+      - .env.production
+    depends_on:
+      - app_db
+    restart: unless-stopped
+    mem_limit: 400m
+    cpus: 0.4
+
+  jobs:
+    image: nordenes/turnoextra:latest
+    container_name: turnoextra_jobs
+    command: bin/jobs
+    env_file:
+      - .env.production
+    depends_on:
+      - app_db
+    restart: unless-stopped
+    mem_limit: 300m
+    cpus: 0.3
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d:ro
+      - /etc/letsencrypt/live:/etc/letsencrypt/live:ro
+      - /etc/letsencrypt/archive:/etc/letsencrypt/archive:ro
+      - /var/www/certbot:/var/www/certbot:ro
+    depends_on:
+      - app
+    restart: unless-stopped
+    mem_limit: 100m
+    cpus: 0.1
+
+  app_db:
+    image: postgres:15
+    container_name: turnoextra_db
+    env_file:
+      - .env.production
+    volumes:
+      - turnoextra_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    mem_limit: 200m
+    cpus: 0.2
+
+volumes:
+  turnoextra_data:
