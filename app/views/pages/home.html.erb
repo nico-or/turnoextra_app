@@ -3,10 +3,6 @@
   <p class="lead"><%= t('app.slogan') %></p>
 </hgroup>
 <section>
-  <h2 class="visually-hidden"><%= t('.search_boardgames') %></h2>
-  <%= render 'boardgames/search_form' %>
-</section>
-<section>
   <h2><%= t('.best_deals') %></h2>
   <%= render partial: 'boardgames/grid', locals: { boardgames: @deals } %>
 </section>
