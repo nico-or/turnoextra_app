@@ -16,25 +16,28 @@ class BoardgamesController < ApplicationController
   end
 
   def search
-    base_query = Boardgame
+    query = params[:q]
+    quoted_query = ActiveRecord::Base.connection.quote(query)
+
+    boardgames = Boardgame
     .joins(:daily_boardgame_deals)
+    .joins(:boardgame_names)
+    .where("boardgame_names.value %> ?", query)
     .select(
       "boardgames.id",
       "boardgames.title",
       "boardgames.thumbnail_url",
       "daily_boardgame_deals.discount",
       "daily_boardgame_deals.best_price",
+      "daily_boardgame_deals.reference_price",
+      "MAX(word_similarity(#{quoted_query}, boardgame_names.value)) AS similarity")
+    .group(
+      "boardgames.id",
+      "boardgames.thumbnail_url",
+      "daily_boardgame_deals.discount",
+      "daily_boardgame_deals.best_price",
       "daily_boardgame_deals.reference_price")
-    .order(:title)
-    .distinct
-
-    query = params[:q]
-    fuzzy_ids = BoardgameName
-      .where("value %> ?", query)
-      .select(:id)
-
-    # TODO: sort by similarity if query is present.
-    boardgames = base_query.where(boardgames: { id: fuzzy_ids })
+    .order(Arel.sql("MAX(word_similarity(#{quoted_query}, boardgame_names.value)) DESC"))
 
     @pagy, @boardgames = pagy(boardgames, limit: 12)
   end
