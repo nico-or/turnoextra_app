@@ -5,6 +5,10 @@ es:
       deals: "Ofertas"
       board_games: "Juegos de mesa"
       stores: "Tiendas"
+      search_form:
+        label: "Buscar juegos de mesa"
+        placeholder: "Busca un juego de mesa..."
+        submit: "Buscar"
     footer:
       home: "Inicio"
       about: "Acerca de"
@@ -13,7 +17,6 @@ es:
       copyright_html: "&copy; %{year} Turno Extra! "
       information: "Información"
       site: "Sitio"
-
     update_date:
       date: "Actualizado el %{date}"
       unknown: "Sin fecha de actualización"

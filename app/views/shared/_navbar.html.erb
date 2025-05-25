@@ -7,7 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <%= link_to t(".deals"), deals_path, class: "nav-link" %>
         </li>
@@ -21,6 +21,15 @@
           <li><%= link_to 'Dashboard', dashboard_path, class: "nav-link" %></li>
         <% end %>
       </ul>
+      <%= form_with url: search_boardgames_path, method: :get, html: { role: "search", "aria-label": t(".search_form.label") } do |f| %>
+        <div class="input-group">
+          <%= f.label :q, t(".search_form.label"), class: "visually-hidden" %>
+          <%= f.search_field :q, placeholder: t(".search_form.placeholder"), class: "form-control" %>
+          <%= f.button name: nil, class: "btn btn-secondary" do %>
+            <i class="bi bi-search px-1"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>
