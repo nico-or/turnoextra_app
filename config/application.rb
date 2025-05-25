@@ -39,7 +39,8 @@ module App
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.i18n.available_locales = [ :es ]
+    # :en required for rails/mission_control-jobs
+    config.i18n.available_locales = [ :es, :en ]
     config.i18n.default_locale = :es
   end
 end

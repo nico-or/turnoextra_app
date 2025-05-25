@@ -29,3 +29,11 @@
 
 en:
   hello: "Hello world"
+
+  # FIXME: missing translations in rails/mission_control-jobs views
+  datetime:
+    distance_in_words:
+      half_a_minute: "half a minute"
+  i18n:
+    plural:
+      rule: "%{count} items"
