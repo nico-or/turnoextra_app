@@ -1,6 +1,7 @@
 class BoardgamesController < ApplicationController
   def index
-    base_query = Boardgame.joins(:daily_boardgame_deals)
+    base_query = Boardgame
+    .joins(:daily_boardgame_deals)
     .select(
       "boardgames.id",
       "boardgames.title",
@@ -8,13 +9,18 @@ class BoardgamesController < ApplicationController
       "daily_boardgame_deals.discount",
       "daily_boardgame_deals.best_price",
       "daily_boardgame_deals.reference_price")
-    .order(:title)
     .distinct
 
     if params[:q].present?
-      boardgames = base_query.with_title_like(params[:q])
+      query = params[:q]
+      fuzzy_ids = BoardgameName
+        .where("value %> ?", query)
+        .select(:id)
+
+      # TODO: sort by similarity if query is present.
+      boardgames = base_query.where(boardgames: { id: fuzzy_ids })
     else
-      boardgames = base_query
+      boardgames = base_query.order(:title)
     end
 
     @pagy, @boardgames = pagy(boardgames, limit: 12)
