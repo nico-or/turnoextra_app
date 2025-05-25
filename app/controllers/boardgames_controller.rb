@@ -1,6 +1,6 @@
 class BoardgamesController < ApplicationController
   def index
-    @boardgames = Boardgame.joins(:daily_boardgame_deals)
+    base_query = Boardgame.joins(:daily_boardgame_deals)
     .select(
       "boardgames.id",
       "boardgames.title",
@@ -12,10 +12,12 @@ class BoardgamesController < ApplicationController
     .distinct
 
     if params[:q].present?
-      @boardgames = @boardgames.with_title_like(params[:q])
+      boardgames = base_query.with_title_like(params[:q])
+    else
+      boardgames = base_query
     end
 
-    @pagy, @boardgames = pagy(@boardgames, limit: 12)
+    @pagy, @boardgames = pagy(boardgames, limit: 12)
   end
 
   def show
