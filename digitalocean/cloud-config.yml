@@ -8,7 +8,7 @@ packages:
   - docker-compose
   - nginx
   - certbot
-  - python3-certbot-nginx/stable
+  - python3-certbot-nginx
 
 users:
   - name: turnoextra
