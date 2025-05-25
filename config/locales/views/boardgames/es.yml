@@ -7,6 +7,8 @@ es:
       results_for: "Resultados para '%{query}'"
     index:
       title: "Juegos de mesa"
+    search:
+      title: "Buscar Juegos de Mesa"
     show:
       about: "Datos del juego"
       historic_prices: "Precios Históricos"
