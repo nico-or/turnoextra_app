@@ -31,7 +31,7 @@ namespace :listing do
     count = 0
 
     Listing.find_each do |listing|
-      normalized_title = StringNormalizationService.normalize_title(listing.title)
+      normalized_title = Text::Normalization.normalize_title(listing.title)
       listing.update_columns(normalized_title: normalized_title)
 
       count += 1
