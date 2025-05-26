@@ -1,16 +1,16 @@
 class BoardgamesController < ApplicationController
   def index
     boardgames = Boardgame
-    .joins(:daily_boardgame_deals)
-    .select(
-      "boardgames.id",
-      "boardgames.title",
-      "boardgames.thumbnail_url",
-      "daily_boardgame_deals.discount",
-      "daily_boardgame_deals.best_price",
-      "daily_boardgame_deals.reference_price")
-    .order(:title)
-    .distinct
+      .joins(:daily_boardgame_deals)
+      .select(
+        "boardgames.id",
+        "boardgames.title",
+        "boardgames.thumbnail_url",
+        "daily_boardgame_deals.discount",
+        "daily_boardgame_deals.best_price",
+        "daily_boardgame_deals.reference_price")
+      .order(:title)
+      .distinct
 
     @pagy, @boardgames = pagy(boardgames, limit: 12)
   end
@@ -20,24 +20,24 @@ class BoardgamesController < ApplicationController
     quoted_query = ActiveRecord::Base.connection.quote(query)
 
     boardgames = Boardgame
-    .joins(:daily_boardgame_deals)
-    .joins(:boardgame_names)
-    .where("boardgame_names.value %> ?", query)
-    .select(
-      "boardgames.id",
-      "boardgames.title",
-      "boardgames.thumbnail_url",
-      "daily_boardgame_deals.discount",
-      "daily_boardgame_deals.best_price",
-      "daily_boardgame_deals.reference_price",
-      "MAX(word_similarity(#{quoted_query}, boardgame_names.value)) AS similarity")
-    .group(
-      "boardgames.id",
-      "boardgames.thumbnail_url",
-      "daily_boardgame_deals.discount",
-      "daily_boardgame_deals.best_price",
-      "daily_boardgame_deals.reference_price")
-    .order(Arel.sql("MAX(word_similarity(#{quoted_query}, boardgame_names.value)) DESC"))
+      .joins(:daily_boardgame_deals)
+      .joins(:boardgame_names)
+      .where("boardgame_names.value %> ?", query)
+      .select(
+        "boardgames.id",
+        "boardgames.title",
+        "boardgames.thumbnail_url",
+        "daily_boardgame_deals.discount",
+        "daily_boardgame_deals.best_price",
+        "daily_boardgame_deals.reference_price",
+        "MAX(word_similarity(#{quoted_query}, boardgame_names.value)) AS similarity")
+      .group(
+        "boardgames.id",
+        "boardgames.thumbnail_url",
+        "daily_boardgame_deals.discount",
+        "daily_boardgame_deals.best_price",
+        "daily_boardgame_deals.reference_price")
+      .order(Arel.sql("MAX(word_similarity(#{quoted_query}, boardgame_names.value)) DESC"))
 
     @pagy, @boardgames = pagy(boardgames, limit: 12)
   end
