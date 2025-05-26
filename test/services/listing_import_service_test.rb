@@ -4,6 +4,7 @@ class ListingCsvImportServiceTest < ActiveSupport::TestCase
   def setup
     @file_1 = file_fixture("listings/listing_1.csv")
     @file_2 = file_fixture("listings/listing_2.csv")
+    @file_3 = file_fixture("listings/listing_3.csv")
   end
 
   test "#call with listing_1.csv" do
@@ -41,5 +42,14 @@ class ListingCsvImportServiceTest < ActiveSupport::TestCase
 
     assert_equal 2, listing.prices.count
     assert_equal Date.new(2025, 03, 31), latest_price_date
+  end
+
+  test "updates the listing records titles" do
+    ListingCsvImportService.new(@file_2).call
+    ListingCsvImportService.new(@file_3).call
+
+    listing = Listing.find_by(url: "https://devir.cl/8bit-box")
+
+    assert_equal "NEW NAME", listing.title
   end
 end
