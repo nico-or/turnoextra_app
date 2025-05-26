@@ -19,8 +19,13 @@ module Admin
       end
 
       if params[:bgg_query].present?
-        results = RankedSearchService.call(params[:bgg_query])
-        @boardgames = results.filter_map do |result|
+        query = params[:bgg_query]
+        client = Bgg::Client.new
+
+        results = client.search(query)
+        ranked_results = results.sort_by { |result| -Text::Trigram.similarity(query, result.title) }
+
+        @boardgames = ranked_results.filter_map do |result|
           boardgame = Boardgame.find_by(bgg_id: result.bgg_id)
           next unless boardgame
           [ result, boardgame ]
