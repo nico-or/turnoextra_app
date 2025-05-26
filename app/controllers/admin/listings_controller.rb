@@ -8,8 +8,12 @@ module Admin
       @listing = Listing.find(params[:id])
 
       if params[:bgg_query].present?
-        results = RankedSearchService.call(params[:bgg_query])
+        query = params[:bgg_query]
+        client = Bgg::Client.new
+
+        results = client.search(query)
         boardgames = Boardgame.where(bgg_id: results.map(&:bgg_id))
+                              .sort_by { |bg| -Text::Trigram.similarity(query, bg.title) }
       end
       @boardgames = boardgames || []
     end
