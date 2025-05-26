@@ -21,7 +21,7 @@ module SearchMethod
     end
 
     def normalized_query
-      StringNormalizationService.normalize_string(query)
+      Text::Normalization.normalize_string(query)
     end
 
     def local_boardgames

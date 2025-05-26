@@ -19,7 +19,7 @@ module Text
       #   This method adds two spaces at the beginning and one space at the end of the string
       #   to give more weight to the start of the string
       def generate_trigrams(string)
-        normalized_string = StringNormalizationService.normalize_string(string)
+        normalized_string = Text::Normalization.normalize_string(string)
         "  #{normalized_string} ".chars.each_cons(3).map(&:join)
       end
     end

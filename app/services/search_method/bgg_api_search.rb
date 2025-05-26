@@ -13,6 +13,6 @@ class SearchMethod::BggApiSearch
   private
 
   def normalized_query
-    StringNormalizationService.normalize_title(query)
+    Text::Normalization.normalize_title(query)
   end
 end

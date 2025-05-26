@@ -48,7 +48,7 @@ namespace :boardgame do
     count = 0
 
     Boardgame.find_each do |boardgame|
-      normalized_title = StringNormalizationService.normalize_string(boardgame.title)
+      normalized_title = Text::Normalization.normalize_string(boardgame.title)
       boardgame.update_columns(normalized_title: normalized_title)
 
       count += 1

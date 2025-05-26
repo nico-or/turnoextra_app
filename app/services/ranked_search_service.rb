@@ -35,7 +35,7 @@ class RankedSearchService < ApplicationService
   end
 
   def normalized_query
-    StringNormalizationService.normalize_string(query)
+    Text::Normalization.normalize_string(query)
   end
 
   def cache_key
