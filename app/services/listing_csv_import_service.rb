@@ -12,20 +12,9 @@ class ListingCsvImportService < ApplicationService
 
     rows = table.reject { |row| row[:stock] == "false" }
 
-
     stores_by_url = find_or_create_stores(rows)
     listings_by_url = find_or_create_listings(rows, stores_by_url)
-
-    prices_params = rows.map do |row|
-      listing = listings_by_url[row[:url]]
-      {
-        listing_id: listing.id,
-        amount: row[:price].to_i,
-        date: row[:date]
-      }
-    end
-
-    Price.insert_all(prices_params)
+    create_prices(rows, listings_by_url)
   end
 
   private
@@ -60,5 +49,18 @@ class ListingCsvImportService < ApplicationService
     unique_by: [ :url ])
 
     Listing.where(url: rows.map { |row| row[:url] }).index_by(&:url)
+  end
+
+  def create_prices(rows, listings_by_url)
+    prices_params = rows.map do |row|
+      listing = listings_by_url[row[:url]]
+      {
+        listing_id: listing.id,
+        amount: row[:price].to_i,
+        date: row[:date]
+      }
+    end
+
+    Price.insert_all(prices_params, unique_by: [ :listing_id, :date ])
   end
 end
