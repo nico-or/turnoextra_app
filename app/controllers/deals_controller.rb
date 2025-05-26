@@ -1,6 +1,6 @@
 class DealsController < ApplicationController
   def index
-    reference_date = Price.latest_update_date
+    reference_date = DailyBoardgameDeal.latest_update_date
 
     boardgames = Boardgame.joins(:daily_boardgame_deals)
       .select(

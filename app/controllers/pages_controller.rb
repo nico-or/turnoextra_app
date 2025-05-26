@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    reference_date = Price.latest_update_date
+    reference_date = DailyBoardgameDeal.latest_update_date
 
     @deals = Boardgame.joins(:daily_boardgame_deals)
       .select(
