@@ -11,6 +11,7 @@ class BoardgamesController < ApplicationController
         "daily_boardgame_deals.discount",
         "daily_boardgame_deals.best_price",
         "daily_boardgame_deals.reference_price")
+      .where(daily_boardgame_deals: { date: reference_date })
       .order(:title)
       .distinct
 
@@ -46,7 +47,7 @@ class BoardgamesController < ApplicationController
 
   def show
     @boardgame = Boardgame.find(params[:id])
-    @reference_date = Price.latest_update_date
+    @reference_date = DailyBoardgameDeal.latest_update_date
     @deal = @boardgame.daily_boardgame_deals.find_by(date: @reference_date)
 
     @listings = Listing.joins(:prices, :store)
