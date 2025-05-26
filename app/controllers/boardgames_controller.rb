@@ -1,5 +1,7 @@
 class BoardgamesController < ApplicationController
   def index
+    reference_date = DailyBoardgameDeal.latest_update_date
+
     boardgames = Boardgame
       .joins(:daily_boardgame_deals)
       .select(

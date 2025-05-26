@@ -7,4 +7,8 @@ class DailyBoardgameDeal < ApplicationRecord
   validates :reference_price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :discount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :date, presence: true, uniqueness: { scope: :boardgame_id }
+
+  def self.latest_update_date
+    maximum(:date)
+  end
 end
