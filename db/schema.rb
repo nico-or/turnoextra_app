@@ -84,6 +84,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_22_024646) do
     t.index ["boardgame_id"], name: "index_listings_on_boardgame_id"
     t.index ["store_id"], name: "index_listings_on_store_id"
     t.index ["title"], name: "index_listings_on_title"
+    t.index ["url"], name: "index_listings_on_url", unique: true
   end
 
   create_table "prices", force: :cascade do |t|
