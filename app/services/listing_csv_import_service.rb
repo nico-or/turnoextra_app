@@ -45,22 +45,20 @@ class ListingCsvImportService < ApplicationService
   end
 
   def find_or_create_listings(rows, stores_by_url)
-    row_urls = rows.map { |row| row[:url] }.uniq
-
-    existing_urls = Listing.where(url: row_urls).pluck(:url)
-    missing_urls = row_urls - existing_urls
-
-    listings_params = missing_urls.map do |url|
-      row = rows.find { |r| r[:url] == url }
-      store = stores_by_url[URI.parse(url).origin]
+    listings_params = rows.map do |row|
+      listing_url = row[:url]
+      store = stores_by_url[URI.parse(listing_url).origin]
       {
-        url: url,
+        url: listing_url,
         title: row[:title],
         store_id: store.id
       }
     end
 
-    Listing.insert_all(listings_params) if missing_urls.any?
-    Listing.where(url: row_urls).index_by(&:url)
+    Listing.upsert_all(listings_params,
+    update_only: [ :title ],
+    unique_by: [ :url ])
+
+    Listing.where(url: rows.map { |row| row[:url] }).index_by(&:url)
   end
 end
