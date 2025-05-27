@@ -22,10 +22,13 @@ class BoardgamesController < ApplicationController
     query = params[:q]
     quoted_query = ActiveRecord::Base.connection.quote(query)
 
+    reference_date = DailyBoardgameDeal.latest_update_date
+
     boardgames = Boardgame
       .joins(:daily_boardgame_deals)
       .joins(:boardgame_names)
       .where("boardgame_names.value %> ?", query)
+      .where(daily_boardgame_deals: { date: reference_date })
       .select(
         "boardgames.id",
         "boardgames.title",
