@@ -7,36 +7,62 @@ module SearchMethod
     end
 
     def call
-      Rails.cache.fetch(cache_key, expires_in: 1.hours) do
-        (local_boardgames + local_listings).map do |bg|
-          Bgg::SearchResult.new(bgg_id: bg.bgg_id, year: bg.year, title: bg.title)
-        end
-      end
+      local_results.map { |boardgame| build_result(boardgame) }
     end
 
     private
 
-    def cache_key
-      "database_search/#{normalized_query}"
+    def build_result(boardgame)
+      Bgg::SearchResult.new(
+        bgg_id: boardgame.bgg_id,
+        year: boardgame.year,
+        title: boardgame.title
+      )
     end
 
-    def normalized_query
-      Text::Normalization.normalize_string(query)
+    def quoted_query
+      @quoted_query ||= ActiveRecord::Base.connection.quote(query)
+    end
+
+    def fuzzy_search(relation:, column:, alias_column: nil)
+      quoted_filter = ActiveRecord::Base.sanitize_sql_array([ "#{column} % ?",  query ]) # brakeman warnings
+
+      relation
+        .where(quoted_filter)
+        .where("rank > 0")
+        .select(
+          "boardgames.bgg_id",
+          "boardgames.rank",
+          "boardgames.year",
+          "#{column} AS #{alias_column || 'title'}",
+          "similarity(#{column}, #{quoted_query}) AS similarity"
+        )
+    end
+
+    def local_results
+      (local_boardgames + local_boardgame_names + local_listings)
     end
 
     def local_boardgames
-      Boardgame.where("LOWER(boardgames.title)  = LOWER(?)", query)
-        .where("rank > 0")
-        .select("bgg_id", "title", "year")
-        .distinct
+      fuzzy_search(
+        relation: Boardgame.all,
+        column: "boardgames.title"
+      )
+    end
+
+    def local_boardgame_names
+      fuzzy_search(
+        relation: Boardgame.joins(:boardgame_names),
+        column: "boardgame_names.value",
+        alias_column: "title"
+      )
     end
 
     def local_listings
-      Boardgame.joins(:listings)
-        .where("LOWER(listings.title)  = LOWER(?)", query)
-        .where("rank > 0")
-        .select("boardgames.bgg_id", "boardgames.year", "listings.title")
-        .distinct
+      fuzzy_search(
+        relation: Boardgame.joins(:listings),
+        column: "listings.title"
+      )
     end
   end
 end
