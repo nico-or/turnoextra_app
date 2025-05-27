@@ -22,27 +22,25 @@ class SearchResultsRankerService
 
   def ranks
     @ranks ||= ranks_data || Boardgame.where(bgg_id: results.map(&:bgg_id))
-                                      .select(:bgg_id, :rank)
+                                      .select(:id, :bgg_id, :rank)
                                       .index_by(&:bgg_id)
   end
 
   def rank_results(results, threshold:)
-    FuzzyMatch.new(results, read: :title)
-              .find_all_with_score(query, threshold: threshold)
-              .sort_by { |result| -ranking_score(*result) }
+    results.map { |result| [ result, Text::Trigram.similarity(query, result.title) ] }
+           .sort_by { |(result, similarity)| -ranking_score(result, similarity) }
   end
 
-  def ranking_score(result, dices_score, levenshtein_score)
-    weight_dice = 0.4
+  def ranking_score(result, similarity)
+    weight_similarity = 0.4
     weight_rank = 0.6
-    weight_levenshtein = 0
     weight_year = 0
 
-    score_dice = weight_dice * dices_score # scores go from 0 to 1 (higher is better)
-    score_levenshtein = weight_levenshtein * levenshtein_score # scores go from 0 to 1 (higher is better)
+    score_similarity = weight_similarity * similarity # scores go from 0 to 1 (higher is better)
     score_rank = weight_rank * bgg_rank_score(result)
     score_year = weight_year * year_score(result.year)
-    [ score_dice, score_levenshtein, score_rank, score_year ].sum
+
+    [ score_similarity, score_rank, score_year ].sum
   end
 
   # score goes from 0 to 1 (higher is better)
