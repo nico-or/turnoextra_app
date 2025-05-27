@@ -109,7 +109,6 @@ GEM
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
-    fuzzy_match (2.1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashdiff (1.2.0)
@@ -397,7 +396,6 @@ DEPENDENCIES
   csv (~> 3.3)
   debug
   dotenv (~> 3.1)
-  fuzzy_match (~> 2.1)
   httparty (~> 0.22.0)
   importmap-rails (~> 2.1)
   kamal

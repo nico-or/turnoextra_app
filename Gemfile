@@ -43,7 +43,6 @@ gem "csv", "~> 3.3"
 
 gem "dotenv", "~> 3.1"
 
-gem "fuzzy_match", "~> 2.1"
 
 gem "unicode", "~> 0.4.4"
 
