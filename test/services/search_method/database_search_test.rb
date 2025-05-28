@@ -13,7 +13,7 @@ module SearchMethod
       results = @service.call
 
       assert results.is_a? Array
-      assert results.all? { |result| result.is_a? Bgg::SearchResult }
+      assert results.all? { |result| result.is_a? SearchMethod::SearchResult }
 
       result = results.first
       assert_equal boardgame.title, result.title
@@ -39,7 +39,7 @@ module SearchMethod
       results = @service.call
 
       assert results.is_a? Array
-      assert results.all? { |result| result.is_a? Bgg::SearchResult }
+      assert results.all? { |result| result.is_a? SearchMethod::SearchResult }
 
       result = results.first
       assert_equal alternative_name.value, result.title
@@ -55,7 +55,7 @@ module SearchMethod
       results = @service.call
 
       assert results.is_a? Array
-      assert results.all? { |result| result.is_a? Bgg::SearchResult }
+      assert results.all? { |result| result.is_a? SearchMethod::SearchResult }
 
       result = results.first
       assert_equal listing.title, result.title
