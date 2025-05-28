@@ -13,10 +13,12 @@ module SearchMethod
     private
 
     def build_result(boardgame)
-      Bgg::SearchResult.new(
+      SearchResult.new(
         bgg_id: boardgame.bgg_id,
         year: boardgame.year,
-        title: boardgame.title
+        title: boardgame.title,
+        similarity: boardgame.similarity,
+        rank: boardgame.rank
       )
     end
 
