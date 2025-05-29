@@ -24,7 +24,7 @@ module Identifier
 
     def find_boardgame(query)
       search_results = search_method_class.new(query).call
-      ranked_search_results = SearchResultsRankerService.new(query, search_results).call
+      ranked_search_results = SearchMethod::SearchResultRanker.new(search_results).call
       Boardgame.find_by(bgg_id: ranked_search_results.first&.bgg_id)
     end
 
