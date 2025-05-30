@@ -12,17 +12,17 @@ services:
     mem_limit: 400m
     cpus: 0.4
 
-  jobs:
-    image: nordenes/turnoextra:latest
-    container_name: turnoextra_jobs
-    command: bin/jobs
-    env_file:
-      - .env.production
-    depends_on:
-      - app_db
-    restart: unless-stopped
-    mem_limit: 200m
-    cpus: 0.2
+  # jobs:
+  #   image: nordenes/turnoextra:latest
+  #   container_name: turnoextra_jobs
+  #   command: bin/jobs
+  #   env_file:
+  #     - .env.production
+  #   depends_on:
+  #     - app_db
+  #   restart: unless-stopped
+  #   mem_limit: 200m
+  #   cpus: 0.2
 
   nginx:
     image: nginx:alpine
