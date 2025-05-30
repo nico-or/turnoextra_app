@@ -4,6 +4,7 @@ class Boardgame < ApplicationRecord
   has_many :stores, through: :listings
   has_many :daily_boardgame_deals
   has_many :boardgame_names
+  has_many :impressions, as: :trackable
 
   validates :title, presence: true
   validates :year, presence: true, numericality: { only_integer: true }

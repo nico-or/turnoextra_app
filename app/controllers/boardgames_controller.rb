@@ -50,6 +50,11 @@ class BoardgamesController < ApplicationController
 
   def show
     @boardgame = Boardgame.find(params[:id])
+
+    unless Current.user.admin?
+      Impression.find_or_create_by(trackable: @boardgame, date: Date.today).increment!(:count)
+    end
+
     @reference_date = DailyBoardgameDeal.latest_update_date
     @deal = @boardgame.daily_boardgame_deals.find_by(date: @reference_date)
 

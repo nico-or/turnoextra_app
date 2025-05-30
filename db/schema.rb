@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_22_024646) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_29_220504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -68,6 +68,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_22_024646) do
     t.string "store_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "impressions", force: :cascade do |t|
+    t.string "trackable_type", null: false
+    t.bigint "trackable_id", null: false
+    t.date "date"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trackable_id", "trackable_type", "date"], name: "index_impressions_on_trackable_id_and_trackable_type_and_date", unique: true
+    t.index ["trackable_type", "trackable_id"], name: "index_impressions_on_trackable"
   end
 
   create_table "listings", force: :cascade do |t|
