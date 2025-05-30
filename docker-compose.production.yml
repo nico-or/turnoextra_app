@@ -21,8 +21,8 @@ services:
     depends_on:
       - app_db
     restart: unless-stopped
-    mem_limit: 300m
-    cpus: 0.3
+    mem_limit: 200m
+    cpus: 0.2
 
   nginx:
     image: nginx:alpine
