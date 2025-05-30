@@ -2,22 +2,22 @@
   <h1 class="display-4 fw-bold"><%= t('app.name') %></h1>
   <p class="lead"><%= t('app.slogan') %></p>
 </hgroup>
-<section>
-  <h2><%= t('.best_deals') %></h2>
+<section class="my-5">
+  <h2 class="fw-bold"><%= t('.best_deals') %></h2>
   <%= render partial: 'boardgames/grid', locals: { boardgames: @deals } %>
 </section>
 <% unless @most_viewed.empty?  %>
-  <section>
-    <h2><%= t('.most_viewed') %></h2>
+  <section class="my-5">
+    <h2 class="fw-bold"><%= t('.most_viewed') %></h2>
     <%= render partial: 'boardgames/grid', locals: { boardgames: @most_viewed } %>
   </section>
 <% end %>
-<section>
-  <h2><%= t('.top_bgg') %></h2>
+<section class="my-5">
+  <h2 class="fw-bold"><%= t('.top_bgg') %></h2>
   <%= render partial: 'boardgames/grid', locals: { boardgames: @top_bgg } %>
 </section>
-<section>
-  <h2><%= t('.help_us_grow') %></h2>
+<section class="my-5">
+  <h2 class="fw-bold"><%= t('.help_us_grow') %></h2>
   <div>
     <%= render partial: 'card', collection: t(".cards").values %>
   </div>
