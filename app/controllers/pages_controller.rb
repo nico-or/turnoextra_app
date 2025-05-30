@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def home
     reference_date = DailyBoardgameDeal.latest_update_date
 
-    @deals = Boardgame.joins(:daily_boardgame_deals)
+    base_query = Boardgame.joins(:daily_boardgame_deals)
       .select(
         "boardgames.id",
         "boardgames.title",
@@ -11,9 +11,15 @@ class PagesController < ApplicationController
         "daily_boardgame_deals.best_price",
         "daily_boardgame_deals.reference_price")
       .where(daily_boardgame_deals: { date: reference_date })
+
+    @deals = base_query
       .where("daily_boardgame_deals.discount > 0")
       .order("discount DESC")
-      .distinct
+      .limit(8)
+
+    @top_bgg = base_query
+      .where("boardgames.rank > 0")
+      .order("boardgames.rank ASC")
       .limit(8)
   end
 end

@@ -7,6 +7,10 @@
   <%= render partial: 'boardgames/grid', locals: { boardgames: @deals } %>
 </section>
 <section>
+  <h2><%= t('.top_bgg') %></h2>
+  <%= render partial: 'boardgames/grid', locals: { boardgames: @top_bgg } %>
+</section>
+<section>
   <h2><%= t('.help_us_grow') %></h2>
   <div>
     <%= render partial: 'card', collection: t(".cards").values %>
