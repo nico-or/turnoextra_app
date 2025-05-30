@@ -21,5 +21,21 @@ class PagesController < ApplicationController
       .where("boardgames.rank > 0")
       .order("boardgames.rank ASC")
       .limit(8)
+
+    date_window = (reference_date - 7.days..reference_date)
+    @most_viewed = base_query
+      .joins(:impressions)
+      .where(impressions: { date: date_window })
+      .group(
+        "boardgames.id",
+        "boardgames.title",
+        "boardgames.thumbnail_url",
+        "daily_boardgame_deals.discount",
+        "daily_boardgame_deals.best_price",
+        "daily_boardgame_deals.reference_price"
+      )
+      .select("SUM(impressions.count) AS view_count")
+      .order("view_count DESC")
+      .limit(8)
   end
 end

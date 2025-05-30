@@ -6,6 +6,12 @@
   <h2><%= t('.best_deals') %></h2>
   <%= render partial: 'boardgames/grid', locals: { boardgames: @deals } %>
 </section>
+<% unless @most_viewed.empty?  %>
+  <section>
+    <h2><%= t('.most_viewed') %></h2>
+    <%= render partial: 'boardgames/grid', locals: { boardgames: @most_viewed } %>
+  </section>
+<% end %>
 <section>
   <h2><%= t('.top_bgg') %></h2>
   <%= render partial: 'boardgames/grid', locals: { boardgames: @top_bgg } %>
