@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_29_220504) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_30_230749) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -68,6 +68,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_29_220504) do
     t.string "store_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "identification_failures", force: :cascade do |t|
+    t.string "identifiable_type", null: false
+    t.bigint "identifiable_id", null: false
+    t.string "search_method", null: false
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["identifiable_type", "identifiable_id", "search_method"], name: "idx_on_identifiable_type_identifiable_id_search_met_35a8c6d625", unique: true
+    t.index ["identifiable_type", "identifiable_id"], name: "index_identification_failures_on_identifiable"
   end
 
   create_table "impressions", force: :cascade do |t|
