@@ -51,7 +51,7 @@ class BoardgamesController < ApplicationController
   def show
     @boardgame = Boardgame.find(params[:id])
 
-    unless Current.user.admin?
+    unless Current.user&.admin?
       Impression.find_or_create_by(trackable: @boardgame, date: Date.today).increment!(:count)
     end
 
