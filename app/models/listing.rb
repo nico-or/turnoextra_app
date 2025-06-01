@@ -9,7 +9,10 @@ class Listing < ApplicationRecord
 
   scope :boardgames_only, -> { where(is_boardgame: true) }
   scope :unidentified, -> { where(boardgame_id: nil) }
-  scope :failed_identification, -> { where(failed_local_identification: true, failed_bgg_api_identification: true) }
+  scope :failed_identification, -> {
+    failed_ids = IdentificationFailure.where(identifiable_type: "Listing").pluck(:identifiable_id)
+    where(id: failed_ids)
+  }
   scope :with_title_like, ->(title) { where("LOWER(listings.title) LIKE LOWER(?)", "%#{title}%") }
 
   def latest_price_date
@@ -17,14 +20,6 @@ class Listing < ApplicationRecord
   end
 
   def failed_identification?
-    failed_local_identification? || failed_bgg_api_identification?
-  end
-
-  def set_failed_identification_flags(value)
-    raise ArgumentError, "Invalid value for failed identification flags" unless [ true, false ].include?(value)
-    update(
-      failed_local_identification: value,
-      failed_bgg_api_identification: value,
-    )
+    self.identification_failures.any?
   end
 end

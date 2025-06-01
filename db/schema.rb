@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_30_230749) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_01_181826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -100,8 +100,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_230749) do
     t.datetime "updated_at", null: false
     t.integer "boardgame_id"
     t.boolean "is_boardgame", default: true, null: false
-    t.boolean "failed_local_identification", default: false
-    t.boolean "failed_bgg_api_identification", default: false
     t.string "normalized_title"
     t.index ["boardgame_id"], name: "index_listings_on_boardgame_id"
     t.index ["store_id"], name: "index_listings_on_store_id"

@@ -6,8 +6,8 @@
     <th scope="col">Boardgame</th>
     <th scope="col">Store</th>
     <th scope="col">External Link</th>
-    <th scope="col">Failed Local Identification</th>
-    <th scope="col">Failed Bgg Api Identification</th>
+    <th scope="col">Failed Identification?</th>
+    <th scope="col">Identification Failures</th>
     <th scope="col">Is Boardgame</th>
   </thead>
   <tbody>
@@ -28,8 +28,8 @@
             Store Link <i class="bi bi-box-arrow-up-right"></i>
           <% end %>
         </td>
-        <td><%= listing.failed_local_identification %></td>
-        <td><%= listing.failed_bgg_api_identification %></td>
+        <td><%= listing.failed_identification? %></td>
+        <td><%= listing.identification_failures.map { |failure| failure.search_method.to_s.demodulize }.join(", ") %></td>
         <td><%= listing.is_boardgame %></td>
       </tr>
     <% end %>
