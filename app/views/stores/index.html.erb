@@ -5,7 +5,7 @@
     <%= render partial: 'card', collection: @stores, as: :store %>
   </div>
 </section>
-<section class="text-center">
+<section class="my-4 text-center">
   <%= link_to t("pages.home.cards.suggest_store.button"),
     new_store_suggestion_path,
     class: "btn btn-success" %>
