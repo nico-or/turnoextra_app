@@ -9,7 +9,7 @@
   <%= form_with url: admin_listing_path(@listing), method: :get do |f| %>
     <%= f.search_field :bgg_query, class:"form-control form-control-lg", placeholder:"Search BGG API by title..." %>
   <% end %>
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">ID</th>
