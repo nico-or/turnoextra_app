@@ -1,7 +1,7 @@
 <% has_discount = boardgame.discount.present? && boardgame.discount.to_i > 0 %>
 <div class="col p-2">
   <article class="card h-100 <%= "bg-success-subtle" if has_discount %>">
-    <div class="ratio ratio-1x1 bg-light d-flex align-items-center justify-content-center">
+    <div class="ratio ratio-4x3 bg-light d-flex align-items-center justify-content-center">
       <%= image_tag boardgame.thumbnail_url || placehold_url(150),
         alt: boardgame.title,
         class: "img-fluid object-fit-contain p-2"%>
