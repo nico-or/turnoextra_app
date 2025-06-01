@@ -14,7 +14,7 @@ module Admin
     end
 
     def new
-      @listings = Listing.boardgames_only.failed_identification
+      @listings = Listing.boardgames_only.failed_identification.order(:id)
 
       if params[:query].present?
         @listings = @listings.with_title_like(params[:query])
@@ -31,7 +31,7 @@ module Admin
         results = client.search(query)
         ranked_results = results.sort_by { |result| -Text::Trigram.similarity(query, result.title) }
 
-        @boardgames = ranked_results.filter_map do |result|
+        @boardgames = ranked_results.uniq(&:bgg_id).filter_map do |result|
           boardgame = Boardgame.find_by(bgg_id: result.bgg_id)
           next unless boardgame
           [ result, boardgame ]

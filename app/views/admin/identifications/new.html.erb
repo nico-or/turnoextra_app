@@ -8,7 +8,7 @@
   <% else %>
     <p>No search query provided.</p>
   <% end %>
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <th scope="col">ID</th>
       <th scope="col">Title</th>
@@ -36,7 +36,7 @@
     <%= hidden_field_tag 'query', params[:query] %>
     <%= f.search_field :bgg_query, value: params[:bgg_query], class: "form-control form-control-lg", placeholder:"Search BGG API by Title..." %>
   <% end %>
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <th scope="col">TE! ID</th>
       <th scope="col">BGG ID</th>
