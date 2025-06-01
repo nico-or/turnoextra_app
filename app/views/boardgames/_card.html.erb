@@ -18,15 +18,13 @@
         <div>
           <span class="text-muted text-decoration-line-through"><%= format_price(boardgame.reference_price) %></span>
         </div>
-        <div class="d-flex align-items-center gap-2">
-          <span class="fw-semibold fs-4 text-success"><%= format_price(boardgame.best_price) %></span>
-          <span class="badge bg-success">
-            <i class="bi bi-tag-fill me-1"></i> <%= boardgame.discount %>%
-          </span>
-        </div>
+        <span class="text-nowrap fw-semibold fs-4 text-success"><%= format_price(boardgame.best_price) %></span>
+        <span class="badge bg-success position-absolute top-0 end-0 m-2">
+          <i class="bi bi-tag-fill"></i> <%= boardgame.discount %>%
+        </span>
       <% else %>
         <div class="d-flex align-items-center gap-2">
-          <span class="fw-semibold fs-4 text-muted"><%= format_price(boardgame.best_price) %></span>
+          <span class="text-nowrap fw-semibold fs-4 text-muted"><%= format_price(boardgame.best_price) %></span>
         </div>
       <% end %>
     </div>
