@@ -2,6 +2,7 @@ class Listing < ApplicationRecord
   belongs_to :store
   belongs_to :boardgame, optional: true
   has_many :prices
+  has_many :identification_failures, as: :identifiable, dependent: :destroy
 
   validates :title, presence: true
   validates :url, presence: true
