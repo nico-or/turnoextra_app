@@ -46,11 +46,7 @@ module Admin
 
       if boardgame
         count = Listing.where(id: params[:listing_ids])
-                       .update_all({
-                        boardgame_id: boardgame.id,
-                        failed_local_identification: false,
-                        failed_bgg_api_identification: false
-                      })
+                       .update_all(boardgame_id: boardgame.id)
 
         flash[:notice] = "Updated #{count} Listings."
       else
