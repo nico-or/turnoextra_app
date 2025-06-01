@@ -4,16 +4,16 @@
     <%= f.label "Search by title:", class: "form-label" %>
     <%= f.search_field :query, class: "form-control form-control-lg" %>
   <% end %>
-  <table class="table">
+  <table class="table table-hover">
     <thead>
-      <th scope="col">Title</th>
       <th scope="col">Count</th>
+      <th scope="col">Title</th>
     </thead>
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
-          <td><%= link_to listing.lower_title, new_admin_identification_path(title: listing.lower_title) %></td>
           <td><%= listing.listings_count %></td>
+          <td><%= link_to listing.lower_title, new_admin_identification_path(title: listing.lower_title) %></td>
         </tr>
       <% end %>
     </tbody>
