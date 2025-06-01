@@ -2,9 +2,15 @@ module Admin
   class IdentificationsController < AdminController
     def index
       @listings = Listing.boardgames_only.failed_identification
-                         .group("LOWER(title)")
-                         .select("LOWER(title) AS lower_title, COUNT(*) AS listings_count")
-                         .order("listings_count DESC")
+        .group("LOWER(title)")
+        .select(
+          "LOWER(title) AS lower_title",
+          "COUNT(*) AS listings_count"
+        )
+        .order(
+          "listings_count DESC",
+          "LOWER(title) ASC"
+        )
     end
 
     def new
