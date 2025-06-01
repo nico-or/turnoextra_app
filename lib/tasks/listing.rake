@@ -12,19 +12,38 @@ namespace :listing do
   namespace :identify do
     desc "Identifies all Listings without a boardgame_id using local database"
     task database: :environment do
+      search_method_class = SearchMethod::DatabaseSearch
+      identifier = Identifier::ListingIdentifier.new(search_method_class:, threshold: 0.9)
+
+      exclude_ids = IdentificationFailure.where(identifiable_type: Listing.name,  search_method: search_method_class.name).pluck(:identifiable_id)
+
       listings = Listing.boardgames_only.unidentified
-        .where(failed_local_identification: false)
-        .where(failed_bgg_api_identification: false)
+        .where.not(id: exclude_ids)
+
       Rails.logger.info "Identifying #{listings.count} listings using local database"
-      Identifier::DatabaseIdentifier.new(listings).call
+
+      listings.find_each do |listing|
+        identifier.identify!(listing)
+      end
     end
 
     desc "Identifies all Listings without a boardgame_id using BGG API"
     task bgg_api: :environment do
+      search_method_class = SearchMethod::BggApiSearch
+      identifier = Identifier::ListingIdentifier.new(search_method_class:, threshold: 0.6)
+
+      exclude_ids = IdentificationFailure.where(identifiable_type: Listing.name,  search_method: search_method_class.name).pluck(:identifiable_id)
+
       listings = Listing.boardgames_only.unidentified
-        .where(failed_local_identification: true)
+        .where.not(id: exclude_ids)
+
       Rails.logger.info "Identifying #{listings.count} listings using BGG API"
-      Identifier::BggApiIdentifier.new(listings).call
+
+      listings.find_each do |listing|
+        identifier.identify!(listing)
+      ensure
+        sleep 2
+      end
     end
   end
 
