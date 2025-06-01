@@ -1,7 +1,7 @@
 <% set_meta_tags canonical: boardgame_url(@boardgame) %>
 <%= render 'opengraph', boardgame: @boardgame %>
 <h1><%= title @boardgame.title %></h1>
-<section>
+<section class="mb-5">
   <div class="row">
     <!-- Image column -->
     <div class="col-md-4 mb-4 mb-md-0">
@@ -13,7 +13,7 @@
     </div>
     <!-- Info column -->
     <div class="col-md-8">
-      <h2><%= t('.about') %></h2>
+      <h2 class="mb-2"><%= t('.about') %></h2>
       <dl class="row">
         <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.rank') %></dt>
         <dd class="col-md-8"><%= @boardgame.rank.zero? ? t('.unranked') : @boardgame.rank %></dd>
@@ -28,23 +28,23 @@
     </div>
   </div>
 </section>
-<section>
-  <h2><%= t("activerecord.models.listing.other") %></h2>
+<section class="my-5">
+  <h2 class="mb-2"><%= t("activerecord.models.listing.other") %></h2>
   <%= render "listing_table", listings: @listings %>
 </section>
-<section>
-  <h2><%= t(".historic_prices") %></h2>
+<section class="my-5">
+  <h2 class="mb-2"><%= t(".historic_prices") %></h2>
   <div class="border rounded p-2">
     <%= render 'price_chart', chart_data: @chart_data %>
   </div>
 </section>
-<section>
-  <h2><%= t(".actions") %></h2>
+<section class="my-5">
+  <h2 class="mb-2"><%= t(".actions") %></h2>
   <%= link_to t(".report_error"), new_boardgame_error_path(@boardgame), class: "btn btn-outline-danger" %>
 </section>
 <% if Current.user&.admin? %>
-  <section>
-    <h2>Admin</h2>
+  <section class="my-5">
+    <h2 class="mb-2">Admin</h2>
     <%= link_to 'View on Dashboard', admin_boardgame_path(@boardgame), class: "btn btn-outline-secondary" %>
   </section>
 <% end %>
