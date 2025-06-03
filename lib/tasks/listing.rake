@@ -13,7 +13,7 @@ namespace :listing do
     desc "Identifies all Listings without a boardgame_id using local database"
     task database: :environment do
       search_method_class = SearchMethod::DatabaseSearch
-      identifier = Identifier::ListingIdentifier.new(search_method_class:, threshold: 0.9)
+      identifier = Identifier::ListingIdentifier.new(search_method_class:, threshold: 0.85)
 
       exclude_ids = IdentificationFailure.where(identifiable_type: Listing.name,  search_method: search_method_class.name).pluck(:identifiable_id)
 
