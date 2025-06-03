@@ -22,9 +22,9 @@ module Identifier
       top_result = ranked_results.first
       boardgame = Boardgame.find_by(bgg_id: top_result.bgg_id)
 
-      return fail_all_siblings(listing, "no boardgame found for BGG ID: #{top_result.bgg_id}") if boardgame.nil?
+      return fail_all_siblings!(listing, "no boardgame found for BGG ID: #{top_result.bgg_id}") if boardgame.nil?
 
-      identify_all_siblings(listing, boardgame)
+      identify_all_siblings!(listing, boardgame)
       listing
     end
 
@@ -55,7 +55,7 @@ module Identifier
         .where("LOWER(title) = LOWER(?)", listing.title)
     end
 
-    def identify_all_siblings(listing, boardgame)
+    def identify_all_siblings!(listing, boardgame)
       count = listings_with_same_title(listing).update_all(boardgame_id: boardgame.id)
 
       log_info("#{count}x [#{listing.title}] => [#{boardgame.title}]")
