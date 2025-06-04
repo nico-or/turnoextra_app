@@ -29,7 +29,7 @@ module Identification
     private
 
     def listings_to_update
-      Listing.boardgames_only.unidentified
+      Listing.requires_identification
         .where("LOWER(title) = LOWER(?)", @listing.title)
     end
 
