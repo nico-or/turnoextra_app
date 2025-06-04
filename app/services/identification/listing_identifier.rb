@@ -49,7 +49,7 @@ module Identification
 
     def search_results(listing)
       query = build_query(listing)
-      search_method_class.new(query).call
+      search_method_class.call(query)
     end
 
     def rank_results(results)

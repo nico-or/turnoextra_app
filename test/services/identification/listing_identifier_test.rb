@@ -15,11 +15,8 @@ class ListingIdentifierTest < ActiveSupport::TestCase
     )
 
     search_method_class_mock = Minitest::Mock.new
-    search_method_instance_mock = Minitest::Mock.new
-
-    search_method_class_mock.expect(:new, search_method_instance_mock, [ listing.title.downcase ])
+    search_method_class_mock.expect(:call, [], [ listing.title.downcase ])
     search_method_class_mock.expect(:name, "SearchMethod::TestSearch")
-    search_method_instance_mock.expect(:call, [])
 
     identifier = ListingIdentifier.new(
       search_method_class: search_method_class_mock,
@@ -56,11 +53,8 @@ class ListingIdentifierTest < ActiveSupport::TestCase
     )
 
     search_method_class_mock = Minitest::Mock.new
-    search_method_instance_mock = Minitest::Mock.new
-
-    search_method_class_mock.expect(:new, search_method_instance_mock, [ listing.title.downcase ])
+    search_method_class_mock.expect(:call, [ search_result ], [ listing.title.downcase ])
     search_method_class_mock.expect(:name, "SearchMethod::TestSearch")
-    search_method_instance_mock.expect(:call, [ search_result ])
 
     identifier = ListingIdentifier.new(
       search_method_class: search_method_class_mock,
@@ -93,11 +87,8 @@ class ListingIdentifierTest < ActiveSupport::TestCase
     )
 
     search_method_class_mock = Minitest::Mock.new
-    search_method_instance_mock = Minitest::Mock.new
-
-    search_method_class_mock.expect(:new, search_method_instance_mock, [ listing.title.downcase ])
+    search_method_class_mock.expect(:call, [ search_result ], [ listing.title.downcase ])
     search_method_class_mock.expect(:name, "SearchMethod::TestSearch")
-    search_method_instance_mock.expect(:call, [ search_result ])
 
     identifier = ListingIdentifier.new(
       search_method_class: search_method_class_mock,
