@@ -5,32 +5,18 @@ require "minitest/mock"
 module Identification
 class ListingIdentifierTest < ActiveSupport::TestCase
   setup do
-    @logger = Logger.new(STDOUT, level: :fatal)
-  end
-
-  test "identify! with no results" do
-    listing = OpenStruct.new(
+    @listing = Listing.create!(
       title: "Test Game",
       boardgame_id: nil,
+      store: Store.first,
+      url: "https://example.com/listing/1"
     )
 
-    search_method_class_mock = Minitest::Mock.new
-    search_method_class_mock.expect(:call, [], [ listing.title.downcase ])
-    search_method_class_mock.expect(:name, "SearchMethod::TestSearch")
+    @logger = Logger.new(STDOUT, level: :fatal)
 
-    identifier = ListingIdentifier.new(
-      search_method_class: search_method_class_mock,
-      logger: @logger
-    )
-
-    identifier.identify!(listing)
-    listing.reload
-
-    assert_nil listing.boardgame_id
-  end
-
-  test "identify! with single result" do
-    search_result = SearchMethod::SearchResult.new(
+    # OpenStruct instead of SearchMethod::SearchResults
+    # since we need to change the value of similarity for some tests.
+    @search_result = OpenStruct.new(
       bgg_id: 123,
       title: "test game",
       year: Date.today.year,
@@ -38,106 +24,83 @@ class ListingIdentifierTest < ActiveSupport::TestCase
       rank: 1,
     )
 
-    boardgame = Boardgame.create!(
-      title: "Test Game",
-      bgg_id: search_result.bgg_id,
-      rank: search_result.rank,
-      year: search_result.year,
-    )
+    @search_method_class_mock_name = "SearchMethod::TestSearch"
+    @search_method_class_mock = Minitest::Mock.new
+    @search_method_class_mock.expect(:name, @search_method_class_mock_name)
+    @search_method_class_mock.expect(:nil?, false)
+  end
 
-    listing = Listing.create!(
-      title: "Test Game",
-      boardgame_id: nil,
-      store: Store.first,
-      url: "https://example.com/listing/1"
-    )
-
-    search_method_class_mock = Minitest::Mock.new
-    search_method_class_mock.expect(:call, [ search_result ], [ listing.title.downcase ])
-    search_method_class_mock.expect(:name, "SearchMethod::TestSearch")
+  test "identify! with no results" do
+    @search_method_class_mock.expect(:call, [], [ @listing.title.downcase ])
 
     identifier = ListingIdentifier.new(
-      search_method_class: search_method_class_mock,
+      search_method_class: @search_method_class_mock,
       logger: @logger
     )
 
-    identifier.identify!(listing)
-    listing.reload
+    identifier.identify!(@listing)
+    @listing.reload
 
-    assert_equal boardgame.id, listing.boardgame_id
+    assert_nil @listing.boardgame_id
+  end
+
+  test "identify! with single result" do
+    boardgame = Boardgame.create!(
+      title: "Test Game",
+      bgg_id: @search_result.bgg_id,
+      rank: @search_result.rank,
+      year: @search_result.year,
+    )
+
+    @search_method_class_mock.expect(:call, [ @search_result ], [ @listing.title.downcase ])
+
+    identifier = ListingIdentifier.new(
+      search_method_class: @search_method_class_mock,
+      logger: @logger
+    )
+
+    identifier.identify!(@listing)
+    @listing.reload
+
+    assert_equal boardgame.id, @listing.boardgame_id
   end
 
   test "identify! with no result above threshold" do
-    listing = Listing.create!(
-      title: "Test Game",
-      boardgame_id: nil,
-      store: Store.first,
-      url: "https://example.com/listing/1"
-    )
+    @search_result.similarity = 0.2
 
-    test_search_class = Class.new do
-      def self.call(*)
-        [ SearchMethod::SearchResult.new(
-          bgg_id: 123,
-          title: "test game",
-          year: Date.today.year,
-          similarity: 0.2,
-          rank: 1,
-        ) ]
-      end
-    end
+    @search_method_class_mock.expect(:call, [ @search_result ], [ @listing.title.downcase ])
 
     identifier = ListingIdentifier.new(
-      search_method_class: test_search_class,
+      search_method_class: @search_method_class_mock,
       logger: @logger
     )
 
-    identifier.identify!(listing)
-    listing.reload
+    identifier.identify!(@listing)
+    @listing.reload
 
-    assert_nil listing.boardgame_id
+    assert_nil @listing.boardgame_id
   end
 
-    test "identify! with already failed listing" do
-    listing = Listing.create!(
-      title: "Test Game",
-      boardgame_id: nil,
-      store: Store.first,
-      url: "https://example.com/listing/1"
-    )
+  test "identify! with already failed listing" do
+    @search_method_class_mock.expect(:call, [ @search_result ], [ @listing.title.downcase ])
+    @search_method_class_mock.expect(:name, @search_method_class_mock_name)
 
-    test_search_class = Class.new do
-      def self.call(*)
-        [ SearchMethod::SearchResult.new(
-          bgg_id: 123,
-          title: "test game",
-          year: Date.today.year,
-          similarity: 0.2,
-          rank: 1,
-        ) ]
-      end
-
-      def self.name
-        "SearchMethod::TestSearch"
-      end
-    end
-
-    listing.identification_failures.create!(
-      search_method: test_search_class.name,
+    @listing.identification_failures.create!(
+      search_method: @search_method_class_mock_name,
       reason: "test reason"
     )
 
-    assert IdentificationFailure.exists?(identifiable: listing, search_method: test_search_class.name)
+    assert IdentificationFailure.exists?(identifiable: @listing, search_method: @search_method_class_mock_name)
 
     identifier = ListingIdentifier.new(
-      search_method_class: test_search_class,
+      search_method_class: @search_method_class_mock,
       logger: @logger
     )
 
-    identifier.identify!(listing)
-    listing.reload
+    identifier.identify!(@listing)
+    @listing.reload
 
-    assert_nil listing.boardgame_id
+    assert_nil @listing.boardgame_id
   end
 end
 end
