@@ -9,6 +9,7 @@ class Listing < ApplicationRecord
 
   scope :boardgames_only, -> { where(is_boardgame: true) }
   scope :unidentified, -> { where(boardgame_id: nil) }
+  scope :requires_identification, -> { boardgames_only.unidentified }
   scope :failed_identification, -> {
     failed_ids = IdentificationFailure.where(identifiable_type: "Listing").pluck(:identifiable_id)
     where(id: failed_ids)

@@ -17,7 +17,7 @@ namespace :listing do
 
       exclude_ids = IdentificationFailure.where(identifiable_type: Listing.name,  search_method: search_method_class.name).pluck(:identifiable_id)
 
-      listings = Listing.boardgames_only.unidentified
+      listings = Listing.requires_identification
         .where.not(id: exclude_ids)
 
       Rails.logger.info "Identifying #{listings.count} listings using local database"
@@ -34,7 +34,7 @@ namespace :listing do
 
       exclude_ids = IdentificationFailure.where(identifiable_type: Listing.name,  search_method: search_method_class.name).pluck(:identifiable_id)
 
-      listings = Listing.boardgames_only.unidentified
+      listings = Listing.requires_identification
         .where.not(id: exclude_ids)
 
       Rails.logger.info "Identifying #{listings.count} listings using BGG API"
