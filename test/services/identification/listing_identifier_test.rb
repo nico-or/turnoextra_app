@@ -102,5 +102,24 @@ class ListingIdentifierTest < ActiveSupport::TestCase
 
     assert_nil @listing.boardgame_id
   end
+
+  test "identify! with no database record for result" do
+    @search_method_class_mock.expect(:call, [ @search_result ], [ @listing.title.downcase ])
+
+    identifier = ListingIdentifier.new(
+      search_method_class: @search_method_class_mock,
+      logger: @logger
+    )
+
+    # Another option would be to pass a BoardgameSearcher-like Proc to the constructor
+    # and pass a mock
+    ::Boardgame.stub(:find_by, nil) do
+      identifier.identify!(@listing)
+    end
+
+    @listing.reload
+
+    assert_nil @listing.boardgame_id
+  end
 end
 end
