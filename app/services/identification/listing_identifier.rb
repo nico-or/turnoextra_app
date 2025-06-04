@@ -1,30 +1,37 @@
 module Identification
   class ListingIdentifier
-    attr_reader :search_method_class, :threshold, :logger
+    attr_reader :search_method_class, :threshold, :logger, :listing_updater_class
 
-    def initialize(search_method_class:, threshold: 0.8, logger: default_logger)
+    def initialize(
+      search_method_class:,
+      threshold: 0.8,
+      logger: default_logger,
+      listing_updater_class: ListingUpdater
+    )
       @search_method_class = search_method_class
       @threshold = threshold
       @logger = ActiveSupport::TaggedLogging.new(logger)
+      @listing_updater_class = listing_updater_class
     end
 
     def identify!(listing)
       return if already_failed?(listing)
 
       results = search_results(listing)
+      listing_updater = listing_updater_class.new(listing, logger: logger)
 
-      return fail_all_siblings!(listing, "no results") if results.empty?
+      return listing_updater.fail_all!("no results", search_method_class) if results.empty?
 
       ranked_results = rank_results(results)
 
-      return fail_all_siblings!(listing, "no results above threshold") if ranked_results.empty?
+      return listing_updater.fail_all!("no results above threshold", search_method_class) if ranked_results.empty?
 
       top_result = ranked_results.first
       boardgame = Boardgame.find_by(bgg_id: top_result.bgg_id)
 
-      return fail_all_siblings!(listing, "no boardgame found for BGG ID: #{top_result.bgg_id}") if boardgame.nil?
+      return listing_updater.fail_all!("no boardgame found for BGG ID: #{top_result.bgg_id}", search_method_class) if boardgame.nil?
 
-      identify_all_siblings!(listing, boardgame)
+      listing_updater.identify_all!(boardgame)
       listing
     end
 
@@ -48,41 +55,6 @@ module Identification
     def rank_results(results)
       SearchMethod::SearchResultRanker.new(results).call
         .reject { |result| result.similarity < threshold }
-    end
-
-    def listings_with_same_title(listing)
-      Listing.boardgames_only.unidentified
-        .where("LOWER(title) = LOWER(?)", listing.title)
-    end
-
-    def identify_all_siblings!(listing, boardgame)
-      count = listings_with_same_title(listing).update_all(boardgame_id: boardgame.id)
-
-      log_info("#{count}x [#{listing.title}] => [#{boardgame.title}]")
-    end
-
-    def fail_all_siblings!(listing, reason)
-      siblings = listings_with_same_title(listing)
-      siblings.each { |l| register_failure(l, reason) }
-      count = siblings.count
-      log_error("#{count}x [#{listing.title}] failed to identify: #{reason}")
-      nil
-    end
-
-    def register_failure(listing, reason)
-      IdentificationFailure.create!(
-        identifiable: listing,
-        search_method: search_method_class,
-        reason: reason
-      )
-    end
-
-    def log_error(message)
-      logger.tagged("ListingIdentifier") { logger.error message }
-    end
-
-    def log_info(message)
-      logger.tagged("ListingIdentifier") { logger.info message }
     end
 
     def default_logger

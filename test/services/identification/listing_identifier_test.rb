@@ -4,6 +4,10 @@ require "minitest/mock"
 
 module Identification
 class ListingIdentifierTest < ActiveSupport::TestCase
+  setup do
+    @logger = Logger.new(STDOUT, level: :fatal)
+  end
+
   test "identify! with no results" do
     listing = OpenStruct.new(
       title: "Test Game",
@@ -18,7 +22,8 @@ class ListingIdentifierTest < ActiveSupport::TestCase
     search_method_instance_mock.expect(:call, [])
 
     identifier = ListingIdentifier.new(
-      search_method_class: search_method_class_mock
+      search_method_class: search_method_class_mock,
+      logger: @logger
     )
 
     identifier.identify!(listing)
@@ -58,7 +63,8 @@ class ListingIdentifierTest < ActiveSupport::TestCase
     search_method_instance_mock.expect(:call, [ search_result ])
 
     identifier = ListingIdentifier.new(
-      search_method_class: search_method_class_mock
+      search_method_class: search_method_class_mock,
+      logger: @logger
     )
 
     identifier.identify!(listing)
@@ -94,7 +100,8 @@ class ListingIdentifierTest < ActiveSupport::TestCase
     search_method_instance_mock.expect(:call, [ search_result ])
 
     identifier = ListingIdentifier.new(
-      search_method_class: search_method_class_mock
+      search_method_class: search_method_class_mock,
+      logger: @logger
     )
 
     identifier.identify!(listing)
