@@ -97,5 +97,47 @@ class ListingIdentifierTest < ActiveSupport::TestCase
 
     assert_nil listing.boardgame_id
   end
+
+    test "identify! with already failed listing" do
+    listing = Listing.create!(
+      title: "Test Game",
+      boardgame_id: nil,
+      store: Store.first,
+      url: "https://example.com/listing/1"
+    )
+
+    test_search_class = Class.new do
+      def self.call(*)
+        [ SearchMethod::SearchResult.new(
+          bgg_id: 123,
+          title: "test game",
+          year: Date.today.year,
+          similarity: 0.2,
+          rank: 1,
+        ) ]
+      end
+
+      def self.name
+        "SearchMethod::TestSearch"
+      end
+    end
+
+    listing.identification_failures.create!(
+      search_method: test_search_class.name,
+      reason: "test reason"
+    )
+
+    assert IdentificationFailure.exists?(identifiable: listing, search_method: test_search_class.name)
+
+    identifier = ListingIdentifier.new(
+      search_method_class: test_search_class,
+      logger: @logger
+    )
+
+    identifier.identify!(listing)
+    listing.reload
+
+    assert_nil listing.boardgame_id
+  end
 end
 end
