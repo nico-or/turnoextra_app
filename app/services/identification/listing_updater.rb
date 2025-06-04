@@ -8,16 +8,22 @@ module Identification
     def identify_all!(boardgame)
       count = listings_to_update.update_all(boardgame_id: boardgame.id)
       log_info("#{count}x [#{@listing.title}] => [#{boardgame.title}]")
+      count
     end
 
     def fail_all!(reason, search_method_class)
-      listings_to_update.each do |listing|
-        listing.identification_failures.create!(
+      failure_params = listings_to_update.map do |listing|
+        {
+          identifiable_type: listing.class.name,
+          identifiable_id: listing.id,
           search_method: search_method_class,
           reason: reason
-        )
+        }
       end
-      log_error("#{listings_to_update.count}x [#{@listing.title}] failed to identify: #{reason}")
+
+      count = IdentificationFailure.insert_all(failure_params)
+      log_error("#{count}x [#{@listing.title}] failed to identify: #{reason}")
+      count
     end
 
     private
