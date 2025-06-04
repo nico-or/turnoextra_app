@@ -1,4 +1,4 @@
-module Identifier
+module Identification
   class ListingIdentifier
     attr_reader :search_method_class, :threshold, :logger
 
