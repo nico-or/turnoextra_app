@@ -68,17 +68,6 @@ class ListingIdentifierTest < ActiveSupport::TestCase
   end
 
   test "identify! with no result above threshold" do
-    skip
-    # FIXME: refactor ListingIdentifier until is testable
-    search_result = SearchMethod::SearchResult.new(
-      bgg_id: 123,
-      title: "test game",
-      year: Date.today.year,
-      similarity: 2.0,
-      rank: 1,
-    )
-
-
     listing = Listing.create!(
       title: "Test Game",
       boardgame_id: nil,
@@ -86,12 +75,20 @@ class ListingIdentifierTest < ActiveSupport::TestCase
       url: "https://example.com/listing/1"
     )
 
-    search_method_class_mock = Minitest::Mock.new
-    search_method_class_mock.expect(:call, [ search_result ], [ listing.title.downcase ])
-    search_method_class_mock.expect(:name, "SearchMethod::TestSearch")
+    test_search_class = Class.new do
+      def self.call(*)
+        [ SearchMethod::SearchResult.new(
+          bgg_id: 123,
+          title: "test game",
+          year: Date.today.year,
+          similarity: 0.2,
+          rank: 1,
+        ) ]
+      end
+    end
 
     identifier = ListingIdentifier.new(
-      search_method_class: search_method_class_mock,
+      search_method_class: test_search_class,
       logger: @logger
     )
 
