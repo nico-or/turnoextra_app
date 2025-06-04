@@ -57,8 +57,17 @@ module Identification
         .reject { |result| result.similarity < threshold }
     end
 
+    # TODO: extract module
+    def log_info(msg)
+      @logger.tagged(logger_tag) { @logger.info msg }
+    end
+
     def default_logger
       Logger.new(STDOUT)
+    end
+
+    def logger_tag
+      self.class.name
     end
   end
 end
