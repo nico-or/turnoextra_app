@@ -1,5 +1,5 @@
 module SearchMethod
-  class SearchResultRanker
+  class SearchResultRanker < ApplicationService
     RANK_WEIGHT = 0.4
     SIMILARITY_WEIGHT = 0.6
 

@@ -1,5 +1,5 @@
 module Bgg
-  class BoardgameMetadataUpdater
+  class BoardgameMetadataUpdater < ApplicationService
     attr_reader :bgg_ids, :client
 
     def initialize(*bgg_ids, client: Bgg::Client.new)
