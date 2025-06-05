@@ -1,5 +1,5 @@
 module SearchMethod
-  class BggApiSearch
+  class BggApiSearch < ApplicationService
     attr_reader :query, :client
 
     def initialize(query)

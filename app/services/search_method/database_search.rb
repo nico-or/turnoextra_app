@@ -1,5 +1,5 @@
 module SearchMethod
-  class DatabaseSearch
+  class DatabaseSearch < ApplicationService
     attr_reader :query
 
     def initialize(query)
