@@ -13,10 +13,9 @@ Rails.application.routes.draw do
   root "pages#home"
   get "faq", to: "pages#faq"
 
-  resources :boardgames, only: %i[index show] do
-    get "search", on: :collection
-  end
+  get "search", to: "search#search"
 
+  resources :boardgames, only: %i[index show]
   resources :deals, only: %i[index]
   resources :stores, only: %i[index]
   resources :store_suggestions, only: %i[new create]

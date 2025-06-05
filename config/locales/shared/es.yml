@@ -5,6 +5,7 @@ es:
       deals: "Ofertas"
       board_games: "Juegos de mesa"
       stores: "Tiendas"
+      search: "Buscador"
       search_form:
         label: "Buscar juegos de mesa"
         placeholder: "Busca un juego de mesa..."
