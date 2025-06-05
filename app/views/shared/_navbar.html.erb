@@ -7,7 +7,7 @@
     <!-- search form -->
     <div class="row w-100">
       <div class="col-10 col-md-8 mx-auto">
-        <%= form_with url: search_boardgames_path, method: :get, html: { role: "search", "aria-label": t(".search_form.label") } do |f| %>
+        <%= form_with url: search_path, method: :get, html: { role: "search", "aria-label": t(".search_form.label") } do |f| %>
           <div class="input-group">
             <%= f.label :q, t(".search_form.label"), class: "visually-hidden" %>
             <%= f.search_field :q, placeholder: t(".search_form.placeholder"), class: "form-control rounded-start-2" %>

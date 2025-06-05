@@ -1,14 +1,7 @@
 es:
   boardgames:
-    search_form:
-      label: "Buscar"
-      submit: "Buscar"
-      placeholder: "Título del juego de mesa..."
-      results_for: "Resultados para '%{query}'"
     index:
       title: "Juegos de mesa"
-    search:
-      title: "Buscar Juegos de Mesa"
     show:
       about: "Datos del juego"
       historic_prices: "Precios Históricos"
