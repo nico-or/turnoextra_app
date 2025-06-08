@@ -6,7 +6,7 @@ class PriceTest < ActiveSupport::TestCase
     @default_params = {
       listing_id: @listing.id,
       amount: 10_000,
-      date: Date.today
+      date: Date.current
     }
   end
 

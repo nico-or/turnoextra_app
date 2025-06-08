@@ -43,7 +43,7 @@ class Bgg::RankCsvDownloader < ApplicationService
   end
 
   def output_outdated?
-    OUTPUT_PATH.mtime.to_date < Date.today
+    OUTPUT_PATH.mtime.to_date < Date.current
   end
 
   def login

@@ -19,7 +19,7 @@ class ListingIdentifierTest < ActiveSupport::TestCase
     @search_result = OpenStruct.new(
       bgg_id: 123,
       title: "test game",
-      year: Date.today.year,
+      year: Date.current.year,
       similarity: 1.0,
       rank: 1,
     )
