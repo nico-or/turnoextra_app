@@ -45,7 +45,7 @@ module Admin
     end
 
     def toggle_is_boardgame
-      count = Listing.where(id: params[:listing_ids]).update_all(is_boardgame: false)
+      count = Listing.where(id: params[:listing_ids]).update_all(is_boardgame: false, boardgame_id: nil)
       flash[:notice] = "Updated #{count} Listings."
       redirect_to admin_identifications_path
     end
