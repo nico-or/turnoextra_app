@@ -21,9 +21,9 @@ module Identification
         }
       end
 
-      count = IdentificationFailure.insert_all(failure_params)
-      log_error("#{count}x [#{@listing.title}] failed to identify: #{reason}")
-      count
+      results = IdentificationFailure.insert_all(failure_params)
+      log_error("#{results.count}x [#{@listing.title}] failed to identify: #{reason}")
+      results.count
     end
 
     private

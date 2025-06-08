@@ -23,7 +23,9 @@ class ListingUpdaterTest < ActiveSupport::TestCase
   test "identify_all!" do
     [ @l1, @l2, @l3 ].each(&:save!)
 
-    @listing_updater.identify_all!(@boardgame)
+    count = @listing_updater.identify_all!(@boardgame)
+
+    assert_equal 2, count
 
     [ @l1, @l2, @l3 ].each(&:reload)
 
@@ -38,7 +40,9 @@ class ListingUpdaterTest < ActiveSupport::TestCase
 
     @l1.update(boardgame: @boardgame)
 
-    @listing_updater.identify_all!(@boardgame)
+    count = @listing_updater.identify_all!(@boardgame)
+
+    assert_equal 1, count
 
     [ @l1, @l2, @l3 ].each(&:reload)
 
@@ -52,7 +56,9 @@ class ListingUpdaterTest < ActiveSupport::TestCase
 
     @l2.update(boardgame: @boardgame)
 
-    @listing_updater.identify_all!(@boardgame)
+    count = @listing_updater.identify_all!(@boardgame)
+
+    assert_equal 1, count
 
     [ @l1, @l2, @l3 ].each(&:reload)
 
@@ -65,7 +71,9 @@ class ListingUpdaterTest < ActiveSupport::TestCase
     [ @l1, @l2, @l3 ].each(&:save!)
 
     assert_difference("IdentificationFailure.count", 2) do
-      @listing_updater.fail_all!(@fail_reason, @search_method)
+      count = @listing_updater.fail_all!(@fail_reason, @search_method)
+
+      assert_equal 2, count
     end
 
     [ @l1, @l2, @l3 ].each(&:reload)
