@@ -4,18 +4,18 @@
     <%= f.label "Search by title:", class: "form-label" %>
     <%= f.search_field :query, class: "form-control form-control-lg" %>
   <% end %>
+  <%= render 'pagy/info', pagy: @pagy %>
   <table class="table table-hover">
     <thead>
-      <th scope="col">Count</th>
       <th scope="col">Title</th>
     </thead>
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
-          <td><%= listing.listings_count %></td>
-          <td><%= link_to listing.lower_title, new_admin_identification_path(title: listing.lower_title) %></td>
+          <td><%= listing.title %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= render 'pagy/nav', pagy: @pagy %>
 </section>
