@@ -1,27 +1,16 @@
 module Admin
   class IdentificationsController < AdminController
     def index
-      @listings = Listing.boardgames_only.failed_identification
-        .group("LOWER(title)")
-        .select(
-          "LOWER(title) AS lower_title",
-          "COUNT(*) AS listings_count"
-        )
-        .order(
-          "listings_count DESC",
-          "LOWER(title) ASC"
-        )
+      listings = Listing.requires_identification.order("LOWER(title)")
+
+      @pagy, @listings = pagy(listings)
     end
 
     def new
-      @listings = Listing.boardgames_only.failed_identification.order(:id)
-
       if params[:query].present?
-        @listings = @listings.with_title_like(params[:query])
-      end
-
-      if params[:title].present?
-        @listings = @listings.where("LOWER(title) = LOWER(?)", params[:title])
+        @listings = Listing.requires_identification.order(:id).where("similarity(title, ?) > ?", params[:query], 0.6)
+      else
+        @listings = []
       end
 
       if params[:bgg_query].present?
