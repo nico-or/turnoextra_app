@@ -9,7 +9,7 @@ class ImpressionCountTest < ActionDispatch::IntegrationTest
     get boardgame_path(@boardgame)
     impression = Impression.last
     assert_not_nil impression
-    assert_equal Date.today, impression.date
+    assert_equal Date.current, impression.date
     assert_equal 1, impression.count
   end
 
@@ -17,7 +17,7 @@ class ImpressionCountTest < ActionDispatch::IntegrationTest
     get boardgame_path(@boardgame)
     first_impression = Impression.last
     assert_not_nil first_impression
-    assert_equal Date.today, first_impression.date
+    assert_equal Date.current, first_impression.date
     assert_equal 1, first_impression.count
 
     # Visit again
@@ -27,7 +27,7 @@ class ImpressionCountTest < ActionDispatch::IntegrationTest
 
     second_impression = Impression.last
     assert_not_nil second_impression
-    assert_equal Date.today, second_impression.date
+    assert_equal Date.current, second_impression.date
     assert_equal 2, second_impression.count
   end
 end

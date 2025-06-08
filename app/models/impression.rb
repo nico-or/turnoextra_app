@@ -12,7 +12,7 @@ class Impression < ApplicationRecord
   private
 
   def set_default_date
-    self.date ||= Date.today
+    self.date ||= Date.current
   end
 
   def set_default_count

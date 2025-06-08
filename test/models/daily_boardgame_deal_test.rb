@@ -8,7 +8,7 @@ class DailyBoardgameDealTest < ActiveSupport::TestCase
       best_price: 3000,
       reference_price: 5000,
       discount: 2000,
-      date: Date.today
+      date: Date.current
     }
   end
 
