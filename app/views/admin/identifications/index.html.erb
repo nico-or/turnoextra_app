@@ -12,7 +12,7 @@
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
-          <td><%= listing.title %></td>
+          <td><%= link_to listing.title, admin_listing_path(listing) %></td>
         </tr>
       <% end %>
     </tbody>
