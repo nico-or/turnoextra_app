@@ -8,7 +8,6 @@
     <%= csp_meta_tag %>
     <% noindex %>
     <%= display_meta_tags(default_meta_tags) %>
-    <%= yield :head %>
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
     <link rel="icon" href="/icon.png" type="image/png">
@@ -16,6 +15,8 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app %>
+    <%= javascript_importmap_tags %>
+    <%= yield :head %>
   </head>
   <body class="d-flex flex-column min-vh-100">
     <header>
