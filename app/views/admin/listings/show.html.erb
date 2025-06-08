@@ -5,39 +5,48 @@
 </section>
 <section>
   <h2>Actions</h2>
-  <h3>Search BGG</h3>
-  <%= form_with url: admin_listing_path(@listing), method: :get do |f| %>
-    <%= f.search_field :bgg_query, class:"form-control form-control-lg", placeholder:"Search BGG API by title..." %>
-  <% end %>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">BGG ID</th>
-        <th scope="col">Rank</th>
-        <th scope="col">Year</th>
-        <th scope="col">Title</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @boardgames.each do |boardgame| %>
+  <div class="mb-3">
+    <h3>Search BGG</h3>
+    <%= form_with url: admin_listing_path(@listing), method: :get do |f| %>
+      <%= f.search_field :bgg_query, class:"form-control form-control-lg", placeholder:"Search BGG API by title..." %>
+    <% end %>
+    <table class="table table-hover">
+      <thead>
         <tr>
-          <td><%= link_to boardgame.id, admin_boardgame_path(boardgame) %></td>
-          <td>
-            <%= link_to safe_url(boardgame.bgg_url), target: '_blank', rel: "noreferrer noopener" do %>
-              <%= boardgame.bgg_id %> <i class="bi bi-box-arrow-up-right"></i>
-            <% end %>
-          </td>
-          <td><%= boardgame.rank %>
-            <td><%= boardgame.year %></td>
-            <td><%= boardgame.title %></td>
-            <td><%= button_to 'Identify', identify_admin_listing_path(@listing),
+          <th scope="col">ID</th>
+          <th scope="col">BGG ID</th>
+          <th scope="col">Rank</th>
+          <th scope="col">Year</th>
+          <th scope="col">Title</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @boardgames.each do |boardgame| %>
+          <tr>
+            <td><%= link_to boardgame.id, admin_boardgame_path(boardgame) %></td>
+            <td>
+              <%= link_to safe_url(boardgame.bgg_url), target: '_blank', rel: "noreferrer noopener" do %>
+                <%= boardgame.bgg_id %> <i class="bi bi-box-arrow-up-right"></i>
+              <% end %>
+            </td>
+            <td><%= boardgame.rank %>
+              <td><%= boardgame.year %></td>
+              <td><%= boardgame.title %></td>
+              <td><%= button_to 'Identify', identify_admin_listing_path(@listing),
             params: { bgg_id: boardgame.bgg_id }, method: :patch, class: "btn btn-primary"%></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <h3>Unidentifty</h3>
-    <%= button_to 'Unidentifty', unidentify_admin_listing_path(@listing), method: :patch, class: "btn btn-danger" %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="mb-3">
+      <h3>Unidentifty</h3>
+      <%= button_to 'Unidentifty', unidentify_admin_listing_path(@listing), method: :patch, class: "btn btn-danger" %>
+    </div>
+    <div class="mb-3">
+      <h3>Not a boardgame</h3>
+      <%= button_to 'Not a boardgame', toggle_is_boardgame_admin_identifications_path,
+    params:{listing_ids: [@listing.id]},  class: "btn btn-danger" %>
+    </div>
   </section>
