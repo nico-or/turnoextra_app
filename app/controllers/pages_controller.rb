@@ -1,6 +1,15 @@
 class PagesController < ApplicationController
   def home
     reference_date = Price.latest_update_date
+    yesterday_date = reference_date - 1.day
+
+    yesterday_prices = Boardgame.joins(:prices)
+    .where(prices: { date: yesterday_date })
+    .select(
+      "boardgames.id AS boardgame_id",
+      "MIN(prices.amount) AS amount"
+    )
+    .group("boardgames.id")
 
     base_query = Boardgame.joins(:daily_boardgame_deals)
       .select(
@@ -13,6 +22,13 @@ class PagesController < ApplicationController
 
     @deals = base_query
       .where("daily_boardgame_deals.discount > 0")
+      .order("discount DESC")
+      .limit(8)
+
+    @new_deals = base_query
+      .with(yesterday_prices: yesterday_prices)
+      .joins("JOIN yesterday_prices ON yesterday_prices.boardgame_id = boardgames.id")
+      .where("yesterday_prices.amount > daily_boardgame_deals.best_price")
       .order("discount DESC")
       .limit(8)
 
