@@ -2,26 +2,10 @@
   <h1 class="display-4 fw-bold"><%= t('app.name') %></h1>
   <p class="lead fw-medium"><%= t('app.slogan') %></p>
 </hgroup>
-<% unless @new_deals.empty?  %>
-  <section class="my-5">
-    <h2 class="fw-bold"><%= t('.new_deals') %></h2>
-    <%= render partial: 'boardgames/grid', locals: { boardgames: @new_deals} %>
-  </section>
-<% end %>
-<section class="my-5">
-  <h2 class="fw-bold"><%= t('.best_deals') %></h2>
-  <%= render partial: 'boardgames/grid', locals: { boardgames: @deals } %>
-</section>
-<% unless @most_viewed.empty?  %>
-  <section class="my-5">
-    <h2 class="fw-bold"><%= t('.most_viewed') %></h2>
-    <%= render partial: 'boardgames/grid', locals: { boardgames: @most_viewed } %>
-  </section>
-<% end %>
-<section class="my-5">
-  <h2 class="fw-bold"><%= t('.top_bgg') %></h2>
-  <%= render partial: 'boardgames/grid', locals: { boardgames: @top_bgg } %>
-</section>
+<%= render_collection(@new_deals, 'new_deals') %>
+<%= render_collection(@deals, 'deals') %>
+<%= render_collection(@most_viewed, 'most_viewed') %>
+<%= render_collection(@top_bgg, 'top_bgg') %>
 <section class="my-5">
   <h2 class="fw-bold"><%= t('.help_us_grow') %></h2>
   <div>
