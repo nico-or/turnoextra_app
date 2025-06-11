@@ -8,6 +8,12 @@ es:
       top_bgg:
         title: "Mejores según BoardGameGeek"
         fallback: "No hay juegos populares según BGG en este momento."
+      top_100_discounted_bgg:
+        title: "Top 100 de BoardGameGeek en oferta"
+        fallback: "No hay juegos del top 100 de BoardGameGeek con descuento en este momento."
+      top_1000_discounted_bgg:
+        title: "Top 1000 de BoardGameGeek en oferta"
+        fallback: "No hay juegos del top 1000 de BoardGameGeek con descuento en este momento."
       most_viewed:
         title: "Más vistos"
         fallback: "Aún no hay juegos más vistos. ¡Explora y ayuda a crear esta lista!"

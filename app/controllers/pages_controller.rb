@@ -4,6 +4,8 @@ class PagesController < ApplicationController
     @new_deals = new_price_drops
     @top_bgg = top_ranked_boardgames
     @most_viewed = most_viewed_boardgames
+    @top_100_discounted_bgg = top_bgg_games(100)
+    @top_1000_discounted_bgg = top_bgg_games(1000)
   end
 
   private
@@ -57,6 +59,15 @@ class PagesController < ApplicationController
     base_query
       .where("boardgames.rank > 0")
       .order("boardgames.rank ASC")
+  end
+
+  def top_bgg_games(bgg_rank_cut)
+    base_query
+      .where("boardgames.rank BETWEEN 1 AND ?", bgg_rank_cut)
+      .order(
+        "daily_boardgame_deals.discount DESC",
+        "boardgames.rank ASC"
+      )
   end
 
   def most_viewed_boardgames
