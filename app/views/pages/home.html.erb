@@ -2,6 +2,12 @@
   <h1 class="display-4 fw-bold"><%= t('app.name') %></h1>
   <p class="lead fw-medium"><%= t('app.slogan') %></p>
 </hgroup>
+<% unless @new_deals.empty?  %>
+  <section class="my-5">
+    <h2 class="fw-bold"><%= t('.new_deals') %></h2>
+    <%= render partial: 'boardgames/grid', locals: { boardgames: @new_deals} %>
+  </section>
+<% end %>
 <section class="my-5">
   <h2 class="fw-bold"><%= t('.best_deals') %></h2>
   <%= render partial: 'boardgames/grid', locals: { boardgames: @deals } %>
