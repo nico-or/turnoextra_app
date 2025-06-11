@@ -2,6 +2,7 @@ es:
   pages:
     home:
       search_boardgames: "Buscar Juegos de Mesa"
+      last_update_message: "Última actualización de precios: %{datetime}"
       deals:
         title: "Mejores ofertas"
         fallback: "No hay ofertas en este momento."
