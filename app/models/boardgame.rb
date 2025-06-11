@@ -38,4 +38,8 @@ class Boardgame < ApplicationRecord
     selected_name = boardgame_names.find_by(preferred: true) || boardgame_names.first
     selected_name&.value
   end
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
 end
