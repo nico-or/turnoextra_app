@@ -1,7 +1,5 @@
 class BoardgamesController < ApplicationController
   def index
-    reference_date = DailyBoardgameDeal.latest_update_date
-
     boardgames = Boardgame
       .joins(:daily_boardgame_deals)
       .select(
@@ -11,7 +9,6 @@ class BoardgamesController < ApplicationController
         "daily_boardgame_deals.discount",
         "daily_boardgame_deals.best_price",
         "daily_boardgame_deals.reference_price")
-      .where(daily_boardgame_deals: { date: reference_date })
       .order(:title)
       .distinct
 
@@ -25,8 +22,7 @@ class BoardgamesController < ApplicationController
       Impression.find_or_create_by(trackable: @boardgame, date: Date.current).increment!(:count)
     end
 
-    @reference_date = DailyBoardgameDeal.latest_update_date
-    @deal = @boardgame.daily_boardgame_deals.find_by(date: @reference_date)
+    @reference_date = Price.latest_update_date
 
     @listings = Listing.joins(:prices, :store)
       .where(boardgame: @boardgame)

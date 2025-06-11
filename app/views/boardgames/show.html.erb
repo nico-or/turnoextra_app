@@ -20,7 +20,7 @@
         <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.year') %></dt>
         <dd class="col-md-8"><%= @boardgame.year %></dd>
         <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.reference_price') %></dt>
-        <dd class="col-md-8"><%= format_price(@deal.reference_price) %></dd>
+        <dd class="col-md-8"><%= format_price(@boardgame.daily_boardgame_deals.first&.reference_price) %></dd>
       </dl>
       <%= link_to safe_url( Bgg.uri_for(@boardgame)), rel: 'noopener', class: "btn btn-outline-secondary w-100" do %>
         <%= t('.bgg_link') %> <i class="bi bi-box-arrow-up-right"></i>

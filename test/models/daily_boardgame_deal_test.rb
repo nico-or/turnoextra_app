@@ -7,8 +7,7 @@ class DailyBoardgameDealTest < ActiveSupport::TestCase
       boardgame_id: @boardgame.id,
       best_price: 3000,
       reference_price: 5000,
-      discount: 2000,
-      date: Date.current
+      discount: 2000
     }
   end
 
@@ -77,17 +76,5 @@ class DailyBoardgameDealTest < ActiveSupport::TestCase
     attrs = @valid_attributes.merge(discount: 99.99)
     deal = DailyBoardgameDeal.new(attrs)
     assert_not deal.valid?
-  end
-
-  test "should not allow creation without date" do
-    attrs = @valid_attributes.merge(date: nil)
-    deal = DailyBoardgameDeal.new(attrs)
-    assert_not deal.valid?
-  end
-
-  test "should not allow duplicate boardgame/date pair" do
-    DailyBoardgameDeal.create!(@valid_attributes)
-    duplicate = DailyBoardgameDeal.new(@valid_attributes)
-    assert_not duplicate.valid?
   end
 end
