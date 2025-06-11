@@ -1,6 +1,7 @@
 <hgroup class="border-bottom p-3 mb-4">
   <h1 class="display-4 fw-bold"><%= t('app.name') %></h1>
   <p class="lead fw-medium"><%= t('app.slogan') %></p>
+  <p class="text-muted small"><%= t('.last_update_message',datetime: @last_update_datetime)%></p>
 </hgroup>
 <%= render_collection(@new_deals, 'new_deals') %>
 <%= render_collection(@deals, 'deals') %>

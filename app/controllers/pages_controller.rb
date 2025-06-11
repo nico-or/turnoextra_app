@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    @last_update_datetime = Price.where(date: reference_date).maximum(:updated_at).in_time_zone("America/Santiago")
     @deals = top_discounted_deals
     @new_deals = new_price_drops
     @top_bgg = top_ranked_boardgames
