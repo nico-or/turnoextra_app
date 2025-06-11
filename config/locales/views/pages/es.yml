@@ -2,10 +2,18 @@ es:
   pages:
     home:
       search_boardgames: "Buscar Juegos de Mesa"
-      best_deals: "Mejores ofertas"
-      top_bgg: "Mejores según BoardGameGeek"
-      most_viewed: "Más vistos"
-      new_deals: "Nuevas ofertas"
+      deals:
+        title: "Mejores ofertas"
+        fallback: "No hay ofertas en este momento."
+      top_bgg:
+        title: "Mejores según BoardGameGeek"
+        fallback: "No hay juegos populares según BGG en este momento."
+      most_viewed:
+        title: "Más vistos"
+        fallback: "Aún no hay juegos más vistos. ¡Explora y ayuda a crear esta lista!"
+      new_deals:
+        title: "Nuevas ofertas"
+        fallback: "No hemos encontrado nuevas ofertas hoy."
       suggest_store: "Sugerir una tienda"
       help_us_grow: "Ayúdanos a mejorar Turno Extra"
       cards:
