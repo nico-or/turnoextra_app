@@ -6,7 +6,6 @@ module Bgg
 
     def initialize(version = DEFAULT_VERSION)
       @client = case version
-      when :xml_v1 then Bgg::Versions::XmlV1::Client.new
       when :xml_v2 then Bgg::Versions::XmlV2::Client.new
       else raise ArgumentError, "Unsupported version: #{version}"
       end
