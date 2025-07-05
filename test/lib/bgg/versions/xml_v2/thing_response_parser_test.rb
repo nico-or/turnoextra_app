@@ -20,6 +20,8 @@ module Bgg::Versions::XmlV2
       assert_match %r{__thumb/img/}, game.thumbnail_url
       assert_match %r{__original/img/}, game.image_url
       assert_match %r{In HINT, your teammates}, game.description
+      assert_equal 4, game.min_players
+      assert_equal 10, game.max_players
     end
 
     test "#parse! a XML response with multiple boardgames" do

@@ -16,7 +16,9 @@ class BggTest < ActiveSupport::TestCase
       year: nil,
       description: nil,
       thumbnail_url: nil,
-      image_url: nil
+      image_url: nil,
+      min_players: 1,
+      max_players: 2
     )
     boardgame_url = URI.parse("https://boardgamegeek.com/boardgame/822")
     assert_equal boardgame_url, Bgg.uri_for(boardgame)

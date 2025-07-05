@@ -6,6 +6,8 @@ module Bgg
     :titles,
     :description,
     :thumbnail_url,
-    :image_url
+    :image_url,
+    :min_players,
+    :max_players
   )
 end

@@ -9,7 +9,9 @@ class ThingCreatorTest < ActiveSupport::TestCase
       titles: [ "Test Boardgame", "Juego de Prueba" ],
       description: "Lorem ipsum.",
       image_url: "https://www.example.com/images/01.jpg",
-      thumbnail_url: "https://www.example.com/images/01-thumb.jpg"
+      thumbnail_url: "https://www.example.com/images/01-thumb.jpg",
+      min_players: 1,
+      max_players: 4,
     )
   end
 
