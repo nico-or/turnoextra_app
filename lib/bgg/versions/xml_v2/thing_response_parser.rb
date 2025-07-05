@@ -21,6 +21,9 @@ module Bgg::Versions::XmlV2::ThingResponseParser
         image_url: node.at_xpath("image")&.text&.strip,
         min_players: node.at_xpath("minplayers")&.attr(:value)&.to_i,
         max_players: node.at_xpath("maxplayers")&.attr(:value)&.to_i,
+        min_playtime: node.at_xpath("minplaytime")&.attr(:value)&.to_i,
+        max_playtime: node.at_xpath("maxplaytime")&.attr(:value)&.to_i,
+        playingtime: node.at_xpath("playingtime")&.attr(:value)&.to_i,
       )
     end
   end

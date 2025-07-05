@@ -12,6 +12,9 @@ class ThingCreatorTest < ActiveSupport::TestCase
       thumbnail_url: "https://www.example.com/images/01-thumb.jpg",
       min_players: 1,
       max_players: 4,
+      min_playtime: 10,
+      max_playtime: 45,
+      playingtime: 45,
     )
   end
 

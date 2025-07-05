@@ -22,6 +22,9 @@ module Bgg::Versions::XmlV2
       assert_match %r{In HINT, your teammates}, game.description
       assert_equal 4, game.min_players
       assert_equal 10, game.max_players
+      assert_equal 45, game.min_playtime
+      assert_equal 60, game.max_playtime
+      assert_equal 60, game.playingtime
     end
 
     test "#parse! a XML response with multiple boardgames" do

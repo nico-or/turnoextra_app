@@ -8,6 +8,9 @@ module Bgg
     :thumbnail_url,
     :image_url,
     :min_players,
-    :max_players
+    :max_players,
+    :min_playtime,
+    :max_playtime,
+    :playingtime
   )
 end
