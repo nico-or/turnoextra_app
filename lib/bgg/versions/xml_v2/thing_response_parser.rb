@@ -10,6 +10,13 @@ module Bgg::Versions::XmlV2::ThingResponseParser
       response.xpath("/items/item")
     end
 
+    def statistics(thing_node)
+      statistics_node = thing_node.at_xpath("statistics")
+      return unless statistics_node
+
+      Bgg::Versions::XmlV2::StatisticsParser.parse(statistics_node)
+    end
+
     def build_thing(node)
       Bgg::Boardgame.new(
         bgg_id: node[:id].to_i,
@@ -24,6 +31,7 @@ module Bgg::Versions::XmlV2::ThingResponseParser
         min_playtime: node.at_xpath("minplaytime")&.attr(:value)&.to_i,
         max_playtime: node.at_xpath("maxplaytime")&.attr(:value)&.to_i,
         playingtime: node.at_xpath("playingtime")&.attr(:value)&.to_i,
+        statistics: statistics(node)
       )
     end
   end

@@ -15,6 +15,7 @@ class ThingCreatorTest < ActiveSupport::TestCase
       min_playtime: 10,
       max_playtime: 45,
       playingtime: 45,
+      statistics: nil,
     )
   end
 

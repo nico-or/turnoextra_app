@@ -11,6 +11,7 @@ module Bgg
     :max_players,
     :min_playtime,
     :max_playtime,
-    :playingtime
+    :playingtime,
+    :statistics
   )
 end
