@@ -64,5 +64,13 @@ module Bgg::Versions::XmlV2
       Api.thing(bgg_id, stats: true, versions: true)
       assert_requested :get, url
     end
+
+    test "#thing ignores unsupported parameters" do
+      bgg_id = 42
+      url = "https://boardgamegeek.com/xmlapi2/thing?id=#{bgg_id}&type=boardgame,boardgameexpansion,rpgitem"
+      stub_request(:get, url)
+      Api.thing(bgg_id, unsupported_param: true)
+      assert_requested :get, url
+    end
   end
 end

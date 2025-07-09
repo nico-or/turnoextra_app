@@ -19,10 +19,10 @@ module Bgg::Versions::XmlV2
         response
       end
 
-      def thing(*id, versions: false, stats: false)
+      def thing(*id, **kwargs)
         params = default_params.merge(id: build_boardgame_query(id))
-        params = params.merge(versions: 1) if versions
-        params = params.merge(stats: 1) if stats
+        params = params.merge(versions: 1) if kwargs[:versions]
+        params = params.merge(stats: 1) if kwargs[:stats]
         response = get("/thing", query: params)
         return unless response.code == 200
 
