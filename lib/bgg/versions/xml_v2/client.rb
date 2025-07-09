@@ -6,8 +6,8 @@ module Bgg::Versions::XmlV2
       SearchResponseParser.parse!(response)
     end
 
-    def boardgame(*id)
-      response = Api.thing(id)
+    def boardgame(*id, **kwargs)
+      response = Api.thing(*id, **kwargs)
       return unless response
       ThingResponseParser.parse!(response)
     end
