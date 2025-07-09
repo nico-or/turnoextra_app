@@ -19,19 +19,21 @@ module Bgg
       end
     end
 
-    def boardgame(*id)
-      cache_key = build_cache_key(:boardgame, *id)
+    def boardgame(*id, **kwargs)
+      cache_key = build_cache_key(:boardgame, *id, **kwargs)
       Rails.cache.fetch(cache_key, expires_in: TTL) do
-        @client.boardgame(*id) || []
+        @client.boardgame(*id, **kwargs) || []
       end
     end
 
     private
 
-    def build_cache_key(action, *args)
+    def build_cache_key(action, *args, **kwargs)
+      action_string = action.to_s
       api_version_string = @client.class.to_s.parameterize
-      args_string = args.map(&:to_s).join("_")
-      "#{api_version_string}/#{action}/#{args_string}"
+      args_string = args.map(&:to_s).join("_") if args.any?
+      kwargs_string = kwargs.map { |k, v| "#{k}=#{v}" }.join("&") if kwargs.any?
+      "#{api_version_string}/#{action_string}/#{args_string}/#{kwargs_string}"
     end
   end
 end
