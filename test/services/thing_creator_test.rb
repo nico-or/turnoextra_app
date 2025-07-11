@@ -16,6 +16,7 @@ class ThingCreatorTest < ActiveSupport::TestCase
       max_playtime: 45,
       playingtime: 45,
       statistics: nil,
+      links: [],
     )
   end
 

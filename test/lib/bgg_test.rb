@@ -22,7 +22,8 @@ class BggTest < ActiveSupport::TestCase
       min_playtime: 30,
       max_playtime: 60,
       playingtime: 60,
-      statistics: nil
+      statistics: nil,
+      links: [],
     )
     boardgame_url = URI.parse("https://boardgamegeek.com/boardgame/822")
     assert_equal boardgame_url, Bgg.uri_for(boardgame)

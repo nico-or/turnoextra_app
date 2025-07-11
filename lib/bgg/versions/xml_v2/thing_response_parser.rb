@@ -32,7 +32,8 @@ module Bgg::Versions::XmlV2
           min_playtime: node.at_xpath("minplaytime")&.attr(:value)&.to_i,
           max_playtime: node.at_xpath("maxplaytime")&.attr(:value)&.to_i,
           playingtime: node.at_xpath("playingtime")&.attr(:value)&.to_i,
-          statistics: statistics(node)
+          statistics: statistics(node),
+          links: LinksParser.parse(node),
         )
       end
     end

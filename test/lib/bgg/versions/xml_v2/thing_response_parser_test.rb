@@ -25,6 +25,7 @@ module Bgg::Versions::XmlV2
       assert_equal 45, game.min_playtime
       assert_equal 60, game.max_playtime
       assert_equal 60, game.playingtime
+      assert_equal 16, game.links.count
     end
 
     test "#parse! a XML response with multiple boardgames" do
