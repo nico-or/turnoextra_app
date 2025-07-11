@@ -26,6 +26,11 @@ module Bgg::Versions::XmlV2
       assert_equal 60, game.max_playtime
       assert_equal 60, game.playingtime
       assert_equal 16, game.links.count
+
+      assert_equal [ "Party Game" ], game.categories
+      assert_equal [ "Acting", "Line Drawing", "Singing", "Team-Based Game" ], game.mechanics
+      assert_equal [ "Jesper Bülow", "Jonas Resting-Jeppesen" ], game.designers
+      assert_equal [ "Jonas Resting-Jeppesen" ], game.artists
     end
 
     test "#parse! a XML response with multiple boardgames" do
