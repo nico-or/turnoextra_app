@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_10_230941) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_14_222253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -130,6 +130,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_230941) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "things_ranks", force: :cascade do |t|
+    t.bigint "boardgame_id", null: false
+    t.string "rank_type"
+    t.integer "rank_id"
+    t.string "name"
+    t.string "friendlyname"
+    t.integer "value"
+    t.float "bayesaverage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boardgame_id"], name: "index_things_ranks_on_boardgame_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -143,4 +156,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_230941) do
   add_foreign_key "daily_boardgame_deals", "boardgames"
   add_foreign_key "listings", "stores"
   add_foreign_key "prices", "listings"
+  add_foreign_key "things_ranks", "boardgames"
 end

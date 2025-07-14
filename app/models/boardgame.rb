@@ -5,6 +5,7 @@ class Boardgame < ApplicationRecord
   has_many :daily_boardgame_deals # TODO: replace with has_one
   has_many :boardgame_names
   has_many :impressions, as: :trackable
+  has_many :ranks, class_name: "Things::Rank"
 
   validates :title, presence: true
   validates :year, presence: true, numericality: { only_integer: true }
