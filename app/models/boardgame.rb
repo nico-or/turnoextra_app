@@ -6,6 +6,7 @@ class Boardgame < ApplicationRecord
   has_many :boardgame_names
   has_many :impressions, as: :trackable
   has_many :ranks, class_name: "Things::Rank"
+  has_many :links, class_name: "Things::Link"
 
   validates :title, presence: true
   validates :year, presence: true, numericality: { only_integer: true }
