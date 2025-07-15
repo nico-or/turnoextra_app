@@ -1,5 +1,4 @@
 require "test_helper"
-require "ostruct"
 require "minitest/mock"
 
 module Identification
@@ -14,9 +13,7 @@ class ListingIdentifierTest < ActiveSupport::TestCase
 
     @logger = Logger.new(STDOUT, level: :fatal)
 
-    # OpenStruct instead of SearchMethod::SearchResults
-    # since we need to change the value of similarity for some tests.
-    @search_result = OpenStruct.new(
+    @search_result = SearchMethod::SearchResult.new(
       bgg_id: 123,
       title: "test game",
       year: Date.current.year,
@@ -66,7 +63,7 @@ class ListingIdentifierTest < ActiveSupport::TestCase
   end
 
   test "identify! with no result above threshold" do
-    @search_result.similarity = 0.2
+    @search_result = @search_result.with(similarity: 0.2)
 
     @search_method_class_mock.expect(:call, [ @search_result ], [ @listing.title.downcase ])
 
