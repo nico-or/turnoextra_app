@@ -134,6 +134,38 @@ class BoardgameTest < ActiveSupport::TestCase
       assert_not @boardgame.valid?, "Expected #{value.inspect} to be invalid for \#max_players"
     end
   end
+
+  test "valid min_playtime values" do
+    values = [ "", nil, 1, "2", 0 ]
+    values.each do |value|
+      @boardgame.min_playtime = value
+      assert @boardgame.valid?, "Expected #{value.inspect} to be valid for \#min_playtime"
+    end
+  end
+
+  test "invalid min_playtime values" do
+    values = [ -1, "a", -1.1, 0.0, 2.2 ]
+    values.each do |value|
+      @boardgame.min_playtime = value
+      assert_not @boardgame.valid?, "Expected #{value.inspect} to be invalid for \#min_playtime"
+    end
+  end
+
+    test "valid max_playtime values" do
+    values = [ "", nil, 1, "2", 0 ]
+    values.each do |value|
+      @boardgame.max_playtime = value
+      assert @boardgame.valid?, "Expected #{value.inspect} to be valid for \#max_playtime"
+    end
+  end
+
+  test "invalid max_playtime values" do
+    values = [ -1, "a", -1.1, 0.0, 2.2 ]
+    values.each do |value|
+      @boardgame.max_playtime = value
+      assert_not @boardgame.valid?, "Expected #{value.inspect} to be invalid for \#max_playtime"
+    end
+  end
 end
 
 class BoardgamePreferredNameTest < ActiveSupport::TestCase

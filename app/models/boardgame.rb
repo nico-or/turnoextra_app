@@ -14,6 +14,8 @@ class Boardgame < ApplicationRecord
   validates :rank, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :min_players, allow_blank: true, numericality: { only_integer: true, greater_than: 0 }
   validates :max_players, allow_blank: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :min_playtime, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :max_playtime, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   scope :has_listings, -> { joins(:listings).distinct }
   scope :without_images, -> { where("image_url IS NULL OR thumbnail_url IS NULL") }
