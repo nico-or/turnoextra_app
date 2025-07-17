@@ -40,10 +40,38 @@ class ThingCreatorTest < ActiveSupport::TestCase
 
   test "#create! updates the boardgame record correctly" do
     boardgame = ThingCreator.new(@boardgame).create!
-    assert_equal @boardgame.title, boardgame.title
 
-    boardgame = ThingCreator.new(@boardgame.with(title: "New Name")).create!
-    assert_equal "New Name", boardgame.title
+    new_boardgame = Bgg::Boardgame.new(
+      bgg_id: @boardgame.bgg_id,
+      year: @boardgame.year + 1,
+      title: "New Boardgame",
+      titles: [ "New Boardgame", "Nuevo juego de prueba" ],
+      description: "FooBar.",
+      image_url: "https://www.example.com/images/02.jpg",
+      thumbnail_url: "https://www.example.com/images/02-thumb.jpg",
+      min_players: @boardgame.min_players + 1,
+      max_players: @boardgame.max_players + 1,
+      min_playtime: @boardgame.min_playtime + 1,
+      max_playtime: @boardgame.max_playtime + 1,
+      playingtime: @boardgame.playingtime + 1,
+      statistics: nil,
+      links: [],
+    )
+
+    ThingCreator.new(new_boardgame).create!
+    boardgame.reload
+
+    assert_equal new_boardgame.bgg_id, boardgame.bgg_id
+    assert_equal new_boardgame.year, boardgame.year
+    assert_equal new_boardgame.title, boardgame.title
+    # TODO: should all previous names be deleted when updating ?
+    # assert_equal new_boardgame.titles, boardgame.boardgame_names.map(&:value)
+    assert_equal new_boardgame.image_url, boardgame.image_url
+    assert_equal new_boardgame.thumbnail_url, boardgame.thumbnail_url
+    assert_equal new_boardgame.min_players, boardgame.min_players
+    assert_equal new_boardgame.max_players, boardgame.max_players
+    assert_equal new_boardgame.min_playtime, boardgame.min_playtime
+    assert_equal new_boardgame.max_playtime, boardgame.max_playtime
   end
 
   test "#create! is idempotent for the same BGG id" do
@@ -61,18 +89,5 @@ class ThingCreatorTest < ActiveSupport::TestCase
     boardgame = ThingCreator.new(new_boardgame).create!
 
     assert_equal 3, boardgame.boardgame_names.count
-  end
-
-  test "#create! updates the boardgame fields" do
-    ThingCreator.new(@boardgame).create!
-
-    new_boardgame = @boardgame.with(title: "FooBar", year: 1990)
-    boardgame = ThingCreator.new(new_boardgame).create!
-
-    assert_equal "FooBar", boardgame.title
-    assert_equal 1990, boardgame.year
-
-    # FIXME: inconsistent behaviour
-    # assert_equal [ "Test Boardgame", "Juego de Prueba", "FooBar" ], boardgame.boardgame_names.pluck(:value)
   end
 end
