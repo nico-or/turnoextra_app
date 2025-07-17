@@ -26,16 +26,16 @@ class ThingCreatorTest < ActiveSupport::TestCase
     assert_instance_of ::Boardgame, boardgame
     assert boardgame.persisted?
 
-    assert_equal 123, boardgame.bgg_id
-    assert_equal 2025, boardgame.year
-    assert_equal "Test Boardgame", boardgame.title
-    assert_equal [ "Test Boardgame", "Juego de Prueba" ], boardgame.boardgame_names.map(&:value)
-    assert_equal "https://www.example.com/images/01.jpg", boardgame.image_url
-    assert_equal "https://www.example.com/images/01-thumb.jpg", boardgame.thumbnail_url
-    assert_equal 1, boardgame.min_players
-    assert_equal 4, boardgame.max_players
-    assert_equal 10, boardgame.min_playtime
-    assert_equal 45, boardgame.max_playtime
+    assert_equal @boardgame.bgg_id, boardgame.bgg_id
+    assert_equal @boardgame.year, boardgame.year
+    assert_equal @boardgame.title, boardgame.title
+    assert_equal @boardgame.titles, boardgame.boardgame_names.pluck(:value)
+    assert_equal @boardgame.image_url, boardgame.image_url
+    assert_equal @boardgame.thumbnail_url, boardgame.thumbnail_url
+    assert_equal @boardgame.min_players, boardgame.min_players
+    assert_equal @boardgame.max_players, boardgame.max_players
+    assert_equal @boardgame.min_playtime, boardgame.min_playtime
+    assert_equal @boardgame.max_playtime, boardgame.max_playtime
   end
 
   test "#create! updates the boardgame record correctly" do
