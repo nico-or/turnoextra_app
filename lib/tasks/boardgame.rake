@@ -9,29 +9,17 @@ namespace :boardgame do
     Bgg::RankUpdater.call(filepath)
   end
 
-  desc "Add images urls to boardgames"
-  task update_metadata: :environment do
-    api_batch_limit = Bgg::Client::MAX_ID_COUNT_PER_REQUEST
-    client = Bgg::Client.new
+  namespace :update_metadata do
+    desc "update boardgames with listings"
+    task with_listings: :environment do
+      boardgames = Boardgame.has_listings
+      Bgg::BoardgameMetadataUpdater.new(boardgames).update!
+    end
 
-    # TODO: prevent updating recently updated boardgames
-    # TODO: prevent updating boardgames with no listings (?)
-    # TODO: prevent updating out of stock boardgames (?)
-    boardgames = Boardgame.has_listings
-
-    Rails.logger.info "Fetching BGG data for #{boardgames.count} boardgames"
-
-    boardgames.find_in_batches(batch_size: api_batch_limit) do |batch|
-      bgg_ids = batch.pluck(:bgg_id)
-
-      Rails.logger.info "Fetching BGG data for #{bgg_ids.join(', ')}"
-
-      updater_service = Bgg::BoardgameMetadataUpdater.new(bgg_ids, client: client)
-      updated_boardgame_records = updater_service.call
-
-      Rails.logger.info "Updated #{updated_boardgame_records.size} boardgames" if updated_boardgame_records.any?
-    ensure
-      sleep 5 # Prevent hitting BGG API rate limit
+    desc "update boardgames with listings and missing images"
+    task missing_images: :environment do
+      boardgames = Boardgame.has_listings.where(image_url: [ nil, "" ])
+      Bgg::BoardgameMetadataUpdater.new(boardgames).update!
     end
   end
 
