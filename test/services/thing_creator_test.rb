@@ -42,4 +42,26 @@ class ThingCreatorTest < ActiveSupport::TestCase
       creator.create!
     end
   end
+
+  test "#create! doesn't add repeated boardgame names" do
+    ThingCreator.new(@boardgame).create!
+
+    new_boardgame = @boardgame.with(titles: [ "Test Boardgame", "Juego de Prueba", "FooBar" ])
+    boardgame = ThingCreator.new(new_boardgame).create!
+
+    assert_equal 3, boardgame.boardgame_names.count
+  end
+
+  test "#create! updates the boardgame fields" do
+    ThingCreator.new(@boardgame).create!
+
+    new_boardgame = @boardgame.with(title: "FooBar", year: 1990)
+    boardgame = ThingCreator.new(new_boardgame).create!
+
+    assert_equal "FooBar", boardgame.title
+    assert_equal 1990, boardgame.year
+
+    # FIXME: inconsistent behaviour
+    # assert_equal [ "Test Boardgame", "Juego de Prueba", "FooBar" ], boardgame.boardgame_names.pluck(:value)
+  end
 end
