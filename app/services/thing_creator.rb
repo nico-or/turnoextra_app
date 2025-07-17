@@ -20,6 +20,10 @@ class ThingCreator
       year: @boardgame.year,
       image_url: @boardgame.image_url,
       thumbnail_url: @boardgame.thumbnail_url,
+      min_players: @boardgame.min_players,
+      max_players: @boardgame.max_players,
+      min_playtime: @boardgame.min_playtime,
+      max_playtime: @boardgame.max_playtime,
       )
     boardgame.save!
     boardgame
