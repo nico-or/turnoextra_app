@@ -45,7 +45,11 @@ class PagesController < ApplicationController
   def top_discounted_deals
     base_query
       .where("daily_boardgame_deals.discount > 0")
-      .order("discount DESC")
+      .order(
+        "discount DESC",
+        Arel.sql("CASE WHEN boardgames.rank = 0 THEN 1 ELSE 0 END ASC"),
+        "boardgames.rank ASC"
+      )
   end
 
   def new_price_drops
@@ -53,7 +57,11 @@ class PagesController < ApplicationController
       .with(yesterday_prices: yesterday_prices)
       .joins("JOIN yesterday_prices ON yesterday_prices.boardgame_id = boardgames.id")
       .where("yesterday_prices.amount > daily_boardgame_deals.best_price")
-      .order("discount DESC")
+      .order(
+        "discount DESC",
+        Arel.sql("CASE WHEN boardgames.rank = 0 THEN 1 ELSE 0 END ASC"),
+        "boardgames.rank ASC"
+      )
   end
 
   def top_ranked_boardgames
