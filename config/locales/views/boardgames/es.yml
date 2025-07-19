@@ -12,6 +12,9 @@ es:
       opengraph:
         description: "¿Buscas %{title}? Encuentra los mejores precios y ofertas en Chile visitando Turno Extra!"
         description_discount: ¡Ahorra hasta un %{discount}% en %{title}! Compara precios y encuentra las mejores ofertas en Turno Extra!"
+      details:
+        player_count: "Número de jugadores"
+        playtime: "Tiempo de juego (minutos)"
     price_chart:
       haxis:
         title: "Fecha"

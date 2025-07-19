@@ -19,6 +19,10 @@
         <dd class="col-md-8"><%= @boardgame.rank.zero? ? t('.unranked') : @boardgame.rank %></dd>
         <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.year') %></dt>
         <dd class="col-md-8"><%= @boardgame.year %></dd>
+        <dt class="col-md-4"><%= t('.details.player_count')%></dt>
+        <dd class="col-md-8"><%= number_range(@boardgame.min_players, @boardgame.max_players) %></dd>
+        <dt class="col-md-4"><%= t('.details.playtime')%></dt>
+        <dd class="col-md-8"><%= number_range(@boardgame.min_playtime, @boardgame.max_playtime) %></dd>
         <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.reference_price') %></dt>
         <dd class="col-md-8"><%= format_price(@boardgame.daily_boardgame_deals.first&.reference_price) %></dd>
       </dl>
