@@ -104,7 +104,7 @@ class BoardgameTest < ActiveSupport::TestCase
   end
 
   test "valid min_players values" do
-    values = [ "", nil, 1, "2" ]
+    values = [ "", nil, 1, "2", 0 ]
     values.each do |value|
       @boardgame.min_players = value
       assert @boardgame.valid?, "Expected #{value.inspect} to be valid for \#min_players"
@@ -112,7 +112,7 @@ class BoardgameTest < ActiveSupport::TestCase
   end
 
   test "invalid min_players values" do
-    values = [ -1, 0, "a", -1.1, 0.0, 2.2 ]
+    values = [ -1, "a", -1.1, 0.0, 2.2 ]
     values.each do |value|
       @boardgame.min_players = value
       assert_not @boardgame.valid?, "Expected #{value.inspect} to be invalid for \#min_players"
@@ -120,7 +120,7 @@ class BoardgameTest < ActiveSupport::TestCase
   end
 
     test "valid max_players values" do
-    values = [ "", nil, 1, "2" ]
+    values = [ "", nil, 1, "2", 0 ]
     values.each do |value|
       @boardgame.max_players = value
       assert @boardgame.valid?, "Expected #{value.inspect} to be valid for \#max_players"
@@ -128,7 +128,7 @@ class BoardgameTest < ActiveSupport::TestCase
   end
 
   test "invalid max_players values" do
-    values = [ -1, 0, "a", -1.1, 0.0, 2.2 ]
+    values = [ -1, "a", -1.1, 0.0, 2.2 ]
     values.each do |value|
       @boardgame.max_players = value
       assert_not @boardgame.valid?, "Expected #{value.inspect} to be invalid for \#max_players"

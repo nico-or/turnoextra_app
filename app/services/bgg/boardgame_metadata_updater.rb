@@ -18,6 +18,9 @@ module Bgg
         boardgame_responses.each do |boardgame_response|
           @logger.info "Updating metadata for BGG ID: #{boardgame_response.bgg_id} - #{boardgame_response.title}"
           ThingCreator.new(boardgame_response).create!
+
+        rescue StandardError => e
+          @logger.error "Failed to process BGG ID #{boardgame_response.bgg_id}: #{e.class} - #{e.message}"
         end
       ensure
         sleep 5
