@@ -12,8 +12,8 @@ class Boardgame < ApplicationRecord
   validates :year, presence: true, numericality: { only_integer: true }
   validates :bgg_id, presence: true, uniqueness: true, numericality: { only_integer: true, greater_than: 0 }
   validates :rank, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :min_players, allow_blank: true, numericality: { only_integer: true, greater_than: 0 }
-  validates :max_players, allow_blank: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :min_players, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :max_players, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :min_playtime, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :max_playtime, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
