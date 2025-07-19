@@ -44,9 +44,10 @@ class PagesController < ApplicationController
 
   def top_discounted_deals
     base_query
+      .select("reference_price - best_price AS net_discount") # TODO: add column to daily_boardgame_deals table
       .where("daily_boardgame_deals.discount > 0")
       .order(
-        "discount DESC",
+        "net_discount DESC",
         Arel.sql("CASE WHEN boardgames.rank = 0 THEN 1 ELSE 0 END ASC"),
         "boardgames.rank ASC"
       )
