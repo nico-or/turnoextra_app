@@ -53,7 +53,7 @@ end
 
 gem "pagy", "~> 9.3"
 
-gem "importmap-rails", "~> 2.1"
+gem "importmap-rails", "~> 2.2"
 
 gem "chartkick", "~> 5.2"
 
