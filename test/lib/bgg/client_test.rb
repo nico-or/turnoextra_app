@@ -100,4 +100,14 @@ class Bgg::ClientXmlV2Test < ActiveSupport::TestCase
     assert_requested :get, @boardgame_url,
     headers: { "User-Agent" => Bgg::Client::USER_AGENT }
   end
+
+  test "#search downcases the query" do
+    query = "Marvel Agents of S.H.I.E.L.D."
+    url = "https://boardgamegeek.com/xmlapi2/search?query=#{query.downcase}&type=boardgame,boardgameexpansion,rpgitem"
+    stub_request(:get, url)
+
+    @client.search(query)
+
+    assert_requested :get, url
+  end
 end

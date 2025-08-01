@@ -13,10 +13,9 @@ module Bgg
     end
 
     def search(query)
-      normalized_query = Text::Normalization.normalize_string(query)
-      cache_key = build_cache_key(:search, normalized_query)
+      cache_key = build_cache_key(:search, query)
       Rails.cache.fetch(cache_key, expires_in: TTL) do
-        @client.search(normalized_query) || []
+        @client.search(query) || []
       end
     end
 
