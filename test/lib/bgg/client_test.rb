@@ -82,4 +82,22 @@ class Bgg::ClientXmlV2Test < ActiveSupport::TestCase
     assert_kind_of Array, result
     assert result.empty?
   end
+
+  test "#search sends a custom user agent" do
+    stub_request(:get, @search_url).to_return(status: 200)
+
+    @client.search("test query")
+
+    assert_requested :get, @search_url,
+    headers: { "User-Agent" => Bgg::Client::USER_AGENT }
+  end
+
+    test "#boardgame sends a custom user agent" do
+    stub_request(:get, @boardgame_url).to_return(status: 200)
+
+    @client.boardgame(123)
+
+    assert_requested :get, @boardgame_url,
+    headers: { "User-Agent" => Bgg::Client::USER_AGENT }
+  end
 end

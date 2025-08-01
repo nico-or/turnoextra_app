@@ -2,6 +2,7 @@ module Bgg
   class Client
     TTL = 6.hours
     DEFAULT_VERSION = :xml_v2
+    USER_AGENT = "TurnoExtraApp/1.0 (+https://turnoextra.cl/contact) Ruby/#{RUBY_VERSION} HTTParty/#{HTTParty::VERSION}"
     MAX_ID_COUNT_PER_REQUEST = 20 # This should be a version/*/api specific constant, but for now it's global.
 
     def initialize(version = DEFAULT_VERSION)
