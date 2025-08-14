@@ -166,6 +166,22 @@ class BoardgameTest < ActiveSupport::TestCase
       assert_not @boardgame.valid?, "Expected #{value.inspect} to be invalid for \#max_playtime"
     end
   end
+
+  test "valid weight values" do
+    values = [ nil, 1.0, 5.0, 2.3, 4, "2.043" ]
+    values.each do |value|
+      @boardgame.weight = value
+      assert @boardgame.valid?, "Expected #{value.inspect} to be valid for \#weight"
+    end
+  end
+
+  test "invalid weight values" do
+    values = [ -2.3, 0, 0.5, 5.01, "a" ]
+    values.each do |value|
+      @boardgame.weight = value
+      assert_not @boardgame.valid?, "Expected #{value.inspect} to be invalid for \#weight"
+    end
+  end
 end
 
 class BoardgamePreferredNameTest < ActiveSupport::TestCase

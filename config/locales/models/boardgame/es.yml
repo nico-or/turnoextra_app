@@ -12,3 +12,4 @@ es:
         rank: "Ranking BGG"
         reference_price: "Precio de referencia"
         year: "Año de publicación"
+        weight: "Dificultad"
