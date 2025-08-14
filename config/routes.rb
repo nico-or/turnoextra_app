@@ -57,5 +57,8 @@ Rails.application.routes.draw do
     resources :identifications, only: [ :index, :new, :create ] do
         post "toggle_is_boardgame", on: :collection
     end
+
+    namespace :reports do
+    end
   end
 end
