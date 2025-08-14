@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_15_175653) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_14_165137) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -40,6 +40,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_175653) do
     t.integer "max_players"
     t.integer "min_playtime"
     t.integer "max_playtime"
+    t.float "weight"
     t.index ["bgg_id"], name: "index_boardgames_on_bgg_id", unique: true
     t.index ["title"], name: "index_boardgames_on_title"
   end
