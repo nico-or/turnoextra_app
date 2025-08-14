@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     end
 
     namespace :reports do
+      get "store_prices_count"
     end
   end
 end
