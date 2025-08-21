@@ -22,7 +22,7 @@ module Admin
 
       if @files.empty?
         flash[:error] = "No valid files were uploaded."
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 

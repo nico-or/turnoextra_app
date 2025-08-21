@@ -27,7 +27,7 @@ class Admin::UploadsControllerAdminTest < ActionDispatch::IntegrationTest
   test "post empty array of files" do
     post admin_uploads_path, params: { files: [] }
     assert_no_difference([ "Store.count", "Listing.count", "Price.count" ]) do
-      assert_response :unprocessable_entity
+      assert_response :unprocessable_content
     end
   end
 
@@ -36,7 +36,7 @@ class Admin::UploadsControllerAdminTest < ActionDispatch::IntegrationTest
     assert_no_difference([ "Store.count", "Listing.count", "Price.count" ]) do
       post admin_uploads_path, params: { files: [ pdf_data ] }
     end
-    assert_response :unprocessable_entity
+    assert_response :unprocessable_content
   end
 
   test "post a single file" do

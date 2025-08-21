@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
       redirect_to dashboard_path, notice: "logged in"
     else
       flash.alert = "invalid credetials"
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

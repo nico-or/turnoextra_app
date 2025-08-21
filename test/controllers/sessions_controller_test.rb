@@ -19,7 +19,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     post login_path, params: payload
 
     assert_nil session[:user_id]
-    assert_response :unprocessable_entity
+    assert_response :unprocessable_content
   end
 
   test "should logout a logged in user" do
