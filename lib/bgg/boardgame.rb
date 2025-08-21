@@ -25,5 +25,9 @@ module Bgg
         links.filter_map { |link| link.value if link.type == link_type.to_s }
       end
     end
+
+    def weight
+      statistics&.averageweight
+    end
   end
 end
