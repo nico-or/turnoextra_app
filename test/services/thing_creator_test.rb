@@ -15,7 +15,21 @@ class ThingCreatorTest < ActiveSupport::TestCase
       min_playtime: 10,
       max_playtime: 45,
       playingtime: 45,
-      statistics: nil,
+      statistics: Bgg::Statistics.new(
+        usersrated: nil,
+        average: nil,
+        bayesaverage: nil,
+        ranks: nil,
+        stddev: nil,
+        median: nil,
+        owned: nil,
+        trading: nil,
+        wanting: nil,
+        wishing: nil,
+        numcomments: nil,
+        numweights: nil,
+        averageweight: 3.1415,
+      ),
       links: [],
     )
   end
@@ -36,6 +50,7 @@ class ThingCreatorTest < ActiveSupport::TestCase
     assert_equal @boardgame.max_players, boardgame.max_players
     assert_equal @boardgame.min_playtime, boardgame.min_playtime
     assert_equal @boardgame.max_playtime, boardgame.max_playtime
+    assert_equal @boardgame.weight, boardgame.weight
   end
 
   test "#create! updates the boardgame record correctly" do

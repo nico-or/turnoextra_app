@@ -24,6 +24,7 @@ class ThingCreator
       max_players: @boardgame.max_players,
       min_playtime: @boardgame.min_playtime,
       max_playtime: @boardgame.max_playtime,
+      weight: @boardgame.weight
       )
     boardgame.save!
     boardgame
