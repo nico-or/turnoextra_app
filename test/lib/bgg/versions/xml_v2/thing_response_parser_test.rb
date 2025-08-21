@@ -26,6 +26,7 @@ module Bgg::Versions::XmlV2
       assert_equal 60, game.max_playtime
       assert_equal 60, game.playingtime
       assert_equal 16, game.links.count
+      assert_equal 1.2667, game.weight
 
       assert_equal [ "Party Game" ], game.categories
       assert_equal [ "Acting", "Line Drawing", "Singing", "Team-Based Game" ], game.mechanics
