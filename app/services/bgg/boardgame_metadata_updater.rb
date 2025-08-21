@@ -13,7 +13,7 @@ module Bgg
         bgg_ids = batch.pluck(:bgg_id)
         @logger.info "Fetching data for BGG IDs: [ #{bgg_ids.join(', ')} ]"
 
-        boardgame_responses = @api_client.boardgame(*bgg_ids)
+        boardgame_responses = @api_client.boardgame(*bgg_ids, stats: true)
 
         boardgame_responses.each do |boardgame_response|
           @logger.info "Updating metadata for BGG ID: #{boardgame_response.bgg_id} - #{boardgame_response.title}"
