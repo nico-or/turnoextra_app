@@ -57,7 +57,7 @@ gem "importmap-rails", "~> 2.1"
 
 gem "chartkick", "~> 5.2"
 
-gem "rubyzip", "~> 3.0", require: "zip"
+gem "rubyzip", "~> 3.1", require: "zip"
 
 gem "mechanize", "~> 2.14"
 
