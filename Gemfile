@@ -47,7 +47,7 @@ gem "dotenv", "~> 3.1"
 gem "unicode", "~> 0.4.4"
 
 group :test do
-  gem "webmock", "~> 3.25"
+  gem "webmock", "~> 3.26"
   gem "simplecov", "~> 0.22.0"
 end
 
