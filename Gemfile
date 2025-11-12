@@ -9,7 +9,7 @@ gem "propshaft"
 gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5"
+gem "puma", "~>7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -53,13 +53,13 @@ end
 
 gem "pagy", "~> 9.3"
 
-gem "importmap-rails", "~> 2.1"
+gem "importmap-rails", "~> 2"
 
-gem "chartkick", "~> 5.2"
+gem "chartkick", "~> 5"
 
 gem "rubyzip", "~> 3.2", require: "zip"
 
-gem "mechanize", "~> 2.14"
+gem "mechanize", "~> 2"
 
 gem "rails-i18n", "~> 8.0"
 
@@ -67,4 +67,4 @@ gem "meta-tags", "~> 2.22"
 
 gem "cssbundling-rails", "~> 1.4"
 
-gem "mission_control-jobs", "~> 1.1"
+gem "mission_control-jobs", "~> 1"
