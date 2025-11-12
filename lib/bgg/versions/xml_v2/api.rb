@@ -4,7 +4,8 @@ module Bgg::Versions::XmlV2
     base_uri URI.join(Bgg::BASE_URI, "/xmlapi2").to_s
     format :xml
     parser ->(response, format) { Nokogiri::XML(response) }
-    headers "User-Agent" => Bgg::Client::USER_AGENT
+    headers "User-Agent" => Bgg::Client::USER_AGENT,
+    "Authorization" => "Bearer #{ENV.fetch("BGG_API_KEY")}"
     default_params type: [
       ThingType::BOARDGAME,
       ThingType::BOARDGAME_EXPANSION,
