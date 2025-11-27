@@ -6,8 +6,9 @@ class ApplicationController < ActionController::Base
   allow_browser versions: { safari: 16, chrome: 120, firefox: 121, opera: 106, ie: false } if Rails.env.production?
 
   before_action :set_current_user
+  before_action { Pagy::I18n.locale = "es" }
 
-  include Pagy::Backend
+  include Pagy::Method
 
   protected
 

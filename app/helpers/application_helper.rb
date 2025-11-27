@@ -1,6 +1,4 @@
 module ApplicationHelper
-  include Pagy::Frontend
-
   def number_range(min, max, separator = "&ndash;")
     return "" if [ min, max ].any?(&:blank?)
 
