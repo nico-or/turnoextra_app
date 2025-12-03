@@ -41,7 +41,7 @@ gem "bcrypt", "~> 3.1"
 
 gem "csv", "~> 3.3"
 
-gem "dotenv", "~> 3.1"
+gem "dotenv", "~> 3.2"
 
 
 gem "unicode", "~> 0.4.4"
