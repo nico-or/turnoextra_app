@@ -19,8 +19,12 @@ module Bgg
     [
       [ :categories, :boardgamecategory ],
       [ :mechanics, :boardgamemechanic ],
+      [ :families, :boardgamefamily ],
+      [ :integrations, :boardgameintegration ],
+      [ :implementations, :boardgameimplementation ],
       [ :designers, :boardgamedesigner ],
-      [ :artists, :boardgameartist ]
+      [ :artists, :boardgameartist ],
+      [ :publishers, :boardgamepublisher ]
     ].each do |attribute, link_type|
       define_method attribute do
         links.filter_map { |link| link.value if link.type == link_type.to_s }

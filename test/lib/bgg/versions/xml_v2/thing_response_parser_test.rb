@@ -44,8 +44,12 @@ module Bgg::Versions::XmlV2
 
       assert_equal [ "Party Game" ], game.categories
       assert_equal [ "Acting", "Line Drawing", "Singing", "Team-Based Game" ], game.mechanics
+      assert_equal [ "Components: Sand Timers" ], game.families
+      assert_equal [ "HINT Junior", "HINT Promo" ], game.integrations
+      assert_equal [ "HINT: Demo version", "Red HINT" ], game.implementations
       assert_equal [ "Jesper Bülow", "Jonas Resting-Jeppesen" ], game.designers
       assert_equal [ "Jonas Resting-Jeppesen" ], game.artists
+      assert_equal [ "Bezzerwizzer ApS (Bezzerwizzer Studio)", "Nordic Games ehf", "Rebel Sp. z o.o." ], game.publishers
 
       # versions
 
@@ -94,9 +98,12 @@ module Bgg::Versions::XmlV2
 
       assert_equal [ "Party Game", "Sports" ], game.categories
       assert_equal [ "Hand Management", "Player Elimination", "Take That" ], game.mechanics
+      assert_equal [ "Country: Chile", "Sports: Football / Soccer" ], game.families
+      assert_equal [], game.integrations
+      assert_equal [], game.implementations
       assert_equal [ "Dany Varela" ], game.designers
-      # TODO assert_equal [ "Country: Chile", "Sports: Football / Soccer" ], game.family
-      # TODO assert_equal [ "Within Play" ], game.publisher
+      assert_equal [], game.artists
+      assert_equal [ "Within Play" ], game.publishers
 
       assert_equal 0, game.weight
     end
