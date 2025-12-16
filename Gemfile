@@ -35,7 +35,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-gem "httparty", "~> 0.22.0"
+gem "httparty", "~> 0.23.2"
 
 gem "bcrypt", "~> 3.1"
 
