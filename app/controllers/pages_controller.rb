@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @last_update_datetime = Price.where(date: reference_date).maximum(:updated_at).in_time_zone("America/Santiago")
+    @last_update_datetime = reference_date
     @deals = top_discounted_deals
     @new_deals = new_price_drops
     @top_bgg = top_ranked_boardgames
@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   private
 
   def reference_date
-    @reference_date ||= Price.latest_update_date
+    @reference_date ||= Price.latest_update_date&.in_time_zone("America/Santiago")
   end
 
   def yesterday_date
