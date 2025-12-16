@@ -34,6 +34,38 @@ module Bgg::Versions::XmlV2
       assert_equal [ "Jonas Resting-Jeppesen" ], game.artists
     end
 
+    test "#parse! a XML response with a single unranked boardgame" do
+      xml = file_fixture("bgg/api/v2/thing_single_unranked.xml").read
+      response = Nokogiri::XML(xml)
+      boardgames = ThingResponseParser.parse!(response)
+      assert_equal 1, boardgames.size
+      assert boardgames.is_a? Array
+      assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
+
+      game = boardgames.first
+      assert_equal "Colo Colo 100 Años", game.title
+      assert_equal 2025, game.year
+      assert_equal 460095, game.bgg_id
+      assert game.titles.is_a? Array
+      assert_equal 1, game.titles.count
+      assert_match %r{__small/img/}, game.thumbnail_url
+      assert_match %r{__original/img/}, game.image_url
+      assert_match %r{Colo-Colo}, game.description
+      assert_equal 2, game.min_players
+      assert_equal 8, game.max_players
+      assert_equal 5, game.min_playtime
+      assert_equal 15, game.max_playtime
+      assert_equal 15, game.playingtime
+      assert_equal 9, game.links.count
+      assert_equal 0, game.weight
+
+      assert_equal [ "Party Game", "Sports" ], game.categories
+      assert_equal [ "Hand Management", "Player Elimination", "Take That" ], game.mechanics
+      assert_equal [ "Dany Varela" ], game.designers
+      # TODO assert_equal [ "Country: Chile", "Sports: Football / Soccer" ], game.family
+      # TODO assert_equal [ "Within Play" ], game.publisher
+    end
+
     test "#parse! a XML response with multiple boardgames" do
       xml = file_fixture("bgg/api/v2/thing_multiple.xml").read
       response = Nokogiri::XML(xml)

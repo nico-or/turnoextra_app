@@ -64,4 +64,59 @@ module Bgg::Versions::XmlV2
       assert_equal 6.86248, rank.bayesaverage
     end
   end
+
+  class EmptyStatisticsParserTest < ActiveSupport::TestCase
+    test "parses multiple ranks correctly" do
+      xml = <<~XML
+        <statistics page="1">
+            <ratings>
+                <usersrated value="0"/>
+                <average value="0"/>
+                <bayesaverage value="0"/>
+                <ranks>
+                    <rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="Not Ranked"/>
+                </ranks>
+                <stddev value="0"/>
+                <median value="0"/>
+                <owned value="0"/>
+                <trading value="0"/>
+                <wanting value="0"/>
+                <wishing value="0"/>
+                <numcomments value="0"/>
+                <numweights value="0"/>
+                <averageweight value="0"/>
+            </ratings>
+        </statistics>
+      XML
+      doc = Nokogiri::XML.parse(xml)
+      statistics_node = doc.at_xpath("//statistics")
+
+      stats = StatisticsParser.parse(statistics_node)
+
+      assert stats.is_a?(Bgg::Statistics)
+
+      assert_equal 0, stats.usersrated
+      assert_equal 0, stats.average
+      assert_equal 0, stats.bayesaverage
+      assert_equal 0, stats.stddev
+      assert_equal 0, stats.median
+      assert_equal 0, stats.owned
+      assert_equal 0, stats.trading
+      assert_equal 0, stats.wanting
+      assert_equal 0, stats.wishing
+      assert_equal 0, stats.numcomments
+      assert_equal 0, stats.numweights
+      assert_equal 0, stats.averageweight
+
+      assert_equal 1, stats.ranks.length
+
+      rank = stats.ranks[0]
+      assert_equal "subtype", rank.type
+      assert_equal 1, rank.id
+      assert_equal "boardgame", rank.name
+      assert_equal "Board Game Rank", rank.friendlyname
+      assert_equal 0, rank.value
+      assert_equal 0, rank.bayesaverage
+    end
+  end
 end
