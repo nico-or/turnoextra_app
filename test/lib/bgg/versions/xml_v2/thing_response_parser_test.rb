@@ -16,8 +16,8 @@ module Bgg::Versions::XmlV2
       assert_equal 2014, game.year
       assert_equal 165628, game.bgg_id
       assert game.titles.is_a? Array
-      assert_equal 4, game.titles.count
-      assert_match %r{__thumb/img/}, game.thumbnail_url
+      assert_equal 5, game.titles.count
+      assert_match %r{__small/img/}, game.thumbnail_url
       assert_match %r{__original/img/}, game.image_url
       assert_match %r{In HINT, your teammates}, game.description
       assert_equal 4, game.min_players
