@@ -49,4 +49,17 @@ class Boardgame < ApplicationRecord
   def to_param
     "#{id}-#{title.parameterize}"
   end
+
+  def weight_category
+    case weight
+    when 0, nil then :unrated
+    when 1.0...1.8 then :light
+    when 1.8...2.6 then :medium_light
+    when 2.6...3.4 then :medium
+    when 3.4...4.2 then :medium_heavy
+    when 4.2..5.0  then :heavy
+    else
+      :unknown
+    end
+  end
 end

@@ -182,6 +182,23 @@ class BoardgameTest < ActiveSupport::TestCase
       assert_not @boardgame.valid?, "Expected #{value.inspect} to be invalid for \#weight"
     end
   end
+
+  test "returns correct weight_category" do
+    [
+      [1.0, :light],
+      [1.8, :medium_light],
+      [2.6, :medium],
+      [3.4, :medium_heavy],
+      [4.2, :heavy],
+      [0.1, :unknown],
+      [5.1, :unknown],
+      [0, :unrated],
+      [nil, :unrated],
+    ].each do |(weight, expected)|
+      @boardgame.weight = weight
+      assert_equal expected, @boardgame.weight_category
+    end
+  end
 end
 
 class BoardgamePreferredNameTest < ActiveSupport::TestCase
