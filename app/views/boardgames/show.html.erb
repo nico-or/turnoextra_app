@@ -16,7 +16,7 @@
       <h2 class="mb-2"><%= t('.about') %></h2>
       <dl class="row">
         <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.weight') %></dt>
-        <dd class="col-md-8"><%= @boardgame.weight.blank? ? nil : @boardgame.weight %></dd>
+        <dd class="col-md-8"><%= weight_category(@boardgame) %></dd>
         <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.rank') %></dt>
         <dd class="col-md-8"><%= @boardgame.rank.zero? ? t('.unranked') : @boardgame.rank %></dd>
         <dt class="col-md-4"><%= t('activerecord.attributes.boardgame.year') %></dt>

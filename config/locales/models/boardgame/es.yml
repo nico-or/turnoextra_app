@@ -12,4 +12,12 @@ es:
         rank: "Ranking BGG"
         reference_price: "Precio de referencia"
         year: "Año de publicación"
-        weight: "Dificultad"
+        weight: "Complejidad"
+        weight_category:
+          light: "Muy Sencillo"
+          medium_light: "Sencillo"
+          medium: "Intermedio"
+          medium_heavy: "Complejo"
+          heavy: "Muy Complejo"
+          unrated: "Sin clasificar"
+          unknown: "Sin clasificar"
