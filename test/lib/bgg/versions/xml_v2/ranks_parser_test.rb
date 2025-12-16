@@ -3,7 +3,11 @@ require "test_helper"
 module Bgg::Versions::XmlV2
   class RanksParserTest < ActiveSupport::TestCase
     test "parses a single rank correctly" do
-      xml = '<ranks><rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="1095" bayesaverage="6.58138"/></ranks>'
+      xml = <<~XML
+        <ranks>
+          <rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="1095" bayesaverage="6.58138" />
+        </ranks>
+      XML
       node = Nokogiri::XML.parse(xml)
 
       rank = RanksParser.parse(node).first
