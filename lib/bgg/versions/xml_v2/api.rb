@@ -5,7 +5,7 @@ module Bgg::Versions::XmlV2
     format :xml
     parser ->(response, format) { Nokogiri::XML(response) }
     headers "User-Agent" => Bgg::Client::USER_AGENT,
-    "Authorization" => "Bearer #{ENV.fetch("BGG_API_KEY")}"
+    "Authorization" => Rails.env.test? ? "" : "Bearer #{ENV.fetch("BGG_API_KEY")}"
     default_params type: [
       ThingType::BOARDGAME,
       ThingType::BOARDGAME_EXPANSION,
