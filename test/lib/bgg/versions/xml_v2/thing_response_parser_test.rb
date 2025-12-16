@@ -12,26 +12,44 @@ module Bgg::Versions::XmlV2
       assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
 
       game = boardgames.first
-      assert_equal "HINT", game.title
-      assert_equal 2014, game.year
       assert_equal 165628, game.bgg_id
-      assert game.titles.is_a? Array
-      assert_equal 5, game.titles.count
+
       assert_match %r{__small/img/}, game.thumbnail_url
       assert_match %r{__original/img/}, game.image_url
+
+      assert_equal "HINT", game.title
+      assert game.titles.is_a? Array
+      assert_equal 5, game.titles.count
+
       assert_match %r{In HINT, your teammates}, game.description
+
+      assert_equal 2014, game.year
+
       assert_equal 4, game.min_players
       assert_equal 10, game.max_players
+
+      # poll suggested_numplayers
+      # poll-summary suggested_numplayers
+
+      assert_equal 60, game.playingtime
       assert_equal 45, game.min_playtime
       assert_equal 60, game.max_playtime
-      assert_equal 60, game.playingtime
+
+      # min_age
+
+      # poll suggested_playerage
+      # poll language_dependence
+
       assert_equal 16, game.links.count
-      assert_equal 1.2667, game.weight
 
       assert_equal [ "Party Game" ], game.categories
       assert_equal [ "Acting", "Line Drawing", "Singing", "Team-Based Game" ], game.mechanics
       assert_equal [ "Jesper Bülow", "Jonas Resting-Jeppesen" ], game.designers
       assert_equal [ "Jonas Resting-Jeppesen" ], game.artists
+
+      # versions
+
+      assert_equal 1.2667, game.weight
     end
 
     test "#parse! a XML response with a single unranked boardgame" do
@@ -43,27 +61,44 @@ module Bgg::Versions::XmlV2
       assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
 
       game = boardgames.first
-      assert_equal "Colo Colo 100 Años", game.title
-      assert_equal 2025, game.year
+
       assert_equal 460095, game.bgg_id
-      assert game.titles.is_a? Array
-      assert_equal 1, game.titles.count
+
       assert_match %r{__small/img/}, game.thumbnail_url
       assert_match %r{__original/img/}, game.image_url
+
+      assert_equal "Colo Colo 100 Años", game.title
+      assert game.titles.is_a? Array
+      assert_equal 1, game.titles.count
+
       assert_match %r{Colo-Colo}, game.description
+
+      assert_equal 2025, game.year
+
       assert_equal 2, game.min_players
       assert_equal 8, game.max_players
+
+      # poll suggested_numplayers
+      # poll-summary suggested_numplayers
+
+      assert_equal 15, game.playingtime
       assert_equal 5, game.min_playtime
       assert_equal 15, game.max_playtime
-      assert_equal 15, game.playingtime
+
+      # min_age
+
+      # poll suggested_playerage
+      # poll language_dependence
+
       assert_equal 9, game.links.count
-      assert_equal 0, game.weight
 
       assert_equal [ "Party Game", "Sports" ], game.categories
       assert_equal [ "Hand Management", "Player Elimination", "Take That" ], game.mechanics
       assert_equal [ "Dany Varela" ], game.designers
       # TODO assert_equal [ "Country: Chile", "Sports: Football / Soccer" ], game.family
       # TODO assert_equal [ "Within Play" ], game.publisher
+
+      assert_equal 0, game.weight
     end
 
     test "#parse! a XML response with multiple boardgames" do

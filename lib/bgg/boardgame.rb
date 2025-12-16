@@ -1,19 +1,19 @@
 module Bgg
   Boardgame = Data.define(
     :bgg_id,
-    :year,
+    :thumbnail_url,
+    :image_url,
     :title,
     :titles,
     :description,
-    :thumbnail_url,
-    :image_url,
+    :year,
     :min_players,
     :max_players,
+    :playingtime,
     :min_playtime,
     :max_playtime,
-    :playingtime,
+    :links,
     :statistics,
-    :links
   ) do
     [
       [ :categories, :boardgamecategory ],

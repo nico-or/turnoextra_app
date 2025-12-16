@@ -4,17 +4,18 @@ class ThingCreatorTest < ActiveSupport::TestCase
   setup do
     @boardgame = Bgg::Boardgame.new(
       bgg_id: 123,
-      year: 2025,
+      image_url: "https://www.example.com/images/01.jpg",
+      thumbnail_url: "https://www.example.com/images/01-thumb.jpg",
       title: "Test Boardgame",
       titles: [ "Test Boardgame", "Juego de Prueba" ],
       description: "Lorem ipsum.",
-      image_url: "https://www.example.com/images/01.jpg",
-      thumbnail_url: "https://www.example.com/images/01-thumb.jpg",
+      year: 2025,
       min_players: 1,
       max_players: 4,
+      playingtime: 45,
       min_playtime: 10,
       max_playtime: 45,
-      playingtime: 45,
+      links: [],
       statistics: Bgg::Statistics.new(
         usersrated: nil,
         average: nil,
@@ -30,7 +31,6 @@ class ThingCreatorTest < ActiveSupport::TestCase
         numweights: nil,
         averageweight: 3.1415,
       ),
-      links: [],
     )
   end
 

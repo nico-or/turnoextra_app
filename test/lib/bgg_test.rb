@@ -11,17 +11,17 @@ class BggTest < ActiveSupport::TestCase
   test "Bgg.uri_for a Bgg::BoardGame" do
     boardgame = Bgg::Boardgame.new(
       bgg_id: 822,
-      title: nil,
-      titles: [],
-      year: nil,
-      description: nil,
       thumbnail_url: nil,
       image_url: nil,
+      title: nil,
+      titles: [],
+      description: nil,
+      year: nil,
       min_players: 1,
       max_players: 2,
+      playingtime: 60,
       min_playtime: 30,
       max_playtime: 60,
-      playingtime: 60,
       statistics: nil,
       links: [],
     )
