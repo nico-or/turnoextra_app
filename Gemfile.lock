@@ -116,7 +116,7 @@ GEM
     hashdiff (1.2.1)
     http-cookie (1.1.0)
       domain_name (~> 0.5)
-    httparty (0.22.0)
+    httparty (0.23.2)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -408,7 +408,7 @@ DEPENDENCIES
   csv (~> 3.3)
   debug
   dotenv (~> 3.1)
-  httparty (~> 0.22.0)
+  httparty (~> 0.23.2)
   importmap-rails (~> 2)
   kamal
   mechanize (~> 2)
