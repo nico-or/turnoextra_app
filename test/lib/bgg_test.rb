@@ -22,6 +22,7 @@ class BggTest < ActiveSupport::TestCase
       playingtime: 60,
       min_playtime: 30,
       max_playtime: 60,
+      min_age: 10,
       statistics: nil,
       links: [],
     )

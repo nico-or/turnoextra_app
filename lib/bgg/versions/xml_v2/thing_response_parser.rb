@@ -34,7 +34,7 @@ module Bgg::Versions::XmlV2
           playingtime: node.at_xpath("playingtime")&.attr(:value)&.to_i,
           min_playtime: node.at_xpath("minplaytime")&.attr(:value)&.to_i,
           max_playtime: node.at_xpath("maxplaytime")&.attr(:value)&.to_i,
-          # min_age
+          min_age: node.at_xpath("minage")&.attr(:value)&.to_i,
           # poll: suggested_playerage
           # poll: language_dependence
           links: LinksParser.parse(node),

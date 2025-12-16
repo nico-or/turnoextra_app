@@ -35,7 +35,7 @@ module Bgg::Versions::XmlV2
       assert_equal 45, game.min_playtime
       assert_equal 60, game.max_playtime
 
-      # min_age
+      assert_equal 15, game.min_age
 
       # poll suggested_playerage
       # poll language_dependence
@@ -85,7 +85,7 @@ module Bgg::Versions::XmlV2
       assert_equal 5, game.min_playtime
       assert_equal 15, game.max_playtime
 
-      # min_age
+      assert_equal 7, game.min_age
 
       # poll suggested_playerage
       # poll language_dependence

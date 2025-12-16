@@ -15,6 +15,7 @@ class ThingCreatorTest < ActiveSupport::TestCase
       playingtime: 45,
       min_playtime: 10,
       max_playtime: 45,
+      min_age: 10,
       links: [],
       statistics: Bgg::Statistics.new(
         usersrated: nil,
@@ -69,6 +70,7 @@ class ThingCreatorTest < ActiveSupport::TestCase
       min_playtime: @boardgame.min_playtime + 1,
       max_playtime: @boardgame.max_playtime + 1,
       playingtime: @boardgame.playingtime + 1,
+      min_age: 12,
       statistics: nil,
       links: [],
     )

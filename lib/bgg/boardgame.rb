@@ -12,6 +12,7 @@ module Bgg
     :playingtime,
     :min_playtime,
     :max_playtime,
+    :min_age,
     :links,
     :statistics,
   ) do
