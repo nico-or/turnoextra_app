@@ -21,26 +21,42 @@ module Bgg::Versions::XmlV2
       def build_thing(node)
         Bgg::Boardgame.new(
           bgg_id: node[:id].to_i,
-          thumbnail_url: node.at_xpath("thumbnail")&.text&.strip,
-          image_url: node.at_xpath("image")&.text&.strip,
-          title: node.at_xpath("name[@type='primary']")&.attr(:value),
+
+          thumbnail_url:  parse_str_attribute(node, "thumbnail"),
+          image_url:      parse_str_attribute(node, "image"),
+
+          title:  node.at_xpath("name[@type='primary']")&.attr(:value),
           titles: node.xpath("name").map { it[:value] },
-          description: node.at_xpath("description")&.text&.strip,
-          year: node.at_xpath("yearpublished")&.attr(:value)&.to_i,
-          min_players: node.at_xpath("minplayers")&.attr(:value)&.to_i,
-          max_players: node.at_xpath("maxplayers")&.attr(:value)&.to_i,
+
+          description:  parse_str_attribute(node, "description"),
+
+          year:         parse_int_attribute(node,"yearpublished"),
+          min_players:  parse_int_attribute(node, "minplayers"),
+          max_players:  parse_int_attribute(node, "maxplayers"),
+          
           # poll: suggested_numplayers
           # poll-summary: suggested_numplayer
-          playingtime: node.at_xpath("playingtime")&.attr(:value)&.to_i,
-          min_playtime: node.at_xpath("minplaytime")&.attr(:value)&.to_i,
-          max_playtime: node.at_xpath("maxplaytime")&.attr(:value)&.to_i,
-          min_age: node.at_xpath("minage")&.attr(:value)&.to_i,
+          
+          playingtime:  parse_int_attribute(node, "playingtime"),
+          min_playtime: parse_int_attribute(node, "minplaytime"),
+          max_playtime: parse_int_attribute(node, "maxplaytime"),
+          min_age:      parse_int_attribute(node, "minage"),
+          
           # poll: suggested_playerage
           # poll: language_dependence
+          
           links: LinksParser.parse(node),
           # versions: Array[Bgg::Version]
           statistics: statistics(node),
         )
+      end
+
+      def parse_str_attribute(node,selector)
+        node.at_xpath(selector)&.text&.strip
+      end
+
+      def parse_int_attribute(node, selector)
+        node.at_xpath(selector)&.attr(:value)&.to_i
       end
     end
   end
