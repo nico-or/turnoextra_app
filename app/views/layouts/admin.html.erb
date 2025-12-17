@@ -18,18 +18,14 @@
     <%= javascript_importmap_tags %>
     <%= yield :head %>
   </head>
-  <body class="d-flex flex-column min-vh-100">
+  <body class="d-flex flex-column vh-100">
     <header>
       <%= render 'navbar' %>
     </header>
-    <div class="container-fluid d-flex flex-column flex-grow-1">
-      <div class="row flex-grow-1">
-        <%= render "sidebar" %>
-        <main class="col container-fluid">
-          <%= render 'shared/flash' %>
-          <%= yield %>
-        </main>
-      </div>
-    </div>
+    <%= render 'shared/flash' %>
+    <%= render "sidebar" %>
+    <main class="container-fluid flex-grow-1">
+      <%= yield %>
+    </main>
   </body>
 </html>

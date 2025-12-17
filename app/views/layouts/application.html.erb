@@ -24,7 +24,9 @@
     <%= yield :head %>
   </head>
   <body class="d-flex flex-column vh-100">
-    <%= render 'shared/header' %>
+    <header class="mb-4">
+      <%= render 'shared/navbar' %>
+    </header>
     <%= render 'shared/flash' %>
     <main class="container flex-grow-1">
       <%= yield %>
