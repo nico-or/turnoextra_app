@@ -1,5 +1,12 @@
-<nav class="container-fluid navbar stick-top bg-body-tertiary px-3">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <strong><%= t('app.name') %></strong>
-  <% end %>
+<nav class=" navbar bg-body-tertiary px-3">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand fw-bold" do %>
+      <%= t('app.name') %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
 </nav>
