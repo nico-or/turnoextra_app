@@ -29,11 +29,13 @@ services:
     container_name: turnoextra_db
     env_file:
       - .env.production
+    ports:
+      - 127.0.0.1:5432:5432 # allow access with ssh tunnel
     volumes:
       - turnoextra_data_ps_18:/var/lib/postgresql/18/docker
     restart: unless-stopped
-    mem_limit: 200m
-    cpus: 0.2
+    mem_limit: 300m
+    cpus: 0.6
 
 volumes:
   turnoextra_data_ps_18:
