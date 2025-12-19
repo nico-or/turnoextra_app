@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     image: nordenes/turnoextra:latest
@@ -44,15 +42,15 @@ services:
   #   cpus: 0.1
 
   app_db:
-    image: postgres:15
+    image: postgres:18-trixie
     container_name: turnoextra_db
     env_file:
       - .env.production
     volumes:
-      - turnoextra_data:/var/lib/postgresql/data
+      - turnoextra_data_ps_18:/var/lib/postgresql/18/docker
     restart: unless-stopped
     mem_limit: 200m
     cpus: 0.2
 
 volumes:
-  turnoextra_data:
+  turnoextra_data_ps_18:

@@ -1,16 +1,14 @@
-version: '3.8'
-
 services:
   app_db:
-    image: postgres:15
+    image: postgres:18-trixie
     container_name: turnoextra_db
     env_file:
       - .env.development
     ports:
-     - "5432:5432"
+      - "5432:5432"
     volumes:
-      - turnoextra_data:/var/lib/postgresql/data
+      - turnoextra_ps_18:/var/lib/postgresql/18/docker
     restart: unless-stopped
 
 volumes:
-  turnoextra_data:
+  turnoextra_ps_18:
