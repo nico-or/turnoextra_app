@@ -185,15 +185,15 @@ class BoardgameTest < ActiveSupport::TestCase
 
   test "returns correct weight_category" do
     [
-      [1.0, :light],
-      [1.8, :medium_light],
-      [2.6, :medium],
-      [3.4, :medium_heavy],
-      [4.2, :heavy],
-      [0.1, :unknown],
-      [5.1, :unknown],
-      [0, :unrated],
-      [nil, :unrated],
+      [ 1.0, :light ],
+      [ 1.8, :medium_light ],
+      [ 2.6, :medium ],
+      [ 3.4, :medium_heavy ],
+      [ 4.2, :heavy ],
+      [ 0.1, :unknown ],
+      [ 5.1, :unknown ],
+      [ 0, :unrated ],
+      [ nil, :unrated ]
     ].each do |(weight, expected)|
       @boardgame.weight = weight
       assert_equal expected, @boardgame.weight_category

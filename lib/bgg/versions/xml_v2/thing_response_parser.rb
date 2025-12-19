@@ -30,28 +30,28 @@ module Bgg::Versions::XmlV2
 
           description:  parse_str_attribute(node, "description"),
 
-          year:         parse_int_attribute(node,"yearpublished"),
+          year:         parse_int_attribute(node, "yearpublished"),
           min_players:  parse_int_attribute(node, "minplayers"),
           max_players:  parse_int_attribute(node, "maxplayers"),
-          
+
           # poll: suggested_numplayers
           # poll-summary: suggested_numplayer
-          
+
           playingtime:  parse_int_attribute(node, "playingtime"),
           min_playtime: parse_int_attribute(node, "minplaytime"),
           max_playtime: parse_int_attribute(node, "maxplaytime"),
           min_age:      parse_int_attribute(node, "minage"),
-          
+
           # poll: suggested_playerage
           # poll: language_dependence
-          
+
           links: LinksParser.parse(node),
           # versions: Array[Bgg::Version]
           statistics: statistics(node),
         )
       end
 
-      def parse_str_attribute(node,selector)
+      def parse_str_attribute(node, selector)
         node.at_xpath(selector)&.text&.strip
       end
 
