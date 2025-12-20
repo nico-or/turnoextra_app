@@ -40,7 +40,7 @@ module App
     config.generators.system_tests = nil
 
     # :en required for rails/mission_control-jobs
-    config.i18n.available_locales = [ :es ]
+    config.i18n.available_locales = [ :es, :en ]
     config.i18n.default_locale = :es
   end
 end
