@@ -68,3 +68,5 @@ gem "meta-tags", "~> 2.22"
 gem "cssbundling-rails", "~> 1.4"
 
 gem "mission_control-jobs", "~> 1"
+
+gem "scenic", "~> 1.9"
