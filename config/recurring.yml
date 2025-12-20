@@ -6,6 +6,10 @@ production:
     class: UpdateDailyBoardgameDealsJob
     queue: background
     schedule: every hour
+  update_boardgame_deals:
+    class: BoardgameDeals::RefreshViewJob
+    queue: background
+    schedule: every hour
   update_boardgame_ranks:
     class: UpdateBoardgameRanksJob
     queue: background
