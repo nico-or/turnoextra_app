@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_20_001739) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_21_224210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -19,11 +19,12 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_20_001739) do
     t.bigint "boardgame_id", null: false
     t.datetime "created_at", null: false
     t.boolean "preferred", default: false, null: false
+    t.string "search_value"
     t.datetime "updated_at", null: false
     t.string "value", null: false
     t.index ["boardgame_id", "value"], name: "index_boardgame_names_on_boardgame_id_and_value", unique: true
     t.index ["boardgame_id"], name: "index_boardgame_names_on_boardgame_id"
-    t.index ["value"], name: "index_boardgame_names_on_value_trgm", opclass: :gin_trgm_ops, using: :gin
+    t.index ["search_value"], name: "index_boardgame_names_on_search_value_trgm", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "boardgames", force: :cascade do |t|

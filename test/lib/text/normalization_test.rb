@@ -14,4 +14,9 @@ class Text::NormalizationTest < ActiveSupport::TestCase
     assert_equal "arbol 2da edicion", Text::Normalization.normalize_title("Árbol: 2da. Edición")
     assert_equal "el espanol de al lado", Text::Normalization.normalize_title("El español de al lado")
   end
+
+  test "search_value" do
+    assert_equal "avio", Text::Normalization.search_value("avío")
+    assert_equal "avio", Text::Normalization.search_value("AVÏO")
+  end
 end

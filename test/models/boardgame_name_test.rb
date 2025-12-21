@@ -74,4 +74,10 @@ class BoardgameNameValidationsTest < ActiveSupport::TestCase
     assert names.all { |name| name.is_a? BoardgameName }
     assert_equal "Preferred Name", names.first.value
   end
+
+  test "Set search value after creation" do
+    bn =  @boardgame.boardgame_names.create!(value: "Avíö")
+
+    assert_equal "avio", bn.search_value
+  end
 end
