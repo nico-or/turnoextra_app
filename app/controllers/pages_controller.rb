@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   private
 
   def old_home
-    @last_update_datetime = reference_date
+    @last_update_datetime = last_update_datetime
     @deals = top_discounted_deals
     @new_deals = new_price_drops
     @top_bgg = top_ranked_boardgames
@@ -20,8 +20,12 @@ class PagesController < ApplicationController
     @top_1000_discounted_bgg = top_bgg_games(101, 1000)
   end
 
+  def last_update_datetime
+    Price.maximum(:updated_at).in_time_zone("America/Santiago")
+  end
+
   def reference_date
-    @reference_date ||= Price.latest_update_date&.in_time_zone("America/Santiago")
+    @reference_date ||= Price.latest_update_date
   end
 
   def yesterday_date
@@ -123,7 +127,7 @@ class PagesController < ApplicationController
   end
 
   def new_home
-    @last_update_datetime = reference_date
+    @last_update_datetime = last_update_datetime
 
     @deals = new_base_query
       .where("net_discount > 0")
