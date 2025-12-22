@@ -33,6 +33,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # [2025-12-22]: v6 breaks the rails test command
+  gem "minitest", "~>5"
 end
 
 gem "httparty", "~> 0.23.2"
