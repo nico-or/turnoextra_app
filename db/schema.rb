@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_21_224210) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_22_200015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -55,16 +55,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_21_224210) do
     t.integer "subject", default: 0, null: false
     t.datetime "updated_at", null: false
     t.string "user_agent", null: false
-  end
-
-  create_table "daily_boardgame_deals", force: :cascade do |t|
-    t.integer "best_price", default: 0, null: false
-    t.bigint "boardgame_id", null: false
-    t.datetime "created_at", null: false
-    t.integer "discount", default: 0, null: false
-    t.integer "reference_price", default: 0, null: false
-    t.datetime "updated_at", null: false
-    t.index ["boardgame_id"], name: "index_daily_boardgame_deals_on_boardgame_id"
   end
 
   create_table "form_store_suggestions", force: :cascade do |t|
@@ -169,7 +159,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_21_224210) do
   end
 
   add_foreign_key "boardgame_names", "boardgames"
-  add_foreign_key "daily_boardgame_deals", "boardgames"
   add_foreign_key "listings", "stores"
   add_foreign_key "prices", "listings"
   add_foreign_key "things_links", "boardgames"

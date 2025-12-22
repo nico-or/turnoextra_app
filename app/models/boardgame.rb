@@ -2,7 +2,6 @@ class Boardgame < ApplicationRecord
   has_many :listings
   has_many :prices, through: :listings
   has_many :stores, through: :listings
-  has_many :daily_boardgame_deals # TODO: replace with has_one
   has_many :boardgame_names
   has_many :impressions, as: :trackable
   has_many :ranks, class_name: "Things::Rank"

@@ -23,13 +23,6 @@ namespace :boardgame do
     end
   end
 
-  desc "Update reference price for boardgames"
-  task update_prices: :environment do
-    Rails.logger.info "Updating daily_boardgame_deals table"
-    DailyDealsUpdateService.new.call
-    Rails.logger.info "Finished updating daily_boardgame_deals table"
-  end
-
   desc "Updates normalized title field in Boardgames records"
   task update_normalized_titles: :environment do
     Rails.logger.info "Updating normalized_title for #{Boardgame.count} Boardgame records"
