@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_22_200015) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_22_205753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -110,6 +110,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_22_200015) do
     t.index ["date"], name: "index_prices_on_date"
     t.index ["listing_id", "date"], name: "index_prices_on_listing_id_and_date", unique: true
     t.index ["listing_id"], name: "index_prices_on_listing_id"
+    t.index ["updated_at"], name: "index_prices_on_updated_at"
   end
 
   create_table "store_suggestions", force: :cascade do |t|
