@@ -135,7 +135,6 @@ class PagesController < ApplicationController
 
     @new_deals = new_base_query
       .where(did_drop: true)
-      .where("rel_discount_100 > 5")
       .order("discount DESC", "is_ranked DESC", "rank")
 
     @top_bgg = new_base_query
@@ -154,6 +153,7 @@ class PagesController < ApplicationController
   def new_top_bgg_games(min_rank, max_rank)
     new_base_query
       .where("rank BETWEEN ? AND ?", min_rank, max_rank)
+      .where("rel_discount_100 > 0")
       .order("discount DESC", "rank")
   end
 end
