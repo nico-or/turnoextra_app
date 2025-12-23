@@ -12,4 +12,9 @@ class BoardgameDeal < ApplicationRecord
   def readonly?
     true
   end
+
+  # Friendly URL
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
 end
