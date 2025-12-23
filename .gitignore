@@ -33,8 +33,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-TODO.md
-
 # Ignore seed data
 db/seeds/**/*.csv
 
@@ -51,4 +49,8 @@ coverage/
 .yarn
 
 # Ignore notes directory
+TODO.md
 notes
+
+# ignore local config
+.vscode

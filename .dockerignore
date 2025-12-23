@@ -61,3 +61,6 @@
 # Ignore notes
 /notes
 *.md
+
+/.vscode
+/.github
