@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ImpressionValidatorTest < ActiveSupport::TestCase
+class VisitorTest < ActiveSupport::TestCase
   REAL_USER_AGENTS = [
     "Mozilla/5.0 (Android 14; Mobile; rv:146.0) Gecko/146.0 Firefox/146.0",
     "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5.1 Mobile/15E148 Safari/605.1.15 (Ecosia ios@11.5.2.2615)",
@@ -32,28 +32,32 @@ class ImpressionValidatorTest < ActiveSupport::TestCase
   test "visitor is worthy" do
     user = nil
     REAL_USER_AGENTS.each do |user_agent|
-      assert ImpressionValidator.new(user:, user_agent:).worthy?, "failed for: #{user_agent}"
+      visitor = Visitor.new(user:, user_agent:)
+      assert visitor.impression_worthy?, "failed for: #{user_agent}"
     end
   end
 
   test "regular user is worthy" do
     user = users(:user)
     REAL_USER_AGENTS.each do |user_agent|
-      assert ImpressionValidator.new(user:, user_agent:).worthy?, "failed for: #{user_agent}"
+      visitor = Visitor.new(user:, user_agent:)
+      assert visitor.impression_worthy?, "failed for: #{user_agent}"
     end
   end
 
   test "admin is not worthy" do
     user = users(:admin)
     REAL_USER_AGENTS.each do |user_agent|
-      assert_not ImpressionValidator.new(user:, user_agent:).worthy?, "failed for: #{user_agent}"
+      visitor = Visitor.new(user:, user_agent:)
+      assert_not visitor.impression_worthy?, "failed for: #{user_agent}"
     end
   end
 
   test "bot is not worthy" do
     user = nil
     BOT_USER_AGENTS.each do |user_agent|
-      assert_not ImpressionValidator.new(user:, user_agent:).worthy?, "failed for: #{user_agent}"
+      visitor = Visitor.new(user:, user_agent:)
+      assert_not visitor.impression_worthy?, "failed for: #{user_agent}"
     end
   end
 end
