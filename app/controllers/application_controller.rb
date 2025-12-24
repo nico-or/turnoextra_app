@@ -6,19 +6,14 @@ class ApplicationController < ActionController::Base
   allow_browser versions: { safari: 16, chrome: 120, firefox: 121, opera: 106, ie: false } if Rails.env.production?
 
   before_action { Pagy::I18n.locale = "es" }
-  before_action :set_current_user
-  before_action :set_bot
+  before_action :set_current_context
 
   include Pagy::Method
 
   protected
 
-  def set_current_user
+  def set_current_context
     Current.user = User.find_by(id: session[:user_id]) if session[:user_id]
-  end
-
-  def set_bot
-    browser = Browser.new(request.user_agent)
-    Current.bot = browser.bot?
+    Current.user_agent = request.user_agent
   end
 end
