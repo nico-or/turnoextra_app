@@ -18,11 +18,7 @@ class BoardgamesController < ApplicationController
     @boardgame = Boardgame.find(params[:id])
     @reference_price = @boardgame.boardgame_deal&.[](:m_price)
 
-    Impression.impression_for(
-      @boardgame,
-      user: Current.user,
-      user_agent: request.user_agent
-    )
+    Impression.impression_for(@boardgame, visitor: Current.visitor)
 
     @reference_date = Price.latest_update_date
 

@@ -19,8 +19,8 @@ class Impression < ApplicationRecord
     self.count ||= 0
   end
 
-  def self.impression_for(trackable, user:, user_agent:)
-    return unless ImpressionValidator.new(user:, user_agent:).worthy?
+  def self.impression_for(trackable, visitor:)
+    return unless visitor.impression_worthy?
 
     impression = Impression.find_or_create_by(trackable: trackable, date: Date.current)
     Impression.increment_counter(:count, impression.id)
