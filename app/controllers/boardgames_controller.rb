@@ -18,7 +18,7 @@ class BoardgamesController < ApplicationController
     @boardgame = Boardgame.find(params[:id])
     @reference_price = @boardgame.boardgame_deal&.[](:m_price)
 
-    unless Current.user&.admin?
+    if ImpressionValidator.new(user: Current.user).worthy?
       Impression.find_or_create_by(trackable: @boardgame, date: Date.current).increment!(:count)
     end
 
