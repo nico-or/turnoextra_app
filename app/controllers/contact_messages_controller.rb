@@ -16,27 +16,6 @@ class ContactMessagesController < ApplicationController
     end
   end
 
-  def new_boardgame_error
-    @contact_message = ContactMessage.new(subject: :error_report)
-    @boardgame = Boardgame.find(params[:boardgame_id])
-  end
-
-  def create_boardgame_error
-    @boardgame = Boardgame.find_by(id: params[:boardgame_id])
-    @contact_message = ContactMessage.new(
-      subject: :error_report,
-      user_agent: request.user_agent,
-      contactable: @boardgame,
-      body: contact_message_params[:body]
-      )
-
-    if @contact_message.save
-      redirect_to boardgame_path(@boardgame), notice: t(".success")
-    else
-      render :new_boardgame_error, alert: t(".failure")
-    end
-  end
-
   private
 
   def contact_message_params
