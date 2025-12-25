@@ -8,6 +8,8 @@ class Boardgame < ApplicationRecord
   has_many :links, class_name: "Things::Link"
   has_one :boardgame_deal, class_name: "BoardgameDeal", inverse_of: :boardgame
 
+  has_many :contact_messages, inverse_of: :contactable, dependent: :destroy
+
   validates :title, presence: true
   validates :year, presence: true, numericality: { only_integer: true }
   validates :bgg_id, presence: true, uniqueness: true, numericality: { only_integer: true, greater_than: 0 }

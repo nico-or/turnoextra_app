@@ -68,17 +68,20 @@ class ContactMessagesControllerTest < ActionDispatch::IntegrationTest
     params = {
       boardgame_id: boardgame.id,
       contact_message: {
-        body: "This is a test error message."
+      body: "This is a test error message."
       }
     }
 
     assert_difference("ContactMessage.count", 1) do
       post boardgame_errors_path, params: params, headers: @default_headers
-      assert_redirected_to boardgame_path(boardgame)
     end
 
+    assert_redirected_to boardgame_path(boardgame)
+
     contact_message = ContactMessage.last
+
     assert_match (/test error/), contact_message.body
     assert contact_message.error_report?
+    assert contact_message.contactable = boardgame
   end
 end

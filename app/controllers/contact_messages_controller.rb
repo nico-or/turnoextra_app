@@ -23,16 +23,12 @@ class ContactMessagesController < ApplicationController
 
   def create_boardgame_error
     @boardgame = Boardgame.find_by(id: params[:boardgame_id])
-    @contact_message = ContactMessage.new(subject: :error_report, user_agent: request.user_agent)
-    @contact_message.body = <<~MSG
-      boardgame_id: #{@boardgame.id}
-      boardgame_title: #{@boardgame.title}
-      boardgame_url: #{boardgame_url(@boardgame)}
-
-      ---
-
-      #{params[:contact_message][:body]}
-    MSG
+    @contact_message = ContactMessage.new(
+      subject: :error_report,
+      user_agent: request.user_agent,
+      contactable: @boardgame,
+      body: contact_message_params[:body]
+      )
 
     if @contact_message.save
       redirect_to boardgame_path(@boardgame), notice: t(".success")
