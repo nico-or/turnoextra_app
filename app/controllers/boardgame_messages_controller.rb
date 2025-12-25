@@ -7,6 +7,7 @@ class BoardgameMessagesController < ApplicationController
   def create
     @boardgame = Boardgame.find(params[:boardgame_id])
     @contact_message = ContactMessage.new(contact_message_params.merge(
+      subject: :error_report,
       user_agent: request.user_agent,
       contactable: @boardgame
     ))

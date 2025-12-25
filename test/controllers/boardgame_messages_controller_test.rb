@@ -19,8 +19,9 @@ class BoardgameMessagesControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to boardgame_path(@boardgame)
     end
 
-    message = ContactMessage.last
+    p message = ContactMessage.last
 
+    assert message.error_report?
     assert_equal @boardgame, message.contactable
     assert_equal "test message", message.body
   end
