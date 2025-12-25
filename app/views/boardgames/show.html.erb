@@ -46,7 +46,7 @@
 </section>
 <section class="my-5">
   <h2 class="mb-2"><%= t(".actions") %></h2>
-  <%= link_to t(".report_error"), new_boardgame_error_path(@boardgame), class: "btn btn-outline-danger", rel: "nofollow" %>
+  <%= link_to t(".report_error"), new_boardgame_message_path(@boardgame), class: "btn btn-outline-danger", rel: "nofollow" %>
 </section>
 <% if Current.user&.admin? %>
   <section class="my-5">
