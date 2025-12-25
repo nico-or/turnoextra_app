@@ -1,0 +1,8 @@
+es:
+  boardgame_messages:
+    new:
+      title: "Reportar un error en un juego de tablero"
+      instructions: "Describe el problema que encontraste."
+    create:
+      success: "Error reportado con éxito. Gracias!"
+      failure: "Algo salió mal. Por favor, intenta de nuevo."

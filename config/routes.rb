@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   get "search", to: "search#search"
 
-  resources :boardgames, only: %i[index show]
+  resources :boardgames, only: %i[index show] do
+    resources :messages, only: %i[new create], controller: :boardgame_messages
+  end
   resources :deals, only: %i[index]
   resources :stores, only: %i[index]
   resources :store_suggestions, only: %i[new create]
