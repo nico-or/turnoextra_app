@@ -224,4 +224,19 @@ class BoardgamePreferredNameTest < ActiveSupport::TestCase
   test "Should return nil if no names exist" do
     assert_nil @boardgame.preferred_name
   end
+
+  test "destroys associated contact messages" do
+    message = @boardgame.contact_messages.create!(
+      user_agent: "test user agent",
+      body: "test message"
+    )
+
+    assert_difference("ContactMessage.count", -1) do
+      @boardgame.destroy!
+    end
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      message.reload
+    end
+  end
 end

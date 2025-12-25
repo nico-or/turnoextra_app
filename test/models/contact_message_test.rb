@@ -71,4 +71,15 @@ class ContactMessageTest < ActiveSupport::TestCase
     contact_message.save!
     assert_equal "test@example.com", contact_message.email
   end
+
+  test "should allow polymorphic relationship with contactable" do
+    contactable = Boardgame.first
+    params = @default_params.merge(contactable:)
+
+    contact_message = ContactMessage.new(params)
+
+    assert contact_message.valid?
+    assert contact_message.contactable_id = contactable.id
+    assert contact_message.contactable_type = contactable.class.name
+  end
 end

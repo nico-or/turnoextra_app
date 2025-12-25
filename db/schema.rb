@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_22_205753) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_25_151621) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -48,6 +48,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_22_205753) do
 
   create_table "contact_messages", force: :cascade do |t|
     t.text "body"
+    t.bigint "contactable_id"
+    t.string "contactable_type"
     t.datetime "created_at", null: false
     t.string "email"
     t.string "name"
@@ -55,6 +57,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_22_205753) do
     t.integer "subject", default: 0, null: false
     t.datetime "updated_at", null: false
     t.string "user_agent", null: false
+    t.index ["contactable_type", "contactable_id"], name: "index_contact_messages_on_contactable"
   end
 
   create_table "form_store_suggestions", force: :cascade do |t|
