@@ -21,6 +21,7 @@ class BoardgameMessagesControllerTest < ActionDispatch::IntegrationTest
 
     message = ContactMessage.last
 
+    assert message.error_report?
     assert_equal @boardgame, message.contactable
     assert_equal "test message", message.body
   end
