@@ -9,14 +9,9 @@ module Bgg::Versions::XmlV2
       ThingResponseParser.parse!(response)
     end
 
-    test "#parse! a XML response with a single boardgame and statistics" do
-      boardgames = load_boardgame_fixture("bgg/api/v2/thing_single.xml")
-
-      assert_equal 1, boardgames.size
-      assert boardgames.is_a? Array
-      assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
-
-      game = boardgames.first
+    def assert_common_boardgame_attributes(game)
+      assert_equal "HINT", game.title
+      assert_equal 2014, game.year
       assert_equal 165628, game.bgg_id
 
       assert_match %r{__small/img/}, game.thumbnail_url
@@ -57,9 +52,21 @@ module Bgg::Versions::XmlV2
       assert_equal [ "Bezzerwizzer ApS (Bezzerwizzer Studio)", "Nordic Games ehf", "Rebel Sp. z o.o." ], game.publishers
 
       # versions
+    end
 
-      assert_equal 6528, game.rank
+    test "#parse! a XML response with a single boardgame and statistics" do
+      boardgames = load_boardgame_fixture("bgg/api/v2/thing_single.xml")
+
+      assert_equal 1, boardgames.size
+      assert boardgames.is_a? Array
+      assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
+
+      game = boardgames.first
+
+      assert_common_boardgame_attributes(game)
+
       assert_equal 1.2667, game.weight
+      assert_equal 6528, game.rank
     end
 
     test "#parse! a XML response with a single boardgame without statistics" do
@@ -71,46 +78,7 @@ module Bgg::Versions::XmlV2
 
       game = boardgames.first.with(statistics: nil)
 
-      assert_equal 165628, game.bgg_id
-
-      assert_match %r{__small/img/}, game.thumbnail_url
-      assert_match %r{__original/img/}, game.image_url
-
-      assert_equal "HINT", game.title
-      assert game.titles.is_a? Array
-      assert_equal 5, game.titles.count
-
-      assert_match %r{In HINT, your teammates}, game.description
-
-      assert_equal 2014, game.year
-
-      assert_equal 4, game.min_players
-      assert_equal 10, game.max_players
-
-      # poll suggested_numplayers
-      # poll-summary suggested_numplayers
-
-      assert_equal 60, game.playingtime
-      assert_equal 45, game.min_playtime
-      assert_equal 60, game.max_playtime
-
-      assert_equal 15, game.min_age
-
-      # poll suggested_playerage
-      # poll language_dependence
-
-      assert_equal 16, game.links.count
-
-      assert_equal [ "Party Game" ], game.categories
-      assert_equal [ "Acting", "Line Drawing", "Singing", "Team-Based Game" ], game.mechanics
-      assert_equal [ "Components: Sand Timers" ], game.families
-      assert_equal [ "HINT Junior", "HINT Promo" ], game.integrations
-      assert_equal [ "HINT: Demo version", "Red HINT" ], game.implementations
-      assert_equal [ "Jesper Bülow", "Jonas Resting-Jeppesen" ], game.designers
-      assert_equal [ "Jonas Resting-Jeppesen" ], game.artists
-      assert_equal [ "Bezzerwizzer ApS (Bezzerwizzer Studio)", "Nordic Games ehf", "Rebel Sp. z o.o." ], game.publishers
-
-      # versions
+      assert_common_boardgame_attributes(game)
 
       assert_nil game.rank
       assert_nil game.weight
@@ -165,6 +133,7 @@ module Bgg::Versions::XmlV2
       assert_equal [ "Within Play" ], game.publishers
 
       assert_equal 0, game.weight
+      assert_equal 0, game.rank
     end
 
     test "#parse! a XML response with multiple boardgames" do
