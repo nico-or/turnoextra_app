@@ -144,16 +144,20 @@ module Bgg::Versions::XmlV2
       assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
 
       game1 = boardgames[0]
-      assert_equal "HINT", game1.title
-      assert_equal 2014, game1.year
-      assert_equal 165628, game1.bgg_id
-      assert_equal 4, game1.titles.count
+      assert_equal "Calico", game1.title
+      assert_equal 2020, game1.year
+      assert_equal 283155, game1.bgg_id
+      assert_equal 9, game1.titles.count
+      assert_equal 255, game1.rank
+      assert_equal 2.1911, game1.weight
 
       game2 = boardgames[1]
-      assert_equal "Dogsitter", game2.title
-      assert_equal 2014, game2.year
-      assert_equal 165629, game2.bgg_id
-      assert_equal 1, game2.titles.count
+      assert_equal "Harmonies", game2.title
+      assert_equal 2024, game2.year
+      assert_equal 414317, game2.bgg_id
+      assert_equal 11, game2.titles.count
+      assert_equal 72, game2.rank
+      assert_equal 2.0034, game2.weight
     end
 
     test "#parse! a XML response with no boardgames" do

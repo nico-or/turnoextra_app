@@ -8,7 +8,7 @@ module Bgg::Versions::XmlV2
       private
 
       def rank_nodes(response)
-        response.xpath("//rank")
+        response.xpath("rank")
       end
 
       def parse_rank(node)

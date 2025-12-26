@@ -1,36 +1,333 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
-	<item type="boardgame" id="165628">
+	<item type="boardgame" id="283155">
 		<thumbnail>
-			https://cf.geekdo-images.com/1Ebkya5qKEm0SWGiAI20DA__thumb/img/sZw3_Zh6UNEcSYwcEUNqckHzn4k=/fit-in/200x150/filters:strip_icc()/pic6164116.jpg</thumbnail>
+			https://cf.geekdo-images.com/qGkU6XsF1448F_A4P8TY5Q__thumb/img/l5ODCWYHD8_1x-WFqf-TJZhXT38=/fit-in/200x150/filters:strip_icc()/pic8124431.jpg</thumbnail>
 		<image>
-			https://cf.geekdo-images.com/1Ebkya5qKEm0SWGiAI20DA__original/img/GZX5k_F8VHt8GVf2g1WZPFjGZ0Q=/0x0/filters:format(jpeg)/pic6164116.jpg</image>
-
-		<name type="primary" sortindex="1" value="HINT" />
-		<name type="alternate" sortindex="1" value="Gefðu HINT" />
-		<name type="alternate" sortindex="1" value="HINT GO" />
-		<name type="alternate" sortindex="1" value="HINT Pocket" />
-
-		<description>In HINT, your teammates have to guess what you are trying to tell them. Along
-			the way you both mime, draw, hum and talk about everything from 'European Capitals' and
-			'Movie Villains' to 'Fictional Vehicles' and 'Pizza Toppings'. You must be both quick
-			and creative, but beware! There is always one forbidden word that you may not use. An
-			entertaining party game for everyone that gets the hint.&amp;#10;&amp;#10;</description>
-		<yearpublished value="2014" />
+			https://cf.geekdo-images.com/qGkU6XsF1448F_A4P8TY5Q__original/img/sm-qIkkIoKuYRUgkfP6kkXTm1QY=/0x0/filters:format(jpeg)/pic8124431.jpg</image>
+		<name type="primary" sortindex="1" value="Calico" />
+		<name type="alternate" sortindex="1" value="Calico Ο Σπιτόγατος" />
+		<name type="alternate" sortindex="1" value="Calico: Foltok, cicák, takarók" />
+		<name type="alternate" sortindex="1" value="Pelíšek" />
+		<name type="alternate" sortindex="1" value="Каліко" />
+		<name type="alternate" sortindex="1" value="Котики" />
+		<name type="alternate" sortindex="1" value="キャリコ" />
+		<name type="alternate" sortindex="1" value="猫与花毯" />
+		<name type="alternate" sortindex="1" value="캘리코" />
+		<description>Calico is a puzzly tile-laying game of quilts and cats.&amp;#10;&amp;#10;In
+			Calico, players compete to sew the coziest quilt as they collect and place patches of
+			different colors and patterns. Each quilt has a particular pattern that must be
+			followed, and players are also trying to create color and pattern combinations that are
+			not only aesthetically pleasing, but also able to attract the cuddliest
+			cats!&amp;#10;&amp;#10;Turns are simple. Select a single patch tile from your hand and
+			sew it into your quilt, then draw another patch into your hand from the three available.
+			If you are able to create a color group, you may sew a button onto your quilt. If you
+			are able to create a pattern combination that is attractive to any of the cats, it will
+			come over and curl up on your quilt! At the end of the game, you score points for
+			buttons, cats, and how well you were able to complete your unique quilt
+			pattern.&amp;#10;&amp;#10;&amp;mdash;description from the publisher&amp;#10;&amp;#10;</description>
+		<yearpublished value="2020" />
+		<minplayers value="1" />
+		<maxplayers value="4" />
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="357">
+			<results numplayers="1">
+				<result value="Best" numvotes="64" />
+				<result value="Recommended" numvotes="140" />
+				<result value="Not Recommended" numvotes="39" />
+			</results>
+			<results numplayers="2">
+				<result value="Best" numvotes="217" />
+				<result value="Recommended" numvotes="100" />
+				<result value="Not Recommended" numvotes="7" />
+			</results>
+			<results numplayers="3">
+				<result value="Best" numvotes="101" />
+				<result value="Recommended" numvotes="161" />
+				<result value="Not Recommended" numvotes="13" />
+			</results>
+			<results numplayers="4">
+				<result value="Best" numvotes="37" />
+				<result value="Recommended" numvotes="161" />
+				<result value="Not Recommended" numvotes="72" />
+			</results>
+			<results numplayers="4+">
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="1" />
+				<result value="Not Recommended" numvotes="137" />
+			</results>
+		</poll>
+		<poll-summary name="suggested_numplayers" title="User Suggested Number of Players">
+			<result name="bestwith" value="Best with 2 players" />
+			<result name="recommmendedwith" value="Recommended with 1–4 players" />
+		</poll-summary>
+		<playingtime value="45" />
+		<minplaytime value="30" />
+		<maxplaytime value="45" />
+		<minage value="10" />
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="74">
+			<results>
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="1" />
+				<result value="5" numvotes="1" />
+				<result value="6" numvotes="5" />
+				<result value="8" numvotes="25" />
+				<result value="10" numvotes="33" />
+				<result value="12" numvotes="6" />
+				<result value="14" numvotes="2" />
+				<result value="16" numvotes="1" />
+				<result value="18" numvotes="0" />
+				<result value="21 and up" numvotes="0" />
+			</results>
+		</poll>
+		<poll name="language_dependence" title="Language Dependence" totalvotes="28">
+			<results>
+				<result level="21" value="No necessary in-game text" numvotes="28" />
+				<result level="22"
+					value="Some necessary text - easily memorized or small crib sheet" numvotes="0" />
+				<result level="23" value="Moderate in-game text - needs crib sheet or paste ups"
+					numvotes="0" />
+				<result level="24"
+					value="Extensive use of text - massive conversion needed to be playable"
+					numvotes="0" />
+				<result level="25" value="Unplayable in another language" numvotes="0" />
+			</results>
+		</poll>
+		<link type="boardgamecategory" id="1089" value="Animals" />
+		<link type="boardgamecategory" id="1028" value="Puzzle" />
+		<link type="boardgamemechanic" id="2043" value="Enclosure" />
+		<link type="boardgamemechanic" id="2875" value="End Game Bonuses" />
+		<link type="boardgamemechanic" id="2978" value="Grid Coverage" />
+		<link type="boardgamemechanic" id="2026" value="Hexagon Grid" />
+		<link type="boardgamemechanic" id="2041" value="Open Drafting" />
+		<link type="boardgamemechanic" id="2048" value="Pattern Building" />
+		<link type="boardgamemechanic" id="2004" value="Set Collection" />
+		<link type="boardgamemechanic" id="2819" value="Solo / Solitaire Game" />
+		<link type="boardgamemechanic" id="2002" value="Tile Placement" />
+		<link type="boardgamefamily" id="7334" value="Animals: Cats" />
+		<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
+		<link type="boardgamefamily" id="104952" value="Digital Implementations: Apple App Store" />
+		<link type="boardgamefamily" id="77349" value="Digital Implementations: Steam" />
+		<link type="boardgamefamily" id="70948" value="Digital Implementations: Tabletopia" />
+		<link type="boardgamefamily" id="5666" value="Players: Games with Solitaire Rules" />
+		<link type="boardgamefamily" id="105686" value="Series: Calico" />
+		<link type="boardgamefamily" id="57182" value="Theme: Sewing / Knitting / Cloth-Making" />
+		<link type="boardgameexpansion" id="368113"
+			value="Calico:  Opposites Attract Tantrum House Promo Tiles" />
+		<link type="boardgameexpansion" id="293834" value="Calico: Kickstarter Promo Cats" />
+		<link type="boardgameaccessory" id="348481" value="Calico: Eurohell Design Insert" />
+		<link type="boardgameaccessory" id="372682" value="Calico: GeekUp Bit Set" />
+		<link type="boardgameaccessory" id="337692" value="Calico: reDrewno Insert" />
+		<link type="boardgameintegration" id="421606" value="Knitting Circle" />
+		<link type="boardgamedesigner" id="117880" value="Kevin Russ" />
+		<link type="boardgameartist" id="71164" value="Beth Sobel" />
+		<link type="boardgamepublisher" id="42733" value="Flatout Games" />
+		<link type="boardgamepublisher" id="396" value="Alderac Entertainment Group" />
+		<link type="boardgamepublisher" id="3475" value="Arclight Games" />
+		<link type="boardgamepublisher" id="34522" value="CrowD Games" />
+		<link type="boardgamepublisher" id="50609" value="Cryptic Cardboard" />
+		<link type="boardgamepublisher" id="8820" value="Gém Klub Kft." />
+		<link type="boardgamepublisher" id="42325" value="Grok Games" />
+		<link type="boardgamepublisher" id="56118" value="Hid Konem (Хід Конем)" />
+		<link type="boardgamepublisher" id="6214" value="Kaissa Chess &amp; Games" />
+		<link type="boardgamepublisher" id="44898" value="Little Rocket Games" />
+		<link type="boardgamepublisher" id="46500" value="Lord of Boards" />
+		<link type="boardgamepublisher" id="33626" value="Lucky Duck Games" />
+		<link type="boardgamepublisher" id="30677" value="Maldito Games" />
+		<link type="boardgamepublisher" id="7992" value="MINDOK" />
+		<link type="boardgamepublisher" id="41167" value="Popcorn Games" />
+		<link type="boardgamepublisher" id="34" value="Ravensburger" />
+		<link type="boardgamepublisher" id="4932" value="White Goblin Games" />
+		<statistics page="1">
+			<ratings>
+				<usersrated value="21980" />
+				<average value="7.49949" />
+				<bayesaverage value="7.25727" />
+				<ranks>
+					<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank"
+						value="255" bayesaverage="7.25727" />
+					<rank type="family" id="4666" name="abstracts" friendlyname="Abstract Game Rank"
+						value="11" bayesaverage="7.28569" />
+					<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank"
+						value="54" bayesaverage="7.30131" />
+				</ranks>
+				<stddev value="1.23896" />
+				<median value="0" />
+				<owned value="38721" />
+				<trading value="335" />
+				<wanting value="422" />
+				<wishing value="6258" />
+				<numcomments value="3293" />
+				<numweights value="586" />
+				<averageweight value="2.1911" />
+			</ratings>
+		</statistics>
 	</item>
-	<item type="boardgame" id="165629">
+	<item type="boardgame" id="414317">
 		<thumbnail>
-			https://cf.geekdo-images.com/qJ-RNm11_fdD3zhQB568KA__thumb/img/BNQywRty2s5C7qRzxVWgy4Jxskk=/fit-in/200x150/filters:strip_icc()/pic2236403.jpg</thumbnail>
+			https://cf.geekdo-images.com/A_XP2_VN3ugyqPhezowB_w__thumb/img/ln5eKAzhse2PIHvWn7bu-jiW_uk=/fit-in/200x150/filters:strip_icc()/pic8026369.png</thumbnail>
 		<image>
-			https://cf.geekdo-images.com/qJ-RNm11_fdD3zhQB568KA__original/img/DqmPGMpkTOfg6-hTweFMUZMKzoY=/0x0/filters:format(jpeg)/pic2236403.jpg</image>
-
-		<name type="primary" sortindex="1" value="Dogsitter" />
-		<description>Dogsitter is a fast dexterity game for families. Fido is a really playful dog:
-			he wants to go out for a walk, play with the ball, gnaw a bone. Players will literally
-			throw the toys to the barking dog, trying to center the &amp;quot;bark tiles&amp;quot;
-			with their items, with a mix of aim and manual skill, in order to give the dog exactly
-			what he wants. Being a dogsitter is not an easy work, but how nice is to see Fido
-			happy!&amp;#10;&amp;#10;</description>
-		<yearpublished value="2014" />
+			https://cf.geekdo-images.com/A_XP2_VN3ugyqPhezowB_w__original/img/_Rv8lSr3fC1oDRkrQleQW2H2yCs=/0x0/filters:format(png)/pic8026369.png</image>
+		<name type="primary" sortindex="1" value="Harmonies" />
+		<name type="alternate" sortindex="1" value="Harmónia" />
+		<name type="alternate" sortindex="1" value="Krajina zvířat" />
+		<name type="alternate" sortindex="1" value="Ostoja" />
+		<name type="alternate" sortindex="1" value="Αρμονία" />
+		<name type="alternate" sortindex="1" value="Гармония" />
+		<name type="alternate" sortindex="1" value="Гармонія" />
+		<name type="alternate" sortindex="1" value="Природа" />
+		<name type="alternate" sortindex="1" value="ハーモニーズ" />
+		<name type="alternate" sortindex="1" value="自然和弦" />
+		<name type="alternate" sortindex="1" value="하모니즈" />
+		<description>In Harmonies, build landscapes by placing colored tokens and create habitats
+			for your animals. To earn the most points and win the game, incorporate the habitats in
+			your landscapes wisely and have as many animals as you can settle
+			there.&amp;#10;&amp;#10;Starting with the first player and proceeding clockwise, each
+			player will choose a set of 3 terrain tokens from the central area to place on their
+			personal board. They may optionally choose an Animal card from the 5 displayed and/or
+			place an Animal cube from their Animal card(s) on any completed patterns on their board
+			that match their personal Animal cards. There is a 4-card limit per player. After their
+			turn, refill with a new set of 3 tokens and a new Animal card if
+			needed.&amp;#10;&amp;#10;Placement of the terrain tokens will depend on the personal
+			Animal card goals, and scoring rules for the various terrain types (mountain, field,
+			forest, etc). For example, mountain tiles score based on how high they are (1 tile
+			scores 1, while 3 tiles stacked score 7), but the mountain scores zero if it is not
+			adjacent to at least one other mountain. If all the cubes on a given Animal card have
+			been placed, the card is set aside and a new card can be drawn. The cards are scored at
+			game end based on the highest number that isn't covered by a cube.&amp;#10;&amp;#10;The
+			games ends when there are no tokens left in the bag to refill the central area, or at
+			least one players has 2 or fewer empty spaces on their player board. Play continues
+			until all players have had an equal turn that round. The player with the highest points
+			is the winner.&amp;#10;&amp;#10;Optionally, you can use Nature's Spirit cards for richer
+			gameplay. During setup, each player chooses 1 of 2 spirit cards and places a Spirit cube
+			on the card. They follow the same placement rules as Animal cards, but tend to have an
+			ongoing effect once completed. The spirit card does count towards the 4-card hand
+			limit.&amp;#10;&amp;#10;&amp;mdash;description from the publisher&amp;#10;&amp;#10;</description>
+		<yearpublished value="2024" />
+		<minplayers value="1" />
+		<maxplayers value="4" />
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="415">
+			<results numplayers="1">
+				<result value="Best" numvotes="49" />
+				<result value="Recommended" numvotes="170" />
+				<result value="Not Recommended" numvotes="43" />
+			</results>
+			<results numplayers="2">
+				<result value="Best" numvotes="244" />
+				<result value="Recommended" numvotes="119" />
+				<result value="Not Recommended" numvotes="10" />
+			</results>
+			<results numplayers="3">
+				<result value="Best" numvotes="203" />
+				<result value="Recommended" numvotes="129" />
+				<result value="Not Recommended" numvotes="11" />
+			</results>
+			<results numplayers="4">
+				<result value="Best" numvotes="49" />
+				<result value="Recommended" numvotes="194" />
+				<result value="Not Recommended" numvotes="64" />
+			</results>
+			<results numplayers="4+">
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="4" />
+				<result value="Not Recommended" numvotes="183" />
+			</results>
+		</poll>
+		<poll-summary name="suggested_numplayers" title="User Suggested Number of Players">
+			<result name="bestwith" value="Best with 2–3 players" />
+			<result name="recommmendedwith" value="Recommended with 1–4 players" />
+		</poll-summary>
+		<playingtime value="45" />
+		<minplaytime value="30" />
+		<maxplaytime value="45" />
+		<minage value="10" />
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="96">
+			<results>
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="0" />
+				<result value="5" numvotes="0" />
+				<result value="6" numvotes="10" />
+				<result value="8" numvotes="56" />
+				<result value="10" numvotes="30" />
+				<result value="12" numvotes="0" />
+				<result value="14" numvotes="0" />
+				<result value="16" numvotes="0" />
+				<result value="18" numvotes="0" />
+				<result value="21 and up" numvotes="0" />
+			</results>
+		</poll>
+		<poll name="language_dependence" title="Language Dependence" totalvotes="40">
+			<results>
+				<result level="1" value="No necessary in-game text" numvotes="40" />
+				<result level="2" value="Some necessary text - easily memorized or small crib sheet"
+					numvotes="0" />
+				<result level="3" value="Moderate in-game text - needs crib sheet or paste ups"
+					numvotes="0" />
+				<result level="4"
+					value="Extensive use of text - massive conversion needed to be playable"
+					numvotes="0" />
+				<result level="5" value="Unplayable in another language" numvotes="0" />
+			</results>
+		</poll>
+		<link type="boardgamecategory" id="1009" value="Abstract Strategy" />
+		<link type="boardgamecategory" id="1089" value="Animals" />
+		<link type="boardgamecategory" id="1084" value="Environmental" />
+		<link type="boardgamemechanic" id="2956" value="Chaining" />
+		<link type="boardgamemechanic" id="2026" value="Hexagon Grid" />
+		<link type="boardgamemechanic" id="2041" value="Open Drafting" />
+		<link type="boardgamemechanic" id="2048" value="Pattern Building" />
+		<link type="boardgamemechanic" id="2004" value="Set Collection" />
+		<link type="boardgamemechanic" id="2819" value="Solo / Solitaire Game" />
+		<link type="boardgamemechanic" id="2002" value="Tile Placement" />
+		<link type="boardgamemechanic" id="2015" value="Variable Player Powers" />
+		<link type="boardgamefamily" id="5607" value="Components: 3-Dimensional (3D)" />
+		<link type="boardgamefamily" id="70360" value="Digital Implementations: Board Game Arena" />
+		<link type="boardgamefamily" id="59705" value="Misc: LongPack Games" />
+		<link type="boardgamefamily" id="48871" value="Theme: Nature" />
+		<link type="boardgameexpansion" id="419336"
+			value="Harmonies: 4 Nature's Spirit pawns and 1 exclusive Nature's Spirit card" />
+		<link type="boardgameaccessory" id="439688" value="Harmonies: Bees Alternate Art Promo Card" />
+		<link type="boardgameaccessory" id="421982"
+			value="Harmonies: LaserLand Acrylic Animal Upgrades" />
+		<link type="boardgameaccessory" id="423113"
+			value="Harmonies: LaserLand Card Overlays &amp; Central Board Overlay" />
+		<link type="boardgamedesigner" id="95323" value="Johan Benvenuto" />
+		<link type="boardgameartist" id="40295" value="Maëva da Silva" />
+		<link type="boardgamepublisher" id="9051" value="Libellud" />
+		<link type="boardgamepublisher" id="23043" value="ADC Blackfire Entertainment" />
+		<link type="boardgamepublisher" id="50696" value="CoolPlay" />
+		<link type="boardgamepublisher" id="34522" value="CrowD Games" />
+		<link type="boardgamepublisher" id="15605" value="Galápagos Jogos" />
+		<link type="boardgamepublisher" id="8820" value="Gém Klub Kft." />
+		<link type="boardgamepublisher" id="1391" value="Hobby Japan" />
+		<link type="boardgamepublisher" id="6214" value="Kaissa Chess &amp; Games" />
+		<link type="boardgamepublisher" id="8291" value="Korea Boardgames" />
+		<link type="boardgamepublisher" id="7466" value="Rebel Sp. z o.o." />
+		<link type="boardgamepublisher" id="44209" value="Ігромаг" />
+		<statistics page="1">
+			<ratings>
+				<usersrated value="20101" />
+				<average value="8.02638" />
+				<bayesaverage value="7.68324" />
+				<ranks>
+					<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank"
+						value="72" bayesaverage="7.68324" />
+					<rank type="family" id="4666" name="abstracts" friendlyname="Abstract Game Rank"
+						value="3" bayesaverage="7.61154" />
+					<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank"
+						value="11" bayesaverage="7.73047" />
+				</ranks>
+				<stddev value="1.18557" />
+				<median value="0" />
+				<owned value="33366" />
+				<trading value="97" />
+				<wanting value="756" />
+				<wishing value="8179" />
+				<numcomments value="2390" />
+				<numweights value="590" />
+				<averageweight value="2.0034" />
+			</ratings>
+		</statistics>
 	</item>
 </items>

@@ -2,14 +2,19 @@ require "test_helper"
 
 module Bgg::Versions::XmlV2
   class RanksParserTest < ActiveSupport::TestCase
+    def parse_ranks_node(xml)
+      document = Nokogiri::XML.parse(xml)
+      document.at_xpath("ranks")
+    end
+
     test "parses a single rank correctly" do
       xml = <<~XML
         <ranks>
           <rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="1095" bayesaverage="6.58138" />
         </ranks>
       XML
-      node = Nokogiri::XML.parse(xml)
 
+      node = parse_ranks_node(xml)
       rank = RanksParser.parse(node).first
 
       assert_equal "subtype", rank.type
@@ -26,8 +31,8 @@ module Bgg::Versions::XmlV2
           <rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="Not Ranked" />
         </ranks>
       XML
-      node = Nokogiri::XML.parse(xml)
 
+      node = parse_ranks_node(xml)
       rank = RanksParser.parse(node).first
 
       assert_equal "subtype", rank.type
@@ -45,8 +50,8 @@ module Bgg::Versions::XmlV2
           <rank type="family" id="5498" name="partygames" friendlyname="Party Game Rank" value="49" bayesaverage="6.86248"/>
         </ranks>
       XML
-      node = Nokogiri::XML.parse(xml)
 
+      node = parse_ranks_node(xml)
       ranks = RanksParser.parse(node)
 
       assert ranks.is_a?(Array)
