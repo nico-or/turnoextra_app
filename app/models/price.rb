@@ -9,6 +9,6 @@ class Price < ApplicationRecord
   scope :yesterday, -> { with_date(Date.yesterday) }
 
   def self.latest_update_date
-    maximum(:date) || DateTime.current
+    @latest_update_date ||= maximum(:date) || DateTime.current
   end
 end
