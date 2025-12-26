@@ -3,10 +3,15 @@ require "test_helper"
 
 module Bgg::Versions::XmlV2
   class ThingResponseParserTest < ActiveSupport::TestCase
-    test "#parse! a XML response with a single boardgame and statistics" do
-      xml = file_fixture("bgg/api/v2/thing_single.xml").read
+    def load_boardgame_fixture(filepath)
+      xml = file_fixture(filepath).read
       response = Nokogiri::XML(xml)
-      boardgames = ThingResponseParser.parse!(response)
+      ThingResponseParser.parse!(response)
+    end
+
+    test "#parse! a XML response with a single boardgame and statistics" do
+      boardgames = load_boardgame_fixture("bgg/api/v2/thing_single.xml")
+
       assert_equal 1, boardgames.size
       assert boardgames.is_a? Array
       assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
@@ -58,9 +63,8 @@ module Bgg::Versions::XmlV2
     end
 
     test "#parse! a XML response with a single boardgame without statistics" do
-      xml = file_fixture("bgg/api/v2/thing_single.xml").read
-      response = Nokogiri::XML(xml)
-      boardgames = ThingResponseParser.parse!(response)
+      boardgames = load_boardgame_fixture("bgg/api/v2/thing_single.xml")
+
       assert_equal 1, boardgames.size
       assert boardgames.is_a? Array
       assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
@@ -113,9 +117,8 @@ module Bgg::Versions::XmlV2
     end
 
     test "#parse! a XML response with a single unranked boardgame" do
-      xml = file_fixture("bgg/api/v2/thing_single_unranked.xml").read
-      response = Nokogiri::XML(xml)
-      boardgames = ThingResponseParser.parse!(response)
+      boardgames = load_boardgame_fixture("bgg/api/v2/thing_single_unranked.xml")
+
       assert_equal 1, boardgames.size
       assert boardgames.is_a? Array
       assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
@@ -165,9 +168,8 @@ module Bgg::Versions::XmlV2
     end
 
     test "#parse! a XML response with multiple boardgames" do
-      xml = file_fixture("bgg/api/v2/thing_multiple.xml").read
-      response = Nokogiri::XML(xml)
-      boardgames = ThingResponseParser.parse!(response)
+      boardgames = load_boardgame_fixture("bgg/api/v2/thing_multiple.xml")
+
       assert boardgames.is_a? Array
       assert_equal 2, boardgames.size
       assert boardgames.all? { |game| game.is_a? Bgg::Boardgame }
@@ -186,17 +188,15 @@ module Bgg::Versions::XmlV2
     end
 
     test "#parse! a XML response with no boardgames" do
-      xml = file_fixture("bgg/api/v2/thing_not_found.xml").read
-      response = Nokogiri::XML(xml)
-      boardgames = ThingResponseParser.parse!(response)
+      boardgames = load_boardgame_fixture("bgg/api/v2/thing_not_found.xml")
+
       assert boardgames.is_a? Array
       assert boardgames.empty?
     end
 
     test "#parse! a XML response with missing fields" do
-      xml = file_fixture("bgg/api/v2/thing_single_missing_fields.xml").read
-      response = Nokogiri::XML(xml)
-      boardgames = ThingResponseParser.parse!(response)
+      boardgames = load_boardgame_fixture("bgg/api/v2/thing_single_missing_fields.xml")
+
       assert boardgames.is_a? Array
       assert_equal 1, boardgames.size
 
