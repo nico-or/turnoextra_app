@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#home"
+
   get "faq", to: "pages#faq"
+
+  get "sitemap", to: "sitemap#index", defaults: { format: "xml" }
 
   get "search", to: "search#search"
 
