@@ -36,7 +36,7 @@ module Bgg
     end
 
     def rank
-      statistics.ranks.find { |r| r.name == "boardgame" }&.value
+      statistics&.ranks&.find { |r| r.name == "boardgame" }&.value
     end
   end
 end
