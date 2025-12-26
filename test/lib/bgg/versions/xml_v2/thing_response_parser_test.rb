@@ -53,6 +53,7 @@ module Bgg::Versions::XmlV2
 
       # versions
 
+      assert_equal 6528, game.rank
       assert_equal 1.2667, game.weight
     end
 

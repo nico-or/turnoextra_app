@@ -34,5 +34,9 @@ module Bgg
     def weight
       statistics&.averageweight
     end
+
+    def rank
+      statistics.ranks.find { |r| r.name == "boardgame" }&.value
+    end
   end
 end
