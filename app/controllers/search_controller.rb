@@ -12,13 +12,7 @@ class SearchController < ApplicationController
     boardgames = BoardgameDeal
       .with(similarities:)
       .joins("JOIN similarities s ON s.boardgame_id = boardgame_deals.id")
-      .select(
-          "id",
-          "title",
-          "thumbnail_url",
-          "rel_discount_100 AS discount",
-          "t_price AS best_price",
-          "m_price AS reference_price")
+      .with_boardgame_card_data
       .group(
         "id",
         "rank",

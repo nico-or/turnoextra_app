@@ -1,14 +1,7 @@
 class BoardgamesController < ApplicationController
   def index
     boardgames = BoardgameDeal
-      .select(
-        "id",
-        "title",
-        "thumbnail_url",
-        "t_price AS best_price",
-        "m_price AS reference_price",
-        "rel_discount_100 AS discount")
-      .where("t_price > 0")
+      .with_boardgame_card_data
       .order(:title)
 
     @pagy, @boardgames = pagy(boardgames, limit: 12)

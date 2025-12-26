@@ -31,16 +31,7 @@ class PagesController < ApplicationController
 
   def new_base_query
     BoardgameDeal
-      .select(
-        "id",
-        "title",
-        "thumbnail_url",
-        "rel_discount_100 AS discount",
-        "net_discount",
-        "t_price AS best_price",
-        "m_price AS reference_price",
-        "view_count_7d")
-      .where.not(t_price: nil) # TODO: add in_stock boolean
+      .with_boardgame_card_data
       .limit(8)
   end
 
