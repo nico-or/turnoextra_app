@@ -25,8 +25,7 @@ class BoardgameDeal < ApplicationRecord
     true
   end
 
-  # Friendly URL
-  def to_param
-    "#{id}-#{title.parameterize}"
+  def slug
+    title.parameterize
   end
 end

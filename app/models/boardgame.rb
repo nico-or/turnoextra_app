@@ -48,10 +48,6 @@ class Boardgame < ApplicationRecord
     selected_name&.value
   end
 
-  def to_param
-    "#{id}-#{title.parameterize}"
-  end
-
   def weight_category
     case weight
     when 0, nil then :unrated

@@ -8,8 +8,16 @@ class BoardgamesController < ApplicationController
   end
 
   def show
+    # TODO: do we need both objects?
     @boardgame = Boardgame.find(params[:id])
-    @reference_price = @boardgame.boardgame_deal&.[](:m_price)
+    @boardgame_deal = @boardgame.boardgame_deal
+
+    @reference_price = @boardgame_deal&.m_price
+
+    if params[:slug] != @boardgame_deal&.slug
+      redirect_to slugged_boardgame_path(@boardgame, slug: @boardgame_deal&.slug),
+        status: :moved_permanently
+    end
 
     Impression.impression_for(@boardgame, visitor: Current.visitor)
 

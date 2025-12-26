@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
   resources :boardgames, only: %i[index show] do
     resources :messages, only: %i[new create], controller: :boardgame_messages
+    member do
+      get ":slug", action: :show, as: :slugged
+    end
   end
   resources :deals, only: %i[index]
   resources :stores, only: %i[index]
