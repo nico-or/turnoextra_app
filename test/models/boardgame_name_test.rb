@@ -80,4 +80,9 @@ class BoardgameNameValidationsTest < ActiveSupport::TestCase
 
     assert_equal "avio", bn.search_value
   end
+
+  test ".search_value" do
+    assert_equal "avio", BoardgameName.search_value("avío")
+    assert_equal "avio", BoardgameName.search_value("AVÏO")
+  end
 end

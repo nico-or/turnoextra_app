@@ -32,7 +32,7 @@ class ThingCreator
 
   def create_names!(boardgame, names)
     names.each do |name|
-      boardgame.boardgame_names.create(value: name, preferred: false)
+      boardgame.boardgame_names.create(value: name, referred: false)
     end
   end
 end

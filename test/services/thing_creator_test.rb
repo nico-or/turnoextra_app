@@ -52,6 +52,12 @@ class ThingCreatorTest < ActiveSupport::TestCase
     assert_equal @boardgame.min_playtime, boardgame.min_playtime
     assert_equal @boardgame.max_playtime, boardgame.max_playtime
     assert_equal @boardgame.weight, boardgame.weight
+
+    assert_equal @boardgame.titles.length, boardgame.boardgame_names.length
+
+    @boardgame.titles.zip(boardgame.boardgame_names).each do |title, bn|
+      assert_equal BoardgameName.search_value(title), bn.search_value
+    end
   end
 
   test "#create! updates the boardgame record correctly" do

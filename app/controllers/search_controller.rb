@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def search
-    query = Text::Normalization.search_value(params[:q])
+    query = BoardgameName.search_value(params[:q])
     quoted_query = ActiveRecord::Base.connection.quote(query)
 
     similarities = BoardgameName

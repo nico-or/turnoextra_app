@@ -3,11 +3,12 @@ class BoardgameName < ApplicationRecord
 
   validates :value, presence: true, uniqueness: { scope: :boardgame_id }
   validates :preferred, inclusion: { in: [ true, false ] }
+  validates :search_value, presence: true
 
   validate :only_one_preferred_name_per_boardgame, on: :create
 
   before_validation :set_preferred_default, on: :create
-  before_save :set_search_value
+  before_validation :set_search_value
 
   scope :fuzzy_search, ->(query) {
     normalized_query = Text::Normalization.search_value(query)
@@ -16,8 +17,14 @@ class BoardgameName < ApplicationRecord
 
   private
 
+  def self.search_value(name)
+    return "" if name.blank?
+
+    I18n.transliterate(name).downcase
+  end
+
   def set_search_value
-    self.search_value = Text::Normalization.search_value(value)
+    self.search_value = self.class.search_value(value)
   end
 
   def set_preferred_default

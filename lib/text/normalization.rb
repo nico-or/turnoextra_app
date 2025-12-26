@@ -12,12 +12,6 @@ module Text
       def normalize_title(string)
         normalize_string(string).gsub(/ (espanol|ingles)\s*$/, "")
       end
-
-      def search_value(string)
-        return "" if string.blank?
-
-        I18n.transliterate(string).downcase
-      end
     end
   end
 end
