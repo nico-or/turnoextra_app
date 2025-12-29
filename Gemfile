@@ -38,7 +38,7 @@ group :development, :test do
   gem "minitest", "~>5"
 end
 
-gem "httparty", "~> 0.23.2"
+gem "httparty", "~> 0.24.0"
 
 gem "bcrypt", "~> 3.1"
 
