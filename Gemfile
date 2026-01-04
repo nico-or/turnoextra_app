@@ -75,3 +75,5 @@ gem "mission_control-jobs", "~> 1"
 gem "scenic", "~> 1.9"
 
 gem "browser", "~> 6"
+
+gem "ipaddr", "~> 1.2"
