@@ -30,36 +30,32 @@ class VisitorTest < ActiveSupport::TestCase
   ]
 
   test "visitor" do
-    user = nil
     REAL_USER_AGENTS.each do |user_agent|
-      visitor = Visitor.new(user:, user_agent:)
+      visitor = anonymous_visitor(user_agent:)
       assert_not visitor.admin?
       assert_not visitor.bot?
     end
   end
 
   test "regular user is worthy" do
-    user = users(:user)
     REAL_USER_AGENTS.each do |user_agent|
-      visitor = Visitor.new(user:, user_agent:)
+      visitor = user_visitor(user_agent:)
       assert_not visitor.admin?
       assert_not visitor.bot?
     end
   end
 
   test "admin is not worthy" do
-    user = users(:admin)
     REAL_USER_AGENTS.each do |user_agent|
-      visitor = Visitor.new(user:, user_agent:)
+      visitor = admin_visitor(user_agent:)
       assert visitor.admin?
       assert_not visitor.bot?
     end
   end
 
   test "bot is not worthy" do
-    user = nil
     BOT_USER_AGENTS.each do |user_agent|
-      visitor = Visitor.new(user:, user_agent:)
+      visitor = bot_visitor(user_agent:)
       assert_not visitor.admin?
       assert visitor.bot?
     end
