@@ -128,6 +128,7 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.8.2)
+    ipaddr (1.2.8)
     irb (1.16.0)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
@@ -415,6 +416,7 @@ DEPENDENCIES
   dotenv (~> 3.1)
   httparty (~> 0.24.0)
   importmap-rails (~> 2)
+  ipaddr (~> 1.2)
   kamal
   mechanize (~> 2)
   meta-tags (~> 2.22)
