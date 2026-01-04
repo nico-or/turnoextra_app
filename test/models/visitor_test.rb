@@ -60,4 +60,15 @@ class VisitorTest < ActiveSupport::TestCase
       assert_not visitor.impression_worthy?, "failed for: #{user_agent}"
     end
   end
+
+  test "known ip ranges are not worthy" do
+    user = nil
+    user_agent = "Test UA"
+    remote_ips = [ "74.125.151.33" ]
+
+    remote_ips.each do |ip_address|
+      visitor = Visitor.new(user:, user_agent:, ip_address:)
+      assert_not visitor.impression_worthy?, "failed for: #{ip_address}"
+    end
+  end
 end
