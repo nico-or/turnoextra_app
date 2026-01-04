@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Impressions::VisitorValidatorTest < ActiveSupport::TestCase
+class Impressions::ImpressionPolicyTest < ActiveSupport::TestCase
   REAL_USER_AGENTS = [
     "Mozilla/5.0 (Android 14; Mobile; rv:146.0) Gecko/146.0 Firefox/146.0",
     "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5.1 Mobile/15E148 Safari/605.1.15 (Ecosia ios@11.5.2.2615)",
@@ -33,8 +33,8 @@ class Impressions::VisitorValidatorTest < ActiveSupport::TestCase
     user = nil
     REAL_USER_AGENTS.each do |user_agent|
       visitor = Visitor.new(user:, user_agent:)
-      visitor_validator = Impressions::VisitorValidator.new(visitor)
-      assert visitor_validator.worthy?
+      policy = Impressions::ImpressionPolicy.new(visitor)
+      assert policy.eligible?
     end
   end
 
@@ -42,8 +42,8 @@ class Impressions::VisitorValidatorTest < ActiveSupport::TestCase
     user = users(:user)
     REAL_USER_AGENTS.each do |user_agent|
       visitor = Visitor.new(user:, user_agent:)
-      visitor_validator = Impressions::VisitorValidator.new(visitor)
-      assert visitor_validator.worthy?
+      policy = Impressions::ImpressionPolicy.new(visitor)
+      assert policy.eligible?
     end
   end
 
@@ -51,8 +51,8 @@ class Impressions::VisitorValidatorTest < ActiveSupport::TestCase
     user = users(:admin)
     REAL_USER_AGENTS.each do |user_agent|
       visitor = Visitor.new(user:, user_agent:)
-      visitor_validator = Impressions::VisitorValidator.new(visitor)
-      assert_not visitor_validator.worthy?
+      policy = Impressions::ImpressionPolicy.new(visitor)
+      assert_not policy.eligible?
     end
   end
 
@@ -60,8 +60,8 @@ class Impressions::VisitorValidatorTest < ActiveSupport::TestCase
     user = nil
     BOT_USER_AGENTS.each do |user_agent|
       visitor = Visitor.new(user:, user_agent:)
-      visitor_validator = Impressions::VisitorValidator.new(visitor)
-      assert_not visitor_validator.worthy?
+      policy = Impressions::ImpressionPolicy.new(visitor)
+      assert_not policy.eligible?
     end
   end
 
@@ -72,8 +72,8 @@ class Impressions::VisitorValidatorTest < ActiveSupport::TestCase
 
     remote_ips.each do |ip_address|
       visitor = Visitor.new(user:, user_agent:, ip_address:)
-      visitor_validator = Impressions::VisitorValidator.new(visitor)
-      assert_not visitor_validator.worthy?, "failed for: #{ip_address}"
+      policy = Impressions::ImpressionPolicy.new(visitor)
+      assert_not policy.eligible?, "failed for: #{ip_address}"
     end
   end
 end

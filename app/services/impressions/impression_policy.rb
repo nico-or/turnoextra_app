@@ -1,5 +1,5 @@
 module Impressions
-  class VisitorValidator
+  class Impressions::ImpressionPolicy
     IGNORED_IP_RANGES = [
       "74.125.151.1/24" # google, but uses a real user agent
     ].freeze
@@ -10,7 +10,7 @@ module Impressions
       @visitor = visitor
     end
 
-    def worthy?
+    def eligible?
       return false if visitor.admin?
       return false if visitor.bot?
       return false if is_ignored?
