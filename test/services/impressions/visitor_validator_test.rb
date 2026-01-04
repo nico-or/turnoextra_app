@@ -1,6 +1,6 @@
 require "test_helper"
 
-class VisitorTest < ActiveSupport::TestCase
+class Impressions::VisitorValidatorTest < ActiveSupport::TestCase
   REAL_USER_AGENTS = [
     "Mozilla/5.0 (Android 14; Mobile; rv:146.0) Gecko/146.0 Firefox/146.0",
     "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5.1 Mobile/15E148 Safari/605.1.15 (Ecosia ios@11.5.2.2615)",
@@ -29,12 +29,12 @@ class VisitorTest < ActiveSupport::TestCase
     "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36"
   ]
 
-  test "visitor" do
+  test "visitor is worthy" do
     user = nil
     REAL_USER_AGENTS.each do |user_agent|
       visitor = Visitor.new(user:, user_agent:)
-      assert_not visitor.admin?
-      assert_not visitor.bot?
+      visitor_validator = Impressions::VisitorValidator.new(visitor)
+      assert visitor_validator.worthy?
     end
   end
 
@@ -42,8 +42,8 @@ class VisitorTest < ActiveSupport::TestCase
     user = users(:user)
     REAL_USER_AGENTS.each do |user_agent|
       visitor = Visitor.new(user:, user_agent:)
-      assert_not visitor.admin?
-      assert_not visitor.bot?
+      visitor_validator = Impressions::VisitorValidator.new(visitor)
+      assert visitor_validator.worthy?
     end
   end
 
@@ -51,8 +51,8 @@ class VisitorTest < ActiveSupport::TestCase
     user = users(:admin)
     REAL_USER_AGENTS.each do |user_agent|
       visitor = Visitor.new(user:, user_agent:)
-      assert visitor.admin?
-      assert_not visitor.bot?
+      visitor_validator = Impressions::VisitorValidator.new(visitor)
+      assert_not visitor_validator.worthy?
     end
   end
 
@@ -60,8 +60,20 @@ class VisitorTest < ActiveSupport::TestCase
     user = nil
     BOT_USER_AGENTS.each do |user_agent|
       visitor = Visitor.new(user:, user_agent:)
-      assert_not visitor.admin?
-      assert visitor.bot?
+      visitor_validator = Impressions::VisitorValidator.new(visitor)
+      assert_not visitor_validator.worthy?
+    end
+  end
+
+  test "known ip ranges are not worthy" do
+    user = nil
+    user_agent = "Test UA"
+    remote_ips = [ "74.125.151.33" ]
+
+    remote_ips.each do |ip_address|
+      visitor = Visitor.new(user:, user_agent:, ip_address:)
+      visitor_validator = Impressions::VisitorValidator.new(visitor)
+      assert_not visitor_validator.worthy?, "failed for: #{ip_address}"
     end
   end
 end
