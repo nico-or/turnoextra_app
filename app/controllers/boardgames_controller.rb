@@ -19,7 +19,7 @@ class BoardgamesController < ApplicationController
         status: :moved_permanently
     end
 
-    Impression.impression_for(@boardgame, visitor: Current.visitor)
+    Impressions::ImpressionCreator.new(@boardgame, visitor: Current.visitor).create
 
     @reference_date = Price.latest_update_date
 
