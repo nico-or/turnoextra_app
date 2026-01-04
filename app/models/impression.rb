@@ -18,11 +18,4 @@ class Impression < ApplicationRecord
   def set_default_count
     self.count ||= 0
   end
-
-  def self.impression_for(trackable, visitor:)
-    return unless Impressions::VisitorValidator.new(visitor).worthy?
-
-    impression = Impression.find_or_create_by(trackable: trackable, date: Date.current)
-    Impression.increment_counter(:count, impression.id)
-  end
 end
