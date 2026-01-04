@@ -8,15 +8,15 @@ module Impressions
     end
 
     def create
-      return unless worthy?
+      return unless eligible?
 
       create_impression
     end
 
     private
 
-    def worthy?
-      VisitorValidator.new(visitor).worthy?
+    def eligible?
+      ImpressionPolicy.new(visitor).eligible?
     end
 
     def create_impression
