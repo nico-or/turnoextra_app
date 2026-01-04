@@ -42,4 +42,21 @@ class ImpressionTrackingTest < ActionDispatch::IntegrationTest
       end
     end
   end
+
+  test "known bad ip ranges does not trigger impressions" do
+    user_agent = REAL_USER_AGENT
+    ip_addresses = [ "74.125.151.34" ]
+
+    ip_addresses.each do |remote_ip|
+      assert_no_difference -> { @impression.reload.count } do
+        @visits.times do
+          get(boardgame_path(@boardgame),
+            headers: {
+              "User-agent" => user_agent,
+              "REMOTE_ADDR" => remote_ip
+            })
+        end
+      end
+    end
+  end
 end
