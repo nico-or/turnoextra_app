@@ -40,5 +40,25 @@ module ActiveSupport
     def login_admin
       post login_path, params: { email: "admin@example.com", password: "password" }
     end
+
+    def anonymous_visitor(**kwargs)
+      default_params = { user: nil, user_agent: "REAL USER AGENT" }
+      Visitor.new(**default_params.merge(kwargs))
+    end
+
+    def user_visitor(**kwargs)
+      default_params = { user: users(:user), user_agent: "REAL USER AGENT" }
+      Visitor.new(**default_params.merge(kwargs))
+    end
+
+    def admin_visitor(**kwargs)
+      default_params = { user: users(:admin), user_agent: "REAL USER AGENT" }
+      Visitor.new(**default_params.merge(kwargs))
+    end
+
+    def bot_visitor(**kwargs)
+      default_params = { user: nil, user_agent: "BOT USER AGENT" }
+      Visitor.new(**default_params.merge(kwargs))
+    end
   end
 end
