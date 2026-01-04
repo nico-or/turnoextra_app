@@ -13,17 +13,15 @@ module Impressions
     def eligible?
       return false if visitor.admin?
       return false if visitor.bot?
-      return false if is_ignored?
+      return false if blacklisted?
 
       true
     end
 
     private
 
-    def is_ignored?
-      IGNORED_IP_RANGES.any? do |ip|
-        IPAddr.new(ip).include?(visitor.ip_address)
-      end
+    def blacklisted?
+      IpBlacklist.include?(visitor.ip_address)
     end
   end
 end
