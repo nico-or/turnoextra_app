@@ -1,9 +1,5 @@
 module Impressions
   class Impressions::ImpressionPolicy
-    IGNORED_IP_RANGES = [
-      "74.125.151.1/24" # google, but uses a real user agent
-    ].freeze
-
     attr_reader :visitor
 
     def initialize(visitor)
