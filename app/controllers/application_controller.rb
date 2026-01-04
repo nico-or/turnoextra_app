@@ -15,5 +15,6 @@ class ApplicationController < ActionController::Base
   def set_current_context
     Current.user = User.find_by(id: session[:user_id]) if session[:user_id]
     Current.user_agent = request.user_agent
+    Current.ip_address = request.ip
   end
 end
