@@ -2,6 +2,5 @@ User-agent: *
 Disallow: /search
 Disallow: /contact
 Disallow: /store_suggestions
-Allow: /
 
 Sitemap: https://turnoextra.cl/sitemap.xml
