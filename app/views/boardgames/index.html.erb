@@ -1,4 +1,4 @@
-<% set_meta_tags canonical: boardgames_url(page: params[:page]) %>
+<% set_meta_tags canonical: boardgames_url %>
 <h1><%= title t(".title") %></h1>
 <section>
   <%= render 'pagy/info', pagy: @pagy %>

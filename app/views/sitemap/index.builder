@@ -11,7 +11,7 @@ xml.urlset xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" do
 
   @boardgames.each do |boardgame|
     xml.url do
-      xml.loc boardgame_url(boardgame)
+      xml.loc slugged_boardgame_url(boardgame, slug: boardgame.slug)
       xml.lastmod boardgame.lastmod.try(:iso8601) if boardgame.respond_to?(:lastmod)
       xml.changefreq "daily"
       xml.priority "1.0"
