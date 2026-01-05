@@ -1,4 +1,4 @@
-<% set_meta_tags canonical: slugged_boardgame_url(@boardgame, slug:@boardgame_deal.slug) %>
+<% set_meta_tags canonical: slugged_boardgame_url(@boardgame, slug: @boardgame_deal&.slug || @boardgame&.slug) %>
 <%= render 'opengraph', boardgame: @boardgame %>
 <h1><%= title @boardgame.title %></h1>
 <section class="mb-5">

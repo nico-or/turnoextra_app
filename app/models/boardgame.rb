@@ -60,4 +60,8 @@ class Boardgame < ApplicationRecord
       :unknown
     end
   end
+
+  def slug
+    title.parameterize
+  end
 end
