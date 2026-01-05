@@ -1,8 +1,6 @@
 module ExternalLinkHelper
   UTM_PARAMS = {
-    utm_source: "turnoextra",
-    utm_medium: "referral",
-    utm_campaign: "outbound_click"
+    utm_source: "turnoextra"
   }.freeze
 
   def safe_url(url)
