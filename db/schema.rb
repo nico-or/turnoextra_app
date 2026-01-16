@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_25_151621) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_16_193617) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -47,12 +47,15 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_151621) do
   end
 
   create_table "contact_messages", force: :cascade do |t|
+    t.boolean "archived", default: false, null: false
     t.text "body"
     t.bigint "contactable_id"
     t.string "contactable_type"
     t.datetime "created_at", null: false
     t.string "email"
     t.string "name"
+    t.boolean "read", default: false, null: false
+    t.boolean "spam", default: false, null: false
     t.integer "status", default: 0, null: false
     t.integer "subject", default: 0, null: false
     t.datetime "updated_at", null: false
@@ -93,11 +96,13 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_151621) do
     t.datetime "created_at", null: false
     t.boolean "is_boardgame", default: true, null: false
     t.string "normalized_title"
+    t.string "search_value"
     t.integer "store_id", null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.string "url", null: false
     t.index ["boardgame_id"], name: "index_listings_on_boardgame_id"
+    t.index ["search_value"], name: "index_listings_names_on_search_value_trgm", opclass: :gin_trgm_ops, using: :gin
     t.index ["store_id"], name: "index_listings_on_store_id"
     t.index ["title"], name: "index_listings_on_title"
     t.index ["url"], name: "index_listings_on_url", unique: true
