@@ -5,6 +5,11 @@
 <p><strong>Name:</strong> <%= presenter.name %></p>
 <p><strong>Email:</strong> <%= presenter.email %></p>
 <p><strong>Subject:</strong> <%= presenter.subject %></p>
+<p>
+  <strong>Contactable:</strong> 
+  <% contactable = @contact_message.contactable %>
+  <%= link_to_if contactable, contactable&.title, contactable %>
+</p>
 <p><strong>Body:</strong>
   <div style="white-space: pre-wrap;"><%= presenter.body %></div>
 </p>
