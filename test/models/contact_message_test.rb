@@ -21,6 +21,18 @@ class ContactMessageTest < ActiveSupport::TestCase
     assert @contact_message.unread?
   end
 
+  test "should default to #archived?: false" do
+    assert_not @contact_message.archived?
+  end
+
+  test "should default to #spam?: false" do
+    assert_not @contact_message.spam?
+  end
+
+  test "should default to #read?: false" do
+    assert_not @contact_message.read?
+  end
+
   # Validations
 
   test "should set status to read when marked as read" do
