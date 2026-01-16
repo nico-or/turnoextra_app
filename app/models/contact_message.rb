@@ -1,4 +1,8 @@
 class ContactMessage < ApplicationRecord
+  attribute :archived, :boolean, default: false
+  attribute :read,     :boolean, default: false
+  attribute :spam,     :boolean, default: false
+
   enum :status, { unread: 0, read: 1, responded: 2  }
   enum :subject, { general: 0, suggestion: 1, error_report: 2 }
 
