@@ -17,8 +17,8 @@ class ContactMessageTest < ActiveSupport::TestCase
     assert @contact_message.general?
   end
 
-  test "should default status: unread" do
-    assert @contact_message.unread?
+  test "should default status: pending" do
+    assert @contact_message.pending?
   end
 
   test "should default to #archived?: false" do
@@ -34,11 +34,6 @@ class ContactMessageTest < ActiveSupport::TestCase
   end
 
   # Validations
-
-  test "should set status to read when marked as read" do
-    @contact_message.read!
-    assert @contact_message.read?
-  end
 
   test "should be valid without a name" do
     @contact_message.name = nil

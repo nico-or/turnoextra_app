@@ -3,11 +3,11 @@ one:
   email: "john.doe@example.com"
   subject: general
   body: "This is a test message."
-  status: unread
+  status: pending
   user_agent: "Mozilla/5.0"
 
 two:
   subject: suggestion
   body: "I have a suggestion."
-  status: read
+  status: dismissed
   user_agent: "Mozilla/5.0"

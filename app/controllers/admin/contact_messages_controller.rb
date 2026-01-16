@@ -11,10 +11,10 @@ class Admin::ContactMessagesController < AdminController
     @contact_message = ContactMessage.find(params[:id])
 
     if @contact_message.read?
-      @contact_message.unread!
+      @contact_message.update!(read: false)
       flash[:notice] = "Marked as unread."
     else
-      @contact_message.read!
+      @contact_message.update!(read: true)
       flash[:notice] = "Marked as read."
     end
 
