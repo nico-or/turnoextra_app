@@ -16,13 +16,8 @@
 <p><strong>Body:</strong>
   <div style="white-space: pre-wrap;"><%= presenter.body %></div>
 </p>
-<% if @contact_message.read? %>
-  <%= button_to "Mark as Unread",toggle_read_admin_contact_message_path(@contact_message),
-method: :post, class: "btn btn-success", disabled: !@contact_message.read? %>
-<% else %>
-  <%= button_to "Mark as Read",toggle_read_admin_contact_message_path(@contact_message),
-method: :post, class: "btn btn-success", disabled: @contact_message.read? %>
-<% end %>
+
+<h2>Actions</h2>
 <div class="hstack gap-2">
   <%= button_to "Mark as Addressed", mark_addressed_admin_contact_message_path(@contact_message), method: :patch, class: 'btn btn-success'%>
   <%= button_to "Mark as Spam", mark_spam_admin_contact_message_path(@contact_message), method: :patch, class: 'btn btn-danger'%>
