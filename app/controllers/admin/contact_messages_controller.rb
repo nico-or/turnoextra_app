@@ -20,4 +20,10 @@ class Admin::ContactMessagesController < AdminController
 
     redirect_to admin_contact_message_path(@contact_message)
   end
+
+  def mark_addressed
+     @contact_message = ContactMessage.find(params[:id])
+     @contact_message.update(status: :addressed, archived: true)
+     redirect_to admin_contact_message_path(@contact_message)
+  end
 end

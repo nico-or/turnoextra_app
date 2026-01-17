@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     resources :contact_messages, only: [ :index, :show ] do
       member do
         post "toggle_read"
+        patch "mark_addressed"
       end
     end
 
