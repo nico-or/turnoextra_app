@@ -5,21 +5,21 @@ class Admin::ContactMessagesController < AdminController
   end
 
   def show
-    @contact_message.update(read: true) unless @contact_message.read?
+    @contact_message.read!
   end
 
   def mark_addressed
-     @contact_message.update(status: :addressed, archived: true)
+     @contact_message.mark_addressed!
      redirect_to admin_contact_message_path(@contact_message)
   end
 
   def mark_spam
-    @contact_message.update(status: :dismissed, archived: true, spam: true)
+    @contact_message.mark_spam!
     redirect_to admin_contact_message_path(@contact_message)
   end
 
   def reset_status
-    @contact_message.update(status: :pending, spam: false, archived: false, read: false)
+    @contact_message.reset_status!
     redirect_to admin_contact_message_path(@contact_message)
   end
 
