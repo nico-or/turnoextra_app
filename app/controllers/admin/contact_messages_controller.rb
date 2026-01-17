@@ -32,4 +32,10 @@ class Admin::ContactMessagesController < AdminController
     @contact_message.update(status: :dismissed, archived: true, spam: true)
     redirect_to admin_contact_message_path(@contact_message)
   end
+
+  def reset_status
+    @contact_message = ContactMessage.find(params[:id])
+    @contact_message.update(status: :pending, spam: false, archived: false, read: false)
+    redirect_to admin_contact_message_path(@contact_message)
+  end
 end
