@@ -1,13 +1,10 @@
 module Admin
   class ReportsController < AdminController
     def store_prices_count
-      date_count = 7
-      last_date = Price.latest_update_date - date_count
-
       price_data = Store.left_joins(listings: [ :prices ])
         .select(:id, "prices.date", "COUNT(*) as price_count")
         .group("stores.id", "prices.date")
-        .where("prices.date >= ?", last_date)
+        .where(prices: { date: time_period })
         .order("price_count DESC", "id")
 
       @price_hash = Hash.new { |h, k| h[k] = {} }
@@ -31,6 +28,12 @@ module Admin
           stdev: Math.sqrt(counts.sum { |store| (store.price_count - mean) ** 2 })
         }
       end
+    end
+
+    private
+
+    def time_period
+      Price.latest_update_date-7..Price.latest_update_date
     end
   end
 end
