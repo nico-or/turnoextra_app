@@ -58,6 +58,7 @@ Rails.application.routes.draw do
         post "toggle_read"
         patch "mark_addressed"
         patch "mark_spam"
+        patch "reset_status"
       end
     end
 
