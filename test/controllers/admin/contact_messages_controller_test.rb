@@ -50,5 +50,17 @@ class Admin::ContactMessagesControllerTest < ActionDispatch::IntegrationTest
       assert @contact_message.addressed?, "Set status = addressed"
       assert @contact_message.archived?, "Set archived = true"
     end
+
+    test "#mark_spam" do
+      @contact_message.update!(status: :pending, archived: false, read: false, spam: false)
+
+      patch mark_spam_admin_contact_message_path(@contact_message)
+      @contact_message.reload
+
+      assert_redirected_to admin_contact_message_path(@contact_message)
+      assert @contact_message.archived?, "Set archived = true"
+      assert @contact_message.dismissed?, "Set status = dismissed"
+      assert @contact_message.spam?, "Set spam = true"
+    end
   end
 end

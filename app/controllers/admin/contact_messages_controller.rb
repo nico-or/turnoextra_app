@@ -26,4 +26,10 @@ class Admin::ContactMessagesController < AdminController
      @contact_message.update(status: :addressed, archived: true)
      redirect_to admin_contact_message_path(@contact_message)
   end
+
+  def mark_spam
+    @contact_message = ContactMessage.find(params[:id])
+    @contact_message.update(status: :dismissed, archived: true, spam: true)
+    redirect_to admin_contact_message_path(@contact_message)
+  end
 end
