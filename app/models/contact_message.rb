@@ -14,6 +14,22 @@ class ContactMessage < ApplicationRecord
 
   before_validation :format_email
 
+  def read!
+    update(read: true) unless read?
+  end
+
+  def mark_addressed!
+    update(status: :addressed, archived: true)
+  end
+
+  def mark_spam!
+    update(status: :dismissed, archived: true, spam: true)
+  end
+
+  def reset_status!
+    update(status: :pending, spam: false, archived: false, read: false)
+  end
+
   private
 
   def format_email
