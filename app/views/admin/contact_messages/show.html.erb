@@ -18,7 +18,7 @@
 </p>
 <% if @contact_message.read? %>
   <%= button_to "Mark as Unread",toggle_read_admin_contact_message_path(@contact_message),
-method: :post, class: "btn btn-success", disabled: @contact_message.unread? %>
+method: :post, class: "btn btn-success", disabled: !@contact_message.read? %>
 <% else %>
   <%= button_to "Mark as Read",toggle_read_admin_contact_message_path(@contact_message),
 method: :post, class: "btn btn-success", disabled: @contact_message.read? %>

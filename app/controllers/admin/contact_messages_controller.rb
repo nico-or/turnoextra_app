@@ -5,6 +5,7 @@ class Admin::ContactMessagesController < AdminController
 
   def show
     @contact_message = ContactMessage.find(params[:id])
+    @contact_message.update(read: true) unless @contact_message.read?
   end
 
   def toggle_read

@@ -24,6 +24,13 @@ class Admin::ContactMessagesControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
+    test "#show should mark as read" do
+      @contact_message.update(read: false)
+      get admin_contact_message_path(@contact_message)
+      @contact_message.reload
+      assert @contact_message.read?
+    end
+
     test "should toggle read status from unread to read" do
       @contact_message.update!(read: false)
       post toggle_read_admin_contact_message_path(@contact_message)
