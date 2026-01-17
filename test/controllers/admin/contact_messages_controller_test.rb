@@ -25,46 +25,49 @@ class Admin::ContactMessagesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "#show should mark as read" do
-      @contact_message.update(read: false)
+      @contact_message.unread!
       get admin_contact_message_path(@contact_message)
       @contact_message.reload
-      assert @contact_message.read?
+      assert @contact_message.read_status?
     end
 
     test "#mark_addressed" do
-      @contact_message.update!(status: :pending, archived: false, read: false, spam: false)
+      @contact_message.update!(
+        status: :pending, archived_status: :active, read_status: :unread, spam_status: :legit)
 
       patch mark_addressed_admin_contact_message_path(@contact_message)
       @contact_message.reload
 
       assert_redirected_to admin_contact_message_path(@contact_message)
-      assert @contact_message.addressed?, "Set status = addressed"
-      assert @contact_message.archived?, "Set archived = true"
+      assert @contact_message.addressed?
+      assert @contact_message.archived?
     end
 
     test "#mark_spam" do
-      @contact_message.update!(status: :pending, archived: false, read: false, spam: false)
+      @contact_message.update!(
+        status: :pending, archived_status: :active, read_status: :unread, spam_status: :legit)
 
       patch mark_spam_admin_contact_message_path(@contact_message)
       @contact_message.reload
 
       assert_redirected_to admin_contact_message_path(@contact_message)
-      assert @contact_message.archived?, "Set archived = true"
-      assert @contact_message.dismissed?, "Set status = dismissed"
-      assert @contact_message.spam?, "Set spam = true"
+      assert @contact_message.archived?
+      assert @contact_message.dismissed?
+      assert @contact_message.spam?
     end
 
     test "#reset_status" do
-      @contact_message.update!(status: :dismissed, archived: true, read: true, spam: true)
+      @contact_message.update!(
+        status: :dismissed, archived_status: :archived, read_status: :read, spam_status: :spam)
 
       patch reset_status_admin_contact_message_path(@contact_message)
       @contact_message.reload
 
       assert_redirected_to admin_contact_message_path(@contact_message)
-      assert @contact_message.pending?, "Set status = pending"
-      assert_not @contact_message.archived?, "Set archived = false"
-      assert_not @contact_message.read?, "Set read = false"
-      assert_not @contact_message.spam?, "Set spam = false"
+      assert @contact_message.pending?
+      assert @contact_message.active?
+      assert @contact_message.unread?
+      assert @contact_message.legit?
     end
   end
 end

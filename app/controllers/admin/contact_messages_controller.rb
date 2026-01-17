@@ -2,7 +2,8 @@ class Admin::ContactMessagesController < AdminController
   before_action :set_contact_message, except: [ :index ]
   def index
     @contact_messages = ContactMessage
-    .where(spam: false, archived: false)
+    .active
+    .legit
     .order(created_at: :desc)
   end
 

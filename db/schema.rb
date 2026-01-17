@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_16_193617) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_17_160520) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -47,15 +47,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_193617) do
   end
 
   create_table "contact_messages", force: :cascade do |t|
-    t.boolean "archived", default: false, null: false
+    t.integer "archived_status", default: 0, null: false
     t.text "body"
     t.bigint "contactable_id"
     t.string "contactable_type"
     t.datetime "created_at", null: false
     t.string "email"
     t.string "name"
-    t.boolean "read", default: false, null: false
-    t.boolean "spam", default: false, null: false
+    t.integer "read_status", default: 0, null: false
+    t.integer "spam_status", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.integer "subject", default: 0, null: false
     t.datetime "updated_at", null: false

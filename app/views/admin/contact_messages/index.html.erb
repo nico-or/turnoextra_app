@@ -27,7 +27,7 @@
             <% end %>
           </td>
           <td><%= presenter.body %></td>
-          <td><%= presenter.read %></td>
+          <td><%= presenter.read? %></td>
           <td>
             <%= link_to "View", admin_contact_message_path(message), class: "btn btn-primary" %>
           </td>

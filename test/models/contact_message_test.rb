@@ -21,16 +21,16 @@ class ContactMessageTest < ActiveSupport::TestCase
     assert @contact_message.pending?
   end
 
-  test "should default to #archived?: false" do
-    assert_not @contact_message.archived?
+  test "should default to archived_status: active" do
+    assert @contact_message.active?
   end
 
-  test "should default to #spam?: false" do
-    assert_not @contact_message.spam?
+  test "should default to spam_status: false" do
+    assert @contact_message.legit?
   end
 
-  test "should default to #read?: false" do
-    assert_not @contact_message.read?
+  test "should default to read_status: unread" do
+    assert @contact_message.unread?
   end
 
   # Validations
@@ -69,5 +69,32 @@ class ContactMessageTest < ActiveSupport::TestCase
     assert @contact_message.valid?
     assert @contact_message.contactable_id = contactable.id
     assert @contact_message.contactable_type = contactable.class.name
+  end
+
+  # Status update utility methods
+
+  test "#mark_addressed!" do
+    @contact_message.mark_addressed!
+
+    assert @contact_message.addressed?
+    assert @contact_message.archived?
+end
+
+  test "#mark_spam!" do
+    @contact_message.mark_spam!
+
+    assert @contact_message.spam?
+    assert @contact_message.dismissed?
+    assert @contact_message.archived?
+end
+
+  test "#reset_status!" do
+    @contact_message.mark_spam!
+    @contact_message.reset_status!
+
+    assert @contact_message.unread?
+    assert @contact_message.pending?
+    assert @contact_message.active?
+    assert @contact_message.legit?
   end
 end

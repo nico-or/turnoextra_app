@@ -1,8 +1,7 @@
 class ContactMessage < ApplicationRecord
-  attribute :archived, :boolean, default: false
-  attribute :read,     :boolean, default: false
-  attribute :spam,     :boolean, default: false
-
+  enum :archived_status, { active: 0, archived: 1 }, default: :active, validate: true
+  enum     :read_status, { unread: 0,     read: 1 }, default: :unread, validate: true
+  enum     :spam_status, {  legit: 0,     spam: 1 }, default:  :legit, validate: true
   enum :status,  { pending: 0, addressed: 1, dismissed: 2  },     default: :pending, validate: true
   enum :subject, { general: 0, suggestion: 1, error_report: 2 },  default: :general, validate: true
 
@@ -14,20 +13,22 @@ class ContactMessage < ApplicationRecord
 
   before_validation :format_email
 
-  def read!
-    update(read: true) unless read?
-  end
-
   def mark_addressed!
-    update(status: :addressed, archived: true)
+    addressed!
+    archived!
   end
 
   def mark_spam!
-    update(status: :dismissed, archived: true, spam: true)
+    spam!
+    dismissed!
+    archived!
   end
 
   def reset_status!
-    update(status: :pending, spam: false, archived: false, read: false)
+    unread!
+    legit!
+    pending!
+    active!
   end
 
   private
