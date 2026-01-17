@@ -1,7 +1,9 @@
 class Admin::ContactMessagesController < AdminController
   before_action :set_contact_message, except: [ :index ]
   def index
-    @contact_messages = ContactMessage.all.order(created_at: :desc)
+    @contact_messages = ContactMessage
+    .where(spam: false, archived: false)
+    .order(created_at: :desc)
   end
 
   def show

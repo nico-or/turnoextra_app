@@ -6,10 +6,10 @@
         <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
-        <th scope="col">User Agent</th>
         <th scope="col">Subject</th>
+        <th scope="col">Contactable</th>
         <th scope="col">Body</th>
-        <th scope="col">Status</th>
+        <th scope="col">Read</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -20,12 +20,16 @@
           <th scope="row"><%= message.id %></th>
           <td><%= presenter.name %></td>
           <td><%= presenter.email %></td>
-          <td><%= truncate(presenter.user_agent) %></td>
           <td><%= presenter.subject %></td>
-          <td><%= truncate(presenter.body) %></td>
-          <td><%= presenter.status %></td>
           <td>
-            <%= link_to "View", admin_contact_message_path(message) %>
+            <% if contactable = message.contactable %>
+              <%= link_to contactable.title, contactable%>
+            <% end %>
+          </td>
+          <td><%= presenter.body %></td>
+          <td><%= presenter.read %></td>
+          <td>
+            <%= link_to "View", admin_contact_message_path(message), class: "btn btn-primary" %>
           </td>
         </tr>
       <% end %>
