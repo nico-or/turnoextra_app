@@ -8,20 +8,6 @@ class Admin::ContactMessagesController < AdminController
     @contact_message.update(read: true) unless @contact_message.read?
   end
 
-  def toggle_read
-    @contact_message = ContactMessage.find(params[:id])
-
-    if @contact_message.read?
-      @contact_message.update!(read: false)
-      flash[:notice] = "Marked as unread."
-    else
-      @contact_message.update!(read: true)
-      flash[:notice] = "Marked as read."
-    end
-
-    redirect_to admin_contact_message_path(@contact_message)
-  end
-
   def mark_addressed
      @contact_message = ContactMessage.find(params[:id])
      @contact_message.update(status: :addressed, archived: true)
