@@ -5,7 +5,6 @@ module Admin
         .select("store_suggestions.url", "COUNT(*) AS count")
         .group(:url)
         .order("count DESC")
-        .limit(10)
     end
   end
 end
