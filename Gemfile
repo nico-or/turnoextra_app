@@ -54,7 +54,7 @@ group :test do
   gem "simplecov", "~> 0.22.0"
 end
 
-gem "pagy", "~> 43.4"
+gem "pagy", "~> 43.5"
 
 gem "importmap-rails", "~> 2"
 
