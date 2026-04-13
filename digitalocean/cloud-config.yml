@@ -7,17 +7,40 @@ packages:
   - docker.io
   - docker-compose
   - nginx
-  - certbot
-  - python3-certbot-nginx
+  - fail2ban
+  - ufw
 
 users:
   - name: turnoextra
-    groups: sudo
+    groups: [sudo, docker]
     shell: /bin/bash
-    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
-    ssh-authorized-keys:
+    sudo: "ALL=(ALL) NOPASSWD:ALL"
+    ssh_authorized_keys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDe5pvVfE201NHSz9YbdeSVK6SqnFGorBgXQEbZ6GmAe/9LLzzXZPGNAJmpqml/v/fEBOrYtTxfE7cK/YcVJQr91Jsjk13RAgJzGSIpSJh+nCS8RkZhikN2R0I3wPEtm6uq27y7lZVs73MFaxxoF5ndbkQV3Seq+73AHaWrtBx/RohAOxeVFnRZyzUwYgs42EffA3C4shEgfQ+8+YG51jHk0pCxAsz9/Wv7ccf/emxgg4xbQ4AAkuZMphtIqVkT6CZTSWkrwr26o5ARUe1mKSfnrV884SAZxOmlpgys7iiTeC4sUTnX6t/iy6EJwER2wxiR3RL0NhtcHsaVCVXNfZGY7Emq381rVWOurbbqQOiUf72qdbas5pJObULzBQnCoTBd609MDSPPilYKjRWu+N60OQxPxxkI7BRoNbuMPeRqhkp3SmIEyqe1ODNcQpPGPIR3RF836NBMCElGZG4irO3pUnR/+ihz1UNn+d72ZMPvmmOU4Nkde08yLqPKf5lWRxc= nicolas@lga1200
 
+write_files:
+  - path: /etc/ssh/sshd_config.d/99-custom.conf
+    content: |
+      PasswordAuthentication no
+      PermitRootLogin no
+
+  - path: /etc/docker/daemon.json
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "10m",
+          "max-file": "3",
+          "compress": "true"
+        }
+      }
+    owner: root:root
+    permissions: "0644"
+
 runcmd:
-  - systemctl enable docker
-  - systemctl start docker
+  - ufw allow OpenSSH
+  - ufw allow 'Nginx Full'
+  - ufw --force enable
+  - systemctl enable --now fail2ban
+  - systemctl enable --now docker
+  - systemctl restart ssh
