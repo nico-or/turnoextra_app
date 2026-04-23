@@ -14,6 +14,7 @@ class Listing < ApplicationRecord
   validates :title, presence: true
   validates :url, presence: true
 
+  # TODO: remove scopes using status enum
   scope :boardgames_only, -> { where(is_boardgame: true) }
   scope :unidentified, -> { where(boardgame_id: nil) }
   scope :requires_identification, -> { boardgames_only.unidentified }
@@ -29,5 +30,34 @@ class Listing < ApplicationRecord
 
   def failed_identification?
     self.identification_failures.any?
+  end
+
+  # Identification lifecycle methods
+
+  def identify!(boardgame)
+    self.status = :identified
+    self.boardgame = boardgame
+    self.is_boardgame = true
+    save!
+  end
+
+  def rematch!
+    self.status = :pending
+    self.boardgame = nil
+    self.is_boardgame = true
+    save!
+  end
+
+  def reject!
+    self.status = :rejected
+    self.boardgame = nil
+    self.is_boardgame = false
+    save!
+  end
+
+  def fail!
+    self.status = :failed
+    self.boardgame = nil
+    save!
   end
 end

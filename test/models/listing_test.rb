@@ -43,4 +43,46 @@ class ListingTest < ActiveSupport::TestCase
 
     assert_equal date, listing.latest_price_date
   end
+
+  # Status Enum Tests
+
+  test "a new listing has a pending status" do
+    assert @listing.pending?
+  end
+  test "#identify! updates the listing correctly" do
+    @listing.identify!(@boardgame)
+
+    assert @listing.identified?
+    assert @listing.boardgame = @boardgame
+  end
+
+  test "#rematch! reverts the listing to it's default identification state" do
+    @listing.rematch!
+
+    assert @listing.pending?
+    assert_nil @listing.boardgame
+  end
+
+  test "#reject! marks a listing as not a boardgame" do
+    @listing.reject!
+
+    assert @listing.rejected?
+    assert_nil @listing.boardgame
+  end
+
+  test "#fail! updates a pending listing correctly" do
+    @listing.fail!
+
+    assert @listing.failed?
+    assert_nil @listing.boardgame
+  end
+
+  test "#fail! updates an identified listing correctly" do
+    @listing.identify!(@boardgame)
+
+    @listing.fail!
+
+    assert @listing.failed?
+    assert_nil @listing.boardgame
+  end
 end
