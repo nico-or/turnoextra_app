@@ -20,10 +20,11 @@ module Admin
 
     def identify
       @listing = Listing.find(params[:id])
-      boardgame = Boardgame.find_by(bgg_id: params[:bgg_id])
-      if boardgame.present?
-        @listing.update(boardgame_id: boardgame.id, is_boardgame: true)
-        redirect_to admin_listing_path(@listing), notice: "Listing has been linked to #{boardgame.title}."
+      @boardgame = Boardgame.find_by(bgg_id: params[:bgg_id])
+
+      if @boardgame.present?
+        @listing.identify!(@boardgame)
+        redirect_to admin_listing_path(@listing), notice: "Listing has been linked to #{@boardgame.title}."
       else
         redirect_to admin_listing_path(@listing), alert: "Boardgame not found on Database."
       end
@@ -31,7 +32,8 @@ module Admin
 
     def unidentify
       @listing = Listing.find(params[:id])
-      @listing.update(boardgame_id: nil)
+
+      @listing.rematch!
       @listing.identification_failures.create!(
         search_method: "Admin::ListingsController#unidentify",
         reason: "Manually unlinked",
