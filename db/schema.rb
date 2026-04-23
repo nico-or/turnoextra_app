@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_17_160520) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_201131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -97,6 +97,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_17_160520) do
     t.boolean "is_boardgame", default: true, null: false
     t.string "normalized_title"
     t.string "search_value"
+    t.string "status", default: "pending", null: false
     t.integer "store_id", null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false

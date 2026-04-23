@@ -4,6 +4,13 @@ class Listing < ApplicationRecord
   has_many :prices
   has_many :identification_failures, as: :identifiable, dependent: :destroy
 
+  enum :status, {
+    pending: "pending",       # new listing, hasn't been identified
+    failed: "failed",         # listing failed automatic identification
+    identified: "identified", # listing has a boardgame_id
+    rejected: "rejected"      # listing is not a boardgame
+   }, default: "pending"
+
   validates :title, presence: true
   validates :url, presence: true
 
