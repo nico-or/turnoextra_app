@@ -43,8 +43,7 @@ module Admin
       redirect_to admin_identifications_path
     end
 
-    # TODO: rename this method. It's not a real toggle
-    def toggle_is_boardgame
+    def mark_as_not_boardgame
       listings.each { |listing| listing.reject! }
       flash[:notice] = "Updated #{listings.count} Listings."
       redirect_to admin_identifications_path

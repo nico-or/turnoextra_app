@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     end
 
     resources :identifications, only: [ :index, :new, :create ] do
-        post "toggle_is_boardgame", on: :collection
+        post "mark_as_not_boardgame", on: :collection
     end
 
     namespace :reports do
