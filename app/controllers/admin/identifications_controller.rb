@@ -31,22 +31,22 @@ module Admin
     end
 
     def create
+      listings = Listing.where(id: params[:listing_ids])
       boardgame = Boardgame.find_by(bgg_id: params[:bgg_id])
 
       if boardgame
-        count = Listing.where(id: params[:listing_ids])
-                       .update_all(boardgame_id: boardgame.id)
-
-        flash[:notice] = "Updated #{count} Listings."
+        listings.each { |listing| listing.identify!(boardgame) }
+        flash[:notice] = "Updated #{listings.count} Listings."
       else
         flash[:alert] = "Did not find a Boardgame with BGG ID = #{params[:bgg_id]}."
       end
       redirect_to admin_identifications_path
     end
 
+    # TODO: rename this method. It's not a real toggle
     def toggle_is_boardgame
-      count = Listing.where(id: params[:listing_ids]).update_all(is_boardgame: false, boardgame_id: nil)
-      flash[:notice] = "Updated #{count} Listings."
+      listings.each { |listing| listing.reject! }
+      flash[:notice] = "Updated #{listings.count} Listings."
       redirect_to admin_identifications_path
     end
   end
