@@ -1,6 +1,8 @@
 module Bgg
   BASE_URI = URI.parse("https://boardgamegeek.com")
 
+  RATE_LIMIT = 5 # seconds between requests
+
   class << self
     def uri_for(boardgame)
       URI.join(BASE_URI, "/boardgame/", id_for(boardgame).to_s)
