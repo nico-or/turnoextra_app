@@ -6,10 +6,10 @@
       <header class="card-header d-flex flex-row justify-content-between align-items-center">
         <h3 class="h4 card-title fw-bold m-0">
           <%= link_to listing.title,
-              tracking_url(listing.url),
-              target: "_blank",
-              rel: "noopener",
-              class: "stretched-link text-decoration-none text-reset",
+            safe_url(listing.url),
+            target: "_blank",
+            rel: "noopener",
+            class: "stretched-link text-decoration-none text-reset",
               **umami_event_attributes("outbound_boardgames_show_click", {
                 store_id: listing.store_id,
                 listing_id: listing.id,

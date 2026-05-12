@@ -5,7 +5,7 @@
     </header>
     <div class="card-body">
       <div class="text-center">
-        <%= link_to tracking_url(store.url),
+        <%= link_to safe_url(store.url),
               class: "btn btn-outline-primary",
               target: "_blank",
               rel: "noopener",

@@ -10,16 +10,6 @@ module ExternalLinkHelper
     nil
   end
 
-  def tracking_url(url)
-    base_url = safe_url(url)
-    return nil unless base_url
-
-    uri = URI.parse(base_url)
-    query = Rack::Utils.parse_nested_query(uri.query).merge(UTM_PARAMS)
-    uri.query = Rack::Utils.build_query(query)
-    uri.to_s
-  end
-
   def umami_event_attributes(name, properties = {})
     return {} unless name.present?
 
