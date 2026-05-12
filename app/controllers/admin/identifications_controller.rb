@@ -44,6 +44,7 @@ module Admin
     end
 
     def mark_as_not_boardgame
+      listings = Listing.where(id: params[:listing_ids])
       listings.each { |listing| listing.reject! }
       flash[:notice] = "Updated #{listings.count} Listings."
       redirect_to admin_identifications_path
