@@ -77,3 +77,5 @@ gem "scenic", "~> 1.9"
 gem "browser", "~> 6"
 
 gem "ipaddr", "~> 1.2"
+
+gem "faraday", "~> 2.14"
