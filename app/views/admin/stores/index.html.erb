@@ -5,6 +5,7 @@
       <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">Link</th>
+      <th scope="col">Status</th>
     </thead>
     <tbody>
       <% @stores.each do |store| %>
@@ -16,6 +17,7 @@
               External Link <i class="bi bi-box-arrow-up-right"></i>
             <% end %>
           </td>
+          <td><%= store.status %></td>
         </tr>
       <% end %>
     </tbody>
