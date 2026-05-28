@@ -35,8 +35,12 @@ RUN apt-get update -qq && \
     git \ 
     libyaml-dev \ 
     pkg-config \ 
-    npm \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Install Node.js 20.x (satisfies sass >=20.19.0 requirement)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install --no-install-recommends -y nodejs && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 RUN npm install -g yarn \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
