@@ -254,7 +254,7 @@ GEM
       activesupport (>= 7.0.0)
       rack
     public_suffix (7.0.5)
-    puma (7.2.1)
+    puma (8.0.2)
       nio4r (~> 2.0)
     raabro (1.5.0)
     racc (1.8.1)
@@ -437,7 +437,7 @@ DEPENDENCIES
   pagy (~> 43.2)
   pg
   propshaft
-  puma (~> 7)
+  puma (~> 8)
   rails (~> 8)
   rails-i18n (~> 8.0)
   rubocop-rails-omakase
